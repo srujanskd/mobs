@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Mobs</string>
+    <string name="welcome_title">Your stream starts here</string>
+    <string name="welcome_body">Create a scene, connect YouTube, and take your stream with you.</string>
+    <string name="setup_status">Streaming setup is coming soon.</string>
+</resources>
