@@ -1,6 +1,23 @@
 <resources>
     <string name="app_name">Mobs</string>
-    <string name="welcome_title">Your stream starts here</string>
-    <string name="welcome_body">Create a scene, connect YouTube, and take your stream with you.</string>
-    <string name="setup_status">Streaming setup is coming soon.</string>
+
+    <string name="permissions_title">Camera and microphone needed</string>
+    <string name="permissions_body">Mobs captures video and audio on this device to broadcast them. Grant camera and microphone access to continue.</string>
+    <string name="permissions_grant">Grant access</string>
+    <string name="permissions_retry">Try again</string>
+
+    <string name="status_camera_open">Camera open · %1$d×%2$d %3$d fps</string>
+    <string name="status_camera_closed">Camera closed</string>
+    <string name="status_camera_disconnected">Camera disconnected by another app</string>
+    <string name="status_camera_error">Camera error: %1$s</string>
+    <string name="profile_unsupported">This device rejected %1$d×%2$d at %3$d fps</string>
+
+    <string name="action_mute">Mute</string>
+    <string name="action_unmute">Unmute</string>
+    <string name="action_camera_front">Front camera</string>
+    <string name="action_camera_rear">Rear camera</string>
+
+    <string name="stream_notification_channel">Streaming session</string>
+    <string name="stream_notification_title">Mobs session active</string>
+    <string name="stream_notification_text">Camera and microphone are in use.</string>
 </resources>

@@ -4,6 +4,7 @@ kotlin = "2.4.20"
 compose-bom = "2026.09.00"
 activity = "1.13.0"
 lifecycle = "2.11.0"
+rootencoder = "2.8.1"
 
 [libraries]
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -14,6 +15,7 @@ androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = 
 androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+rootencoder-library = { module = "com.github.pedroSG94.RootEncoder:library", version.ref = "rootencoder" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

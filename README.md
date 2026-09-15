@@ -1,6 +1,6 @@
 # Mobs
 
-Native Android IRL streaming app. The project currently contains a buildable Kotlin and Jetpack Compose starter screen. Camera capture, broadcasting, scene editing, storage, YouTube authorization, chat, goals, and DJI support are planned work.
+Native Android IRL streaming app. The project currently shows a rear-camera preview at a fixed 1920x1080 30 fps landscape profile, with camera and microphone permissions, mute, and front/rear switching. The capture session runs inside a foreground service behind a `StreamEngine` interface. Broadcasting, scene editing, storage, YouTube authorization, chat, goals, and DJI support are planned work.
 
 The product scope and device acceptance gates are in [the Android streaming plan](docs/android-streaming-plan.md). The first media milestone is rear-camera streaming at 1080p30 with text, a goal bar, and a BRB cut that preserves the encoder session.
 
@@ -34,17 +34,19 @@ For Android Studio, open this directory, select JDK 17 as the Gradle JDK, and us
 
 Start with packages in the existing `app` module. Introduce each package's implementation when its milestone begins:
 
-- `editor`: Compose screens and controls. Contains the starter screen.
+- `editor`: Compose screens and controls. Contains the permission gate, the camera screen, and the service binding.
 - `scene`: durable source definitions, normalized placements, and scene validation.
 - `render`: GPU composition and cached overlay textures.
-- `stream`: media-engine adapter, service ownership, and connection state.
+- `stream`: media-engine adapter, service ownership, and connection state. See [its README](app/src/main/java/dev/mobs/stream/README.md).
 - `youtube`: authorization, broadcasts, and chat.
 - `goals`: shared goal values and updates.
 - `storage`: Room, DataStore, owned media, and secret protection.
 
-The package boundaries are recorded in the source directories. There are no fake engine or platform implementations. Add Room, DataStore, OAuth, and media dependencies when their implementations begin. RootEncoder remains a candidate until the physical-device proof of concept passes.
+The package boundaries are recorded in the source directories. There are no fake engine or platform implementations. Add Room, DataStore, and OAuth dependencies when their implementations begin. RootEncoder is integrated behind `StreamEngine` and remains a candidate until the physical-device proof of concept passes; `RootEncoderStreamEngine` is the only file that imports `com.pedro.*`.
 
-Keep camera frames out of Compose state. The stream service will own the media session independently of the UI. Introduce camera/microphone permissions and foreground service declarations together with their runtime permission and lifecycle handling.
+Keep camera frames out of Compose state. `StreamService` owns the media session independently of the UI, and the surface lifecycle drives preview attach and detach so the camera closes when no screen is showing it.
+
+The activity is locked to a single landscape orientation while the output profile is fixed, so the encoder keeps one 1920x1080 geometry. Reverse landscape and portrait arrive with the portrait/landscape stream profiles; RootEncoder's sensor-driven orientation handling stays off until then, because it would change the output aspect ratio mid-session.
 
 ## Validation
 
@@ -54,13 +56,13 @@ Keep camera frames out of Compose state. The stream service will own the media s
 
 The GitHub Actions workflow runs the same checks and uploads the debug APK when the repository is hosted on GitHub. Release builds remain unsigned. No automated behavior tests exist yet because this setup contains only a static screen. Add tests for scene validation and persistence, event deduplication, and broadcast state transitions as those behaviors are implemented.
 
-The September 13, 2026 dependency update passed `clean assembleDebug assembleRelease lintDebug lintRelease`. Both lint reports have zero errors and one `OldTargetApi` warning because target SDK remains 36. No dependency-update warnings remain.
+The September 15, 2026 camera-preview change passed `assembleDebug assembleRelease lintDebug lintRelease`. Both lint reports have zero errors and six warnings: `OldTargetApi` because target SDK remains 36, and five `TrustAllX509TrustManager` warnings from the Bouncy Castle TLS jars that RootEncoder's RTMPS transport pulls in. Review those TLS defaults before relying on RTMPS certificate validation.
 
-No streaming or endurance results exist yet. Pixel 7 and Galaxy S25 Ultra measurements remain required by the plan. An emulator or successful APK build cannot establish the 1080p30 or three-hour endurance gates.
+Nothing here is verified on a phone yet. No device was attached when the camera preview landed, so preview output, 1080p30 capture, camera switching, mute, and the foreground service notification are all unverified on hardware. No streaming or endurance results exist yet. Pixel 7 and Galaxy S25 Ultra measurements remain required by the plan. An emulator or successful APK build cannot establish the 1080p30 or three-hour endurance gates.
 
 Dependency versions are pinned in `gradle/libs.versions.toml`. The Gradle/JDK/SDK selection follows [AGP 9.4 compatibility](https://developer.android.com/build/releases/agp-9-4-0-release-notes); Compose uses the [Kotlin Compose compiler plugin](https://developer.android.com/develop/ui/compose/setup-compose-dependencies-and-compiler). The wrapper distribution has a pinned SHA-256 checksum.
 
-Versions checked against publisher release metadata on September 13, 2026: AGP 9.4.0, Kotlin and Compose compiler 2.4.20, Compose BOM 2026.09.00, Activity 1.13.0, Lifecycle 2.11.0, and Gradle 9.7.1. Compose UI, Material 3, and tooling stay aligned through the BOM rather than independent version overrides. Transitive libraries remain under their parent dependencies' version constraints.
+Versions checked against publisher release metadata on September 13, 2026: AGP 9.4.0, Kotlin and Compose compiler 2.4.20, Compose BOM 2026.09.00, Activity 1.13.0, Lifecycle 2.11.0, and Gradle 9.7.1. RootEncoder 2.8.1, its latest release as of September 15, 2026, is not published to Maven Central, so `settings.gradle.kts` adds JitPack restricted to that group. Its Apache 2.0 license and transitive Ktor and Bouncy Castle dependencies need a license review before distribution. Compose UI, Material 3, and tooling stay aligned through the BOM rather than independent version overrides. Transitive libraries remain under their parent dependencies' version constraints.
 
 AGP now uses [built-in Kotlin](https://developer.android.com/build/migrate-to-built-in-kotlin). The root buildscript selects Kotlin 2.4.20 explicitly, using AGP's supported version override mechanism, and the separate Kotlin Android plugin is removed. JDK 17 remains the project toolchain and the AGP-documented default. SDK build tools use AGP's default 36.0.0. Compile SDK is 37 as required by the current Compose artifacts. Target SDK remains 36, with minimum API 29.
 
