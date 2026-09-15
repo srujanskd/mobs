@@ -16,7 +16,7 @@ jobs:
       - uses: android-actions/setup-android@v4.0.1
       - uses: gradle/actions/setup-gradle@v6.3.0
       - run: sdkmanager 'platforms;android-37.0' 'build-tools;36.0.0'
-      - run: ./gradlew assembleDebug assembleRelease lintDebug lintRelease
+      - run: ./gradlew testDebugUnitTest assembleDebug assembleRelease lintDebug lintRelease
       - uses: actions/upload-artifact@v7.0.1
         with:
           name: mobs-debug

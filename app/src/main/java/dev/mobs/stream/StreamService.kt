@@ -13,6 +13,10 @@ import android.os.Build
 import android.os.IBinder
 import dev.mobs.MainActivity
 import dev.mobs.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 
 /**
  * Owns the media session for as long as the broadcast lasts, independently of any screen. The
@@ -24,6 +28,8 @@ import dev.mobs.R
  */
 class StreamService : Service() {
 
+    private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+    private lateinit var sessionLifetime: StreamSessionLifetime
     private var engineOrNull: RootEncoderStreamEngine? = null
 
     val engine: StreamEngine
@@ -40,6 +46,7 @@ class StreamService : Service() {
         // Configure capture and both encoders once, before any preview attaches. A rejected
         // profile is reported through engine state rather than silently downgraded.
         engine.prepare()
+        sessionLifetime = StreamSessionLifetime(engine, serviceScope, ::stopSelf)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -47,9 +54,23 @@ class StreamService : Service() {
         return START_NOT_STICKY
     }
 
-    override fun onBind(intent: Intent?): IBinder = LocalBinder()
+    override fun onBind(intent: Intent?): IBinder {
+        sessionLifetime.onEditorBound()
+        return LocalBinder()
+    }
+
+    override fun onRebind(intent: Intent?) {
+        sessionLifetime.onEditorBound()
+        super.onRebind(intent)
+    }
+
+    override fun onUnbind(intent: Intent?): Boolean {
+        sessionLifetime.onEditorUnbound()
+        return true
+    }
 
     override fun onDestroy() {
+        serviceScope.cancel()
         engineOrNull?.release()
         engineOrNull = null
         super.onDestroy()
@@ -102,10 +123,6 @@ class StreamService : Service() {
 
         fun start(context: Context) {
             context.startForegroundService(Intent(context, StreamService::class.java))
-        }
-
-        fun stop(context: Context) {
-            context.stopService(Intent(context, StreamService::class.java))
         }
     }
 }

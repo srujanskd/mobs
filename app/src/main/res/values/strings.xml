@@ -5,6 +5,8 @@
     <string name="permissions_body">Mobs captures video and audio on this device to broadcast them. Grant camera and microphone access to continue.</string>
     <string name="permissions_grant">Grant access</string>
     <string name="permissions_retry">Try again</string>
+    <string name="permissions_settings">Open settings</string>
+    <string name="permissions_settings_body">Camera or microphone access is blocked. Open Settings, choose Permissions, and allow camera and microphone access. Return here to continue.</string>
 
     <string name="status_camera_open">Camera open · %1$d×%2$d %3$d fps</string>
     <string name="status_camera_closed">Camera closed</string>

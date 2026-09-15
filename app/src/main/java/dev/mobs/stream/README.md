@@ -13,6 +13,8 @@ storage or UI.
   independently of the editor screen. Declared with the camera and microphone service types, so it
   must be started from a visible user action with both permissions already granted.
 
-The engine prepares once, at service creation, for a fixed 1920x1080 30 fps landscape profile. A
+`StreamSessionLifetime` makes shutdown decisions inside the service using session activity, which remains true through transport retries. It releases idle sessions after the editor unbinds, including when retries end after the editor has left.
+
+The engine forces hardware video encoding and prepares once, at service creation, for a fixed 1920x1080 30 fps landscape profile. A
 device that rejects that profile is reported through `StreamEngineState.profileError`; the engine
 never substitutes a lower resolution or frame rate.

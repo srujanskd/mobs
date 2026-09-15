@@ -11,7 +11,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
-import dev.mobs.stream.ConnectionState
 import dev.mobs.stream.StreamEngine
 import dev.mobs.stream.StreamService
 
@@ -40,15 +39,8 @@ fun rememberStreamEngine(): StreamEngine? {
         StreamService.start(context)
         context.bindService(Intent(context, StreamService::class.java), connection, 0)
         onDispose {
-            // A live broadcast must outlive the screen; a session that is not on air should not
-            // keep a foreground service running behind it.
-            val onAir = when (engine?.state?.value?.connection) {
-                is ConnectionState.Connecting, is ConnectionState.Connected -> true
-                else -> false
-            }
             context.unbindService(connection)
             engine = null
-            if (!onAir) StreamService.stop(context)
         }
     }
     return engine

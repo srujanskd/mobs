@@ -15,7 +15,7 @@ brew install openjdk@17 android-commandlinetools
 source scripts/android-env.sh
 sdkmanager --sdk_root="$ANDROID_HOME" --licenses
 sdkmanager --sdk_root="$ANDROID_HOME" 'platforms;android-37.0' 'build-tools;36.0.0' 'platform-tools'
-./gradlew assembleDebug assembleRelease lintDebug lintRelease
+./gradlew testDebugUnitTest assembleDebug assembleRelease lintDebug lintRelease
 ```
 
 Source `scripts/android-env.sh` in each new terminal on this Mac. It discovers Homebrew's JDK 17 and defaults the SDK to `~/Library/Android/sdk`. On other operating systems, set `JAVA_HOME` and `ANDROID_HOME` to your existing installations and invoke the wrapper directly, using `gradlew.bat` on Windows.
@@ -34,7 +34,7 @@ For Android Studio, open this directory, select JDK 17 as the Gradle JDK, and us
 
 Start with packages in the existing `app` module. Introduce each package's implementation when its milestone begins:
 
-- `editor`: Compose screens and controls. Contains the permission gate, the camera screen, and the service binding.
+- `editor`: Compose screens and controls. Contains the permission gate, the camera screen, its ViewModel, and the service binding.
 - `scene`: durable source definitions, normalized placements, and scene validation.
 - `render`: GPU composition and cached overlay textures.
 - `stream`: media-engine adapter, service ownership, and connection state. See [its README](app/src/main/java/dev/mobs/stream/README.md).
@@ -46,17 +46,19 @@ The package boundaries are recorded in the source directories. There are no fake
 
 Keep camera frames out of Compose state. `StreamService` owns the media session independently of the UI, and the surface lifecycle drives preview attach and detach so the camera closes when no screen is showing it.
 
+The service retains an active stream through connection retries even when the editor unbinds, and stops once neither an editor nor an active stream needs it. Video preparation forces hardware encoding; unsupported devices cannot fall back to a software video encoder. The permission gate offers Settings recovery after permanent denial and refreshes access on resume.
+
 The activity is locked to a single landscape orientation while the output profile is fixed, so the encoder keeps one 1920x1080 geometry. Reverse landscape and portrait arrive with the portrait/landscape stream profiles; RootEncoder's sensor-driven orientation handling stays off until then, because it would change the output aspect ratio mid-session.
 
 ## Validation
 
 ```sh
-./gradlew assembleDebug assembleRelease lintDebug lintRelease
+./gradlew testDebugUnitTest assembleDebug assembleRelease lintDebug lintRelease
 ```
 
-The GitHub Actions workflow runs the same checks and uploads the debug APK when the repository is hosted on GitHub. Release builds remain unsigned. No automated behavior tests exist yet because this setup contains only a static screen. Add tests for scene validation and persistence, event deduplication, and broadcast state transitions as those behaviors are implemented.
+The GitHub Actions workflow runs the same checks and uploads the debug APK when the repository is hosted on GitHub. Release builds remain unsigned. Unit tests cover session retention during reconnects, shutdown after terminal failure, editor rebinding, and ViewModel controls. Add tests for scene validation and persistence, event deduplication, and broadcast state transitions as those behaviors are implemented.
 
-The September 15, 2026 camera-preview change passed `assembleDebug assembleRelease lintDebug lintRelease`. Both lint reports have zero errors and six warnings: `OldTargetApi` because target SDK remains 36, and five `TrustAllX509TrustManager` warnings from the Bouncy Castle TLS jars that RootEncoder's RTMPS transport pulls in. Review those TLS defaults before relying on RTMPS certificate validation.
+The September 15, 2026 camera-preview review fixes passed `testDebugUnitTest assembleDebug assembleRelease lintDebug lintRelease`. Both lint reports have zero errors and six warnings: `OldTargetApi` because target SDK remains 36, and five `TrustAllX509TrustManager` warnings from the Bouncy Castle TLS jars that RootEncoder's RTMPS transport pulls in. Review those TLS defaults before relying on RTMPS certificate validation.
 
 Nothing here is verified on a phone yet. No device was attached when the camera preview landed, so preview output, 1080p30 capture, camera switching, mute, and the foreground service notification are all unverified on hardware. No streaming or endurance results exist yet. Pixel 7 and Galaxy S25 Ultra measurements remain required by the plan. An emulator or successful APK build cannot establish the 1080p30 or three-hour endurance gates.
 

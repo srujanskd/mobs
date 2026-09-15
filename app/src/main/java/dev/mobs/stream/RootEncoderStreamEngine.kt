@@ -8,6 +8,7 @@ import com.pedro.encoder.input.sources.audio.MicrophoneSource
 import com.pedro.encoder.input.sources.video.Camera2Source
 import com.pedro.encoder.input.video.CameraCallbacks
 import com.pedro.encoder.input.video.CameraHelper
+import com.pedro.encoder.utils.CodecUtil
 import com.pedro.library.rtmp.RtmpStream
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -32,6 +33,7 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
     init {
         // Landscape-locked for the proof of concept, so the encoder keeps one fixed 1920x1080
         // geometry. Sensor-driven orientation arrives with the portrait stream profile.
+        stream.forceCodecType(CodecUtil.CodecType.HARDWARE, CodecUtil.CodecType.FIRST_COMPATIBLE_FOUND)
         stream.getGlInterface().autoHandleOrientation = false
         stream.getStreamClient().setReTries(RETRIES)
         camera.setCameraCallback(object : CameraCallbacks {
@@ -122,13 +124,18 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
 
     override fun startStream(endpoint: String) {
         if (!_state.value.prepared || stream.isStreaming) return
-        _state.update { it.copy(connection = ConnectionState.Connecting(endpoint)) }
-        stream.startStream(endpoint)
+        _state.update { it.copy(streamActive = true, connection = ConnectionState.Connecting(endpoint)) }
+        try {
+            stream.startStream(endpoint)
+        } catch (e: RuntimeException) {
+            stopStream()
+            _state.update { it.copy(connection = ConnectionState.Failed("Unable to start stream")) }
+        }
     }
 
     override fun stopStream() {
         if (stream.isStreaming) stream.stopStream()
-        _state.update { it.copy(connection = ConnectionState.Idle) }
+        _state.update { it.copy(streamActive = false, connection = ConnectionState.Idle) }
     }
 
     override fun release() {
@@ -152,7 +159,7 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
             _state.update { it.copy(connection = ConnectionState.Failed("$reason (retrying)")) }
         } else {
             stream.stopStream()
-            _state.update { it.copy(connection = ConnectionState.Failed(reason)) }
+            _state.update { it.copy(streamActive = false, connection = ConnectionState.Failed(reason)) }
         }
     }
 
@@ -162,7 +169,7 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
 
     override fun onAuthError() {
         stream.stopStream()
-        _state.update { it.copy(connection = ConnectionState.Failed("Stream key rejected")) }
+        _state.update { it.copy(streamActive = false, connection = ConnectionState.Failed("Stream key rejected")) }
     }
 
     override fun onAuthSuccess() = Unit

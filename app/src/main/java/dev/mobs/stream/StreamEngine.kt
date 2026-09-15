@@ -89,6 +89,8 @@ data class StreamEngineState(
     /** Set when the device rejected the requested profile. Never a reason to stream something else. */
     val profileError: String? = null,
     val previewing: Boolean = false,
+    /** Remains true through transport retries until the session stops or fails permanently. */
+    val streamActive: Boolean = false,
     val cameraFacing: CameraFacing = CameraFacing.REAR,
     val microphoneMuted: Boolean = false,
     val camera: CameraStatus = CameraStatus.Closed,

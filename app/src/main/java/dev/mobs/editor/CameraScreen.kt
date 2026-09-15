@@ -19,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,10 +27,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.mobs.R
 import dev.mobs.stream.CameraFacing
 import dev.mobs.stream.CameraStatus
-import dev.mobs.stream.StreamEngine
 
 /**
  * Proof-of-concept live screen: the composed camera output, a mute toggle, and a camera switch.
@@ -37,15 +38,20 @@ import dev.mobs.stream.StreamEngine
  * when streaming is wired up.
  */
 @Composable
-fun CameraScreen(modifier: Modifier = Modifier) {
+fun CameraScreen(modifier: Modifier = Modifier, viewModel: CameraViewModel = viewModel()) {
     val engine = rememberStreamEngine()
-    if (engine == null) {
+    DisposableEffect(engine, viewModel) {
+        if (engine != null) viewModel.bind(engine)
+        onDispose { viewModel.unbind() }
+    }
+    val editorState by viewModel.state.collectAsStateWithLifecycle()
+    val state = editorState
+    if (state == null) {
         Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             CircularProgressIndicator()
         }
         return
     }
-    val state by engine.state.collectAsStateWithLifecycle()
 
     Box(modifier = modifier.fillMaxSize().background(Color.Black)) {
         val error = state.profileError
@@ -67,13 +73,15 @@ fun CameraScreen(modifier: Modifier = Modifier) {
                 Text(error, style = MaterialTheme.typography.bodyMedium)
             }
         } else {
-            EnginePreview(
-                engine = engine,
-                modifier = Modifier
-                    .align(Alignment.Center)
-                    .fillMaxHeight()
-                    .aspectRatio(state.video.width.toFloat() / state.video.height.toFloat()),
-            )
+            key(engine) {
+                EnginePreview(
+                    viewModel = viewModel,
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .fillMaxHeight()
+                        .aspectRatio(state.video.width.toFloat() / state.video.height.toFloat()),
+                )
+            }
         }
 
         Text(
@@ -90,14 +98,14 @@ fun CameraScreen(modifier: Modifier = Modifier) {
                 .padding(16.dp),
             horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally),
         ) {
-            Button(onClick = { engine.setMicrophoneMuted(!state.microphoneMuted) }) {
+            Button(onClick = viewModel::toggleMicrophone) {
                 Text(
                     stringResource(
                         if (state.microphoneMuted) R.string.action_unmute else R.string.action_mute,
                     ),
                 )
             }
-            Button(onClick = engine::switchCamera) {
+            Button(onClick = viewModel::switchCamera) {
                 Text(
                     stringResource(
                         when (state.cameraFacing) {
@@ -116,7 +124,7 @@ fun CameraScreen(modifier: Modifier = Modifier) {
  * released whenever the screen is gone, and per-frame work never travels through Compose state.
  */
 @Composable
-private fun EnginePreview(engine: StreamEngine, modifier: Modifier = Modifier) {
+private fun EnginePreview(viewModel: CameraViewModel, modifier: Modifier = Modifier) {
     AndroidView(
         modifier = modifier,
         factory = { context ->
@@ -131,23 +139,19 @@ private fun EnginePreview(engine: StreamEngine, modifier: Modifier = Modifier) {
                             width: Int,
                             height: Int,
                         ) {
-                            if (engine.state.value.previewing) {
-                                engine.setPreviewSize(width, height)
-                            } else {
-                                engine.attachPreview(holder.surface, width, height)
-                            }
+                            viewModel.updatePreview(holder.surface, width, height)
                         }
 
                         override fun surfaceDestroyed(holder: SurfaceHolder) {
-                            engine.detachPreview()
+                            viewModel.detachPreview()
                         }
                     },
                 )
             }
         },
     )
-    DisposableEffect(engine) {
-        onDispose { engine.detachPreview() }
+    DisposableEffect(viewModel) {
+        onDispose { viewModel.detachPreview() }
     }
 }
 
