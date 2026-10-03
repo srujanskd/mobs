@@ -208,10 +208,15 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
     // RootEncoder's url argument includes the stream key, so state carries [server] instead.
     override fun onConnectionStarted(url: String) {
         if (!_state.value.streamActive) return
-        _state.update { it.copy(connection = ConnectionState.Connecting(server)) }
+        // Every retry connects afresh and lands here; keep showing the attempt, not "Connecting".
+        _state.update {
+            if (it.connection is ConnectionState.Reconnecting) it
+            else it.copy(connection = ConnectionState.Connecting(server))
+        }
     }
 
     override fun onConnectionSuccess() {
+        if (!_state.value.streamActive) return
         reconnect.reset()
         _state.update {
             it.copy(
@@ -246,6 +251,7 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
     }
 
     override fun onAuthError() {
+        if (!_state.value.streamActive) return
         stream.stopStream()
         syncOverlayFilter()
         _state.update {

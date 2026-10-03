@@ -10,8 +10,10 @@ import dev.mobs.stream.DestinationResult
 import dev.mobs.stream.StreamDestination
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.io.IOException
 import java.security.GeneralSecurityException
 import java.security.KeyStore
+import java.security.ProviderException
 import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
@@ -30,12 +32,13 @@ class KeystoreStreamDestinationStore(context: Context) : StreamDestinationStore 
         val sealed = prefs.getString(KEY_STREAM_KEY, null) ?: return@withContext null
         val streamKey = try {
             decrypt(sealed)
-        } catch (e: GeneralSecurityException) {
-            // The Keystore key can be invalidated, e.g. by a lock-screen reset. Ask again.
-            Log.w(TAG, "Saved stream key is unreadable", e)
-            return@withContext null
-        } catch (e: IllegalArgumentException) {
-            Log.w(TAG, "Saved stream key is corrupt", e)
+        } catch (e: Exception) {
+            when {
+                e is IllegalArgumentException -> Log.w(TAG, "Saved stream key is corrupt", e)
+                // The Keystore key can be invalidated, e.g. by a lock-screen reset. Ask again.
+                e.isKeystoreFailure() -> Log.w(TAG, "Saved stream key is unreadable", e)
+                else -> throw e
+            }
             return@withContext null
         }
         (StreamDestination.parse(server, streamKey) as? DestinationResult.Valid)?.destination
@@ -49,12 +52,22 @@ class KeystoreStreamDestinationStore(context: Context) : StreamDestinationStore 
                 putString(KEY_SERVER, destination.server)
                 putString(KEY_STREAM_KEY, sealed)
             }
-        } catch (e: GeneralSecurityException) {
+        } catch (e: Exception) {
+            if (!e.isKeystoreFailure()) throw e
             // The destination still works for this session; it just will not survive a restart.
+            // Drop the old one too, or the next launch would quietly bring back a replaced key.
             Log.w(TAG, "Unable to save stream key", e)
+            prefs.edit(commit = true) {
+                remove(KEY_SERVER)
+                remove(KEY_STREAM_KEY)
+            }
         }
         Unit
     }
+
+    /** Keystore operations can also fail with [ProviderException] on some devices, and with [IOException] on load. */
+    private fun Exception.isKeystoreFailure() =
+        this is GeneralSecurityException || this is ProviderException || this is IOException
 
     private fun encrypt(plain: String): String {
         val cipher = Cipher.getInstance(TRANSFORMATION)
