@@ -4,13 +4,19 @@ import android.content.Context
 import android.os.SystemClock
 import android.util.Log
 import android.view.Surface
+import android.graphics.Bitmap
 import com.pedro.common.ConnectChecker
+import com.pedro.encoder.input.gl.render.filters.`object`.ImageObjectFilterRender
 import com.pedro.encoder.input.sources.audio.MicrophoneSource
 import com.pedro.encoder.input.sources.video.Camera2Source
 import com.pedro.encoder.input.video.CameraCallbacks
 import com.pedro.encoder.input.video.CameraHelper
 import com.pedro.encoder.utils.CodecUtil
 import com.pedro.library.rtmp.RtmpStream
+import dev.mobs.render.OverlayPlacement
+import dev.mobs.render.TextOverlay
+import dev.mobs.render.TextRasterizer
+import dev.mobs.render.placeOverlay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -31,6 +37,19 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
 
     /** The current destination's server, for state that must not contain the key. */
     @Volatile private var server = ""
+
+    /** Rasterized once per overlay change and reused whenever the filter has to be re-added. */
+    private var overlayImage: Pair<Bitmap, OverlayPlacement>? = null
+
+    /**
+     * The filter currently inside RootEncoder's renderer. GlStreamInterface releases and drops all
+     * filters when it stops (preview detached with no stream) and discards filters queued before
+     * it starts, so this is cleared on stop and a new filter is added on each start.
+     */
+    private var overlayFilter: ImageObjectFilterRender? = null
+
+    /** The image [overlayFilter] holds, so lifecycle syncs do not re-upload an unchanged texture. */
+    private var appliedImage: Pair<Bitmap, OverlayPlacement>? = null
 
     private val _state = MutableStateFlow(StreamEngineState())
     override val state: StateFlow<StreamEngineState> = _state.asStateFlow()
@@ -100,6 +119,7 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
         try {
             stream.startPreview(surface, width, height)
             _state.update { it.copy(previewing = true) }
+            syncOverlayFilter()
         } catch (e: IllegalArgumentException) {
             Log.w(TAG, "Preview surface rejected", e)
         } catch (e: IllegalStateException) {
@@ -115,6 +135,7 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
     override fun detachPreview() {
         if (!stream.isOnPreview) return
         stream.stopPreview()
+        syncOverlayFilter()
         _state.update {
             it.copy(
                 previewing = false,
@@ -147,6 +168,7 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
         }
         try {
             stream.startStream(destination.endpoint)
+            syncOverlayFilter()
         } catch (e: RuntimeException) {
             // The message may quote the endpoint, which contains the key; log the type only.
             Log.w(TAG, "startStream failed: ${e.javaClass.simpleName}")
@@ -157,10 +179,26 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
 
     override fun stopStream() {
         if (stream.isStreaming) stream.stopStream()
+        syncOverlayFilter()
         _state.update { it.copy(streamActive = false, connection = ConnectionState.Idle, stats = StreamStats()) }
     }
 
+    override fun setTextOverlay(overlay: TextOverlay?) {
+        val video = _state.value.video
+        val bitmap = overlay?.let { TextRasterizer.rasterize(it, video.width, video.height) }
+        synchronized(this) {
+            overlayImage = if (overlay != null && bitmap != null) {
+                bitmap to placeOverlay(bitmap.width, bitmap.height, video.width, video.height, overlay.anchor, overlay.margin)
+            } else {
+                null
+            }
+        }
+        _state.update { it.copy(textOverlay = overlay?.takeIf { bitmap != null }) }
+        syncOverlayFilter()
+    }
+
     override fun release() {
+        synchronized(this) { overlayFilter = null }
         stream.release()
         _state.update {
             StreamEngineState(cameraFacing = it.cameraFacing, microphoneMuted = it.microphoneMuted)
@@ -194,6 +232,7 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
             _state.update { it.copy(connection = ConnectionState.Reconnecting(reconnect.attempt, reason)) }
         } else {
             stream.stopStream()
+            syncOverlayFilter()
             _state.update {
                 it.copy(streamActive = false, connection = ConnectionState.Failed(reason), stats = StreamStats())
             }
@@ -208,6 +247,7 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
 
     override fun onAuthError() {
         stream.stopStream()
+        syncOverlayFilter()
         _state.update {
             it.copy(
                 streamActive = false,
@@ -225,6 +265,40 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
     }
 
     override fun onAuthSuccess() = Unit
+
+    /**
+     * Makes RootEncoder's renderer match [overlayImage]. Called after every operation that can
+     * start or stop GL, and from transport callbacks, hence the lock.
+     */
+    @Synchronized
+    private fun syncOverlayFilter() {
+        val gl = stream.getGlInterface()
+        if (!gl.isRunning) {
+            // GL released the filter along with everything else; add a fresh one on next start.
+            overlayFilter = null
+            appliedImage = null
+            return
+        }
+        val image = overlayImage
+        val current = overlayFilter
+        if (image == null) {
+            current?.let(gl::removeFilter)
+            overlayFilter = null
+            appliedImage = null
+            return
+        }
+        if (current != null && appliedImage === image) return
+        val (bitmap, placement) = image
+        val filter = current ?: ImageObjectFilterRender().also {
+            gl.addFilter(it)
+            overlayFilter = it
+        }
+        filter.setImage(bitmap)
+        // Scale first: RootEncoder rescales the current position whenever the scale changes.
+        filter.setScale(placement.widthPercent, placement.heightPercent)
+        filter.setPosition(placement.leftPercent, placement.topPercent)
+        appliedImage = image
+    }
 
     /** Records the rejected [video] profile so the error names what the device refused. */
     private fun unsupported(video: VideoProfile, reason: String): PrepareResult {

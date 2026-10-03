@@ -18,6 +18,7 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
@@ -45,6 +46,8 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.mobs.R
+import dev.mobs.render.OverlayAnchor
+import dev.mobs.render.TextOverlay
 import dev.mobs.stream.CameraFacing
 import dev.mobs.stream.CameraStatus
 import dev.mobs.stream.ConnectionState
@@ -71,6 +74,7 @@ fun CameraScreen(
     val destination by viewModel.destination.collectAsStateWithLifecycle()
     var showSetup by rememberSaveable { mutableStateOf(false) }
     var confirmStop by rememberSaveable { mutableStateOf(false) }
+    var showText by rememberSaveable { mutableStateOf(false) }
     val state = editorState
     if (state == null) {
         Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -147,6 +151,9 @@ fun CameraScreen(
                     ),
                 )
             }
+            OutlinedButton(onClick = { showText = true }) {
+                Text(stringResource(R.string.action_text_overlay))
+            }
             OutlinedButton(
                 onClick = { showSetup = true },
                 enabled = !state.streamActive && destination != SavedDestination.Loading,
@@ -183,6 +190,16 @@ fun CameraScreen(
                 viewModel.saveDestination(server, key).also { if (it == null) showSetup = false }
             },
             onDismiss = { showSetup = false },
+        )
+    }
+    if (showText) {
+        TextOverlayDialog(
+            current = state.textOverlay,
+            onApply = { text, anchor ->
+                viewModel.setTextOverlay(text, anchor)
+                showText = false
+            },
+            onDismiss = { showText = false },
         )
     }
     if (confirmStop && state.streamActive) {
@@ -321,6 +338,66 @@ private fun StreamSetupDialog(
             TextButton(onClick = onDismiss) { Text(stringResource(R.string.setup_cancel)) }
         },
     )
+}
+
+@Composable
+private fun TextOverlayDialog(
+    current: TextOverlay?,
+    onApply: (text: String, anchor: OverlayAnchor) -> Unit,
+    onDismiss: () -> Unit,
+) {
+    var text by rememberSaveable { mutableStateOf(current?.text.orEmpty()) }
+    var anchor by rememberSaveable { mutableStateOf(current?.anchor ?: OverlayAnchor.TOP_CENTER) }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.text_title)) },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                Text(stringResource(R.string.text_body), style = MaterialTheme.typography.bodyMedium)
+                OutlinedTextField(
+                    value = text,
+                    onValueChange = { text = it },
+                    label = { Text(stringResource(R.string.text_label)) },
+                    maxLines = 3,
+                    modifier = Modifier.fillMaxWidth(),
+                )
+                OverlayAnchor.entries.chunked(3).forEach { row ->
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        row.forEach { option ->
+                            FilterChip(
+                                selected = anchor == option,
+                                onClick = { anchor = option },
+                                label = { Text(stringResource(option.label())) },
+                            )
+                        }
+                    }
+                }
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = { onApply(text, anchor) }, enabled = text.isNotBlank()) {
+                Text(stringResource(R.string.text_apply))
+            }
+        },
+        dismissButton = {
+            Row {
+                if (current != null) {
+                    TextButton(onClick = { onApply("", anchor) }) { Text(stringResource(R.string.text_remove)) }
+                }
+                TextButton(onClick = onDismiss) { Text(stringResource(R.string.setup_cancel)) }
+            }
+        },
+    )
+}
+
+private fun OverlayAnchor.label() = when (this) {
+    OverlayAnchor.TOP_LEFT -> R.string.anchor_top_left
+    OverlayAnchor.TOP_CENTER -> R.string.anchor_top_center
+    OverlayAnchor.TOP_RIGHT -> R.string.anchor_top_right
+    OverlayAnchor.BOTTOM_LEFT -> R.string.anchor_bottom_left
+    OverlayAnchor.BOTTOM_CENTER -> R.string.anchor_bottom_center
+    OverlayAnchor.BOTTOM_RIGHT -> R.string.anchor_bottom_right
 }
 
 private fun DestinationProblem.message() = when (this) {

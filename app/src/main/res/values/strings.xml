@@ -49,6 +49,19 @@
     <string name="setup_error_key_blank">Enter the stream key.</string>
     <string name="setup_error_key_whitespace">The stream key cannot contain spaces.</string>
 
+    <string name="action_text_overlay">Text</string>
+    <string name="text_title">On-stream text</string>
+    <string name="text_body">Drawn into the video viewers receive. Up to three lines; longer text is cut off.</string>
+    <string name="text_label">Text</string>
+    <string name="text_apply">Apply</string>
+    <string name="text_remove">Remove</string>
+    <string name="anchor_top_left">Top left</string>
+    <string name="anchor_top_center">Top</string>
+    <string name="anchor_top_right">Top right</string>
+    <string name="anchor_bottom_left">Bottom left</string>
+    <string name="anchor_bottom_center">Bottom</string>
+    <string name="anchor_bottom_right">Bottom right</string>
+
     <string name="stop_title">End stream?</string>
     <string name="stop_body">Viewers stop receiving video. The YouTube broadcast itself is managed in YouTube Studio.</string>
     <string name="stop_confirm">End stream</string>

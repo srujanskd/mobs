@@ -2,6 +2,7 @@ package dev.mobs.editor
 
 import dev.mobs.FakeStreamDestinationStore
 import dev.mobs.FakeStreamEngine
+import dev.mobs.render.OverlayAnchor
 import dev.mobs.stream.CameraStatus
 import dev.mobs.stream.DestinationProblem
 import dev.mobs.stream.DestinationResult
@@ -126,5 +127,23 @@ class CameraViewModelTest {
         val ready = viewModel.destination.value as SavedDestination.Ready
         assertEquals("fresh", ready.destination.streamKey)
         assertEquals(listOf(ready.destination), store.saved)
+    }
+
+    @Test
+    fun textOverlayIsTrimmedRestyledInPlaceAndRemovedWhenBlank() = runTest {
+        val engine = FakeStreamEngine()
+        val viewModel = CameraViewModel(FakeStreamDestinationStore.holding(null))
+        viewModel.bind(engine)
+        viewModel.setTextOverlay("  Hello Bengaluru  ", OverlayAnchor.TOP_LEFT)
+        val first = engine.state.value.textOverlay!!
+        assertEquals("Hello Bengaluru", first.text)
+        assertEquals(OverlayAnchor.TOP_LEFT, first.anchor)
+
+        viewModel.setTextOverlay("Day 2", OverlayAnchor.BOTTOM_CENTER)
+        assertEquals(first.copy(text = "Day 2", anchor = OverlayAnchor.BOTTOM_CENTER), engine.state.value.textOverlay)
+
+        viewModel.setTextOverlay("   ", OverlayAnchor.BOTTOM_CENTER)
+        assertNull(engine.state.value.textOverlay)
+        viewModel.unbind()
     }
 }

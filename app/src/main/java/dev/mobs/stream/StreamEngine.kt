@@ -1,6 +1,7 @@
 package dev.mobs.stream
 
 import android.view.Surface
+import dev.mobs.render.TextOverlay
 import kotlinx.coroutines.flow.StateFlow
 
 /**
@@ -30,6 +31,12 @@ interface StreamEngine {
     fun setMicrophoneMuted(muted: Boolean)
 
     fun startStream(destination: StreamDestination)
+
+    /**
+     * Draws [overlay] into the composed output, which feeds both preview and encoder. Null removes
+     * it. The overlay persists across preview detach and stream restarts until replaced.
+     */
+    fun setTextOverlay(overlay: TextOverlay?)
 
     fun stopStream()
 
@@ -96,6 +103,7 @@ data class StreamEngineState(
     val connection: ConnectionState = ConnectionState.Idle,
     val video: VideoProfile = VideoProfile.LANDSCAPE_1080P30,
     val stats: StreamStats = StreamStats(),
+    val textOverlay: TextOverlay? = null,
 )
 
 /** Transport statistics for the current session. Reset whenever a session starts or stops. */

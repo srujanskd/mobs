@@ -1,6 +1,7 @@
 package dev.mobs
 
 import android.view.Surface
+import dev.mobs.render.TextOverlay
 import dev.mobs.stream.AudioProfile
 import dev.mobs.stream.PrepareResult
 import dev.mobs.stream.StreamDestination
@@ -33,6 +34,9 @@ class FakeStreamEngine : StreamEngine {
     override fun stopStream() {
         stopped++
         state.update { it.copy(streamActive = false) }
+    }
+    override fun setTextOverlay(overlay: TextOverlay?) {
+        state.update { it.copy(textOverlay = overlay) }
     }
     override fun release() { released++ }
 }

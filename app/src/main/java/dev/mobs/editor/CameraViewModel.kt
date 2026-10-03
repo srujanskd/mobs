@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import dev.mobs.render.OverlayAnchor
+import dev.mobs.render.TextOverlay
 import dev.mobs.storage.KeystoreStreamDestinationStore
 import dev.mobs.storage.StreamDestinationStore
 import dev.mobs.stream.DestinationProblem
@@ -95,6 +97,16 @@ class CameraViewModel(private val destinationStore: StreamDestinationStore) : Vi
 
     fun stopStream() {
         engine?.stopStream()
+    }
+
+    /** Blank text removes the overlay. Applies immediately, including while live. */
+    fun setTextOverlay(text: String, anchor: OverlayAnchor) {
+        val engine = engine ?: return
+        val trimmed = text.trim()
+        engine.setTextOverlay(
+            if (trimmed.isEmpty()) null
+            else (engine.state.value.textOverlay ?: TextOverlay(trimmed)).copy(text = trimmed, anchor = anchor),
+        )
     }
 
     override fun onCleared() {
