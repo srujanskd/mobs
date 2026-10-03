@@ -19,6 +19,41 @@
     <string name="action_camera_front">Front camera</string>
     <string name="action_camera_rear">Rear camera</string>
 
+    <string name="action_go_live">Go live</string>
+    <string name="action_stop_stream">Stop</string>
+    <string name="action_stream_setup">Stream setup</string>
+    <string name="action_set_up_stream">Set up stream</string>
+
+    <string name="connection_offline">Offline</string>
+    <string name="connection_connecting">Connecting to %1$s…</string>
+    <string name="connection_connected">Connected · %1$s</string>
+    <string name="connection_reconnecting">Reconnecting (attempt %1$d) · %2$s</string>
+    <string name="connection_failed">Stream stopped: %1$s</string>
+    <string name="connection_disconnected">Disconnected by server</string>
+    <plurals name="stats_line">
+        <item quantity="one">%1$.1f Mbps · %2$d dropped frame</item>
+        <item quantity="other">%1$.1f Mbps · %2$d dropped frames</item>
+    </plurals>
+
+    <string name="setup_title">Stream setup</string>
+    <string name="setup_body">Copy the stream URL and stream key from YouTube Studio → Go live → Stream. The key is stored encrypted on this device.</string>
+    <string name="setup_server">Stream URL</string>
+    <string name="setup_key">Stream key</string>
+    <string name="setup_show_key">Show</string>
+    <string name="setup_hide_key">Hide</string>
+    <string name="setup_save">Save</string>
+    <string name="setup_cancel">Cancel</string>
+    <string name="setup_error_scheme">The stream URL must start with rtmps:// or rtmp://.</string>
+    <string name="setup_error_malformed">The stream URL is not a valid address.</string>
+    <string name="setup_error_app">The stream URL needs its path, for example /live2.</string>
+    <string name="setup_error_key_blank">Enter the stream key.</string>
+    <string name="setup_error_key_whitespace">The stream key cannot contain spaces.</string>
+
+    <string name="stop_title">End stream?</string>
+    <string name="stop_body">Viewers stop receiving video. The YouTube broadcast itself is managed in YouTube Studio.</string>
+    <string name="stop_confirm">End stream</string>
+    <string name="stop_cancel">Keep streaming</string>
+
     <string name="stream_notification_channel">Streaming session</string>
     <string name="stream_notification_title">Mobs session active</string>
     <string name="stream_notification_text">Camera and microphone are in use.</string>

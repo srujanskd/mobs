@@ -13,6 +13,16 @@ storage or UI.
   independently of the editor screen. Declared with the camera and microphone service types, so it
   must be started from a visible user action with both permissions already granted.
 
+- `StreamDestination.kt` — validated RTMP(S) server plus stream key. The key appears only in the
+  endpoint handed to the engine; `toString()` and `ConnectionState` carry the server alone.
+- `ReconnectPolicy.kt` — exponential backoff (1 s doubling to 30 s, 20 attempts per outage). The
+  budget resets on every successful connection. RootEncoder's own retry counter is set unbounded
+  because it only resets on stop, which would end a long session after enough separate drops.
+
+RTMPS hostname verification is switched on explicitly; RootEncoder 2.8.1 leaves it off, which would
+accept any CA-signed certificate for any host while the stream key is sent. `StreamStats` exposes
+bitrate and dropped video frames, sampled on RootEncoder's roughly once-a-second bitrate callback.
+
 `StreamSessionLifetime` makes shutdown decisions inside the service using session activity, which remains true through transport retries. It releases idle sessions after the editor unbinds, including when retries end after the editor has left.
 
 The engine forces hardware video encoding and prepares once, at service creation, for a fixed 1920x1080 30 fps landscape profile. A

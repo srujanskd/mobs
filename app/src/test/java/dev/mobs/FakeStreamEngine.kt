@@ -3,6 +3,7 @@ package dev.mobs
 import android.view.Surface
 import dev.mobs.stream.AudioProfile
 import dev.mobs.stream.PrepareResult
+import dev.mobs.stream.StreamDestination
 import dev.mobs.stream.StreamEngine
 import dev.mobs.stream.StreamEngineState
 import dev.mobs.stream.VideoProfile
@@ -15,6 +16,7 @@ class FakeStreamEngine : StreamEngine {
     var released = 0
     var stopped = 0
     var switches = 0
+    val started = mutableListOf<StreamDestination>()
 
     override fun prepare(video: VideoProfile, audio: AudioProfile) = PrepareResult.Success
     override fun attachPreview(surface: Surface, width: Int, height: Int) = Unit
@@ -24,7 +26,13 @@ class FakeStreamEngine : StreamEngine {
     override fun setMicrophoneMuted(muted: Boolean) {
         state.update { it.copy(microphoneMuted = muted) }
     }
-    override fun startStream(endpoint: String) = Unit
-    override fun stopStream() { stopped++ }
+    override fun startStream(destination: StreamDestination) {
+        started += destination
+        state.update { it.copy(streamActive = true) }
+    }
+    override fun stopStream() {
+        stopped++
+        state.update { it.copy(streamActive = false) }
+    }
     override fun release() { released++ }
 }

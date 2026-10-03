@@ -1,6 +1,6 @@
 # Mobs
 
-Native Android IRL streaming app. The project currently shows a rear-camera preview at a fixed 1920x1080 30 fps landscape profile, with camera and microphone permissions, mute, and front/rear switching. The capture session runs inside a foreground service behind a `StreamEngine` interface. Broadcasting, scene editing, storage, YouTube authorization, chat, goals, and DJI support are planned work.
+Native Android IRL streaming app. The project currently shows a rear-camera preview at a fixed 1920x1080 30 fps landscape profile, with camera and microphone permissions, mute, and front/rear switching. A YouTube stream URL and stream key entered in the app (stored Keystore-encrypted) let it go live over RTMPS, with connection state, elapsed time, bitrate, dropped frames, backoff reconnects, and a confirmed stop. The capture session runs inside a foreground service behind a `StreamEngine` interface. Overlays, scene editing, YouTube sign-in, chat, goals, and DJI support are planned work.
 
 The product scope and device acceptance gates are in [the Android streaming plan](docs/android-streaming-plan.md). The first media milestone is rear-camera streaming at 1080p30 with text, a goal bar, and a BRB cut that preserves the encoder session.
 
@@ -34,13 +34,13 @@ For Android Studio, open this directory, select JDK 17 as the Gradle JDK, and us
 
 Start with packages in the existing `app` module. Introduce each package's implementation when its milestone begins:
 
-- `editor`: Compose screens and controls. Contains the permission gate, the camera screen, its ViewModel, and the service binding.
+- `editor`: Compose screens and controls. Contains the permission gate, the camera screen with stream setup and Go live / Stop, its ViewModel, and the service binding.
 - `scene`: durable source definitions, normalized placements, and scene validation.
 - `render`: GPU composition and cached overlay textures.
 - `stream`: media-engine adapter, service ownership, and connection state. See [its README](app/src/main/java/dev/mobs/stream/README.md).
 - `youtube`: authorization, broadcasts, and chat.
 - `goals`: shared goal values and updates.
-- `storage`: Room, DataStore, owned media, and secret protection.
+- `storage`: Room, DataStore, owned media, and secret protection. Currently holds the Keystore-encrypted stream-key destination.
 
 The package boundaries are recorded in the source directories. There are no fake engine or platform implementations. Add Room, DataStore, and OAuth dependencies when their implementations begin. RootEncoder is integrated behind `StreamEngine` and remains a candidate until the physical-device proof of concept passes; `RootEncoderStreamEngine` is the only file that imports `com.pedro.*`.
 
@@ -56,11 +56,11 @@ The activity is locked to a single landscape orientation while the output profil
 ./gradlew testDebugUnitTest assembleDebug assembleRelease lintDebug lintRelease
 ```
 
-The GitHub Actions workflow runs the same checks and uploads the debug APK when the repository is hosted on GitHub. Release builds remain unsigned. Unit tests cover session retention during reconnects, shutdown after terminal failure, editor rebinding, and ViewModel controls. Add tests for scene validation and persistence, event deduplication, and broadcast state transitions as those behaviors are implemented.
+The GitHub Actions workflow runs the same checks and uploads the debug APK when the repository is hosted on GitHub. Release builds remain unsigned. Unit tests cover session retention during reconnects, shutdown after terminal failure, editor rebinding, ViewModel controls and Go live gating, stream URL/key validation and key redaction, reconnect backoff, and elapsed-time formatting. Add tests for scene validation and persistence, event deduplication, and broadcast state transitions as those behaviors are implemented.
 
 The September 15, 2026 camera-preview review fixes passed `testDebugUnitTest assembleDebug assembleRelease lintDebug lintRelease`. Both lint reports have zero errors and six warnings: `OldTargetApi` because target SDK remains 36, and five `TrustAllX509TrustManager` warnings from the Bouncy Castle TLS jars that RootEncoder's RTMPS transport pulls in. Review those TLS defaults before relying on RTMPS certificate validation.
 
-Nothing here is verified on a phone yet. No device was attached when the camera preview landed, so preview output, 1080p30 capture, camera switching, mute, and the foreground service notification are all unverified on hardware. No streaming or endurance results exist yet. Pixel 7 and Galaxy S25 Ultra measurements remain required by the plan. An emulator or successful APK build cannot establish the 1080p30 or three-hour endurance gates.
+Nothing here is verified on a phone yet. That includes going live: no stream has reached YouTube from this build, and the RTMPS handshake with hostname verification enabled, reconnect behavior, and the reported bitrate and dropped-frame figures all await a device run. No device was attached when the camera preview landed, so preview output, 1080p30 capture, camera switching, mute, and the foreground service notification are all unverified on hardware. No streaming or endurance results exist yet. Pixel 7 and Galaxy S25 Ultra measurements remain required by the plan. An emulator or successful APK build cannot establish the 1080p30 or three-hour endurance gates.
 
 Dependency versions are pinned in `gradle/libs.versions.toml`. The Gradle/JDK/SDK selection follows [AGP 9.4 compatibility](https://developer.android.com/build/releases/agp-9-4-0-release-notes); Compose uses the [Kotlin Compose compiler plugin](https://developer.android.com/develop/ui/compose/setup-compose-dependencies-and-compiler). The wrapper distribution has a pinned SHA-256 checksum.
 

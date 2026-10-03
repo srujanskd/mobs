@@ -29,8 +29,7 @@ interface StreamEngine {
 
     fun setMicrophoneMuted(muted: Boolean)
 
-    /** [endpoint] is a full `rtmps://host/app/streamKey` URL. */
-    fun startStream(endpoint: String)
+    fun startStream(destination: StreamDestination)
 
     fun stopStream()
 
@@ -96,6 +95,15 @@ data class StreamEngineState(
     val camera: CameraStatus = CameraStatus.Closed,
     val connection: ConnectionState = ConnectionState.Idle,
     val video: VideoProfile = VideoProfile.LANDSCAPE_1080P30,
+    val stats: StreamStats = StreamStats(),
+)
+
+/** Transport statistics for the current session. Reset whenever a session starts or stops. */
+data class StreamStats(
+    /** `SystemClock.elapsedRealtime()` of the session's first successful connection. */
+    val connectedSinceElapsedMs: Long? = null,
+    val bitrateBps: Long = 0,
+    val droppedVideoFrames: Long = 0,
 )
 
 enum class CameraFacing { REAR, FRONT }
@@ -115,8 +123,14 @@ sealed interface CameraStatus {
  */
 sealed interface ConnectionState {
     data object Idle : ConnectionState
-    data class Connecting(val endpoint: String) : ConnectionState
+    /** [server] excludes the stream key. */
+    data class Connecting(val server: String) : ConnectionState
     data object Connected : ConnectionState
+
+    /** The session is still active and waiting to retry; video is not reaching the server. */
+    data class Reconnecting(val attempt: Int, val reason: String) : ConnectionState
+
+    /** The session ended without the user stopping it. */
     data class Failed(val reason: String) : ConnectionState
     data object Disconnected : ConnectionState
 }
