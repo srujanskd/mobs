@@ -31,6 +31,7 @@ class StreamService : Service() {
     private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
     private lateinit var sessionLifetime: StreamSessionLifetime
     private var engineOrNull: RootEncoderStreamEngine? = null
+    private var lastStartId = 0
 
     val engine: StreamEngine
         get() = requireNotNull(engineOrNull) { "Service is not created" }
@@ -46,10 +47,14 @@ class StreamService : Service() {
         // Configure capture and both encoders once, before any preview attaches. A rejected
         // profile is reported through engine state rather than silently downgraded.
         engine.prepare()
-        sessionLifetime = StreamSessionLifetime(engine, serviceScope, ::stopSelf)
+        // Stop only up to the latest start request. A recreated editor may start the service again
+        // between the old editor's unbind and this stop, and its flag-0 binding would not keep the
+        // service alive; a bare stopSelf() would release the engine out from under it.
+        sessionLifetime = StreamSessionLifetime(engine, serviceScope) { stopSelfResult(lastStartId) }
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        lastStartId = startId
         startForegroundSession()
         return START_NOT_STICKY
     }
@@ -81,7 +86,11 @@ class StreamService : Service() {
         val openApp = PendingIntent.getActivity(
             this,
             0,
-            Intent(this, MainActivity::class.java),
+            // Match the launcher intent so a tap resumes the existing task. A second editor
+            // instance would share the engine's single preview and detach it on its way out.
+            Intent(this, MainActivity::class.java)
+                .setAction(Intent.ACTION_MAIN)
+                .addCategory(Intent.CATEGORY_LAUNCHER),
             PendingIntent.FLAG_IMMUTABLE,
         )
         val notification: Notification = Notification.Builder(this, CHANNEL_ID)

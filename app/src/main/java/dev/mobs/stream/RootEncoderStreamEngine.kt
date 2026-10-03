@@ -52,7 +52,7 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
 
     override fun prepare(video: VideoProfile, audio: AudioProfile): PrepareResult {
         if (_state.value.prepared) return PrepareResult.Success
-        val result = try {
+        try {
             val videoReady = stream.prepareVideo(
                 width = video.width,
                 height = video.height,
@@ -62,7 +62,7 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
                 rotation = LANDSCAPE_ROTATION,
             )
             if (!videoReady) {
-                return unsupported("No hardware video encoder accepted ${video.width}x${video.height}@${video.fps}")
+                return unsupported(video, "No hardware video encoder accepted ${video.width}x${video.height}@${video.fps}")
             }
             val audioReady = stream.prepareAudio(
                 sampleRate = audio.sampleRate,
@@ -72,16 +72,15 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
                 noiseSuppressor = audio.noiseSuppressor,
             )
             if (!audioReady) {
-                return unsupported("Microphone capture or AAC encoding rejected ${audio.sampleRate} Hz")
+                return unsupported(video, "Microphone capture or AAC encoding rejected ${audio.sampleRate} Hz")
             }
-            PrepareResult.Success
         } catch (e: IllegalArgumentException) {
-            return unsupported(e.message ?: "Unsupported capture configuration")
+            return unsupported(video, e.message ?: "Unsupported capture configuration")
         } catch (e: IllegalStateException) {
-            return unsupported(e.message ?: "Engine busy")
+            return unsupported(video, e.message ?: "Engine busy")
         }
         _state.update { it.copy(prepared = true, profileError = null, video = video) }
-        return result
+        return PrepareResult.Success
     }
 
     override fun attachPreview(surface: Surface, width: Int, height: Int) {
@@ -174,9 +173,10 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
 
     override fun onAuthSuccess() = Unit
 
-    private fun unsupported(reason: String): PrepareResult {
+    /** Records the rejected [video] profile so the error names what the device refused. */
+    private fun unsupported(video: VideoProfile, reason: String): PrepareResult {
         Log.w(TAG, "prepare failed: $reason")
-        _state.update { it.copy(prepared = false, profileError = reason) }
+        _state.update { it.copy(prepared = false, profileError = reason, video = video) }
         return PrepareResult.Unsupported(reason)
     }
 
