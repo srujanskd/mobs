@@ -44,4 +44,8 @@ send queue backs up and probes back toward the profile's 10 Mbps, with a floor o
   temperature, current, voltage, and whether power was connected. No server or key is written.
   One file per session, newest 20 kept, in the app's external files directory:
   `adb pull /sdcard/Android/data/dev.mobs/files/sessions`. Rows with `plugged=true` do not
-  measure battery drain, and the sign of `current_ua` varies by vendor.
+  measure battery drain. `current_now` is documented as microamps, but some vendors report
+  milliamps (the OnePlus 13 appears to) and the discharge sign varies, so compare it only within
+  one device. Each session also saves its first 60 seconds of app log as `session-*.log`, with the
+  stream key and RTMP URL paths redacted, and the editor's "Share logs" button sends the newest
+  sessions through the Android share sheet for phones that cannot be attached to a computer.

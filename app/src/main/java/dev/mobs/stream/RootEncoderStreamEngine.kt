@@ -49,6 +49,9 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
     /** The current destination's server, for state that must not contain the key. */
     @Volatile private var server = ""
 
+    /** Kept only so diagnostic logs can redact it; never placed in state or logged. */
+    @Volatile private var lastStreamKey: String? = null
+
     /**
      * One cached image source in RootEncoder's renderer. GlStreamInterface releases and drops all
      * filters when it stops (preview detached with no stream) and discards filters queued before
@@ -187,6 +190,7 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
     override fun startStream(destination: StreamDestination) {
         if (!_state.value.prepared || stream.isStreaming) return
         server = destination.server
+        lastStreamKey = destination.streamKey
         reconnect.reset()
         stream.getStreamClient().resetDroppedVideoFrames()
         // Each session starts at the full profile bitrate and adapts down from there.
@@ -321,6 +325,9 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
     }
 
     override fun onAuthSuccess() = Unit
+
+    /** The most recent stream key, for [LogcatCapture] redaction only. */
+    internal fun streamKeyForRedaction(): String? = lastStreamKey
 
     /**
      * Makes RootEncoder's renderer match every [OverlaySlot]. Called after every operation that

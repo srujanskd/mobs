@@ -6,6 +6,7 @@ import android.content.IntentFilter
 import android.os.BatteryManager
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -23,8 +24,11 @@ import java.util.Locale
 data class BatterySample(
     val percent: Int?,
     val temperatureC: Float?,
-    /** Instantaneous current; the sign convention for discharge varies by vendor. */
-    val currentMicroAmps: Int?,
+    /**
+     * BatteryManager's instantaneous current. Documented as microamps, but some vendors report
+     * milliamps, and the sign for discharge varies; compare only within one device.
+     */
+    val currentNow: Int?,
     val voltageMillivolts: Int?,
     /** Connected to a charger or USB power; such rows do not measure battery drain. */
     val plugged: Boolean,
@@ -34,6 +38,9 @@ data class BatterySample(
  * Writes one CSV row per second while a stream is active, one file per session, for the phase-1
  * power and thermal runs. Rows carry no server or stream key. Files are flushed every row so a
  * crash or thermal shutdown keeps the data, and only the newest [keepFiles] sessions are kept.
+ *
+ * With a [logCapture], the session's first [logWindowMs] of app log is saved beside the CSV, for
+ * diagnosing startup problems on phones that cannot be attached to a debugger.
  */
 internal class SessionRecorder(
     private val directory: File,
@@ -45,6 +52,8 @@ internal class SessionRecorder(
     private val elapsedMs: () -> Long,
     private val nowMs: () -> Long,
     private val keepFiles: Int = 20,
+    private val logCapture: LogCapture? = null,
+    private val logWindowMs: Long = 60_000,
 ) {
     init {
         scope.launch {
@@ -55,11 +64,23 @@ internal class SessionRecorder(
     }
 
     /** Runs until the session ends; cancellation closes the file. */
-    private suspend fun record() {
+    private suspend fun record() = coroutineScope {
         directory.mkdirs()
         val start = elapsedMs()
-        val file = File(directory, "session-${FILE_TIME.format(Instant.ofEpochMilli(nowMs()))}.csv")
+        val name = "session-${FILE_TIME.format(Instant.ofEpochMilli(nowMs()))}"
         prune()
+        // Starts a little before this coroutine ran, so lines from going live are included.
+        val log = logCapture?.start(File(directory, "$name.log"), nowMs() - LOG_LEAD_MS)
+        val logTimer = log?.let { launch { delay(logWindowMs); it.close() } }
+        try {
+            writeCsv(File(directory, "$name.csv"), start)
+        } finally {
+            logTimer?.cancel()
+            log?.close()
+        }
+    }
+
+    private suspend fun writeCsv(file: File, start: Long) {
         file.bufferedWriter().use { out ->
             out.write(CSV_HEADER)
             out.newLine()
@@ -72,21 +93,29 @@ internal class SessionRecorder(
         }
     }
 
+    /** Keeps the newest sessions; a session's CSV and log share a name stem and go together. */
     private fun prune() {
-        directory.listFiles { f -> f.name.startsWith("session-") && f.name.endsWith(".csv") }
-            ?.sortedByDescending { it.name }
-            ?.drop(keepFiles - 1)
-            ?.forEach { it.delete() }
+        val files = directory.listFiles { f -> f.name.startsWith("session-") }.orEmpty()
+        val stale = files.map { it.nameWithoutExtension }.distinct().sortedDescending().drop(keepFiles - 1).toSet()
+        files.filter { it.nameWithoutExtension in stale }.forEach { it.delete() }
     }
 
     companion object {
         const val SAMPLE_INTERVAL_MS = 1_000L
+        private const val LOG_LEAD_MS = 2_000L
 
         /** Fixed width, so names sort in time order for pruning. */
         private val FILE_TIME = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss-SSS").withZone(ZoneOffset.UTC)
 
         const val CSV_HEADER = "time,elapsed_s,connection,sent_bps,target_bps,output_fps,dropped_frames," +
-            "previewing,thermal,headroom,battery_pct,battery_temp_c,current_ua,voltage_mv,plugged"
+            "previewing,thermal,headroom,battery_pct,battery_temp_c,current_now,voltage_mv,plugged"
+
+        /** Files of the newest [sessions] sessions, newest first; each has a CSV and maybe a log. */
+        fun newestSessionFiles(directory: File, sessions: Int): List<File> {
+            val files = directory.listFiles { f -> f.name.startsWith("session-") }.orEmpty()
+            val keep = files.map { it.nameWithoutExtension }.distinct().sortedDescending().take(sessions).toSet()
+            return files.filter { it.nameWithoutExtension in keep }.sortedByDescending { it.name }
+        }
 
         fun csvRow(nowMs: Long, elapsedMs: Long, state: StreamEngineState, thermal: ThermalState, battery: BatterySample) =
             listOf(
@@ -102,7 +131,7 @@ internal class SessionRecorder(
                 thermal.headroom?.let { String.format(Locale.ROOT, "%.3f", it) },
                 battery.percent,
                 battery.temperatureC?.let { String.format(Locale.ROOT, "%.1f", it) },
-                battery.currentMicroAmps,
+                battery.currentNow,
                 battery.voltageMillivolts,
                 battery.plugged,
             ).joinToString(",") { it?.toString().orEmpty() }
@@ -130,7 +159,7 @@ internal class BatteryReader(private val context: Context) {
             percent = manager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY).takeIf { it in 0..100 },
             temperatureC = sticky?.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, Int.MIN_VALUE)
                 ?.takeIf { it != Int.MIN_VALUE }?.let { it / 10f },
-            currentMicroAmps = current.takeIf { it != Int.MIN_VALUE && it != 0 },
+            currentNow = current.takeIf { it != Int.MIN_VALUE && it != 0 },
             voltageMillivolts = sticky?.getIntExtra(BatteryManager.EXTRA_VOLTAGE, -1)?.takeIf { it > 0 },
             plugged = (sticky?.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0) ?: 0) != 0,
         )

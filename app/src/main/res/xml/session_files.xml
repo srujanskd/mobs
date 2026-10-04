@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Session CSVs and logs only; the stream key store is not under these paths. -->
+<paths>
+    <external-files-path name="sessions" path="sessions/" />
+    <files-path name="sessions_internal" path="sessions/" />
+</paths>

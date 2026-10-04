@@ -1,9 +1,12 @@
 package dev.mobs.editor
 
+import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.SystemClock
 import android.view.Surface
 import android.view.WindowManager
+import android.widget.Toast
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import androidx.activity.compose.LocalActivity
@@ -47,6 +50,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -55,6 +59,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.core.content.FileProvider
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.mobs.R
@@ -64,6 +69,8 @@ import dev.mobs.stream.CameraFacing
 import dev.mobs.stream.CameraStatus
 import dev.mobs.stream.ConnectionState
 import dev.mobs.stream.DestinationProblem
+import dev.mobs.stream.SessionRecorder
+import dev.mobs.stream.StreamService
 import dev.mobs.stream.StreamDestination
 import dev.mobs.stream.StreamEngineState
 import dev.mobs.stream.StreamStats
@@ -168,11 +175,18 @@ fun CameraScreen(
             ThermalStatus(thermal)
         }
 
-        ConnectionStatus(
-            connection = state.connection,
-            stats = state.stats,
+        Column(
             modifier = Modifier.align(Alignment.TopEnd).padding(16.dp),
-        )
+            horizontalAlignment = Alignment.End,
+        ) {
+            ConnectionStatus(connection = state.connection, stats = state.stats)
+            if (!state.streamActive) {
+                val context = LocalContext.current
+                TextButton(onClick = { shareSessionLogs(context) }) {
+                    Text(stringResource(R.string.action_share_logs))
+                }
+            }
+        }
 
         Row(
             modifier = Modifier
@@ -388,6 +402,26 @@ private fun PreviewOffScreen(
         }
     }
 }
+
+/**
+ * Sends the newest sessions' CSVs and logs through the share sheet, for phones that cannot be
+ * attached to a computer. Logs are redacted when written; read access is granted per file.
+ */
+private fun shareSessionLogs(context: Context) {
+    val files = SessionRecorder.newestSessionFiles(StreamService.sessionsDirectory(context), SHARED_SESSIONS)
+    if (files.isEmpty()) {
+        Toast.makeText(context, R.string.share_logs_none, Toast.LENGTH_SHORT).show()
+        return
+    }
+    val uris = files.mapTo(ArrayList()) { FileProvider.getUriForFile(context, "${context.packageName}.files", it) }
+    val send = Intent(Intent.ACTION_SEND_MULTIPLE)
+        .setType("text/plain")
+        .putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris)
+        .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+    context.startActivity(Intent.createChooser(send, context.getString(R.string.action_share_logs)))
+}
+
+private const val SHARED_SESSIONS = 3
 
 /** Low enough to save display power while the status text stays readable indoors. */
 private const val PREVIEW_OFF_BRIGHTNESS = 0.02f

@@ -57,9 +57,8 @@ class StreamService : Service() {
         sessionLifetime = StreamSessionLifetime(engine, serviceScope) { stopSelfResult(lastStartId) }
         thermalMonitor = ThermalMonitor(this).also { it.start(serviceScope) }
         ThermalGuard(engine, thermalMonitor.state, serviceScope)
-        // App-specific external storage, so `adb pull` reaches the files without root.
         SessionRecorder(
-            directory = File(getExternalFilesDir(null) ?: filesDir, SESSIONS_DIR),
+            directory = sessionsDirectory(this),
             engine = engine,
             thermal = thermalMonitor.state,
             battery = BatteryReader(this)::sample,
@@ -67,6 +66,7 @@ class StreamService : Service() {
             io = Dispatchers.IO,
             elapsedMs = SystemClock::elapsedRealtime,
             nowMs = System::currentTimeMillis,
+            logCapture = LogcatCapture(engine::streamKeyForRedaction),
         )
     }
 
@@ -148,6 +148,10 @@ class StreamService : Service() {
         private const val CHANNEL_ID = "stream_session"
         private const val NOTIFICATION_ID = 1
         private const val SESSIONS_DIR = "sessions"
+
+        /** App-specific external storage, so `adb pull` reaches the files without root. */
+        fun sessionsDirectory(context: Context) =
+            File(context.getExternalFilesDir(null) ?: context.filesDir, SESSIONS_DIR)
 
         fun start(context: Context) {
             context.startForegroundService(Intent(context, StreamService::class.java))

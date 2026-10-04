@@ -39,6 +39,8 @@
     <string name="logo_replace">Replace</string>
     <string name="logo_done">Done</string>
     <string name="logo_unreadable">That image could not be read. Try a PNG or JPEG.</string>
+    <string name="action_share_logs">Share logs</string>
+    <string name="share_logs_none">No session logs yet. Go live once to create one.</string>
     <string name="action_preview_off">Preview off</string>
     <string name="preview_off_hint">Preview off, still live · tap to show</string>
     <string name="thermal_status">Thermal: %1$s</string>
