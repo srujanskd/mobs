@@ -34,6 +34,8 @@
         <item quantity="one">%1$.1f / %3$.1f Mbps · %4$d fps · %2$d dropped frame</item>
         <item quantity="other">%1$.1f / %3$.1f Mbps · %4$d fps · %2$d dropped frames</item>
     </plurals>
+    <string name="action_preview_off">Preview off</string>
+    <string name="preview_off_hint">Preview off, still live · tap to show</string>
     <string name="thermal_status">Thermal: %1$s</string>
     <string name="thermal_with_headroom">Thermal: %1$s · headroom %2$.2f</string>
     <string name="thermal_none">normal</string>

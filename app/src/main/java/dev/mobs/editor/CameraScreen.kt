@@ -1,9 +1,14 @@
 package dev.mobs.editor
 
+import android.os.Build
 import android.os.SystemClock
+import android.view.Surface
+import android.view.WindowManager
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -28,6 +33,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
@@ -56,6 +62,7 @@ import dev.mobs.stream.CameraStatus
 import dev.mobs.stream.ConnectionState
 import dev.mobs.stream.DestinationProblem
 import dev.mobs.stream.StreamDestination
+import dev.mobs.stream.StreamEngineState
 import dev.mobs.stream.StreamStats
 import dev.mobs.stream.ThermalLevel
 import dev.mobs.stream.ThermalState
@@ -82,6 +89,7 @@ fun CameraScreen(
     var showSetup by rememberSaveable { mutableStateOf(false) }
     var confirmStop by rememberSaveable { mutableStateOf(false) }
     var showText by rememberSaveable { mutableStateOf(false) }
+    var previewOff by rememberSaveable { mutableStateOf(false) }
     val state = editorState
     if (state == null) {
         Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -96,6 +104,15 @@ fun CameraScreen(
     DisposableEffect(view, state.streamActive) {
         view.keepScreenOn = state.streamActive
         onDispose { view.keepScreenOn = false }
+    }
+
+    // Preview-off only applies while live; a stopped or failed stream brings the editor back.
+    LaunchedEffect(state.streamActive) {
+        if (!state.streamActive) previewOff = false
+    }
+    if (previewOff) {
+        PreviewOffScreen(state, thermal, onWake = { previewOff = false }, modifier)
+        return
     }
 
     Box(modifier = modifier.fillMaxSize().background(Color.Black)) {
@@ -121,6 +138,7 @@ fun CameraScreen(
             key(session?.engine) {
                 EnginePreview(
                     viewModel = viewModel,
+                    fps = state.video.fps,
                     modifier = Modifier
                         .align(Alignment.Center)
                         .fillMaxHeight()
@@ -170,6 +188,11 @@ fun CameraScreen(
             }
             OutlinedButton(onClick = { showText = true }) {
                 Text(stringResource(R.string.action_text_overlay))
+            }
+            if (state.streamActive) {
+                OutlinedButton(onClick = { previewOff = true }) {
+                    Text(stringResource(R.string.action_preview_off))
+                }
             }
             OutlinedButton(
                 onClick = { showSetup = true },
@@ -281,6 +304,51 @@ private fun ConnectionStatus(connection: ConnectionState, stats: StreamStats, mo
         }
     }
 }
+
+/**
+ * The stream keeps encoding while the preview is detached, so no frames are drawn for the display,
+ * and the window drops to minimum brightness. A black UI alone would save far less: the plan
+ * requires that preview presentation itself stops. Tapping anywhere restores the editor.
+ */
+@Composable
+private fun PreviewOffScreen(
+    state: StreamEngineState,
+    thermal: ThermalState,
+    onWake: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val activity = LocalActivity.current
+    DisposableEffect(activity) {
+        val window = activity?.window
+        window?.attributes = window?.attributes?.apply { screenBrightness = PREVIEW_OFF_BRIGHTNESS }
+        onDispose {
+            window?.attributes = window?.attributes?.apply {
+                screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE
+            }
+        }
+    }
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .background(Color.Black)
+            .clickable(onClick = onWake),
+        contentAlignment = Alignment.Center,
+    ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            ConnectionStatus(connection = state.connection, stats = state.stats)
+            ThermalStatus(thermal)
+            Text(
+                stringResource(R.string.preview_off_hint),
+                color = Color.Gray,
+                style = MaterialTheme.typography.labelMedium,
+                modifier = Modifier.padding(top = 12.dp),
+            )
+        }
+    }
+}
+
+/** Low enough to save display power while the status text stays readable indoors. */
+private const val PREVIEW_OFF_BRIGHTNESS = 0.02f
 
 /** Always visible, so heat is noticed before it forces a stop. Headroom 1.0 means severe throttling. */
 @Composable
@@ -462,14 +530,23 @@ private fun DestinationProblem.message() = when (this) {
  * released whenever the screen is gone, and per-frame work never travels through Compose state.
  */
 @Composable
-private fun EnginePreview(viewModel: CameraViewModel, modifier: Modifier = Modifier) {
+private fun EnginePreview(viewModel: CameraViewModel, fps: Int, modifier: Modifier = Modifier) {
     AndroidView(
         modifier = modifier,
         factory = { context ->
             SurfaceView(context).apply {
                 holder.addCallback(
                     object : SurfaceHolder.Callback {
-                        override fun surfaceCreated(holder: SurfaceHolder) = Unit
+                        override fun surfaceCreated(holder: SurfaceHolder) {
+                            // Lets a 90/120 Hz display settle on a multiple of the camera rate
+                            // instead of refreshing faster than the preview ever changes.
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                                holder.surface.setFrameRate(
+                                    fps.toFloat(),
+                                    Surface.FRAME_RATE_COMPATIBILITY_FIXED_SOURCE,
+                                )
+                            }
+                        }
 
                         override fun surfaceChanged(
                             holder: SurfaceHolder,
