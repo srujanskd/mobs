@@ -34,6 +34,11 @@
         <item quantity="one">%1$.1f / %3$.1f Mbps · %4$d fps · %2$d dropped frame</item>
         <item quantity="other">%1$.1f / %3$.1f Mbps · %4$d fps · %2$d dropped frames</item>
     </plurals>
+    <string name="action_logo">Logo</string>
+    <string name="logo_title">On-stream logo</string>
+    <string name="logo_replace">Replace</string>
+    <string name="logo_done">Done</string>
+    <string name="logo_unreadable">That image could not be read. Try a PNG or JPEG.</string>
     <string name="action_preview_off">Preview off</string>
     <string name="preview_off_hint">Preview off, still live · tap to show</string>
     <string name="thermal_status">Thermal: %1$s</string>

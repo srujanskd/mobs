@@ -15,6 +15,7 @@ import com.pedro.encoder.input.video.CameraHelper
 import com.pedro.encoder.utils.CodecUtil
 import com.pedro.library.rtmp.RtmpStream
 import com.pedro.library.util.QueueAwareBitrateAdapter
+import dev.mobs.render.LogoOverlay
 import dev.mobs.render.OverlayPlacement
 import dev.mobs.render.TextOverlay
 import dev.mobs.render.TextRasterizer
@@ -47,18 +48,25 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
     /** The current destination's server, for state that must not contain the key. */
     @Volatile private var server = ""
 
-    /** Rasterized once per overlay change and reused whenever the filter has to be re-added. */
-    private var overlayImage: Pair<Bitmap, OverlayPlacement>? = null
-
     /**
-     * The filter currently inside RootEncoder's renderer. GlStreamInterface releases and drops all
+     * One cached image source in RootEncoder's renderer. GlStreamInterface releases and drops all
      * filters when it stops (preview detached with no stream) and discards filters queued before
-     * it starts, so this is cleared on stop and a new filter is added on each start.
+     * it starts, so [filter] is cleared on stop and a new one is added on each start.
      */
-    private var overlayFilter: ImageObjectFilterRender? = null
+    private class OverlaySlot {
+        /** Prepared once per change and reused whenever the filter has to be re-added. */
+        var image: Pair<Bitmap, OverlayPlacement>? = null
+        var filter: ImageObjectFilterRender? = null
 
-    /** The image [overlayFilter] holds, so lifecycle syncs do not re-upload an unchanged texture. */
-    private var appliedImage: Pair<Bitmap, OverlayPlacement>? = null
+        /** The image [filter] holds, so lifecycle syncs do not re-upload an unchanged texture. */
+        var applied: Pair<Bitmap, OverlayPlacement>? = null
+    }
+
+    private val logoSlot = OverlaySlot()
+    private val textSlot = OverlaySlot()
+
+    /** Filters draw in the order they were added, so after a GL restart text stays above the logo. */
+    private val overlaySlots = listOf(logoSlot, textSlot)
 
     private val _state = MutableStateFlow(StreamEngineState())
     override val state: StateFlow<StreamEngineState> = _state.asStateFlow()
@@ -207,7 +215,7 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
         val video = _state.value.video
         val bitmap = overlay?.let { TextRasterizer.rasterize(it, video.width, video.height) }
         synchronized(this) {
-            overlayImage = if (overlay != null && bitmap != null) {
+            textSlot.image = if (overlay != null && bitmap != null) {
                 bitmap to placeOverlay(bitmap.width, bitmap.height, video.width, video.height, overlay.anchor, overlay.margin)
             } else {
                 null
@@ -217,8 +225,19 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
         syncOverlayFilter()
     }
 
+    override fun setLogoOverlay(logo: LogoOverlay?) {
+        val video = _state.value.video
+        synchronized(this) {
+            logoSlot.image = logo?.let {
+                it.image to placeOverlay(it.image.width, it.image.height, video.width, video.height, it.anchor, it.margin)
+            }
+        }
+        _state.update { it.copy(logoOverlay = logo) }
+        syncOverlayFilter()
+    }
+
     override fun release() {
-        synchronized(this) { overlayFilter = null }
+        synchronized(this) { overlaySlots.forEach { it.filter = null } }
         stream.release()
         _state.update {
             StreamEngineState(cameraFacing = it.cameraFacing, microphoneMuted = it.microphoneMuted)
@@ -298,37 +317,39 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
     override fun onAuthSuccess() = Unit
 
     /**
-     * Makes RootEncoder's renderer match [overlayImage]. Called after every operation that can
-     * start or stop GL, and from transport callbacks, hence the lock.
+     * Makes RootEncoder's renderer match every [OverlaySlot]. Called after every operation that
+     * can start or stop GL, and from transport callbacks, hence the lock.
      */
     @Synchronized
     private fun syncOverlayFilter() {
         val gl = stream.getGlInterface()
-        if (!gl.isRunning) {
-            // GL released the filter along with everything else; add a fresh one on next start.
-            overlayFilter = null
-            appliedImage = null
-            return
+        for (slot in overlaySlots) {
+            if (!gl.isRunning) {
+                // GL released the filter along with everything else; add a fresh one on next start.
+                slot.filter = null
+                slot.applied = null
+                continue
+            }
+            val image = slot.image
+            val current = slot.filter
+            if (image == null) {
+                current?.let(gl::removeFilter)
+                slot.filter = null
+                slot.applied = null
+                continue
+            }
+            if (current != null && slot.applied === image) continue
+            val (bitmap, placement) = image
+            val filter = current ?: ImageObjectFilterRender().also {
+                gl.addFilter(it)
+                slot.filter = it
+            }
+            filter.setImage(bitmap)
+            // Scale first: RootEncoder rescales the current position whenever the scale changes.
+            filter.setScale(placement.widthPercent, placement.heightPercent)
+            filter.setPosition(placement.leftPercent, placement.topPercent)
+            slot.applied = image
         }
-        val image = overlayImage
-        val current = overlayFilter
-        if (image == null) {
-            current?.let(gl::removeFilter)
-            overlayFilter = null
-            appliedImage = null
-            return
-        }
-        if (current != null && appliedImage === image) return
-        val (bitmap, placement) = image
-        val filter = current ?: ImageObjectFilterRender().also {
-            gl.addFilter(it)
-            overlayFilter = it
-        }
-        filter.setImage(bitmap)
-        // Scale first: RootEncoder rescales the current position whenever the scale changes.
-        filter.setScale(placement.widthPercent, placement.heightPercent)
-        filter.setPosition(placement.leftPercent, placement.topPercent)
-        appliedImage = image
     }
 
     /** Records the rejected [video] profile so the error names what the device refused. */

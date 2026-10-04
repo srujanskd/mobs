@@ -2,6 +2,7 @@ package dev.mobs.editor
 
 import dev.mobs.FakeStreamDestinationStore
 import dev.mobs.FakeStreamEngine
+import dev.mobs.render.LogoDecoder
 import dev.mobs.render.OverlayAnchor
 import dev.mobs.stream.CameraStatus
 import dev.mobs.stream.DestinationProblem
@@ -36,7 +37,7 @@ class CameraViewModelTest {
     @Test
     fun rapidMuteTogglesUseCurrentEngineStateBeforeCollectionRuns() = runTest {
         val engine = FakeStreamEngine()
-        val viewModel = CameraViewModel(FakeStreamDestinationStore.holding(null))
+        val viewModel = CameraViewModel(FakeStreamDestinationStore.holding(null), noLogo)
         viewModel.bind(engine, MutableStateFlow(ThermalState()))
         viewModel.toggleMicrophone()
         assertTrue(engine.state.value.microphoneMuted)
@@ -53,7 +54,7 @@ class CameraViewModelTest {
     fun rebindDropsOldEngineUpdatesWithoutEndingItsSession() = runTest {
         val oldEngine = FakeStreamEngine()
         val newEngine = FakeStreamEngine()
-        val viewModel = CameraViewModel(FakeStreamDestinationStore.holding(null))
+        val viewModel = CameraViewModel(FakeStreamDestinationStore.holding(null), noLogo)
         viewModel.bind(oldEngine, MutableStateFlow(ThermalState()))
         runCurrent()
         viewModel.bind(newEngine, MutableStateFlow(ThermalState()))
@@ -71,13 +72,15 @@ class CameraViewModelTest {
         assertEquals(0, newEngine.released)
     }
 
+    private val noLogo = LogoDecoder { _, _, _ -> null }
+
     private val youtube = (StreamDestination.parse(StreamDestination.YOUTUBE_RTMPS_SERVER, "abcd-1234")
         as DestinationResult.Valid).destination
 
     @Test
     fun goLiveStreamsToTheSavedDestinationOnce() = runTest {
         val engine = FakeStreamEngine()
-        val viewModel = CameraViewModel(FakeStreamDestinationStore.holding(youtube))
+        val viewModel = CameraViewModel(FakeStreamDestinationStore.holding(youtube), noLogo)
         viewModel.bind(engine, MutableStateFlow(ThermalState()))
         runCurrent()
         assertEquals(SavedDestination.Ready(youtube), viewModel.destination.value)
@@ -93,7 +96,7 @@ class CameraViewModelTest {
     @Test
     fun goLiveNeedsADestinationAndAnAcceptedProfile() = runTest {
         val engine = FakeStreamEngine()
-        val viewModel = CameraViewModel(FakeStreamDestinationStore.holding(null))
+        val viewModel = CameraViewModel(FakeStreamDestinationStore.holding(null), noLogo)
         viewModel.bind(engine, MutableStateFlow(ThermalState()))
         runCurrent()
         assertEquals(SavedDestination.Missing, viewModel.destination.value)
@@ -111,7 +114,7 @@ class CameraViewModelTest {
     fun goLiveIsRefusedAtCriticalTemperatureAndAllowedOnceCooled() = runTest {
         val engine = FakeStreamEngine()
         val thermal = MutableStateFlow(ThermalState(level = ThermalLevel.CRITICAL))
-        val viewModel = CameraViewModel(FakeStreamDestinationStore.holding(youtube))
+        val viewModel = CameraViewModel(FakeStreamDestinationStore.holding(youtube), noLogo)
         viewModel.bind(engine, thermal)
         runCurrent()
         viewModel.goLive()
@@ -125,9 +128,23 @@ class CameraViewModelTest {
     }
 
     @Test
+    fun unreadableLogoIsReportedAndLeavesTheOutputUnchanged() = runTest {
+        val engine = FakeStreamEngine()
+        val viewModel = CameraViewModel(FakeStreamDestinationStore.holding(null), noLogo)
+        viewModel.bind(engine, MutableStateFlow(ThermalState()))
+        viewModel.pickLogo("content://media/picker/0/1")
+        runCurrent()
+        assertTrue(viewModel.logoFailed.value)
+        assertNull(engine.state.value.logoOverlay)
+        viewModel.dismissLogoFailure()
+        assertFalse(viewModel.logoFailed.value)
+        viewModel.unbind()
+    }
+
+    @Test
     fun invalidDestinationIsReportedAndNotPersisted() = runTest {
         val store = FakeStreamDestinationStore.holding(youtube)
-        val viewModel = CameraViewModel(store)
+        val viewModel = CameraViewModel(store, noLogo)
         runCurrent()
         assertEquals(DestinationProblem.KEY_BLANK, viewModel.saveDestination(youtube.server, " "))
         runCurrent()
@@ -138,7 +155,7 @@ class CameraViewModelTest {
     @Test
     fun destinationSavedWhileLoadingIsNotReplacedByTheStaleLoad() = runTest {
         val store = FakeStreamDestinationStore()
-        val viewModel = CameraViewModel(store)
+        val viewModel = CameraViewModel(store, noLogo)
         runCurrent()
         assertEquals(SavedDestination.Loading, viewModel.destination.value)
         assertNull(viewModel.saveDestination("rtmps://example.com/live", "fresh"))
@@ -152,7 +169,7 @@ class CameraViewModelTest {
     @Test
     fun textOverlayIsTrimmedRestyledInPlaceAndRemovedWhenBlank() = runTest {
         val engine = FakeStreamEngine()
-        val viewModel = CameraViewModel(FakeStreamDestinationStore.holding(null))
+        val viewModel = CameraViewModel(FakeStreamDestinationStore.holding(null), noLogo)
         viewModel.bind(engine, MutableStateFlow(ThermalState()))
         viewModel.setTextOverlay("  Hello Bengaluru  ", OverlayAnchor.TOP_LEFT)
         val first = engine.state.value.textOverlay!!

@@ -1,6 +1,7 @@
 package dev.mobs
 
 import android.view.Surface
+import dev.mobs.render.LogoOverlay
 import dev.mobs.render.TextOverlay
 import dev.mobs.stream.AudioProfile
 import dev.mobs.stream.ConnectionState
@@ -42,6 +43,9 @@ class FakeStreamEngine : StreamEngine {
     }
     override fun setTextOverlay(overlay: TextOverlay?) {
         state.update { it.copy(textOverlay = overlay) }
+    }
+    override fun setLogoOverlay(logo: LogoOverlay?) {
+        state.update { it.copy(logoOverlay = logo) }
     }
     override fun release() { released++ }
 }

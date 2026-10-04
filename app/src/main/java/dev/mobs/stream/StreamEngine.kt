@@ -1,6 +1,7 @@
 package dev.mobs.stream
 
 import android.view.Surface
+import dev.mobs.render.LogoOverlay
 import dev.mobs.render.TextOverlay
 import kotlinx.coroutines.flow.StateFlow
 
@@ -37,6 +38,9 @@ interface StreamEngine {
      * it. The overlay persists across preview detach and stream restarts until replaced.
      */
     fun setTextOverlay(overlay: TextOverlay?)
+
+    /** Draws [logo] into the composed output beneath the text overlay. Null removes it. */
+    fun setLogoOverlay(logo: LogoOverlay?)
 
     /** Ends the session. A non-null [failure] reports it as [ConnectionState.Failed] instead of idle. */
     fun stopStream(failure: String? = null)
@@ -105,6 +109,7 @@ data class StreamEngineState(
     val video: VideoProfile = VideoProfile.LANDSCAPE_1080P30,
     val stats: StreamStats = StreamStats(),
     val textOverlay: TextOverlay? = null,
+    val logoOverlay: LogoOverlay? = null,
 )
 
 /** Transport statistics for the current session. Reset whenever a session starts or stops. */

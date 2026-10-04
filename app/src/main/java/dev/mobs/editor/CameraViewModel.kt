@@ -6,6 +6,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import dev.mobs.render.ContentLogoDecoder
+import dev.mobs.render.LogoDecoder
+import dev.mobs.render.LogoOverlay
 import dev.mobs.render.OverlayAnchor
 import dev.mobs.render.TextOverlay
 import dev.mobs.storage.KeystoreStreamDestinationStore
@@ -24,7 +27,10 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 /** Editor commands and state depend only on the media interface. The service owns its lifetime. */
-class CameraViewModel(private val destinationStore: StreamDestinationStore) : ViewModel() {
+class CameraViewModel(
+    private val destinationStore: StreamDestinationStore,
+    private val logoDecoder: LogoDecoder,
+) : ViewModel() {
     private var engine: StreamEngine? = null
     private var thermalSource: StateFlow<ThermalState>? = null
     private var stateJob: Job? = null
@@ -34,6 +40,12 @@ class CameraViewModel(private val destinationStore: StreamDestinationStore) : Vi
 
     private val mutableThermal = MutableStateFlow(ThermalState())
     val thermal = mutableThermal.asStateFlow()
+
+    private var logoJob: Job? = null
+    private val mutableLogoFailed = MutableStateFlow(false)
+
+    /** Set when a picked image could not be decoded; the screen clears it once shown. */
+    val logoFailed = mutableLogoFailed.asStateFlow()
 
     private val mutableDestination = MutableStateFlow<SavedDestination>(SavedDestination.Loading)
     val destination = mutableDestination.asStateFlow()
@@ -127,6 +139,37 @@ class CameraViewModel(private val destinationStore: StreamDestinationStore) : Vi
         )
     }
 
+    /** Decodes [uri] at output size and draws it, keeping the current anchor. A newer pick wins. */
+    fun pickLogo(uri: String) {
+        val engine = engine ?: return
+        logoJob?.cancel()
+        logoJob = viewModelScope.launch {
+            val video = engine.state.value.video
+            val image = logoDecoder.decode(uri, video.width, video.height)
+            if (image == null) {
+                mutableLogoFailed.value = true
+                return@launch
+            }
+            val anchor = engine.state.value.logoOverlay?.anchor
+            engine.setLogoOverlay(anchor?.let { LogoOverlay(image, it) } ?: LogoOverlay(image))
+        }
+    }
+
+    fun setLogoAnchor(anchor: OverlayAnchor) {
+        val engine = engine ?: return
+        val logo = engine.state.value.logoOverlay ?: return
+        engine.setLogoOverlay(logo.withAnchor(anchor))
+    }
+
+    fun removeLogo() {
+        logoJob?.cancel()
+        engine?.setLogoOverlay(null)
+    }
+
+    fun dismissLogoFailure() {
+        mutableLogoFailed.value = false
+    }
+
     override fun onCleared() {
         unbind()
     }
@@ -135,7 +178,7 @@ class CameraViewModel(private val destinationStore: StreamDestinationStore) : Vi
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val app = checkNotNull(this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY])
-                CameraViewModel(KeystoreStreamDestinationStore(app))
+                CameraViewModel(KeystoreStreamDestinationStore(app), ContentLogoDecoder(app))
             }
         }
     }

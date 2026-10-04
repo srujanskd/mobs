@@ -7,6 +7,9 @@ import android.view.WindowManager
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import androidx.activity.compose.LocalActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.rememberScrollState
@@ -89,6 +92,15 @@ fun CameraScreen(
     var showSetup by rememberSaveable { mutableStateOf(false) }
     var confirmStop by rememberSaveable { mutableStateOf(false) }
     var showText by rememberSaveable { mutableStateOf(false) }
+    var showLogo by rememberSaveable { mutableStateOf(false) }
+    val logoFailed by viewModel.logoFailed.collectAsStateWithLifecycle()
+    // The system photo picker needs no storage permission.
+    val pickLogo = rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        uri?.let { viewModel.pickLogo(it.toString()) }
+    }
+    val launchLogoPicker = {
+        pickLogo.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+    }
     var previewOff by rememberSaveable { mutableStateOf(false) }
     val state = editorState
     if (state == null) {
@@ -189,6 +201,9 @@ fun CameraScreen(
             OutlinedButton(onClick = { showText = true }) {
                 Text(stringResource(R.string.action_text_overlay))
             }
+            OutlinedButton(onClick = { if (state.logoOverlay == null) launchLogoPicker() else showLogo = true }) {
+                Text(stringResource(R.string.action_logo))
+            }
             if (state.streamActive) {
                 OutlinedButton(onClick = { previewOff = true }) {
                     Text(stringResource(R.string.action_preview_off))
@@ -232,6 +247,33 @@ fun CameraScreen(
             onDismiss = { showSetup = false },
         )
     }
+    val logo = state.logoOverlay
+    if (showLogo && logo != null) {
+        LogoDialog(
+            anchor = logo.anchor,
+            onAnchor = viewModel::setLogoAnchor,
+            onReplace = {
+                showLogo = false
+                launchLogoPicker()
+            },
+            onRemove = {
+                viewModel.removeLogo()
+                showLogo = false
+            },
+            onDismiss = { showLogo = false },
+        )
+    }
+
+    if (logoFailed) {
+        AlertDialog(
+            onDismissRequest = viewModel::dismissLogoFailure,
+            text = { Text(stringResource(R.string.logo_unreadable)) },
+            confirmButton = {
+                TextButton(onClick = viewModel::dismissLogoFailure) { Text(stringResource(R.string.logo_done)) }
+            },
+        )
+    }
+
     if (showText) {
         TextOverlayDialog(
             current = state.textOverlay,
@@ -479,17 +521,7 @@ private fun TextOverlayDialog(
                     maxLines = 3,
                     modifier = Modifier.fillMaxWidth(),
                 )
-                OverlayAnchor.entries.chunked(3).forEach { row ->
-                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        row.forEach { option ->
-                            FilterChip(
-                                selected = anchor == option,
-                                onClick = { anchor = option },
-                                label = { Text(stringResource(option.label())) },
-                            )
-                        }
-                    }
-                }
+                AnchorPicker(selected = anchor, onSelect = { anchor = it })
             }
         },
         confirmButton = {
@@ -506,6 +538,53 @@ private fun TextOverlayDialog(
             }
         },
     )
+}
+
+/** Changes apply immediately, including while live, so the dialog has no Apply step. */
+@Composable
+private fun LogoDialog(
+    anchor: OverlayAnchor,
+    onAnchor: (OverlayAnchor) -> Unit,
+    onReplace: () -> Unit,
+    onRemove: () -> Unit,
+    onDismiss: () -> Unit,
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.logo_title)) },
+        text = {
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+            ) {
+                AnchorPicker(selected = anchor, onSelect = onAnchor)
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = onDismiss) { Text(stringResource(R.string.logo_done)) }
+        },
+        dismissButton = {
+            Row {
+                TextButton(onClick = onRemove) { Text(stringResource(R.string.text_remove)) }
+                TextButton(onClick = onReplace) { Text(stringResource(R.string.logo_replace)) }
+            }
+        },
+    )
+}
+
+@Composable
+private fun AnchorPicker(selected: OverlayAnchor, onSelect: (OverlayAnchor) -> Unit) {
+    OverlayAnchor.entries.chunked(3).forEach { row ->
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            row.forEach { option ->
+                FilterChip(
+                    selected = selected == option,
+                    onClick = { onSelect(option) },
+                    label = { Text(stringResource(option.label())) },
+                )
+            }
+        }
+    }
 }
 
 private fun OverlayAnchor.label() = when (this) {
