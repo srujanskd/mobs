@@ -7,6 +7,7 @@ import android.view.Surface
 import android.graphics.Bitmap
 import com.pedro.common.ConnectChecker
 import com.pedro.common.StreamingStatsReport
+import com.pedro.common.socket.base.SocketType
 import com.pedro.encoder.input.gl.render.filters.`object`.ImageObjectFilterRender
 import com.pedro.encoder.input.sources.audio.MicrophoneSource
 import com.pedro.encoder.input.sources.video.Camera2Source
@@ -83,6 +84,11 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
             // Off by default in RootEncoder 2.8.1. Without it any CA-signed certificate is
             // accepted for any host, and the stream key travels inside this connection.
             setTlsHostVerification(true)
+            // The JAVA socket passes no custom TrustManager, so RTMPS uses the platform's
+            // certificate validation. Pinned explicitly: the Ktor socket path pulls in Bouncy
+            // Castle, whose bundled trust-all managers lint flags; R8 strips them only while
+            // this path is provably unused.
+            setSocketType(SocketType.JAVA)
         }
         stream.setFpsListener { fps ->
             if (_state.value.streamActive) _state.update { it.copy(stats = it.stats.copy(outputFps = fps)) }

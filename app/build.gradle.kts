@@ -21,6 +21,14 @@ android {
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
+        // Release configuration for on-device power and thermal runs: same R8 and
+        // non-debuggable runtime, signed with the debug key so it installs without a release
+        // keystore, and profileable (src/benchmark) for Power Profiler and Perfetto.
+        create("benchmark") {
+            initWith(getByName("release"))
+            signingConfig = signingConfigs.getByName("debug")
+            matchingFallbacks += "release"
+        }
     }
 
     compileOptions {
