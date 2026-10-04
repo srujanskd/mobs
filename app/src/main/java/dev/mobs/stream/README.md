@@ -32,3 +32,16 @@ never substitutes a lower resolution or frame rate.
 Only bitrate adapts. RootEncoder's `QueueAwareBitrateAdapter` lowers the encoder bitrate when the
 send queue backs up and probes back toward the profile's 10 Mbps, with a floor of 1 Mbps.
 `StreamStats.targetBitrateBps` exposes the bitrate it currently requests next to the measured rate.
+
+- `ThermalMonitor.kt` — Android thermal status through its listener, and thermal headroom polled
+  every 10 seconds (the documented minimum) on API 30+. The service owns it; the editor receives it
+  with the engine as a `BoundSession`.
+- `ThermalGuard.kt` — stops a live stream at `CRITICAL` or above, reported as
+  `ConnectionState.Failed` with the reason. The editor also refuses Go Live at that level. Lower
+  levels never change the stream; preview reduction is the planned first response.
+- `SessionRecorder.kt` — one CSV row per second while live: sent and target bitrate, encoder
+  output fps, dropped frames, preview state, thermal status and headroom, battery percentage,
+  temperature, current, voltage, and whether power was connected. No server or key is written.
+  One file per session, newest 20 kept, in the app's external files directory:
+  `adb pull /sdcard/Android/data/dev.mobs/files/sessions`. Rows with `plugged=true` do not
+  measure battery drain, and the sign of `current_ua` varies by vendor.

@@ -38,7 +38,8 @@ interface StreamEngine {
      */
     fun setTextOverlay(overlay: TextOverlay?)
 
-    fun stopStream()
+    /** Ends the session. A non-null [failure] reports it as [ConnectionState.Failed] instead of idle. */
+    fun stopStream(failure: String? = null)
 
     fun release()
 }
@@ -114,6 +115,8 @@ data class StreamStats(
     val bitrateBps: Long = 0,
     /** Encoder bitrate the adapter currently asks for; below the profile bitrate under congestion. */
     val targetBitrateBps: Long = 0,
+    /** Video frames the encoder produced in the last second. */
+    val outputFps: Int = 0,
     val droppedVideoFrames: Long = 0,
 )
 

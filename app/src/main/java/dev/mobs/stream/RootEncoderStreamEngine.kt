@@ -76,6 +76,9 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
             // accepted for any host, and the stream key travels inside this connection.
             setTlsHostVerification(true)
         }
+        stream.setFpsListener { fps ->
+            if (_state.value.streamActive) _state.update { it.copy(stats = it.stats.copy(outputFps = fps)) }
+        }
         camera.setCameraCallback(object : CameraCallbacks {
             override fun onCameraOpened() = _state.update { it.copy(camera = CameraStatus.Open) }
 
@@ -189,15 +192,15 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
         } catch (e: RuntimeException) {
             // The message may quote the endpoint, which contains the key; log the type only.
             Log.w(TAG, "startStream failed: ${e.javaClass.simpleName}")
-            stopStream()
-            _state.update { it.copy(connection = ConnectionState.Failed("Unable to start stream")) }
+            stopStream("Unable to start stream")
         }
     }
 
-    override fun stopStream() {
+    override fun stopStream(failure: String?) {
         if (stream.isStreaming) stream.stopStream()
         syncOverlayFilter()
-        _state.update { it.copy(streamActive = false, connection = ConnectionState.Idle, stats = StreamStats()) }
+        val connection = failure?.let(ConnectionState::Failed) ?: ConnectionState.Idle
+        _state.update { it.copy(streamActive = false, connection = connection, stats = StreamStats()) }
     }
 
     override fun setTextOverlay(overlay: TextOverlay?) {

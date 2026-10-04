@@ -31,9 +31,18 @@
     <string name="connection_failed">Stream stopped: %1$s</string>
     <string name="connection_disconnected">Disconnected by server</string>
     <plurals name="stats_line">
-        <item quantity="one">%1$.1f / %3$.1f Mbps · %2$d dropped frame</item>
-        <item quantity="other">%1$.1f / %3$.1f Mbps · %2$d dropped frames</item>
+        <item quantity="one">%1$.1f / %3$.1f Mbps · %4$d fps · %2$d dropped frame</item>
+        <item quantity="other">%1$.1f / %3$.1f Mbps · %4$d fps · %2$d dropped frames</item>
     </plurals>
+    <string name="thermal_status">Thermal: %1$s</string>
+    <string name="thermal_with_headroom">Thermal: %1$s · headroom %2$.2f</string>
+    <string name="thermal_none">normal</string>
+    <string name="thermal_light">light</string>
+    <string name="thermal_moderate">moderate</string>
+    <string name="thermal_severe">severe</string>
+    <string name="thermal_critical">critical, cannot go live</string>
+    <string name="thermal_emergency">emergency, cannot go live</string>
+    <string name="thermal_shutdown">shutting down</string>
 
     <string name="setup_title">Stream setup</string>
     <string name="setup_body">Copy the stream URL and stream key from YouTube Studio → Go live → Stream. The key is stored encrypted on this device.</string>

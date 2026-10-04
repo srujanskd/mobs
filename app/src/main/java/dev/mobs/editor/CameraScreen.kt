@@ -57,6 +57,9 @@ import dev.mobs.stream.ConnectionState
 import dev.mobs.stream.DestinationProblem
 import dev.mobs.stream.StreamDestination
 import dev.mobs.stream.StreamStats
+import dev.mobs.stream.ThermalLevel
+import dev.mobs.stream.ThermalState
+import dev.mobs.stream.isCritical
 import kotlinx.coroutines.delay
 
 /**
@@ -68,13 +71,14 @@ fun CameraScreen(
     modifier: Modifier = Modifier,
     viewModel: CameraViewModel = viewModel(factory = CameraViewModel.Factory),
 ) {
-    val engine = rememberStreamEngine()
-    DisposableEffect(engine, viewModel) {
-        if (engine != null) viewModel.bind(engine)
+    val session = rememberStreamSession()
+    DisposableEffect(session, viewModel) {
+        if (session != null) viewModel.bind(session.engine, session.thermal)
         onDispose { viewModel.unbind() }
     }
     val editorState by viewModel.state.collectAsStateWithLifecycle()
     val destination by viewModel.destination.collectAsStateWithLifecycle()
+    val thermal by viewModel.thermal.collectAsStateWithLifecycle()
     var showSetup by rememberSaveable { mutableStateOf(false) }
     var confirmStop by rememberSaveable { mutableStateOf(false) }
     var showText by rememberSaveable { mutableStateOf(false) }
@@ -114,7 +118,7 @@ fun CameraScreen(
                 Text(error, style = MaterialTheme.typography.bodyMedium)
             }
         } else {
-            key(engine) {
+            key(session?.engine) {
                 EnginePreview(
                     viewModel = viewModel,
                     modifier = Modifier
@@ -125,12 +129,14 @@ fun CameraScreen(
             }
         }
 
-        Text(
-            text = statusLine(state.camera, state.video.width, state.video.height, state.video.fps),
-            color = Color.White,
-            style = MaterialTheme.typography.labelLarge,
-            modifier = Modifier.align(Alignment.TopStart).padding(16.dp),
-        )
+        Column(modifier = Modifier.align(Alignment.TopStart).padding(16.dp)) {
+            Text(
+                text = statusLine(state.camera, state.video.width, state.video.height, state.video.fps),
+                color = Color.White,
+                style = MaterialTheme.typography.labelLarge,
+            )
+            ThermalStatus(thermal)
+        }
 
         ConnectionStatus(
             connection = state.connection,
@@ -180,7 +186,7 @@ fun CameraScreen(
                 }
                 destination is SavedDestination.Ready -> Button(
                     onClick = viewModel::goLive,
-                    enabled = state.profileError == null,
+                    enabled = state.profileError == null && !thermal.level.isCritical(),
                 ) {
                     Text(stringResource(R.string.action_go_live))
                 }
@@ -267,12 +273,35 @@ private fun ConnectionStatus(connection: ConnectionState, stats: StreamStats, mo
                     stats.bitrateBps / 1_000_000.0,
                     stats.droppedVideoFrames,
                     stats.targetBitrateBps / 1_000_000.0,
+                    stats.outputFps,
                 ),
                 color = Color.White,
                 style = MaterialTheme.typography.labelMedium,
             )
         }
     }
+}
+
+/** Always visible, so heat is noticed before it forces a stop. Headroom 1.0 means severe throttling. */
+@Composable
+private fun ThermalStatus(thermal: ThermalState) {
+    val level = stringResource(
+        when (thermal.level) {
+            ThermalLevel.NONE -> R.string.thermal_none
+            ThermalLevel.LIGHT -> R.string.thermal_light
+            ThermalLevel.MODERATE -> R.string.thermal_moderate
+            ThermalLevel.SEVERE -> R.string.thermal_severe
+            ThermalLevel.CRITICAL -> R.string.thermal_critical
+            ThermalLevel.EMERGENCY -> R.string.thermal_emergency
+            ThermalLevel.SHUTDOWN -> R.string.thermal_shutdown
+        },
+    )
+    Text(
+        text = thermal.headroom?.let { stringResource(R.string.thermal_with_headroom, level, it) }
+            ?: stringResource(R.string.thermal_status, level),
+        color = if (thermal.level >= ThermalLevel.SEVERE) MaterialTheme.colorScheme.error else Color.White,
+        style = MaterialTheme.typography.labelMedium,
+    )
 }
 
 /** Ticks once a second while [sinceElapsedMs] is set; only this text recomposes. */

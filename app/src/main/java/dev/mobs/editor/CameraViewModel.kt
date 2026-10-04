@@ -15,17 +15,25 @@ import dev.mobs.stream.DestinationResult
 import dev.mobs.stream.StreamDestination
 import dev.mobs.stream.StreamEngine
 import dev.mobs.stream.StreamEngineState
+import dev.mobs.stream.ThermalState
+import dev.mobs.stream.isCritical
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 /** Editor commands and state depend only on the media interface. The service owns its lifetime. */
 class CameraViewModel(private val destinationStore: StreamDestinationStore) : ViewModel() {
     private var engine: StreamEngine? = null
+    private var thermalSource: StateFlow<ThermalState>? = null
     private var stateJob: Job? = null
+    private var thermalJob: Job? = null
     private val mutableState = MutableStateFlow<StreamEngineState?>(null)
     val state = mutableState.asStateFlow()
+
+    private val mutableThermal = MutableStateFlow(ThermalState())
+    val thermal = mutableThermal.asStateFlow()
 
     private val mutableDestination = MutableStateFlow<SavedDestination>(SavedDestination.Loading)
     val destination = mutableDestination.asStateFlow()
@@ -40,18 +48,26 @@ class CameraViewModel(private val destinationStore: StreamDestinationStore) : Vi
         }
     }
 
-    fun bind(engine: StreamEngine) {
+    fun bind(engine: StreamEngine, thermal: StateFlow<ThermalState>) {
         unbind()
         this.engine = engine
+        thermalSource = thermal
         mutableState.value = engine.state.value
+        mutableThermal.value = thermal.value
         stateJob = viewModelScope.launch {
             engine.state.collect { mutableState.value = it }
+        }
+        thermalJob = viewModelScope.launch {
+            thermal.collect { mutableThermal.value = it }
         }
     }
 
     fun unbind() {
         stateJob?.cancel()
         stateJob = null
+        thermalJob?.cancel()
+        thermalJob = null
+        thermalSource = null
         engine?.detachPreview()
         engine = null
         mutableState.value = null
@@ -92,6 +108,8 @@ class CameraViewModel(private val destinationStore: StreamDestinationStore) : Vi
         val destination = (mutableDestination.value as? SavedDestination.Ready)?.destination ?: return
         val current = engine.state.value
         if (current.streamActive || current.profileError != null) return
+        // The service would stop it again immediately; the screen shows why.
+        if (thermalSource?.value?.level?.isCritical() == true) return
         engine.startStream(destination)
     }
 

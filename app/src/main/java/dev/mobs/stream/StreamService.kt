@@ -11,12 +11,15 @@ import android.content.pm.ServiceInfo
 import android.os.Binder
 import android.os.Build
 import android.os.IBinder
+import android.os.SystemClock
 import dev.mobs.MainActivity
 import dev.mobs.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.StateFlow
+import java.io.File
 
 /**
  * Owns the media session for as long as the broadcast lasts, independently of any screen. The
@@ -31,13 +34,14 @@ class StreamService : Service() {
     private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
     private lateinit var sessionLifetime: StreamSessionLifetime
     private var engineOrNull: RootEncoderStreamEngine? = null
+    private lateinit var thermalMonitor: ThermalMonitor
     private var lastStartId = 0
 
     val engine: StreamEngine
         get() = requireNotNull(engineOrNull) { "Service is not created" }
 
     inner class LocalBinder : Binder() {
-        val service: StreamService get() = this@StreamService
+        val session: BoundSession get() = BoundSession(engine, thermalMonitor.state)
     }
 
     override fun onCreate() {
@@ -51,6 +55,19 @@ class StreamService : Service() {
         // between the old editor's unbind and this stop, and its flag-0 binding would not keep the
         // service alive; a bare stopSelf() would release the engine out from under it.
         sessionLifetime = StreamSessionLifetime(engine, serviceScope) { stopSelfResult(lastStartId) }
+        thermalMonitor = ThermalMonitor(this).also { it.start(serviceScope) }
+        ThermalGuard(engine, thermalMonitor.state, serviceScope)
+        // App-specific external storage, so `adb pull` reaches the files without root.
+        SessionRecorder(
+            directory = File(getExternalFilesDir(null) ?: filesDir, SESSIONS_DIR),
+            engine = engine,
+            thermal = thermalMonitor.state,
+            battery = BatteryReader(this)::sample,
+            scope = serviceScope,
+            io = Dispatchers.IO,
+            elapsedMs = SystemClock::elapsedRealtime,
+            nowMs = System::currentTimeMillis,
+        )
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -76,6 +93,7 @@ class StreamService : Service() {
 
     override fun onDestroy() {
         serviceScope.cancel()
+        thermalMonitor.stop()
         engineOrNull?.release()
         engineOrNull = null
         super.onDestroy()
@@ -129,9 +147,13 @@ class StreamService : Service() {
     companion object {
         private const val CHANNEL_ID = "stream_session"
         private const val NOTIFICATION_ID = 1
+        private const val SESSIONS_DIR = "sessions"
 
         fun start(context: Context) {
             context.startForegroundService(Intent(context, StreamService::class.java))
         }
     }
 }
+
+/** What an editor receives from the service: the media engine and the device's thermal state. */
+class BoundSession(val engine: StreamEngine, val thermal: StateFlow<ThermalState>)

@@ -7,8 +7,11 @@ import dev.mobs.stream.CameraStatus
 import dev.mobs.stream.DestinationProblem
 import dev.mobs.stream.DestinationResult
 import dev.mobs.stream.StreamDestination
+import dev.mobs.stream.ThermalLevel
+import dev.mobs.stream.ThermalState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runCurrent
@@ -34,7 +37,7 @@ class CameraViewModelTest {
     fun rapidMuteTogglesUseCurrentEngineStateBeforeCollectionRuns() = runTest {
         val engine = FakeStreamEngine()
         val viewModel = CameraViewModel(FakeStreamDestinationStore.holding(null))
-        viewModel.bind(engine)
+        viewModel.bind(engine, MutableStateFlow(ThermalState()))
         viewModel.toggleMicrophone()
         assertTrue(engine.state.value.microphoneMuted)
         viewModel.toggleMicrophone()
@@ -51,9 +54,9 @@ class CameraViewModelTest {
         val oldEngine = FakeStreamEngine()
         val newEngine = FakeStreamEngine()
         val viewModel = CameraViewModel(FakeStreamDestinationStore.holding(null))
-        viewModel.bind(oldEngine)
+        viewModel.bind(oldEngine, MutableStateFlow(ThermalState()))
         runCurrent()
-        viewModel.bind(newEngine)
+        viewModel.bind(newEngine, MutableStateFlow(ThermalState()))
         oldEngine.state.value = oldEngine.state.value.copy(camera = CameraStatus.Error("old"))
         newEngine.state.value = newEngine.state.value.copy(camera = CameraStatus.Open)
         runCurrent()
@@ -75,7 +78,7 @@ class CameraViewModelTest {
     fun goLiveStreamsToTheSavedDestinationOnce() = runTest {
         val engine = FakeStreamEngine()
         val viewModel = CameraViewModel(FakeStreamDestinationStore.holding(youtube))
-        viewModel.bind(engine)
+        viewModel.bind(engine, MutableStateFlow(ThermalState()))
         runCurrent()
         assertEquals(SavedDestination.Ready(youtube), viewModel.destination.value)
         viewModel.goLive()
@@ -91,7 +94,7 @@ class CameraViewModelTest {
     fun goLiveNeedsADestinationAndAnAcceptedProfile() = runTest {
         val engine = FakeStreamEngine()
         val viewModel = CameraViewModel(FakeStreamDestinationStore.holding(null))
-        viewModel.bind(engine)
+        viewModel.bind(engine, MutableStateFlow(ThermalState()))
         runCurrent()
         assertEquals(SavedDestination.Missing, viewModel.destination.value)
         viewModel.goLive()
@@ -101,6 +104,23 @@ class CameraViewModelTest {
         engine.state.value = engine.state.value.copy(profileError = "rejected")
         viewModel.goLive()
         assertTrue(engine.started.isEmpty())
+        viewModel.unbind()
+    }
+
+    @Test
+    fun goLiveIsRefusedAtCriticalTemperatureAndAllowedOnceCooled() = runTest {
+        val engine = FakeStreamEngine()
+        val thermal = MutableStateFlow(ThermalState(level = ThermalLevel.CRITICAL))
+        val viewModel = CameraViewModel(FakeStreamDestinationStore.holding(youtube))
+        viewModel.bind(engine, thermal)
+        runCurrent()
+        viewModel.goLive()
+        assertTrue(engine.started.isEmpty())
+        thermal.value = ThermalState(level = ThermalLevel.SEVERE)
+        viewModel.goLive()
+        assertEquals(listOf(youtube), engine.started)
+        runCurrent()
+        assertEquals(ThermalLevel.SEVERE, viewModel.thermal.value.level)
         viewModel.unbind()
     }
 
@@ -133,7 +153,7 @@ class CameraViewModelTest {
     fun textOverlayIsTrimmedRestyledInPlaceAndRemovedWhenBlank() = runTest {
         val engine = FakeStreamEngine()
         val viewModel = CameraViewModel(FakeStreamDestinationStore.holding(null))
-        viewModel.bind(engine)
+        viewModel.bind(engine, MutableStateFlow(ThermalState()))
         viewModel.setTextOverlay("  Hello Bengaluru  ", OverlayAnchor.TOP_LEFT)
         val first = engine.state.value.textOverlay!!
         assertEquals("Hello Bengaluru", first.text)

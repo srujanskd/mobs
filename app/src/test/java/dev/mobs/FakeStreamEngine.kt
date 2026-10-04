@@ -3,6 +3,7 @@ package dev.mobs
 import android.view.Surface
 import dev.mobs.render.TextOverlay
 import dev.mobs.stream.AudioProfile
+import dev.mobs.stream.ConnectionState
 import dev.mobs.stream.PrepareResult
 import dev.mobs.stream.StreamDestination
 import dev.mobs.stream.StreamEngine
@@ -31,9 +32,13 @@ class FakeStreamEngine : StreamEngine {
         started += destination
         state.update { it.copy(streamActive = true) }
     }
-    override fun stopStream() {
+    val failures = mutableListOf<String?>()
+    override fun stopStream(failure: String?) {
         stopped++
-        state.update { it.copy(streamActive = false) }
+        failures += failure
+        state.update {
+            it.copy(streamActive = false, connection = failure?.let(ConnectionState::Failed) ?: ConnectionState.Idle)
+        }
     }
     override fun setTextOverlay(overlay: TextOverlay?) {
         state.update { it.copy(textOverlay = overlay) }

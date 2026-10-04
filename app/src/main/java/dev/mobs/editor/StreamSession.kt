@@ -11,37 +11,37 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
-import dev.mobs.stream.StreamEngine
+import dev.mobs.stream.BoundSession
 import dev.mobs.stream.StreamService
 
 /**
- * Binds the editor to the foreground service that owns the media session and returns its engine,
- * or null until the binding completes. The screen only ever sees the [StreamEngine] interface.
+ * Binds the editor to the foreground service that owns the media session and returns the session,
+ * or null until the binding completes. The screen only ever sees the engine interface.
  *
  * Call only once the camera and microphone permissions are granted: Android refuses to start a
  * camera/microphone foreground service without them.
  */
 @Composable
-fun rememberStreamEngine(): StreamEngine? {
+fun rememberStreamSession(): BoundSession? {
     val context = LocalContext.current
-    var engine by remember { mutableStateOf<StreamEngine?>(null) }
+    var session by remember { mutableStateOf<BoundSession?>(null) }
 
     DisposableEffect(context) {
         val connection = object : ServiceConnection {
             override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
-                engine = (binder as StreamService.LocalBinder).service.engine
+                session = (binder as StreamService.LocalBinder).session
             }
 
             override fun onServiceDisconnected(name: ComponentName?) {
-                engine = null
+                session = null
             }
         }
         StreamService.start(context)
         context.bindService(Intent(context, StreamService::class.java), connection, 0)
         onDispose {
             context.unbindService(connection)
-            engine = null
+            session = null
         }
     }
-    return engine
+    return session
 }
