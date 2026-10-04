@@ -110,7 +110,10 @@ data class StreamEngineState(
 data class StreamStats(
     /** `SystemClock.elapsedRealtime()` of the session's first successful connection. */
     val connectedSinceElapsedMs: Long? = null,
+    /** Measured send rate. */
     val bitrateBps: Long = 0,
+    /** Encoder bitrate the adapter currently asks for; below the profile bitrate under congestion. */
+    val targetBitrateBps: Long = 0,
     val droppedVideoFrames: Long = 0,
 )
 

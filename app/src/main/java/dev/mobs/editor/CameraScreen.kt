@@ -4,6 +4,8 @@ import android.os.SystemClock
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import androidx.compose.foundation.background
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -36,6 +38,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
@@ -81,6 +84,14 @@ fun CameraScreen(
             CircularProgressIndicator()
         }
         return
+    }
+
+    // Keep the display on only while live. The window flag is released with the screen, so no
+    // wake lock can outlive the editor; preview-only sessions may still sleep.
+    val view = LocalView.current
+    DisposableEffect(view, state.streamActive) {
+        view.keepScreenOn = state.streamActive
+        onDispose { view.keepScreenOn = false }
     }
 
     Box(modifier = modifier.fillMaxSize().background(Color.Black)) {
@@ -255,6 +266,7 @@ private fun ConnectionStatus(connection: ConnectionState, stats: StreamStats, mo
                     stats.droppedVideoFrames.coerceAtMost(Int.MAX_VALUE.toLong()).toInt(),
                     stats.bitrateBps / 1_000_000.0,
                     stats.droppedVideoFrames,
+                    stats.targetBitrateBps / 1_000_000.0,
                 ),
                 color = Color.White,
                 style = MaterialTheme.typography.labelMedium,
@@ -295,7 +307,12 @@ private fun StreamSetupDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.setup_title)) },
         text = {
-            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            // Landscape-locked: with the keyboard up the dialog has little height, so let it scroll
+            // instead of squeezing the fields.
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+            ) {
                 Text(stringResource(R.string.setup_body), style = MaterialTheme.typography.bodyMedium)
                 OutlinedTextField(
                     value = server,
@@ -313,13 +330,11 @@ private fun StreamSetupDialog(
                     visualTransformation =
                         if (keyVisible) VisualTransformation.None else PasswordVisualTransformation(),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password, autoCorrectEnabled = false),
-                    trailingIcon = {
-                        TextButton(onClick = { keyVisible = !keyVisible }) {
-                            Text(stringResource(if (keyVisible) R.string.setup_hide_key else R.string.setup_show_key))
-                        }
-                    },
                     modifier = Modifier.fillMaxWidth(),
                 )
+                TextButton(onClick = { keyVisible = !keyVisible }) {
+                    Text(stringResource(if (keyVisible) R.string.setup_hide_key else R.string.setup_show_key))
+                }
                 problem?.let {
                     Text(
                         stringResource(it.message()),
@@ -353,7 +368,12 @@ private fun TextOverlayDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.text_title)) },
         text = {
-            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            // Landscape-locked: with the keyboard up the dialog has little height, so let it scroll
+            // instead of squeezing the fields.
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+            ) {
                 Text(stringResource(R.string.text_body), style = MaterialTheme.typography.bodyMedium)
                 OutlinedTextField(
                     value = text,

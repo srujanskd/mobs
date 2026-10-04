@@ -31,8 +31,8 @@
     <string name="connection_failed">Stream stopped: %1$s</string>
     <string name="connection_disconnected">Disconnected by server</string>
     <plurals name="stats_line">
-        <item quantity="one">%1$.1f Mbps · %2$d dropped frame</item>
-        <item quantity="other">%1$.1f Mbps · %2$d dropped frames</item>
+        <item quantity="one">%1$.1f / %3$.1f Mbps · %2$d dropped frame</item>
+        <item quantity="other">%1$.1f / %3$.1f Mbps · %2$d dropped frames</item>
     </plurals>
 
     <string name="setup_title">Stream setup</string>

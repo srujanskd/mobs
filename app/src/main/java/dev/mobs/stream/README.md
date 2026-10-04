@@ -28,3 +28,7 @@ bitrate and dropped video frames, sampled on RootEncoder's roughly once-a-second
 The engine forces hardware video encoding and prepares once, at service creation, for a fixed 1920x1080 30 fps landscape profile. A
 device that rejects that profile is reported through `StreamEngineState.profileError`; the engine
 never substitutes a lower resolution or frame rate.
+
+Only bitrate adapts. RootEncoder's `QueueAwareBitrateAdapter` lowers the encoder bitrate when the
+send queue backs up and probes back toward the profile's 10 Mbps, with a floor of 1 Mbps.
+`StreamStats.targetBitrateBps` exposes the bitrate it currently requests next to the measured rate.

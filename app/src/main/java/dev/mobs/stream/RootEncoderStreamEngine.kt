@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.Surface
 import android.graphics.Bitmap
 import com.pedro.common.ConnectChecker
+import com.pedro.common.StreamingStatsReport
 import com.pedro.encoder.input.gl.render.filters.`object`.ImageObjectFilterRender
 import com.pedro.encoder.input.sources.audio.MicrophoneSource
 import com.pedro.encoder.input.sources.video.Camera2Source
@@ -13,6 +14,7 @@ import com.pedro.encoder.input.video.CameraCallbacks
 import com.pedro.encoder.input.video.CameraHelper
 import com.pedro.encoder.utils.CodecUtil
 import com.pedro.library.rtmp.RtmpStream
+import com.pedro.library.util.QueueAwareBitrateAdapter
 import dev.mobs.render.OverlayPlacement
 import dev.mobs.render.TextOverlay
 import dev.mobs.render.TextRasterizer
@@ -34,6 +36,13 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
     private val microphone = MicrophoneSource()
     private val stream = RtmpStream(appContext, this, camera, microphone)
     private val reconnect = ReconnectPolicy()
+
+    /**
+     * Lowers the encoder bitrate when RootEncoder's send queue backs up, then probes back toward
+     * the profile bitrate. Resolution and frame rate stay fixed; only bitrate adapts, as the plan
+     * allows. Without it a slow uplink lets the queue overflow and YouTube receives too little.
+     */
+    private var bitrateAdapter: QueueAwareBitrateAdapter? = null
 
     /** The current destination's server, for state that must not contain the key. */
     @Volatile private var server = ""
@@ -110,6 +119,10 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
         } catch (e: IllegalStateException) {
             return unsupported(video, e.message ?: "Engine busy")
         }
+        bitrateAdapter = QueueAwareBitrateAdapter(video.bitrateBps) { bitrate ->
+            stream.setVideoBitrateOnFly(bitrate)
+            _state.update { it.copy(stats = it.stats.copy(targetBitrateBps = bitrate.toLong())) }
+        }
         _state.update { it.copy(prepared = true, profileError = null, video = video) }
         return PrepareResult.Success
     }
@@ -159,11 +172,15 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
         server = destination.server
         reconnect.reset()
         stream.getStreamClient().resetDroppedVideoFrames()
+        // Each session starts at the full profile bitrate and adapts down from there.
+        val profileBitrate = _state.value.video.bitrateBps
+        bitrateAdapter?.reset()
+        stream.setVideoBitrateOnFly(profileBitrate)
         _state.update {
             it.copy(
                 streamActive = true,
                 connection = ConnectionState.Connecting(destination.server),
-                stats = StreamStats(),
+                stats = StreamStats(targetBitrateBps = profileBitrate.toLong()),
             )
         }
         try {
@@ -268,6 +285,11 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
         if (!_state.value.streamActive) return
         val dropped = stream.getStreamClient().getDroppedVideoFrames()
         _state.update { it.copy(stats = it.stats.copy(bitrateBps = bitrate, droppedVideoFrames = dropped)) }
+    }
+
+    override fun onStreamingStats(report: StreamingStatsReport) {
+        if (!_state.value.streamActive) return
+        bitrateAdapter?.onStreamingStats(report)
     }
 
     override fun onAuthSuccess() = Unit
