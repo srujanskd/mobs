@@ -1,0 +1,33 @@
+
+artifacts/unpacked/lib/armeabi-v7a/liblog.so:	file format elf32-littlearm
+
+Program Header:
+    PHDR off    0x00000034 vaddr 0x00000034 paddr 0x00000034 align 2**2
+         filesz 0x00000120 memsz 0x00000120 flags r--
+    LOAD off    0x00000000 vaddr 0x00000000 paddr 0x00000000 align 2**12
+         filesz 0x00000374 memsz 0x00000374 flags r--
+    LOAD off    0x00000374 vaddr 0x00001374 paddr 0x00001374 align 2**12
+         filesz 0x00000010 memsz 0x00000010 flags r-x
+    LOAD off    0x00000384 vaddr 0x00002384 paddr 0x00002384 align 2**12
+         filesz 0x00000050 memsz 0x00000050 flags rw-
+ DYNAMIC off    0x00000384 vaddr 0x00002384 paddr 0x00002384 align 2**2
+         filesz 0x00000050 memsz 0x00000050 flags rw-
+   RELRO off    0x00000384 vaddr 0x00002384 paddr 0x00002384 align 2**0
+         filesz 0x00000050 memsz 0x00000c7c flags r--
+   STACK off    0x00000000 vaddr 0x00000000 paddr 0x00000000 align 2**64
+         filesz 0x00000000 memsz 0x00000000 flags rw-
+    NOTE off    0x00000154 vaddr 0x00000154 paddr 0x00000154 align 2**2
+         filesz 0x00000020 memsz 0x00000020 flags r--
+ UNKNOWN off    0x00000364 vaddr 0x00000364 paddr 0x00000364 align 2**2
+         filesz 0x00000010 memsz 0x00000010 flags r--
+
+Dynamic Section:
+  SONAME   liblog.so
+  FLAGS    0x00000008
+  FLAGS_1  0x00000001
+  SYMTAB   0x00000174
+  SYMENT   0x00000010
+  STRTAB   0x0000029c
+  STRSZ    0x000000c5
+  GNU_HASH 0x00000204
+  HASH     0x0000024c

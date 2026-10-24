@@ -1,0 +1,7 @@
+Starting: Intent { cmp=app.irlpro.android/com.wmspanel.streamer.LaunchActivity }
+Status: ok
+LaunchState: COLD
+Activity: app.irlpro.android/com.wmspanel.streamer.StreamerServiceActivity
+TotalTime: 1634
+WaitTime: 1693
+Complete

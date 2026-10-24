@@ -22,4 +22,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Mobs"
-include(":app")
+include(":app", ":benchmarks")

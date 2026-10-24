@@ -1,0 +1,260 @@
+
+artifacts/unpacked/lib/armeabi-v7a/libuvc.so:	file format elf32-littlearm
+
+DYNAMIC SYMBOL TABLE:
+00000000      DF *UND*	00000000 (LIBC)       __cxa_finalize
+00000000      DF *UND*	00000000 (LIBC)       __cxa_atexit
+00000000      DF *UND*	00000000 (LIBC)       __register_atfork
+00000000      DF *UND*	00000000              libusb_control_transfer
+00000000      DF *UND*	00000000 (LIBC)       basename
+00000000      DF *UND*	00000000              __android_log_print
+00000000      DF *UND*	00000000 (LIBC)       strcmp
+00000000      DF *UND*	00000000              libusb_ref_device
+00000000      DF *UND*	00000000              libusb_get_device_list
+00000000      DF *UND*	00000000 (LIBC)       malloc
+00000000      DF *UND*	00000000              libusb_get_config_descriptor
+00000000      DF *UND*	00000000              libusb_get_device_descriptor
+00000000      DF *UND*	00000000              libusb_free_config_descriptor
+00000000      DF *UND*	00000000 (LIBC)       realloc
+00000000      DF *UND*	00000000              libusb_free_device_list
+00000000      DF *UND*	00000000 (LIBC)       calloc
+00000000      DF *UND*	00000000              libusb_open
+00000000      DF *UND*	00000000              libusb_get_string_descriptor_ascii
+00000000      DF *UND*	00000000 (LIBC)       strdup
+00000000      DF *UND*	00000000              libusb_close
+00000000      DF *UND*	00000000 (LIBC)       free
+00000000      DF *UND*	00000000              libusb_get_bus_number
+00000000      DF *UND*	00000000              libusb_get_device_address
+00000000      DF *UND*	00000000              libusb_wrap_sys_device
+00000000      DF *UND*	00000000              libusb_get_device
+00000000      DF *UND*	00000000              libusb_alloc_transfer
+00000000      DF *UND*	00000000              libusb_submit_transfer
+00000000      DF *UND*	00000000 (LIBC)       fwrite
+00000000      DO *UND*	00000000 (LIBC)       stderr
+00000000      DF *UND*	00000000              libusb_unref_device
+00000000      DF *UND*	00000000              libusb_detach_kernel_driver
+00000000      DF *UND*	00000000              libusb_claim_interface
+00000000      DF *UND*	00000000              libusb_set_interface_alt_setting
+00000000      DF *UND*	00000000              libusb_release_interface
+00000000      DF *UND*	00000000              libusb_attach_kernel_driver
+00000000      DF *UND*	00000000              libusb_free_transfer
+00000000      DF *UND*	00000000 (LIBC)       pthread_join
+00000000      DF *UND*	00000000 (LIBC)       fprintf
+00000000      DF *UND*	00000000 (LIBC)       fputs
+00000000      DF *UND*	00000000 (LIBC)       printf
+00000000      DF *UND*	00000000 (LIBC)       puts
+00000000      DF *UND*	00000000              libusb_handle_events_completed
+00000000      DF *UND*	00000000              libusb_init
+00000000      DF *UND*	00000000              libusb_exit
+00000000      DF *UND*	00000000 (LIBC)       pthread_create
+00000000      DF *UND*	00000000 (LIBC)       memcmp
+00000000      DF *UND*	00000000 (LIBC)       pthread_mutex_lock
+00000000      DF *UND*	00000000 (LIBC)       clock_gettime
+00000000      DF *UND*	00000000 (LIBC)       pthread_cond_broadcast
+00000000      DF *UND*	00000000 (LIBC)       pthread_mutex_unlock
+00000000      DF *UND*	00000000 (LIBC)       pthread_mutex_init
+00000000      DF *UND*	00000000 (LIBC)       pthread_cond_init
+00000000      DF *UND*	00000000              libusb_get_ss_endpoint_companion_descriptor
+00000000      DF *UND*	00000000              libusb_free_ss_endpoint_companion_descriptor
+00000000      DF *UND*	00000000 (LIBC)       pthread_cond_destroy
+00000000      DF *UND*	00000000 (LIBC)       pthread_mutex_destroy
+00000000      DF *UND*	00000000 (LIBC)       pthread_cond_wait
+00000000      DF *UND*	00000000 (LIBC)       pthread_cond_timedwait
+00000000      DF *UND*	00000000              libusb_cancel_transfer
+00000000      DF *UND*	00000000 (LIBJPEG_6.2) jpeg_std_error
+00000000      DF *UND*	00000000 (LIBC)       setjmp
+00000000      DF *UND*	00000000 (LIBJPEG_6.2) jpeg_CreateDecompress
+00000000      DF *UND*	00000000 (LIBJPEGTURBO_6.2) jpeg_mem_src
+00000000      DF *UND*	00000000 (LIBJPEG_6.2) jpeg_read_header
+00000000      DF *UND*	00000000 (LIBJPEG_6.2) jpeg_alloc_huff_table
+00000000      DF *UND*	00000000 (LIBJPEG_6.2) jpeg_start_decompress
+00000000      DF *UND*	00000000 (LIBJPEG_6.2) jpeg_read_scanlines
+00000000      DF *UND*	00000000 (LIBJPEG_6.2) jpeg_finish_decompress
+00000000      DF *UND*	00000000 (LIBJPEG_6.2) jpeg_destroy_decompress
+00000000      DF *UND*	00000000 (LIBC)       longjmp
+00000000      DF *UND*	00000000 (LIBC)       memcpy
+00000000      DF *UND*	00000000 (LIBC)       memset
+000075b8 g    DF .text	000000b0              uvc_get_digital_window
+0000b17c g    DF .text	00000134              uvc_scan_streaming
+00007b28 g    DF .text	00000078              uvc_get_contrast_auto
+0000cd10 g    DF .text	000001b0              _uvc_status_callback
+0000bec4 g    DF .text	0000018c              uvc_parse_vs_frame_frame
+0001108c g    DF .text	000000c4              uvc_stream_close
+00006568 g    DF .text	0000006c              uvc_set_scanning_mode
+00006e64 g    DF .text	0000006c              uvc_set_iris_rel
+0000c604 g    DF .text	000000c4              uvc_num_devices
+0000f2c4 g    DF .text	00000064              uvc_init
+00007a44 g    DF .text	00000078              uvc_get_contrast
+00008014 g    DF .text	0000006c              uvc_set_saturation
+00008410 g    DF .text	00000088              uvc_get_white_balance_component
+0000aa00 g    DF .text	0000000c              uvc_get_input_terminals
+0000b774 g    DF .text	0000031c              uvc_parse_vs
+0000bda0 g    DF .text	00000124              uvc_parse_vs_format_mjpeg
+0000fdd4 g    DF .text	00000160              uvc_probe_still_ctrl
+0000ffd4 g    DF .text	00000370              _uvc_process_payload
+00007668 g    DF .text	000000c0              uvc_set_digital_window
+0000679c g    DF .text	00000078              uvc_get_exposure_abs
+000074d4 g    DF .text	00000078              uvc_get_privacy
+00008600 g    DF .text	00000078              uvc_get_digital_multiplier
+0000a9c0 g    DF .text	00000008              uvc_get_libusb_handle
+00011564 g    DF .text	0000002c              uvc_stop_streaming
+00007040 g    DF .text	00000074              uvc_set_zoom_rel
+0000aa20 g    DF .text	0000000c              uvc_get_processing_units
+000079d8 g    DF .text	0000006c              uvc_set_brightness
+0000bb50 g    DF .text	00000128              uvc_parse_vs_format_uncompressed
+0000787c g    DF .text	00000078              uvc_get_backlight_compensation
+00007ba0 g    DF .text	0000006c              uvc_set_contrast_auto
+00007eb8 g    DF .text	00000078              uvc_get_hue_auto
+00006354 g    DF .text	0000005c              uvc_get_ctrl_len
+000068f8 g    DF .text	0000006c              uvc_set_exposure_rel
+00006bb8 g    DF .text	0000006c              uvc_set_focus_simple_range
+0000713c g    DF .text	000000a4              uvc_set_pantilt_abs
+00007464 g    DF .text	00000070              uvc_set_roll_rel
+00009580 g    DF .text	000000cc              uvc_free_device_list
+0000dee4 g    DF .text	00000404              uvc_yuyv2rgb
+000078f4 g    DF .text	0000006c              uvc_set_backlight_compensation
+0000f87c g    DF .text	0000029c              uvc_get_stream_ctrl_format_size
+000064a0 g    DF .text	00000050              uvc_set_power_mode
+00008d64 g    DF .text	000004a0              uvc_get_device_list
+0000ff34 g    DF .text	000000a0              _uvc_swap_buffers
+00007abc g    DF .text	0000006c              uvc_set_contrast
+0000f3bc g    DF .text	000001dc              uvc_query_stream_ctrl
+0000f614 g    DF .text	000000c4              uvc_query_still_ctrl
+000073dc g    DF .text	00000088              uvc_get_roll_rel
+0000832c g    DF .text	00000078              uvc_get_white_balance_temperature_auto
+00008924 g    DF .text	0000006c              uvc_set_analog_video_lock_status
+00008a08 g    DF .text	0000006c              uvc_set_input_select
+00008aa4 g    DF .text	000002c0              uvc_find_device
+00009978 g    DF .text	00000168              uvc_wrap
+0000aa2c g    DF .text	0000000c              uvc_get_extension_units
+0000a9c8 g    DF .text	00000038              uvc_get_camera_terminal
+000071e0 g    DF .text	00000098              uvc_get_pantilt_rel
+0000ddd0 g    DF .text	00000114              uvc_duplicate_frame
+0000fc68 g    DF .text	0000016c              uvc_get_still_ctrl_format_size
+00007c84 g    DF .text	0000006c              uvc_set_gain
+000094d8 g    DF .text	000000a8              uvc_ref_device
+0000b62c g    DF .text	00000148              uvc_parse_vc_extension_unit
+00006c9c g    DF .text	0000006c              uvc_set_focus_auto
+00007f30 g    DF .text	0000006c              uvc_set_hue_auto
+0000b03c g    DF .text	00000140              uvc_parse_vc_header
+0000cf64 g    DF .text	000000a4              uvc_set_button_callback
+0000f25c g    DF .text	0000002c              uvc_any2bgr
+0000f288 g    DF .text	0000003c              _uvc_handle_events
+000069dc g    DF .text	0000006c              uvc_set_focus_abs
+00007cf0 g    DF .text	00000078              uvc_get_power_line_frequency
+000082c0 g    DF .text	0000006c              uvc_set_white_balance_temperature
+00008a74 g    DF .text	00000030              uvc_already_open
+0000bc78 g    DF .text	00000128              uvc_parse_vs_frame_format
+0000dd1c g    DF .text	00000068              uvc_allocate_frame
+00010a40 g    DF .text	0000064c              uvc_stream_start
+0000a4a4 g    DF .text	000003b0              uvc_free_device_info
+0000b538 g    DF .text	000000f4              uvc_parse_vc_selector_unit
+0000ee0c g    DF .text	00000408              uvc_uyvy2bgr
+00006a48 g    DF .text	00000088              uvc_get_focus_rel
+00006d08 g    DF .text	00000078              uvc_get_iris_abs
+00007f9c g    DF .text	00000078              uvc_get_saturation
+00008080 g    DF .text	00000078              uvc_get_sharpness
+000081dc g    DF .text	0000006c              uvc_set_gamma
+000083a4 g    DF .text	0000006c              uvc_set_white_balance_temperature_auto
+00009fb8 g    DF .text	000001b0              uvc_get_device_info
+0000c6c8 g    DF .text	0000030c              uvc_process_control_status
+0000851c g    DF .text	00000078              uvc_get_white_balance_component_auto
+00009404 g    DF .text	000000d4              uvc_free_device_descriptor
+0000d0a8 g    DF .text	00000188              uvc_strerror
+0000d37c g    DF .text	00000590              uvc_print_diag
+00007960 g    DF .text	00000078              uvc_get_brightness
+00006ed0 g    DF .text	00000078              uvc_get_zoom_abs
+00008678 g    DF .text	0000006c              uvc_set_digital_multiplier
+0000875c g    DF .text	0000006c              uvc_set_digital_multiplier_limit
+0000ba90 g    DF .text	000000c0              uvc_parse_vs_input_header
+0000a910 g    DF .text	000000b0              uvc_get_device
+000063f8 g    DF .text	00000048              uvc_set_ctrl
+00006440 g    DF .text	00000060              uvc_get_power_mode
+00006730 g    DF .text	0000006c              uvc_set_ae_priority
+00006880 g    DF .text	00000078              uvc_get_exposure_rel
+00007728 g    DF .text	000000a4              uvc_get_digital_roi
+0000c3dc g    DF .text	000000c0              uvc_free_devh
+0000e6f0 g    DF .text	0000018c              uvc_yuyv2y
+0000e87c g    DF .text	00000188              uvc_yuyv2uv
+00006d80 g    DF .text	0000006c              uvc_set_iris_abs
+0000f598 g    DF .text	0000007c              uvc_find_frame_desc
+00011264 g    DF .text	00000184              _uvc_populate_frame
+0000b408 g    DF .text	00000130              uvc_parse_vc_processing_unit
+000111bc g    DF .text	000000a0              _uvc_user_caller
+00007278 g    DF .text	00000080              uvc_set_pantilt_rel
+000086e4 g    DF .text	00000078              uvc_get_digital_multiplier_limit
+0000b2b0 g    DF .text	00000158              uvc_parse_vc_input_terminal
+0000cec0 g    DF .text	000000a4              uvc_set_status_callback
+0000d008 g    DF .text	00000010              uvc_get_format_descs
+00010344 g    DF .text	00000414              _uvc_stream_callback
+000088ac g    DF .text	00000078              uvc_get_analog_video_lock_status
+0000dca4 g    DF .text	00000078              uvc_ensure_frame_size
+00006c24 g    DF .text	00000078              uvc_get_focus_auto
+00006f48 g    DF .text	0000006c              uvc_set_zoom_abs
+0000754c g    DF .text	0000006c              uvc_set_privacy
+00008498 g    DF .text	00000084              uvc_set_white_balance_component
+00008594 g    DF .text	0000006c              uvc_set_white_balance_component_auto
+00009204 g    DF .text	00000200              uvc_get_device_descriptor
+00009968 g    DF .text	00000008              uvc_get_bus_number
+00011590 g    DF .text	000000cc              uvc_stream_stop
+00007c0c g    DF .text	00000078              uvc_get_gain
+00008248 g    DF .text	00000078              uvc_get_white_balance_temperature
+0000aa14 g    DF .text	0000000c              uvc_get_selector_units
+0000d230 g    DF .text	0000014c              uvc_print_stream_ctrl
+00006814 g    DF .text	0000006c              uvc_set_exposure_abs
+00007370 g    DF .text	0000006c              uvc_set_roll_abs
+0000aeb0 g    DF .text	0000018c              uvc_parse_vc
+000107c4 g    DF .text	0000027c              uvc_stream_open_ctrl
+0001125c g    DF .text	00000008              uvc_stream_start_iso
+0000e2e8 g    DF .text	00000408              uvc_yuyv2bgr
+00007e4c g    DF .text	0000006c              uvc_set_hue
+0000ac58 g    DF .text	00000258              uvc_release_if
+0000a168 g    DF .text	0000033c              uvc_scan_control
+0000f214 g    DF .text	00000048              uvc_any2rgb
+0000f39c g    DF .text	00000020              _get_format_entry
+00010758 g    DF .text	0000006c              uvc_start_streaming
+00011150 g    DF .text	0000006c              uvc_start_iso_streaming
+00006b40 g    DF .text	00000078              uvc_get_focus_simple_range
+00007d68 g    DF .text	0000006c              uvc_set_power_line_frequency
+0000aa38 g    DF .text	00000220              uvc_claim_if
+0000664c g    DF .text	0000006c              uvc_set_ae_mode
+00006ad0 g    DF .text	00000070              uvc_set_focus_rel
+000072f8 g    DF .text	00000078              uvc_get_roll_abs
+0000a854 g    DF .text	000000bc              uvc_unref_device
+0000f6d8 g    DF .text	000000c8              uvc_trigger_still
+0000fba8 g    DF .text	000000c0              uvc_probe_stream_ctrl
+000070b4 g    DF .text	00000088              uvc_get_pantilt_abs
+000080f8 g    DF .text	0000006c              uvc_set_sharpness
+00009970 g    DF .text	00000008              uvc_get_device_address
+0000f374 g    DF .text	00000028              uvc_start_handler_thread
+00009e78 g    DF .text	00000140              uvc_open
+0000c050 g    DF .text	00000188              uvc_parse_vs_frame_uncompressed
+0000c1d8 g    DF .text	00000204              uvc_parse_vs_still_image_frame
+0000c49c g    DF .text	00000168              uvc_close
+0000cc34 g    DF .text	000000dc              uvc_process_status_xfer
+0000d018 g    DF .text	00000090              uvc_perror
+0000dd84 g    DF .text	0000004c              uvc_free_frame
+0000ea04 g    DF .text	00000408              uvc_uyvy2rgb
+0001165c g    DF .text	000000b4              uvc_mjpeg2rgb
+0000f328 g    DF .text	0000004c              uvc_exit
+000119b4 g    DF .text	000000ac              uvc_mjpeg2gray
+0000964c g    DF .text	0000031c              uvc_find_devices
+00006dec g    DF .text	00000078              uvc_get_iris_rel
+00008164 g    DF .text	00000078              uvc_get_gamma
+00008840 g    DF .text	0000006c              uvc_set_analog_video_standard
+0000d90c g    DF .text	00000398              uvc_print_frameformats
+000064f0 g    DF .text	00000078              uvc_get_scanning_mode
+000077cc g    DF .text	000000b0              uvc_set_digital_roi
+00008990 g    DF .text	00000078              uvc_get_input_select
+0000aa0c g    DF .text	00000008              uvc_get_output_terminals
+0000f7a0 g    DF .text	0000007c              uvc_stream_ctrl
+000087c8 g    DF .text	00000078              uvc_get_analog_video_standard
+000113e8 g    DF .text	0000017c              uvc_stream_get_frame
+000063b0 g    DF .text	00000048              uvc_get_ctrl
+000066b8 g    DF .text	00000078              uvc_get_ae_priority
+00006964 g    DF .text	00000078              uvc_get_focus_abs
+00006fb4 g    DF .text	0000008c              uvc_get_zoom_rel
+0000f81c g    DF .text	00000060              uvc_find_frame_desc_stream
+000065d4 g    DF .text	00000078              uvc_get_ae_mode
+00007dd4 g    DF .text	00000078              uvc_get_hue
+0000c9d4 g    DF .text	00000260              uvc_process_streaming_status

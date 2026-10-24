@@ -1,0 +1,57 @@
+
+artifacts/unpacked/lib/x86/librist.so:	file format elf32-i386
+
+Program Header:
+    PHDR off    0x00000034 vaddr 0x00000034 paddr 0x00000034 align 2**2
+         filesz 0x00000180 memsz 0x00000180 flags r--
+    LOAD off    0x00000000 vaddr 0x00000000 paddr 0x00000000 align 2**12
+         filesz 0x000075b0 memsz 0x000075b0 flags r--
+   STACK off    0x00000000 vaddr 0x00000000 paddr 0x00000000 align 2**64
+         filesz 0x00000000 memsz 0x00000000 flags rw-
+    NOTE off    0x0000022c vaddr 0x0000022c paddr 0x0000022c align 2**2
+         filesz 0x00000018 memsz 0x00000018 flags r--
+EH_FRAME off    0x000075a0 vaddr 0x000075a0 paddr 0x000075a0 align 2**2
+         filesz 0x0000000c memsz 0x0000000c flags r--
+    LOAD off    0x000075b0 vaddr 0x000085b0 paddr 0x000085b0 align 2**12
+         filesz 0x0002a3c0 memsz 0x0002a3c0 flags r-x
+    LOAD off    0x00031970 vaddr 0x00033970 paddr 0x00033970 align 2**12
+         filesz 0x000002a8 memsz 0x000002a8 flags rw-
+   RELRO off    0x00031970 vaddr 0x00033970 paddr 0x00033970 align 2**0
+         filesz 0x000002a8 memsz 0x00000690 flags r--
+ DYNAMIC off    0x0003197c vaddr 0x0003397c paddr 0x0003397c align 2**2
+         filesz 0x000000c0 memsz 0x000000c0 flags rw-
+    LOAD off    0x00031c18 vaddr 0x00034c18 paddr 0x00034c18 align 2**12
+         filesz 0x00000028 memsz 0x0000004b flags rw-
+    LOAD off    0x00032000 vaddr 0x00035000 paddr 0x00035000 align 2**12
+         filesz 0x00000ab8 memsz 0x00000ab8 flags rw-
+    NOTE off    0x00032a20 vaddr 0x00035a20 paddr 0x00035a20 align 2**1
+         filesz 0x00000098 memsz 0x00000098 flags r--
+
+Dynamic Section:
+  NEEDED       libc.so
+  SONAME       librist.so
+  FLAGS        0x00000008
+  FLAGS_1      0x00000001
+  REL          0x00001e90
+  RELSZ        0x00000050
+  RELENT       0x00000008
+  RELCOUNT     0x00000003
+  JMPREL       0x00001ee0
+  PLTRELSZ     0x00000380
+  PLTGOT       0x00033a4c
+  PLTREL       0x00000011
+  SYMTAB       0x00000244
+  SYMENT       0x00000010
+  STRTAB       0x00035000
+  STRSZ        0x00000a20
+  GNU_HASH     0x00000d80
+  HASH         0x00000f80
+  FINI_ARRAY   0x00033974
+  FINI_ARRAYSZ 0x00000008
+  VERSYM       0x00000c24
+  VERNEED      0x00000d60
+  VERNEEDNUM   0x00000001
+
+Version References:
+  required from libc.so:
+    0x00050d63 0x00 02 LIBC

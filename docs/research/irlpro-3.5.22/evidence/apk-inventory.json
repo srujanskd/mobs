@@ -1,0 +1,5192 @@
+{
+  "path": "/Users/srujankashyapd/personal/irl pro rea/app.irlpro.android_3.5.22-305221_minAPI28(arm64-v8a,armeabi-v7a,x86,x86_64)(nodpi)_apkmirror.com.apk",
+  "sha256": "f5aa0343467b9890e72cf2292a4ddc68a15660c8e30996ab44f45e1e29c89bcd",
+  "bytes": 38865633,
+  "entries": [
+    {
+      "path": "AndroidManifest.xml",
+      "bytes": 11664,
+      "compressed_bytes": 2903
+    },
+    {
+      "path": "DebugProbesKt.bin",
+      "bytes": 1738,
+      "compressed_bytes": 782
+    },
+    {
+      "path": "LPT9/internal.kotlin_builtins",
+      "bytes": 939,
+      "compressed_bytes": 552
+    },
+    {
+      "path": "Lpt9/annotation/annotation.kotlin_builtins",
+      "bytes": 926,
+      "compressed_bytes": 559
+    },
+    {
+      "path": "Lpt9/kotlin.kotlin_builtins",
+      "bytes": 14256,
+      "compressed_bytes": 4421
+    },
+    {
+      "path": "META-INF/androidx.activity_activity-ktx.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.activity_activity.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.annotation_annotation-experimental.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.appcompat_appcompat-resources.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.appcompat_appcompat.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.arch.core_core-runtime.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.cardview_cardview.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.coordinatorlayout_coordinatorlayout.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.core_core-ktx.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.core_core.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.cursoradapter_cursoradapter.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.customview_customview.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.databinding_viewbinding.version",
+      "bytes": 5,
+      "compressed_bytes": 5
+    },
+    {
+      "path": "META-INF/androidx.documentfile_documentfile.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.drawerlayout_drawerlayout.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.dynamicanimation_dynamicanimation.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.emoji2_emoji2-views-helper.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.emoji2_emoji2.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.fragment_fragment-ktx.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.fragment_fragment.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.interpolator_interpolator.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.legacy_legacy-support-core-utils.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.lifecycle_lifecycle-livedata-core-ktx.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.lifecycle_lifecycle-livedata-core.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.lifecycle_lifecycle-livedata.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.lifecycle_lifecycle-process.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.lifecycle_lifecycle-runtime-ktx.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.lifecycle_lifecycle-runtime.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.lifecycle_lifecycle-viewmodel-ktx.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.lifecycle_lifecycle-viewmodel-savedstate.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.lifecycle_lifecycle-viewmodel.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.loader_loader.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.localbroadcastmanager_localbroadcastmanager.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.preference_preference.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.print_print.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.recyclerview_recyclerview.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.savedstate_savedstate-ktx.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.savedstate_savedstate.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.slidingpanelayout_slidingpanelayout.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.startup_startup-runtime.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.tracing_tracing.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.transition_transition.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.vectordrawable_vectordrawable-animated.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.vectordrawable_vectordrawable.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.versionedparcelable_versionedparcelable.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.viewpager2_viewpager2.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.viewpager_viewpager.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/androidx.window_window.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/com/android/build/gradle/app-metadata.properties",
+      "bytes": 56,
+      "compressed_bytes": 52
+    },
+    {
+      "path": "META-INF/com.google.android.material_material.version",
+      "bytes": 6,
+      "compressed_bytes": 6
+    },
+    {
+      "path": "META-INF/kotlinx_coroutines_android.version",
+      "bytes": 5,
+      "compressed_bytes": 5
+    },
+    {
+      "path": "META-INF/kotlinx_coroutines_core.version",
+      "bytes": 5,
+      "compressed_bytes": 5
+    },
+    {
+      "path": "META-INF/services/n.i",
+      "bytes": 7,
+      "compressed_bytes": 7
+    },
+    {
+      "path": "META-INF/services/s.lpt4",
+      "bytes": 7,
+      "compressed_bytes": 7
+    },
+    {
+      "path": "androidsupportmultidexversion.txt",
+      "bytes": 53,
+      "compressed_bytes": 53
+    },
+    {
+      "path": "classes.dex",
+      "bytes": 4915428,
+      "compressed_bytes": 2070084
+    },
+    {
+      "path": "inet/ipaddr/IPAddressResources.properties",
+      "bytes": 11750,
+      "compressed_bytes": 3125
+    },
+    {
+      "path": "j/ranges.kotlin_builtins",
+      "bytes": 2301,
+      "compressed_bytes": 956
+    },
+    {
+      "path": "k/reflect.kotlin_builtins",
+      "bytes": 2338,
+      "compressed_bytes": 1226
+    },
+    {
+      "path": "kotlin-tooling-metadata.json",
+      "bytes": 624,
+      "compressed_bytes": 279
+    },
+    {
+      "path": "lPt9/collections.kotlin_builtins",
+      "bytes": 3685,
+      "compressed_bytes": 1521
+    },
+    {
+      "path": "lib/arm64-v8a/libc++_shared.so",
+      "bytes": 1014768,
+      "compressed_bytes": 1014768
+    },
+    {
+      "path": "lib/arm64-v8a/libjpeg.so",
+      "bytes": 365272,
+      "compressed_bytes": 365272
+    },
+    {
+      "path": "lib/arm64-v8a/liblog.so",
+      "bytes": 9504,
+      "compressed_bytes": 9504
+    },
+    {
+      "path": "lib/arm64-v8a/libobjectbox-jni.so",
+      "bytes": 1654544,
+      "compressed_bytes": 1654544
+    },
+    {
+      "path": "lib/arm64-v8a/librist.so",
+      "bytes": 201504,
+      "compressed_bytes": 201504
+    },
+    {
+      "path": "lib/arm64-v8a/libsrt.so",
+      "bytes": 5038248,
+      "compressed_bytes": 5038248
+    },
+    {
+      "path": "lib/arm64-v8a/libsrtla.so",
+      "bytes": 22888,
+      "compressed_bytes": 22888
+    },
+    {
+      "path": "lib/arm64-v8a/libsrtsender.so",
+      "bytes": 144104,
+      "compressed_bytes": 144104
+    },
+    {
+      "path": "lib/arm64-v8a/libusb1.0.so",
+      "bytes": 98288,
+      "compressed_bytes": 98288
+    },
+    {
+      "path": "lib/arm64-v8a/libuvc.so",
+      "bytes": 86576,
+      "compressed_bytes": 86576
+    },
+    {
+      "path": "lib/arm64-v8a/libuvccamera.so",
+      "bytes": 49224,
+      "compressed_bytes": 49224
+    },
+    {
+      "path": "lib/arm64-v8a/libyyjson.so",
+      "bytes": 145656,
+      "compressed_bytes": 145656
+    },
+    {
+      "path": "lib/armeabi-v7a/libc++_shared.so",
+      "bytes": 605420,
+      "compressed_bytes": 605420
+    },
+    {
+      "path": "lib/armeabi-v7a/libjpeg.so",
+      "bytes": 335048,
+      "compressed_bytes": 335048
+    },
+    {
+      "path": "lib/armeabi-v7a/liblog.so",
+      "bytes": 1804,
+      "compressed_bytes": 1804
+    },
+    {
+      "path": "lib/armeabi-v7a/libobjectbox-jni.so",
+      "bytes": 1198364,
+      "compressed_bytes": 1198364
+    },
+    {
+      "path": "lib/armeabi-v7a/librist.so",
+      "bytes": 200920,
+      "compressed_bytes": 200920
+    },
+    {
+      "path": "lib/armeabi-v7a/libsrt.so",
+      "bytes": 3834404,
+      "compressed_bytes": 3834404
+    },
+    {
+      "path": "lib/armeabi-v7a/libsrtla.so",
+      "bytes": 18580,
+      "compressed_bytes": 18580
+    },
+    {
+      "path": "lib/armeabi-v7a/libsrtsender.so",
+      "bytes": 101608,
+      "compressed_bytes": 101608
+    },
+    {
+      "path": "lib/armeabi-v7a/libusb1.0.so",
+      "bytes": 68584,
+      "compressed_bytes": 68584
+    },
+    {
+      "path": "lib/armeabi-v7a/libuvc.so",
+      "bytes": 74304,
+      "compressed_bytes": 74304
+    },
+    {
+      "path": "lib/armeabi-v7a/libuvccamera.so",
+      "bytes": 21144,
+      "compressed_bytes": 21144
+    },
+    {
+      "path": "lib/armeabi-v7a/libyyjson.so",
+      "bytes": 184396,
+      "compressed_bytes": 184396
+    },
+    {
+      "path": "lib/x86/libc++_shared.so",
+      "bytes": 1008968,
+      "compressed_bytes": 1008968
+    },
+    {
+      "path": "lib/x86/libjpeg.so",
+      "bytes": 688616,
+      "compressed_bytes": 688616
+    },
+    {
+      "path": "lib/x86/liblog.so",
+      "bytes": 2196,
+      "compressed_bytes": 2196
+    },
+    {
+      "path": "lib/x86/libobjectbox-jni.so",
+      "bytes": 1923616,
+      "compressed_bytes": 1923616
+    },
+    {
+      "path": "lib/x86/librist.so",
+      "bytes": 209052,
+      "compressed_bytes": 209052
+    },
+    {
+      "path": "lib/x86/libsrt.so",
+      "bytes": 4577524,
+      "compressed_bytes": 4577524
+    },
+    {
+      "path": "lib/x86/libsrtla.so",
+      "bytes": 23808,
+      "compressed_bytes": 23808
+    },
+    {
+      "path": "lib/x86/libsrtsender.so",
+      "bytes": 148568,
+      "compressed_bytes": 148568
+    },
+    {
+      "path": "lib/x86/libusb1.0.so",
+      "bytes": 95940,
+      "compressed_bytes": 95940
+    },
+    {
+      "path": "lib/x86/libuvc.so",
+      "bytes": 97904,
+      "compressed_bytes": 97904
+    },
+    {
+      "path": "lib/x86/libuvccamera.so",
+      "bytes": 51536,
+      "compressed_bytes": 51536
+    },
+    {
+      "path": "lib/x86/libyyjson.so",
+      "bytes": 192456,
+      "compressed_bytes": 192456
+    },
+    {
+      "path": "lib/x86_64/libc++_shared.so",
+      "bytes": 1051016,
+      "compressed_bytes": 1051016
+    },
+    {
+      "path": "lib/x86_64/libjpeg.so",
+      "bytes": 738640,
+      "compressed_bytes": 738640
+    },
+    {
+      "path": "lib/x86_64/liblog.so",
+      "bytes": 2800,
+      "compressed_bytes": 2800
+    },
+    {
+      "path": "lib/x86_64/libobjectbox-jni.so",
+      "bytes": 1765408,
+      "compressed_bytes": 1765408
+    },
+    {
+      "path": "lib/x86_64/librist.so",
+      "bytes": 201504,
+      "compressed_bytes": 201504
+    },
+    {
+      "path": "lib/x86_64/libsrt.so",
+      "bytes": 5556744,
+      "compressed_bytes": 5556744
+    },
+    {
+      "path": "lib/x86_64/libsrtla.so",
+      "bytes": 23504,
+      "compressed_bytes": 23504
+    },
+    {
+      "path": "lib/x86_64/libsrtsender.so",
+      "bytes": 150752,
+      "compressed_bytes": 150752
+    },
+    {
+      "path": "lib/x86_64/libusb1.0.so",
+      "bytes": 102288,
+      "compressed_bytes": 102288
+    },
+    {
+      "path": "lib/x86_64/libuvc.so",
+      "bytes": 91496,
+      "compressed_bytes": 91496
+    },
+    {
+      "path": "lib/x86_64/libuvccamera.so",
+      "bytes": 52568,
+      "compressed_bytes": 52568
+    },
+    {
+      "path": "lib/x86_64/libyyjson.so",
+      "bytes": 174952,
+      "compressed_bytes": 174952
+    },
+    {
+      "path": "lpT9/coroutines.kotlin_builtins",
+      "bytes": 200,
+      "compressed_bytes": 157
+    },
+    {
+      "path": "res/anim/abc_fade_in.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/anim/abc_fade_out.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/anim/abc_grow_fade_in_from_bottom.xml",
+      "bytes": 852,
+      "compressed_bytes": 376
+    },
+    {
+      "path": "res/anim/abc_popup_enter.xml",
+      "bytes": 508,
+      "compressed_bytes": 258
+    },
+    {
+      "path": "res/anim/abc_popup_exit.xml",
+      "bytes": 508,
+      "compressed_bytes": 259
+    },
+    {
+      "path": "res/anim/abc_shrink_fade_out_from_bottom.xml",
+      "bytes": 852,
+      "compressed_bytes": 377
+    },
+    {
+      "path": "res/anim/abc_slide_in_bottom.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/anim/abc_slide_in_top.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/anim/abc_slide_out_bottom.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/anim/abc_slide_out_top.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/anim/abc_tooltip_enter.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/anim/abc_tooltip_exit.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/anim/btn_checkbox_to_checked_box_inner_merged_animation.xml",
+      "bytes": 2124,
+      "compressed_bytes": 641
+    },
+    {
+      "path": "res/anim/btn_checkbox_to_checked_box_outer_merged_animation.xml",
+      "bytes": 2780,
+      "compressed_bytes": 742
+    },
+    {
+      "path": "res/anim/btn_checkbox_to_checked_icon_null_animation.xml",
+      "bytes": 1196,
+      "compressed_bytes": 397
+    },
+    {
+      "path": "res/anim/btn_checkbox_to_unchecked_box_inner_merged_animation.xml",
+      "bytes": 2360,
+      "compressed_bytes": 660
+    },
+    {
+      "path": "res/anim/btn_checkbox_to_unchecked_check_path_merged_animation.xml",
+      "bytes": 2520,
+      "compressed_bytes": 731
+    },
+    {
+      "path": "res/anim/btn_checkbox_to_unchecked_icon_null_animation.xml",
+      "bytes": 1196,
+      "compressed_bytes": 397
+    },
+    {
+      "path": "res/anim/btn_radio_to_off_mtrl_dot_group_animation.xml",
+      "bytes": 1656,
+      "compressed_bytes": 430
+    },
+    {
+      "path": "res/anim/btn_radio_to_off_mtrl_ring_outer_animation.xml",
+      "bytes": 1656,
+      "compressed_bytes": 433
+    },
+    {
+      "path": "res/anim/btn_radio_to_off_mtrl_ring_outer_path_animation.xml",
+      "bytes": 1028,
+      "compressed_bytes": 373
+    },
+    {
+      "path": "res/anim/btn_radio_to_on_mtrl_dot_group_animation.xml",
+      "bytes": 1656,
+      "compressed_bytes": 421
+    },
+    {
+      "path": "res/anim/btn_radio_to_on_mtrl_ring_outer_animation.xml",
+      "bytes": 1656,
+      "compressed_bytes": 428
+    },
+    {
+      "path": "res/anim/btn_radio_to_on_mtrl_ring_outer_path_animation.xml",
+      "bytes": 1028,
+      "compressed_bytes": 380
+    },
+    {
+      "path": "res/anim/design_snackbar_in.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/anim/design_snackbar_out.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/anim/mtrl_card_lowers_interpolator.xml",
+      "bytes": 400,
+      "compressed_bytes": 216
+    },
+    {
+      "path": "res/anim/slide_in_left.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/anim/slide_in_right.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/anim/slide_out_left.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/anim/slide_out_right.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/anim-v21/design_bottom_sheet_slide_in.xml",
+      "bytes": 616,
+      "compressed_bytes": 299
+    },
+    {
+      "path": "res/anim-v21/design_bottom_sheet_slide_out.xml",
+      "bytes": 616,
+      "compressed_bytes": 298
+    },
+    {
+      "path": "res/anim-v21/fragment_fast_out_extra_slow_in.xml",
+      "bytes": 364,
+      "compressed_bytes": 218
+    },
+    {
+      "path": "res/anim-v21/mtrl_bottom_sheet_slide_in.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/anim-v21/mtrl_bottom_sheet_slide_out.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/animator/card_flip_left_in.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/animator/card_flip_left_out.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/animator/card_flip_right_in.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/animator/card_flip_right_out.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/animator/design_fab_hide_motion_spec.xml",
+      "bytes": 796,
+      "compressed_bytes": 329
+    },
+    {
+      "path": "res/animator/design_fab_show_motion_spec.xml",
+      "bytes": 796,
+      "compressed_bytes": 327
+    },
+    {
+      "path": "res/animator/fragment_close_enter.xml",
+      "bytes": 1128,
+      "compressed_bytes": 395
+    },
+    {
+      "path": "res/animator/fragment_close_exit.xml",
+      "bytes": 1128,
+      "compressed_bytes": 395
+    },
+    {
+      "path": "res/animator/fragment_fade_enter.xml",
+      "bytes": 452,
+      "compressed_bytes": 265
+    },
+    {
+      "path": "res/animator/fragment_fade_exit.xml",
+      "bytes": 452,
+      "compressed_bytes": 265
+    },
+    {
+      "path": "res/animator/fragment_open_enter.xml",
+      "bytes": 1128,
+      "compressed_bytes": 389
+    },
+    {
+      "path": "res/animator/fragment_open_exit.xml",
+      "bytes": 1128,
+      "compressed_bytes": 392
+    },
+    {
+      "path": "res/animator/linear_indeterminate_line1_head_interpolator.xml",
+      "bytes": 400,
+      "compressed_bytes": 214
+    },
+    {
+      "path": "res/animator/linear_indeterminate_line1_tail_interpolator.xml",
+      "bytes": 400,
+      "compressed_bytes": 211
+    },
+    {
+      "path": "res/animator/linear_indeterminate_line2_head_interpolator.xml",
+      "bytes": 400,
+      "compressed_bytes": 207
+    },
+    {
+      "path": "res/animator/linear_indeterminate_line2_tail_interpolator.xml",
+      "bytes": 400,
+      "compressed_bytes": 216
+    },
+    {
+      "path": "res/animator/m3_btn_elevated_btn_state_list_anim.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/animator/m3_btn_state_list_anim.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/animator/m3_card_elevated_state_list_anim.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/animator/m3_card_state_list_anim.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/animator/m3_chip_state_list_anim.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/animator/m3_elevated_chip_state_list_anim.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/animator/mtrl_btn_state_list_anim.xml",
+      "bytes": 2664,
+      "compressed_bytes": 611
+    },
+    {
+      "path": "res/animator/mtrl_btn_unelevated_state_list_anim.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/animator/mtrl_card_state_list_anim.xml",
+      "bytes": 1208,
+      "compressed_bytes": 485
+    },
+    {
+      "path": "res/animator/mtrl_chip_state_list_anim.xml",
+      "bytes": 1072,
+      "compressed_bytes": 392
+    },
+    {
+      "path": "res/animator/mtrl_extended_fab_change_size_collapse_motion_spec.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/animator/mtrl_extended_fab_change_size_expand_motion_spec.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/animator/mtrl_extended_fab_hide_motion_spec.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/animator/mtrl_extended_fab_show_motion_spec.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/animator/mtrl_extended_fab_state_list_animator.xml",
+      "bytes": 2724,
+      "compressed_bytes": 614
+    },
+    {
+      "path": "res/animator/mtrl_fab_hide_motion_spec.xml",
+      "bytes": 796,
+      "compressed_bytes": 334
+    },
+    {
+      "path": "res/animator/mtrl_fab_show_motion_spec.xml",
+      "bytes": 796,
+      "compressed_bytes": 339
+    },
+    {
+      "path": "res/animator/mtrl_fab_transformation_sheet_collapse_spec.xml",
+      "bytes": 1888,
+      "compressed_bytes": 512
+    },
+    {
+      "path": "res/animator/mtrl_fab_transformation_sheet_expand_spec.xml",
+      "bytes": 1888,
+      "compressed_bytes": 510
+    },
+    {
+      "path": "res/animator-v21/design_appbar_state_list_animator.xml",
+      "bytes": 1216,
+      "compressed_bytes": 445
+    },
+    {
+      "path": "res/color/abc_background_cache_hint_selector_material_dark.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/abc_background_cache_hint_selector_material_light.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/abc_hint_foreground_material_dark.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/abc_hint_foreground_material_light.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/abc_primary_text_disable_only_material_dark.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/abc_primary_text_disable_only_material_light.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/abc_primary_text_material_dark.xml",
+      "bytes": 464,
+      "compressed_bytes": 229
+    },
+    {
+      "path": "res/color/abc_primary_text_material_light.xml",
+      "bytes": 464,
+      "compressed_bytes": 229
+    },
+    {
+      "path": "res/color/abc_search_url_text.xml",
+      "bytes": 588,
+      "compressed_bytes": 251
+    },
+    {
+      "path": "res/color/abc_secondary_text_material_dark.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/abc_secondary_text_material_light.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/checkbox_themeable_attribute_color.xml",
+      "bytes": 464,
+      "compressed_bytes": 229
+    },
+    {
+      "path": "res/color/design_box_stroke_color.xml",
+      "bytes": 712,
+      "compressed_bytes": 285
+    },
+    {
+      "path": "res/color/design_error.xml",
+      "bytes": 464,
+      "compressed_bytes": 230
+    },
+    {
+      "path": "res/color/design_icon_tint.xml",
+      "bytes": 376,
+      "compressed_bytes": 207
+    },
+    {
+      "path": "res/color/m3_appbar_overlay_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_assist_chip_icon_tint_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_assist_chip_stroke_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_button_background_color_selector.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_button_foreground_color_selector.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_button_outline_color_selector.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_button_ripple_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_button_ripple_color_selector.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_calendar_item_disabled_text.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_calendar_item_stroke_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_card_foreground_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_card_ripple_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_card_stroke_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_chip_assist_text_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_chip_background_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_chip_ripple_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_chip_stroke_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_chip_text_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_dark_default_color_primary_text.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_dark_default_color_secondary_text.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_dark_highlighted_text.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_dark_hint_foreground.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_dark_primary_text_disable_only.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_default_color_primary_text.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_default_color_secondary_text.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_elevated_chip_background_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_highlighted_text.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_hint_foreground.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_navigation_bar_item_with_indicator_icon_tint.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_navigation_bar_item_with_indicator_label_tint.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_navigation_bar_ripple_color_selector.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_navigation_item_background_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_navigation_item_icon_tint.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_navigation_item_ripple_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_navigation_item_text_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_popupmenu_overlay_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_primary_text_disable_only.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_radiobutton_ripple_tint.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_selection_control_button_tint.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_selection_control_ripple_color_selector.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_slider_active_track_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_slider_halo_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_slider_inactive_track_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_slider_thumb_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_switch_thumb_tint.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_switch_track_tint.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_tabs_icon_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_tabs_ripple_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_text_button_background_color_selector.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_text_button_foreground_color_selector.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_text_button_ripple_color_selector.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_textfield_filled_background_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_textfield_indicator_text_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_textfield_input_text_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_textfield_label_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_textfield_stroke_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_timepicker_button_background_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_timepicker_button_ripple_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_timepicker_button_text_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_timepicker_clock_text_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_timepicker_display_background_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_timepicker_display_ripple_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_timepicker_display_stroke_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_timepicker_display_text_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_timepicker_secondary_text_button_ripple_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_timepicker_secondary_text_button_text_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/m3_tonal_button_ripple_color_selector.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/material_cursor_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/material_divider_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/material_on_background_disabled.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/material_on_background_emphasis_high_type.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/material_on_background_emphasis_medium.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/material_on_primary_disabled.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/material_on_primary_emphasis_high_type.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/material_on_primary_emphasis_medium.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/material_on_surface_disabled.xml",
+      "bytes": 376,
+      "compressed_bytes": 202
+    },
+    {
+      "path": "res/color/material_on_surface_emphasis_high_type.xml",
+      "bytes": 376,
+      "compressed_bytes": 201
+    },
+    {
+      "path": "res/color/material_on_surface_emphasis_medium.xml",
+      "bytes": 376,
+      "compressed_bytes": 201
+    },
+    {
+      "path": "res/color/material_on_surface_stroke.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/material_slider_active_tick_marks_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/material_slider_active_track_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/material_slider_halo_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/material_slider_inactive_tick_marks_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/material_slider_inactive_track_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/material_slider_thumb_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/material_timepicker_button_background.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/material_timepicker_button_stroke.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/material_timepicker_clock_text_color.xml",
+      "bytes": 464,
+      "compressed_bytes": 226
+    },
+    {
+      "path": "res/color/material_timepicker_clockface.xml",
+      "bytes": 376,
+      "compressed_bytes": 204
+    },
+    {
+      "path": "res/color/material_timepicker_modebutton_tint.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_btn_bg_color_selector.xml",
+      "bytes": 500,
+      "compressed_bytes": 247
+    },
+    {
+      "path": "res/color/mtrl_btn_ripple_color.xml",
+      "bytes": 948,
+      "compressed_bytes": 323
+    },
+    {
+      "path": "res/color/mtrl_btn_stroke_color_selector.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_btn_text_btn_bg_color_selector.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_btn_text_btn_ripple_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_btn_text_color_selector.xml",
+      "bytes": 500,
+      "compressed_bytes": 248
+    },
+    {
+      "path": "res/color/mtrl_calendar_item_stroke_color.xml",
+      "bytes": 808,
+      "compressed_bytes": 315
+    },
+    {
+      "path": "res/color/mtrl_calendar_selected_range.xml",
+      "bytes": 376,
+      "compressed_bytes": 206
+    },
+    {
+      "path": "res/color/mtrl_card_view_foreground.xml",
+      "bytes": 788,
+      "compressed_bytes": 309
+    },
+    {
+      "path": "res/color/mtrl_card_view_ripple.xml",
+      "bytes": 768,
+      "compressed_bytes": 315
+    },
+    {
+      "path": "res/color/mtrl_chip_background_color.xml",
+      "bytes": 848,
+      "compressed_bytes": 315
+    },
+    {
+      "path": "res/color/mtrl_chip_close_icon_tint.xml",
+      "bytes": 1092,
+      "compressed_bytes": 349
+    },
+    {
+      "path": "res/color/mtrl_chip_surface_color.xml",
+      "bytes": 340,
+      "compressed_bytes": 179
+    },
+    {
+      "path": "res/color/mtrl_chip_text_color.xml",
+      "bytes": 520,
+      "compressed_bytes": 255
+    },
+    {
+      "path": "res/color/mtrl_choice_chip_background_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_choice_chip_ripple_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_choice_chip_text_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_error.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_fab_bg_color_selector.xml",
+      "bytes": 500,
+      "compressed_bytes": 246
+    },
+    {
+      "path": "res/color/mtrl_fab_icon_text_color_selector.xml",
+      "bytes": 500,
+      "compressed_bytes": 246
+    },
+    {
+      "path": "res/color/mtrl_fab_ripple_color.xml",
+      "bytes": 948,
+      "compressed_bytes": 323
+    },
+    {
+      "path": "res/color/mtrl_filled_background_color.xml",
+      "bytes": 808,
+      "compressed_bytes": 310
+    },
+    {
+      "path": "res/color/mtrl_filled_icon_tint.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_filled_stroke_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_indicator_text_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_navigation_bar_colored_item_tint.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_navigation_bar_colored_ripple_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_navigation_bar_item_tint.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_navigation_bar_ripple_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_navigation_item_background_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_navigation_item_icon_tint.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_navigation_item_text_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_on_primary_text_btn_text_color_selector.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_on_surface_ripple_color.xml",
+      "bytes": 808,
+      "compressed_bytes": 303
+    },
+    {
+      "path": "res/color/mtrl_outlined_icon_tint.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_outlined_stroke_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_popupmenu_overlay_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_tabs_colored_ripple_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_tabs_icon_color_selector.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_tabs_icon_color_selector_colored.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_tabs_legacy_text_color_selector.xml",
+      "bytes": 464,
+      "compressed_bytes": 228
+    },
+    {
+      "path": "res/color/mtrl_tabs_ripple_color.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/mtrl_text_btn_text_color_selector.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color/radiobutton_themeable_attribute_color.xml",
+      "bytes": 464,
+      "compressed_bytes": 229
+    },
+    {
+      "path": "res/color/switch_thumb_material_dark.xml",
+      "bytes": 464,
+      "compressed_bytes": 227
+    },
+    {
+      "path": "res/color/switch_thumb_material_light.xml",
+      "bytes": 464,
+      "compressed_bytes": 227
+    },
+    {
+      "path": "res/color/test_mtrl_calendar_day.xml",
+      "bytes": 340,
+      "compressed_bytes": 180
+    },
+    {
+      "path": "res/color/test_mtrl_calendar_day_selected.xml",
+      "bytes": 340,
+      "compressed_bytes": 180
+    },
+    {
+      "path": "res/color-night-v8/material_timepicker_button_stroke.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color-night-v8/material_timepicker_clockface.xml",
+      "bytes": 376,
+      "compressed_bytes": 205
+    },
+    {
+      "path": "res/color-night-v8/material_timepicker_modebutton_tint.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color-v23/abc_btn_colored_borderless_text_material.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color-v23/abc_btn_colored_text_material.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color-v23/abc_color_highlight_material.xml",
+      "bytes": 544,
+      "compressed_bytes": 257
+    },
+    {
+      "path": "res/color-v23/abc_tint_btn_checkable.xml",
+      "bytes": 624,
+      "compressed_bytes": 274
+    },
+    {
+      "path": "res/color-v23/abc_tint_default.xml",
+      "bytes": 1120,
+      "compressed_bytes": 370
+    },
+    {
+      "path": "res/color-v23/abc_tint_edittext.xml",
+      "bytes": 668,
+      "compressed_bytes": 284
+    },
+    {
+      "path": "res/color-v23/abc_tint_seek_thumb.xml",
+      "bytes": 500,
+      "compressed_bytes": 241
+    },
+    {
+      "path": "res/color-v23/abc_tint_spinner.xml",
+      "bytes": 668,
+      "compressed_bytes": 284
+    },
+    {
+      "path": "res/color-v23/abc_tint_switch_track.xml",
+      "bytes": 664,
+      "compressed_bytes": 282
+    },
+    {
+      "path": "res/color-v31/m3_dynamic_dark_default_color_primary_text.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color-v31/m3_dynamic_dark_default_color_secondary_text.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color-v31/m3_dynamic_dark_highlighted_text.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color-v31/m3_dynamic_dark_hint_foreground.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color-v31/m3_dynamic_dark_primary_text_disable_only.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color-v31/m3_dynamic_default_color_primary_text.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color-v31/m3_dynamic_default_color_secondary_text.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color-v31/m3_dynamic_highlighted_text.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color-v31/m3_dynamic_hint_foreground.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/color-v31/m3_dynamic_primary_text_disable_only.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/$avd_hide_password__0.xml",
+      "bytes": 1176,
+      "compressed_bytes": 524
+    },
+    {
+      "path": "res/drawable/$avd_hide_password__1.xml",
+      "bytes": 592,
+      "compressed_bytes": 313
+    },
+    {
+      "path": "res/drawable/$avd_hide_password__2.xml",
+      "bytes": 556,
+      "compressed_bytes": 295
+    },
+    {
+      "path": "res/drawable/$avd_show_password__0.xml",
+      "bytes": 1136,
+      "compressed_bytes": 504
+    },
+    {
+      "path": "res/drawable/$avd_show_password__1.xml",
+      "bytes": 592,
+      "compressed_bytes": 313
+    },
+    {
+      "path": "res/drawable/$avd_show_password__2.xml",
+      "bytes": 556,
+      "compressed_bytes": 296
+    },
+    {
+      "path": "res/drawable/abc_btn_borderless_material.xml",
+      "bytes": 588,
+      "compressed_bytes": 252
+    },
+    {
+      "path": "res/drawable/abc_btn_check_material.xml",
+      "bytes": 464,
+      "compressed_bytes": 230
+    },
+    {
+      "path": "res/drawable/abc_btn_check_material_anim.xml",
+      "bytes": 816,
+      "compressed_bytes": 342
+    },
+    {
+      "path": "res/drawable/abc_btn_default_mtrl_shape.xml",
+      "bytes": 932,
+      "compressed_bytes": 394
+    },
+    {
+      "path": "res/drawable/abc_btn_radio_material.xml",
+      "bytes": 464,
+      "compressed_bytes": 230
+    },
+    {
+      "path": "res/drawable/abc_btn_radio_material_anim.xml",
+      "bytes": 816,
+      "compressed_bytes": 338
+    },
+    {
+      "path": "res/drawable/abc_cab_background_internal_bg.xml",
+      "bytes": 372,
+      "compressed_bytes": 185
+    },
+    {
+      "path": "res/drawable/abc_cab_background_top_material.xml",
+      "bytes": 336,
+      "compressed_bytes": 174
+    },
+    {
+      "path": "res/drawable/abc_ic_ab_back_material.xml",
+      "bytes": 692,
+      "compressed_bytes": 382
+    },
+    {
+      "path": "res/drawable/abc_ic_arrow_drop_right_black_24dp.xml",
+      "bytes": 1000,
+      "compressed_bytes": 493
+    },
+    {
+      "path": "res/drawable/abc_ic_clear_material.xml",
+      "bytes": 684,
+      "compressed_bytes": 360
+    },
+    {
+      "path": "res/drawable/abc_ic_go_search_api_material.xml",
+      "bytes": 640,
+      "compressed_bytes": 340
+    },
+    {
+      "path": "res/drawable/abc_ic_menu_copy_mtrl_am_alpha.xml",
+      "bytes": 756,
+      "compressed_bytes": 405
+    },
+    {
+      "path": "res/drawable/abc_ic_menu_cut_mtrl_alpha.xml",
+      "bytes": 1096,
+      "compressed_bytes": 554
+    },
+    {
+      "path": "res/drawable/abc_ic_menu_overflow_material.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/abc_ic_menu_paste_mtrl_am_alpha.xml",
+      "bytes": 796,
+      "compressed_bytes": 435
+    },
+    {
+      "path": "res/drawable/abc_ic_menu_selectall_mtrl_alpha.xml",
+      "bytes": 920,
+      "compressed_bytes": 471
+    },
+    {
+      "path": "res/drawable/abc_ic_menu_share_mtrl_alpha.xml",
+      "bytes": 980,
+      "compressed_bytes": 514
+    },
+    {
+      "path": "res/drawable/abc_ic_search_api_material.xml",
+      "bytes": 812,
+      "compressed_bytes": 453
+    },
+    {
+      "path": "res/drawable/abc_ic_voice_search_api_material.xml",
+      "bytes": 828,
+      "compressed_bytes": 456
+    },
+    {
+      "path": "res/drawable/abc_item_background_holo_dark.xml",
+      "bytes": 1012,
+      "compressed_bytes": 319
+    },
+    {
+      "path": "res/drawable/abc_item_background_holo_light.xml",
+      "bytes": 1012,
+      "compressed_bytes": 319
+    },
+    {
+      "path": "res/drawable/abc_list_selector_background_transition_holo_dark.xml",
+      "bytes": 424,
+      "compressed_bytes": 198
+    },
+    {
+      "path": "res/drawable/abc_list_selector_background_transition_holo_light.xml",
+      "bytes": 424,
+      "compressed_bytes": 198
+    },
+    {
+      "path": "res/drawable/abc_list_selector_holo_dark.xml",
+      "bytes": 1064,
+      "compressed_bytes": 338
+    },
+    {
+      "path": "res/drawable/abc_list_selector_holo_light.xml",
+      "bytes": 1064,
+      "compressed_bytes": 339
+    },
+    {
+      "path": "res/drawable/abc_ratingbar_indicator_material.xml",
+      "bytes": 124,
+      "compressed_bytes": 68
+    },
+    {
+      "path": "res/drawable/abc_ratingbar_material.xml",
+      "bytes": 124,
+      "compressed_bytes": 68
+    },
+    {
+      "path": "res/drawable/abc_ratingbar_small_material.xml",
+      "bytes": 124,
+      "compressed_bytes": 68
+    },
+    {
+      "path": "res/drawable/abc_seekbar_thumb_material.xml",
+      "bytes": 1100,
+      "compressed_bytes": 353
+    },
+    {
+      "path": "res/drawable/abc_seekbar_tick_mark_material.xml",
+      "bytes": 516,
+      "compressed_bytes": 244
+    },
+    {
+      "path": "res/drawable/abc_seekbar_track_material.xml",
+      "bytes": 1408,
+      "compressed_bytes": 424
+    },
+    {
+      "path": "res/drawable/abc_spinner_textfield_background_material.xml",
+      "bytes": 1160,
+      "compressed_bytes": 407
+    },
+    {
+      "path": "res/drawable/abc_star_black_48dp.xml",
+      "bytes": 640,
+      "compressed_bytes": 361
+    },
+    {
+      "path": "res/drawable/abc_star_half_black_48dp.xml",
+      "bytes": 600,
+      "compressed_bytes": 331
+    },
+    {
+      "path": "res/drawable/abc_switch_thumb_material.xml",
+      "bytes": 464,
+      "compressed_bytes": 230
+    },
+    {
+      "path": "res/drawable/abc_tab_indicator_material.xml",
+      "bytes": 468,
+      "compressed_bytes": 233
+    },
+    {
+      "path": "res/drawable/abc_text_cursor_material.xml",
+      "bytes": 516,
+      "compressed_bytes": 241
+    },
+    {
+      "path": "res/drawable/abc_textfield_search_material.xml",
+      "bytes": 756,
+      "compressed_bytes": 292
+    },
+    {
+      "path": "res/drawable/abc_vector_test.xml",
+      "bytes": 612,
+      "compressed_bytes": 333
+    },
+    {
+      "path": "res/drawable/avd_hide_password.xml",
+      "bytes": 660,
+      "compressed_bytes": 299
+    },
+    {
+      "path": "res/drawable/avd_show_password.xml",
+      "bytes": 660,
+      "compressed_bytes": 300
+    },
+    {
+      "path": "res/drawable/baseline_chat_24.xml",
+      "bytes": 776,
+      "compressed_bytes": 436
+    },
+    {
+      "path": "res/drawable/baseline_chat_bubble_outline_24.xml",
+      "bytes": 696,
+      "compressed_bytes": 377
+    },
+    {
+      "path": "res/drawable/baseline_lock_open_24.xml",
+      "bytes": 864,
+      "compressed_bytes": 458
+    },
+    {
+      "path": "res/drawable/border.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/border_black.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/border_gray.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/btn_checkbox_checked_mtrl.xml",
+      "bytes": 2688,
+      "compressed_bytes": 841
+    },
+    {
+      "path": "res/drawable/btn_checkbox_checked_to_unchecked_mtrl_animation.xml",
+      "bytes": 688,
+      "compressed_bytes": 304
+    },
+    {
+      "path": "res/drawable/btn_checkbox_unchecked_mtrl.xml",
+      "bytes": 2660,
+      "compressed_bytes": 831
+    },
+    {
+      "path": "res/drawable/btn_checkbox_unchecked_to_checked_mtrl_animation.xml",
+      "bytes": 688,
+      "compressed_bytes": 300
+    },
+    {
+      "path": "res/drawable/btn_new_shutter.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/btn_new_shutter_video.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/btn_radio_off_mtrl.xml",
+      "bytes": 1728,
+      "compressed_bytes": 703
+    },
+    {
+      "path": "res/drawable/btn_radio_off_to_on_mtrl_animation.xml",
+      "bytes": 680,
+      "compressed_bytes": 300
+    },
+    {
+      "path": "res/drawable/btn_radio_on_mtrl.xml",
+      "bytes": 1656,
+      "compressed_bytes": 678
+    },
+    {
+      "path": "res/drawable/btn_radio_on_to_off_mtrl_animation.xml",
+      "bytes": 680,
+      "compressed_bytes": 300
+    },
+    {
+      "path": "res/drawable/btn_repeat_shutter_recording.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/btn_shutter_video_recording.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/btn_start.xml",
+      "bytes": 1060,
+      "compressed_bytes": 414
+    },
+    {
+      "path": "res/drawable/btn_stop.xml",
+      "bytes": 1360,
+      "compressed_bytes": 438
+    },
+    {
+      "path": "res/drawable/button.xml",
+      "bytes": 740,
+      "compressed_bytes": 312
+    },
+    {
+      "path": "res/drawable/button_flash.xml",
+      "bytes": 588,
+      "compressed_bytes": 250
+    },
+    {
+      "path": "res/drawable/button_flip.xml",
+      "bytes": 588,
+      "compressed_bytes": 250
+    },
+    {
+      "path": "res/drawable/button_inverse.xml",
+      "bytes": 628,
+      "compressed_bytes": 277
+    },
+    {
+      "path": "res/drawable/button_mute_off.xml",
+      "bytes": 588,
+      "compressed_bytes": 250
+    },
+    {
+      "path": "res/drawable/button_mute_on.xml",
+      "bytes": 588,
+      "compressed_bytes": 250
+    },
+    {
+      "path": "res/drawable/button_quick_settings.xml",
+      "bytes": 588,
+      "compressed_bytes": 250
+    },
+    {
+      "path": "res/drawable/button_resume.xml",
+      "bytes": 1696,
+      "compressed_bytes": 481
+    },
+    {
+      "path": "res/drawable/button_settings.xml",
+      "bytes": 588,
+      "compressed_bytes": 250
+    },
+    {
+      "path": "res/drawable/button_shoot.xml",
+      "bytes": 588,
+      "compressed_bytes": 250
+    },
+    {
+      "path": "res/drawable/design_fab_background.xml",
+      "bytes": 372,
+      "compressed_bytes": 184
+    },
+    {
+      "path": "res/drawable/design_ic_visibility.xml",
+      "bytes": 540,
+      "compressed_bytes": 279
+    },
+    {
+      "path": "res/drawable/design_ic_visibility_off.xml",
+      "bytes": 1144,
+      "compressed_bytes": 624
+    },
+    {
+      "path": "res/drawable/design_password_eye.xml",
+      "bytes": 816,
+      "compressed_bytes": 346
+    },
+    {
+      "path": "res/drawable/design_snackbar_background.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/frame.9.png",
+      "bytes": 242,
+      "compressed_bytes": 242
+    },
+    {
+      "path": "res/drawable/frame_cross.9.png",
+      "bytes": 324,
+      "compressed_bytes": 324
+    },
+    {
+      "path": "res/drawable/ic_arrow_down.xml",
+      "bytes": 872,
+      "compressed_bytes": 392
+    },
+    {
+      "path": "res/drawable/ic_arrow_up.xml",
+      "bytes": 1020,
+      "compressed_bytes": 474
+    },
+    {
+      "path": "res/drawable/ic_baseline_camera_24.xml",
+      "bytes": 1048,
+      "compressed_bytes": 588
+    },
+    {
+      "path": "res/drawable/ic_baseline_cameraswitch_24.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/ic_baseline_flip_camera_android_24.xml",
+      "bytes": 1124,
+      "compressed_bytes": 570
+    },
+    {
+      "path": "res/drawable/ic_baseline_notifications_24.xml",
+      "bytes": 776,
+      "compressed_bytes": 438
+    },
+    {
+      "path": "res/drawable/ic_baseline_notifications_none_24.xml",
+      "bytes": 828,
+      "compressed_bytes": 470
+    },
+    {
+      "path": "res/drawable/ic_baseline_people_outline_24.xml",
+      "bytes": 1180,
+      "compressed_bytes": 588
+    },
+    {
+      "path": "res/drawable/ic_baseline_play_arrow_24.xml",
+      "bytes": 596,
+      "compressed_bytes": 316
+    },
+    {
+      "path": "res/drawable/ic_baseline_refresh_24.xml",
+      "bytes": 804,
+      "compressed_bytes": 454
+    },
+    {
+      "path": "res/drawable/ic_charging.xml",
+      "bytes": 1008,
+      "compressed_bytes": 577
+    },
+    {
+      "path": "res/drawable/ic_clock_black_24dp.xml",
+      "bytes": 752,
+      "compressed_bytes": 420
+    },
+    {
+      "path": "res/drawable/ic_eis.xml",
+      "bytes": 1928,
+      "compressed_bytes": 857
+    },
+    {
+      "path": "res/drawable/ic_keyboard_black_24dp.xml",
+      "bytes": 852,
+      "compressed_bytes": 437
+    },
+    {
+      "path": "res/drawable/ic_m3_chip_check.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/ic_m3_chip_checked_circle.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/ic_m3_chip_close.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/ic_mtrl_checked_circle.xml",
+      "bytes": 672,
+      "compressed_bytes": 367
+    },
+    {
+      "path": "res/drawable/ic_mtrl_chip_checked_black.xml",
+      "bytes": 600,
+      "compressed_bytes": 320
+    },
+    {
+      "path": "res/drawable/ic_mtrl_chip_checked_circle.xml",
+      "bytes": 940,
+      "compressed_bytes": 448
+    },
+    {
+      "path": "res/drawable/ic_mtrl_chip_close_circle.xml",
+      "bytes": 808,
+      "compressed_bytes": 405
+    },
+    {
+      "path": "res/drawable/ic_notification.png",
+      "bytes": 67,
+      "compressed_bytes": 67
+    },
+    {
+      "path": "res/drawable/ic_ois.xml",
+      "bytes": 2536,
+      "compressed_bytes": 1070
+    },
+    {
+      "path": "res/drawable/label.xml",
+      "bytes": 740,
+      "compressed_bytes": 311
+    },
+    {
+      "path": "res/drawable/label_cam.xml",
+      "bytes": 740,
+      "compressed_bytes": 310
+    },
+    {
+      "path": "res/drawable/label_cameis.xml",
+      "bytes": 1060,
+      "compressed_bytes": 420
+    },
+    {
+      "path": "res/drawable/label_camois.xml",
+      "bytes": 1060,
+      "compressed_bytes": 420
+    },
+    {
+      "path": "res/drawable/label_camoiseis.xml",
+      "bytes": 1252,
+      "compressed_bytes": 473
+    },
+    {
+      "path": "res/drawable/label_viewers.xml",
+      "bytes": 1060,
+      "compressed_bytes": 427
+    },
+    {
+      "path": "res/drawable/logo_kick.xml",
+      "bytes": 1776,
+      "compressed_bytes": 720
+    },
+    {
+      "path": "res/drawable/logo_twitch.xml",
+      "bytes": 916,
+      "compressed_bytes": 453
+    },
+    {
+      "path": "res/drawable/m3_tabs_line_indicator.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/m3_tabs_rounded_line_indicator.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/mask_circle.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/material_ic_calendar_black_24dp.xml",
+      "bytes": 696,
+      "compressed_bytes": 381
+    },
+    {
+      "path": "res/drawable/material_ic_clear_black_24dp.xml",
+      "bytes": 752,
+      "compressed_bytes": 376
+    },
+    {
+      "path": "res/drawable/material_ic_edit_black_24dp.xml",
+      "bytes": 716,
+      "compressed_bytes": 385
+    },
+    {
+      "path": "res/drawable/material_ic_keyboard_arrow_left_black_24dp.xml",
+      "bytes": 712,
+      "compressed_bytes": 374
+    },
+    {
+      "path": "res/drawable/material_ic_keyboard_arrow_right_black_24dp.xml",
+      "bytes": 700,
+      "compressed_bytes": 364
+    },
+    {
+      "path": "res/drawable/material_ic_menu_arrow_down_black_24dp.xml",
+      "bytes": 648,
+      "compressed_bytes": 334
+    },
+    {
+      "path": "res/drawable/material_ic_menu_arrow_up_black_24dp.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/mtrl_dialog_background.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/mtrl_dropdown_arrow.xml",
+      "bytes": 464,
+      "compressed_bytes": 232
+    },
+    {
+      "path": "res/drawable/mtrl_ic_arrow_drop_down.xml",
+      "bytes": 564,
+      "compressed_bytes": 300
+    },
+    {
+      "path": "res/drawable/mtrl_ic_arrow_drop_up.xml",
+      "bytes": 564,
+      "compressed_bytes": 299
+    },
+    {
+      "path": "res/drawable/mtrl_ic_cancel.xml",
+      "bytes": 724,
+      "compressed_bytes": 379
+    },
+    {
+      "path": "res/drawable/mtrl_ic_error.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/mtrl_popupmenu_background.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/mtrl_tabs_default_indicator.xml",
+      "bytes": 628,
+      "compressed_bytes": 265
+    },
+    {
+      "path": "res/drawable/navigation_empty_icon.xml",
+      "bytes": 516,
+      "compressed_bytes": 245
+    },
+    {
+      "path": "res/drawable/notification_bg.xml",
+      "bytes": 532,
+      "compressed_bytes": 254
+    },
+    {
+      "path": "res/drawable/notification_bg_low.xml",
+      "bytes": 532,
+      "compressed_bytes": 254
+    },
+    {
+      "path": "res/drawable/notification_icon_background.xml",
+      "bytes": 372,
+      "compressed_bytes": 186
+    },
+    {
+      "path": "res/drawable/notification_tile_bg.xml",
+      "bytes": 304,
+      "compressed_bytes": 174
+    },
+    {
+      "path": "res/drawable/option_switch.xml",
+      "bytes": 484,
+      "compressed_bytes": 224
+    },
+    {
+      "path": "res/drawable/quater_clear_rect.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/rec_indicator.xml",
+      "bytes": 520,
+      "compressed_bytes": 223
+    },
+    {
+      "path": "res/drawable/recordingtime.xml",
+      "bytes": 700,
+      "compressed_bytes": 311
+    },
+    {
+      "path": "res/drawable/test_custom_background.xml",
+      "bytes": 336,
+      "compressed_bytes": 175
+    },
+    {
+      "path": "res/drawable/test_level_drawable.xml",
+      "bytes": 448,
+      "compressed_bytes": 218
+    },
+    {
+      "path": "res/drawable/toggle.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/toggle_button_base.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/toggle_slide.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable/tooltip_frame_dark.xml",
+      "bytes": 484,
+      "compressed_bytes": 226
+    },
+    {
+      "path": "res/drawable/tooltip_frame_light.xml",
+      "bytes": 484,
+      "compressed_bytes": 226
+    },
+    {
+      "path": "res/drawable/transparent_rect.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_ab_share_pack_mtrl_alpha.9.png",
+      "bytes": 272,
+      "compressed_bytes": 272
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_btn_check_to_on_mtrl_000.png",
+      "bytes": 227,
+      "compressed_bytes": 227
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_btn_check_to_on_mtrl_015.png",
+      "bytes": 404,
+      "compressed_bytes": 404
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_btn_radio_to_on_mtrl_000.png",
+      "bytes": 464,
+      "compressed_bytes": 464
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_btn_radio_to_on_mtrl_015.png",
+      "bytes": 563,
+      "compressed_bytes": 563
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_btn_switch_to_on_mtrl_00001.9.png",
+      "bytes": 1096,
+      "compressed_bytes": 1096
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_btn_switch_to_on_mtrl_00012.9.png",
+      "bytes": 1243,
+      "compressed_bytes": 1243
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_cab_background_top_mtrl_alpha.9.png",
+      "bytes": 226,
+      "compressed_bytes": 226
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_ic_commit_search_api_mtrl_alpha.png",
+      "bytes": 171,
+      "compressed_bytes": 171
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_list_divider_mtrl_alpha.9.png",
+      "bytes": 167,
+      "compressed_bytes": 167
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_list_focused_holo.9.png",
+      "bytes": 244,
+      "compressed_bytes": 244
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_list_longpressed_holo.9.png",
+      "bytes": 212,
+      "compressed_bytes": 212
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_list_pressed_holo_dark.9.png",
+      "bytes": 208,
+      "compressed_bytes": 208
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_list_pressed_holo_light.9.png",
+      "bytes": 208,
+      "compressed_bytes": 208
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_list_selector_disabled_holo_dark.9.png",
+      "bytes": 228,
+      "compressed_bytes": 228
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_list_selector_disabled_holo_light.9.png",
+      "bytes": 229,
+      "compressed_bytes": 229
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_menu_hardkey_panel_mtrl_mult.9.png",
+      "bytes": 738,
+      "compressed_bytes": 738
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_popup_background_mtrl_mult.9.png",
+      "bytes": 1098,
+      "compressed_bytes": 1098
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_scrubber_control_off_mtrl_alpha.png",
+      "bytes": 201,
+      "compressed_bytes": 201
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png",
+      "bytes": 196,
+      "compressed_bytes": 196
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_scrubber_control_to_pressed_mtrl_005.png",
+      "bytes": 272,
+      "compressed_bytes": 272
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_scrubber_primary_mtrl_alpha.9.png",
+      "bytes": 205,
+      "compressed_bytes": 205
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_scrubber_track_mtrl_alpha.9.png",
+      "bytes": 196,
+      "compressed_bytes": 196
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_spinner_mtrl_am_alpha.9.png",
+      "bytes": 345,
+      "compressed_bytes": 345
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_switch_track_mtrl_alpha.9.png",
+      "bytes": 484,
+      "compressed_bytes": 484
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_tab_indicator_mtrl_alpha.9.png",
+      "bytes": 190,
+      "compressed_bytes": 190
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_text_select_handle_left_mtrl.png",
+      "bytes": 278,
+      "compressed_bytes": 278
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_text_select_handle_middle_mtrl.png",
+      "bytes": 396,
+      "compressed_bytes": 396
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_text_select_handle_right_mtrl.png",
+      "bytes": 262,
+      "compressed_bytes": 262
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_textfield_activated_mtrl_alpha.9.png",
+      "bytes": 186,
+      "compressed_bytes": 186
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_textfield_default_mtrl_alpha.9.png",
+      "bytes": 192,
+      "compressed_bytes": 192
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_textfield_search_activated_mtrl_alpha.9.png",
+      "bytes": 178,
+      "compressed_bytes": 178
+    },
+    {
+      "path": "res/drawable-hdpi-v4/abc_textfield_search_default_mtrl_alpha.9.png",
+      "bytes": 178,
+      "compressed_bytes": 178
+    },
+    {
+      "path": "res/drawable-hdpi-v4/bf_bugfender_logo.png",
+      "bytes": 681,
+      "compressed_bytes": 681
+    },
+    {
+      "path": "res/drawable-hdpi-v4/bf_ic_close.png",
+      "bytes": 216,
+      "compressed_bytes": 216
+    },
+    {
+      "path": "res/drawable-hdpi-v4/btn_flash.png",
+      "bytes": 262,
+      "compressed_bytes": 262
+    },
+    {
+      "path": "res/drawable-hdpi-v4/btn_flip.png",
+      "bytes": 509,
+      "compressed_bytes": 509
+    },
+    {
+      "path": "res/drawable-hdpi-v4/btn_mute.png",
+      "bytes": 490,
+      "compressed_bytes": 490
+    },
+    {
+      "path": "res/drawable-hdpi-v4/btn_mute_a.png",
+      "bytes": 657,
+      "compressed_bytes": 657
+    },
+    {
+      "path": "res/drawable-hdpi-v4/btn_quick_settings.png",
+      "bytes": 295,
+      "compressed_bytes": 295
+    },
+    {
+      "path": "res/drawable-hdpi-v4/btn_settings.png",
+      "bytes": 463,
+      "compressed_bytes": 463
+    },
+    {
+      "path": "res/drawable-hdpi-v4/btn_shoot.png",
+      "bytes": 631,
+      "compressed_bytes": 631
+    },
+    {
+      "path": "res/drawable-hdpi-v4/notification_bg_low_normal.9.png",
+      "bytes": 212,
+      "compressed_bytes": 212
+    },
+    {
+      "path": "res/drawable-hdpi-v4/notification_bg_low_pressed.9.png",
+      "bytes": 225,
+      "compressed_bytes": 225
+    },
+    {
+      "path": "res/drawable-hdpi-v4/notification_bg_normal.9.png",
+      "bytes": 212,
+      "compressed_bytes": 212
+    },
+    {
+      "path": "res/drawable-hdpi-v4/notification_bg_normal_pressed.9.png",
+      "bytes": 225,
+      "compressed_bytes": 225
+    },
+    {
+      "path": "res/drawable-hdpi-v4/notify_panel_notification_icon_bg.png",
+      "bytes": 107,
+      "compressed_bytes": 107
+    },
+    {
+      "path": "res/drawable-ldrtl-hdpi-v17/abc_spinner_mtrl_am_alpha.9.png",
+      "bytes": 345,
+      "compressed_bytes": 345
+    },
+    {
+      "path": "res/drawable-ldrtl-mdpi-v17/abc_spinner_mtrl_am_alpha.9.png",
+      "bytes": 318,
+      "compressed_bytes": 318
+    },
+    {
+      "path": "res/drawable-ldrtl-xhdpi-v17/abc_spinner_mtrl_am_alpha.9.png",
+      "bytes": 417,
+      "compressed_bytes": 417
+    },
+    {
+      "path": "res/drawable-ldrtl-xxhdpi-v17/abc_spinner_mtrl_am_alpha.9.png",
+      "bytes": 525,
+      "compressed_bytes": 525
+    },
+    {
+      "path": "res/drawable-ldrtl-xxxhdpi-v17/abc_spinner_mtrl_am_alpha.9.png",
+      "bytes": 437,
+      "compressed_bytes": 437
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_ab_share_pack_mtrl_alpha.9.png",
+      "bytes": 267,
+      "compressed_bytes": 267
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_btn_check_to_on_mtrl_000.png",
+      "bytes": 214,
+      "compressed_bytes": 214
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_btn_check_to_on_mtrl_015.png",
+      "bytes": 321,
+      "compressed_bytes": 321
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_btn_radio_to_on_mtrl_000.png",
+      "bytes": 324,
+      "compressed_bytes": 324
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_btn_radio_to_on_mtrl_015.png",
+      "bytes": 356,
+      "compressed_bytes": 356
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_btn_switch_to_on_mtrl_00001.9.png",
+      "bytes": 754,
+      "compressed_bytes": 754
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_btn_switch_to_on_mtrl_00012.9.png",
+      "bytes": 825,
+      "compressed_bytes": 825
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_cab_background_top_mtrl_alpha.9.png",
+      "bytes": 216,
+      "compressed_bytes": 216
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_ic_commit_search_api_mtrl_alpha.png",
+      "bytes": 173,
+      "compressed_bytes": 173
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_list_divider_mtrl_alpha.9.png",
+      "bytes": 167,
+      "compressed_bytes": 167
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_list_focused_holo.9.png",
+      "bytes": 222,
+      "compressed_bytes": 222
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_list_longpressed_holo.9.png",
+      "bytes": 211,
+      "compressed_bytes": 211
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_list_pressed_holo_dark.9.png",
+      "bytes": 207,
+      "compressed_bytes": 207
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_list_pressed_holo_light.9.png",
+      "bytes": 207,
+      "compressed_bytes": 207
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_list_selector_disabled_holo_dark.9.png",
+      "bytes": 217,
+      "compressed_bytes": 217
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_list_selector_disabled_holo_light.9.png",
+      "bytes": 217,
+      "compressed_bytes": 217
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_menu_hardkey_panel_mtrl_mult.9.png",
+      "bytes": 541,
+      "compressed_bytes": 541
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_popup_background_mtrl_mult.9.png",
+      "bytes": 776,
+      "compressed_bytes": 776
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_scrubber_control_off_mtrl_alpha.png",
+      "bytes": 159,
+      "compressed_bytes": 159
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png",
+      "bytes": 145,
+      "compressed_bytes": 145
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_scrubber_control_to_pressed_mtrl_005.png",
+      "bytes": 197,
+      "compressed_bytes": 197
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_scrubber_primary_mtrl_alpha.9.png",
+      "bytes": 203,
+      "compressed_bytes": 203
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_scrubber_track_mtrl_alpha.9.png",
+      "bytes": 194,
+      "compressed_bytes": 194
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_spinner_mtrl_am_alpha.9.png",
+      "bytes": 327,
+      "compressed_bytes": 327
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_switch_track_mtrl_alpha.9.png",
+      "bytes": 395,
+      "compressed_bytes": 395
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_tab_indicator_mtrl_alpha.9.png",
+      "bytes": 186,
+      "compressed_bytes": 186
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_text_select_handle_left_mtrl.png",
+      "bytes": 203,
+      "compressed_bytes": 203
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_text_select_handle_middle_mtrl.png",
+      "bytes": 310,
+      "compressed_bytes": 310
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_text_select_handle_right_mtrl.png",
+      "bytes": 186,
+      "compressed_bytes": 186
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_textfield_activated_mtrl_alpha.9.png",
+      "bytes": 181,
+      "compressed_bytes": 181
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_textfield_default_mtrl_alpha.9.png",
+      "bytes": 178,
+      "compressed_bytes": 178
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_textfield_search_activated_mtrl_alpha.9.png",
+      "bytes": 178,
+      "compressed_bytes": 178
+    },
+    {
+      "path": "res/drawable-mdpi-v4/abc_textfield_search_default_mtrl_alpha.9.png",
+      "bytes": 178,
+      "compressed_bytes": 178
+    },
+    {
+      "path": "res/drawable-mdpi-v4/bf_bugfender_logo.png",
+      "bytes": 461,
+      "compressed_bytes": 461
+    },
+    {
+      "path": "res/drawable-mdpi-v4/bf_ic_close.png",
+      "bytes": 166,
+      "compressed_bytes": 166
+    },
+    {
+      "path": "res/drawable-mdpi-v4/btn_flash.png",
+      "bytes": 199,
+      "compressed_bytes": 199
+    },
+    {
+      "path": "res/drawable-mdpi-v4/btn_flip.png",
+      "bytes": 321,
+      "compressed_bytes": 321
+    },
+    {
+      "path": "res/drawable-mdpi-v4/btn_mute.png",
+      "bytes": 293,
+      "compressed_bytes": 293
+    },
+    {
+      "path": "res/drawable-mdpi-v4/btn_mute_a.png",
+      "bytes": 446,
+      "compressed_bytes": 446
+    },
+    {
+      "path": "res/drawable-mdpi-v4/btn_quick_settings.png",
+      "bytes": 257,
+      "compressed_bytes": 257
+    },
+    {
+      "path": "res/drawable-mdpi-v4/btn_settings.png",
+      "bytes": 331,
+      "compressed_bytes": 331
+    },
+    {
+      "path": "res/drawable-mdpi-v4/btn_shoot.png",
+      "bytes": 398,
+      "compressed_bytes": 398
+    },
+    {
+      "path": "res/drawable-mdpi-v4/notification_bg_low_normal.9.png",
+      "bytes": 215,
+      "compressed_bytes": 215
+    },
+    {
+      "path": "res/drawable-mdpi-v4/notification_bg_low_pressed.9.png",
+      "bytes": 223,
+      "compressed_bytes": 223
+    },
+    {
+      "path": "res/drawable-mdpi-v4/notification_bg_normal.9.png",
+      "bytes": 215,
+      "compressed_bytes": 215
+    },
+    {
+      "path": "res/drawable-mdpi-v4/notification_bg_normal_pressed.9.png",
+      "bytes": 223,
+      "compressed_bytes": 223
+    },
+    {
+      "path": "res/drawable-mdpi-v4/notify_panel_notification_icon_bg.png",
+      "bytes": 98,
+      "compressed_bytes": 98
+    },
+    {
+      "path": "res/drawable-v21/abc_action_bar_item_background_material.xml",
+      "bytes": 264,
+      "compressed_bytes": 152
+    },
+    {
+      "path": "res/drawable-v21/abc_btn_colored_material.xml",
+      "bytes": 1716,
+      "compressed_bytes": 551
+    },
+    {
+      "path": "res/drawable-v21/abc_dialog_material_background.xml",
+      "bytes": 716,
+      "compressed_bytes": 324
+    },
+    {
+      "path": "res/drawable-v21/abc_edit_text_material.xml",
+      "bytes": 1172,
+      "compressed_bytes": 465
+    },
+    {
+      "path": "res/drawable-v21/abc_list_divider_material.xml",
+      "bytes": 516,
+      "compressed_bytes": 246
+    },
+    {
+      "path": "res/drawable-v21/ic_arrow_down_24dp.xml",
+      "bytes": 644,
+      "compressed_bytes": 350
+    },
+    {
+      "path": "res/drawable-v21/material_cursor_drawable.xml",
+      "bytes": 588,
+      "compressed_bytes": 273
+    },
+    {
+      "path": "res/drawable-v21/mtrl_navigation_bar_item_background.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable-v21/notification_action_background.xml",
+      "bytes": 1180,
+      "compressed_bytes": 468
+    },
+    {
+      "path": "res/drawable-v21/preference_list_divider_material.xml",
+      "bytes": 516,
+      "compressed_bytes": 246
+    },
+    {
+      "path": "res/drawable-v21/star.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable-v23/abc_control_background_material.xml",
+      "bytes": 304,
+      "compressed_bytes": 177
+    },
+    {
+      "path": "res/drawable-v23/m3_appbar_background.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable-v23/m3_popupmenu_background_overlay.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable-v23/m3_radiobutton_ripple.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable-v23/m3_selection_control_ripple.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable-v23/m3_tabs_background.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable-v23/m3_tabs_transparent_background.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable-v23/mtrl_popupmenu_background_overlay.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/drawable-watch-v20/abc_dialog_material_background.xml",
+      "bytes": 372,
+      "compressed_bytes": 185
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_ab_share_pack_mtrl_alpha.9.png",
+      "bytes": 280,
+      "compressed_bytes": 280
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_btn_check_to_on_mtrl_000.png",
+      "bytes": 281,
+      "compressed_bytes": 281
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_btn_check_to_on_mtrl_015.png",
+      "bytes": 432,
+      "compressed_bytes": 432
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_btn_radio_to_on_mtrl_000.png",
+      "bytes": 651,
+      "compressed_bytes": 651
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_btn_radio_to_on_mtrl_015.png",
+      "bytes": 785,
+      "compressed_bytes": 785
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_btn_switch_to_on_mtrl_00001.9.png",
+      "bytes": 1526,
+      "compressed_bytes": 1526
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_btn_switch_to_on_mtrl_00012.9.png",
+      "bytes": 1731,
+      "compressed_bytes": 1731
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_cab_background_top_mtrl_alpha.9.png",
+      "bytes": 229,
+      "compressed_bytes": 229
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_ic_commit_search_api_mtrl_alpha.png",
+      "bytes": 228,
+      "compressed_bytes": 228
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_list_divider_mtrl_alpha.9.png",
+      "bytes": 167,
+      "compressed_bytes": 167
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_list_focused_holo.9.png",
+      "bytes": 244,
+      "compressed_bytes": 244
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_list_longpressed_holo.9.png",
+      "bytes": 214,
+      "compressed_bytes": 214
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_list_pressed_holo_dark.9.png",
+      "bytes": 209,
+      "compressed_bytes": 209
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_list_pressed_holo_light.9.png",
+      "bytes": 209,
+      "compressed_bytes": 209
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_list_selector_disabled_holo_dark.9.png",
+      "bytes": 236,
+      "compressed_bytes": 236
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_list_selector_disabled_holo_light.9.png",
+      "bytes": 235,
+      "compressed_bytes": 235
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_menu_hardkey_panel_mtrl_mult.9.png",
+      "bytes": 966,
+      "compressed_bytes": 966
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_popup_background_mtrl_mult.9.png",
+      "bytes": 1544,
+      "compressed_bytes": 1544
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_scrubber_control_off_mtrl_alpha.png",
+      "bytes": 267,
+      "compressed_bytes": 267
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png",
+      "bytes": 267,
+      "compressed_bytes": 267
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_scrubber_control_to_pressed_mtrl_005.png",
+      "bytes": 391,
+      "compressed_bytes": 391
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_scrubber_primary_mtrl_alpha.9.png",
+      "bytes": 208,
+      "compressed_bytes": 208
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_scrubber_track_mtrl_alpha.9.png",
+      "bytes": 198,
+      "compressed_bytes": 198
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_spinner_mtrl_am_alpha.9.png",
+      "bytes": 448,
+      "compressed_bytes": 448
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_switch_track_mtrl_alpha.9.png",
+      "bytes": 618,
+      "compressed_bytes": 618
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_tab_indicator_mtrl_alpha.9.png",
+      "bytes": 194,
+      "compressed_bytes": 194
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_text_select_handle_left_mtrl.png",
+      "bytes": 335,
+      "compressed_bytes": 335
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_text_select_handle_middle_mtrl.png",
+      "bytes": 585,
+      "compressed_bytes": 585
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_text_select_handle_right_mtrl.png",
+      "bytes": 318,
+      "compressed_bytes": 318
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_textfield_activated_mtrl_alpha.9.png",
+      "bytes": 189,
+      "compressed_bytes": 189
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_textfield_default_mtrl_alpha.9.png",
+      "bytes": 187,
+      "compressed_bytes": 187
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_textfield_search_activated_mtrl_alpha.9.png",
+      "bytes": 184,
+      "compressed_bytes": 184
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/abc_textfield_search_default_mtrl_alpha.9.png",
+      "bytes": 182,
+      "compressed_bytes": 182
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/bf_bugfender_logo.png",
+      "bytes": 924,
+      "compressed_bytes": 924
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/bf_ic_close.png",
+      "bytes": 273,
+      "compressed_bytes": 273
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/btn_flash.png",
+      "bytes": 341,
+      "compressed_bytes": 341
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/btn_flip.png",
+      "bytes": 637,
+      "compressed_bytes": 637
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/btn_mute.png",
+      "bytes": 524,
+      "compressed_bytes": 524
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/btn_mute_a.png",
+      "bytes": 763,
+      "compressed_bytes": 763
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/btn_quick_settings.png",
+      "bytes": 564,
+      "compressed_bytes": 564
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/btn_settings.png",
+      "bytes": 652,
+      "compressed_bytes": 652
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/btn_shoot.png",
+      "bytes": 798,
+      "compressed_bytes": 798
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/notification_bg_low_normal.9.png",
+      "bytes": 221,
+      "compressed_bytes": 221
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/notification_bg_low_pressed.9.png",
+      "bytes": 252,
+      "compressed_bytes": 252
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/notification_bg_normal.9.png",
+      "bytes": 221,
+      "compressed_bytes": 221
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/notification_bg_normal_pressed.9.png",
+      "bytes": 247,
+      "compressed_bytes": 247
+    },
+    {
+      "path": "res/drawable-xhdpi-v4/notify_panel_notification_icon_bg.png",
+      "bytes": 138,
+      "compressed_bytes": 138
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_ab_share_pack_mtrl_alpha.9.png",
+      "bytes": 286,
+      "compressed_bytes": 286
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_btn_check_to_on_mtrl_000.png",
+      "bytes": 307,
+      "compressed_bytes": 307
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_btn_check_to_on_mtrl_015.png",
+      "bytes": 593,
+      "compressed_bytes": 593
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_btn_radio_to_on_mtrl_000.png",
+      "bytes": 984,
+      "compressed_bytes": 984
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_btn_radio_to_on_mtrl_015.png",
+      "bytes": 1208,
+      "compressed_bytes": 1208
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_btn_switch_to_on_mtrl_00001.9.png",
+      "bytes": 2463,
+      "compressed_bytes": 2463
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_btn_switch_to_on_mtrl_00012.9.png",
+      "bytes": 2834,
+      "compressed_bytes": 2834
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_cab_background_top_mtrl_alpha.9.png",
+      "bytes": 237,
+      "compressed_bytes": 237
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_ic_commit_search_api_mtrl_alpha.png",
+      "bytes": 224,
+      "compressed_bytes": 224
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_list_divider_mtrl_alpha.9.png",
+      "bytes": 171,
+      "compressed_bytes": 171
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_list_focused_holo.9.png",
+      "bytes": 245,
+      "compressed_bytes": 245
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_list_longpressed_holo.9.png",
+      "bytes": 221,
+      "compressed_bytes": 221
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_list_pressed_holo_dark.9.png",
+      "bytes": 212,
+      "compressed_bytes": 212
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_list_pressed_holo_light.9.png",
+      "bytes": 212,
+      "compressed_bytes": 212
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_list_selector_disabled_holo_dark.9.png",
+      "bytes": 260,
+      "compressed_bytes": 260
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_list_selector_disabled_holo_light.9.png",
+      "bytes": 258,
+      "compressed_bytes": 258
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_menu_hardkey_panel_mtrl_mult.9.png",
+      "bytes": 1779,
+      "compressed_bytes": 1779
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_popup_background_mtrl_mult.9.png",
+      "bytes": 2305,
+      "compressed_bytes": 2305
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_scrubber_control_off_mtrl_alpha.png",
+      "bytes": 322,
+      "compressed_bytes": 322
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png",
+      "bytes": 403,
+      "compressed_bytes": 403
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_scrubber_control_to_pressed_mtrl_005.png",
+      "bytes": 595,
+      "compressed_bytes": 595
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_scrubber_primary_mtrl_alpha.9.png",
+      "bytes": 210,
+      "compressed_bytes": 210
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_scrubber_track_mtrl_alpha.9.png",
+      "bytes": 207,
+      "compressed_bytes": 207
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_spinner_mtrl_am_alpha.9.png",
+      "bytes": 524,
+      "compressed_bytes": 524
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_switch_track_mtrl_alpha.9.png",
+      "bytes": 851,
+      "compressed_bytes": 851
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_tab_indicator_mtrl_alpha.9.png",
+      "bytes": 204,
+      "compressed_bytes": 204
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_text_select_handle_left_mtrl.png",
+      "bytes": 420,
+      "compressed_bytes": 420
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_text_select_handle_middle_mtrl.png",
+      "bytes": 753,
+      "compressed_bytes": 753
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_text_select_handle_right_mtrl.png",
+      "bytes": 422,
+      "compressed_bytes": 422
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_textfield_activated_mtrl_alpha.9.png",
+      "bytes": 199,
+      "compressed_bytes": 199
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_textfield_default_mtrl_alpha.9.png",
+      "bytes": 200,
+      "compressed_bytes": 200
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_textfield_search_activated_mtrl_alpha.9.png",
+      "bytes": 187,
+      "compressed_bytes": 187
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/abc_textfield_search_default_mtrl_alpha.9.png",
+      "bytes": 186,
+      "compressed_bytes": 186
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/bf_bugfender_logo.png",
+      "bytes": 1402,
+      "compressed_bytes": 1402
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/bf_ic_close.png",
+      "bytes": 315,
+      "compressed_bytes": 315
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/btn_flash.png",
+      "bytes": 489,
+      "compressed_bytes": 489
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/btn_flip.png",
+      "bytes": 949,
+      "compressed_bytes": 949
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/btn_mute.png",
+      "bytes": 734,
+      "compressed_bytes": 734
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/btn_mute_a.png",
+      "bytes": 1067,
+      "compressed_bytes": 1067
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/btn_quick_settings.png",
+      "bytes": 817,
+      "compressed_bytes": 817
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/btn_settings.png",
+      "bytes": 966,
+      "compressed_bytes": 966
+    },
+    {
+      "path": "res/drawable-xxhdpi-v4/btn_shoot.png",
+      "bytes": 1210,
+      "compressed_bytes": 1210
+    },
+    {
+      "path": "res/drawable-xxxhdpi-v4/abc_btn_check_to_on_mtrl_000.png",
+      "bytes": 275,
+      "compressed_bytes": 275
+    },
+    {
+      "path": "res/drawable-xxxhdpi-v4/abc_btn_check_to_on_mtrl_015.png",
+      "bytes": 476,
+      "compressed_bytes": 476
+    },
+    {
+      "path": "res/drawable-xxxhdpi-v4/abc_btn_radio_to_on_mtrl_000.png",
+      "bytes": 785,
+      "compressed_bytes": 785
+    },
+    {
+      "path": "res/drawable-xxxhdpi-v4/abc_btn_radio_to_on_mtrl_015.png",
+      "bytes": 946,
+      "compressed_bytes": 946
+    },
+    {
+      "path": "res/drawable-xxxhdpi-v4/abc_btn_switch_to_on_mtrl_00001.9.png",
+      "bytes": 2505,
+      "compressed_bytes": 2505
+    },
+    {
+      "path": "res/drawable-xxxhdpi-v4/abc_btn_switch_to_on_mtrl_00012.9.png",
+      "bytes": 2816,
+      "compressed_bytes": 2816
+    },
+    {
+      "path": "res/drawable-xxxhdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png",
+      "bytes": 415,
+      "compressed_bytes": 415
+    },
+    {
+      "path": "res/drawable-xxxhdpi-v4/abc_scrubber_control_to_pressed_mtrl_005.png",
+      "bytes": 631,
+      "compressed_bytes": 631
+    },
+    {
+      "path": "res/drawable-xxxhdpi-v4/abc_spinner_mtrl_am_alpha.9.png",
+      "bytes": 430,
+      "compressed_bytes": 430
+    },
+    {
+      "path": "res/drawable-xxxhdpi-v4/abc_switch_track_mtrl_alpha.9.png",
+      "bytes": 813,
+      "compressed_bytes": 813
+    },
+    {
+      "path": "res/drawable-xxxhdpi-v4/abc_tab_indicator_mtrl_alpha.9.png",
+      "bytes": 202,
+      "compressed_bytes": 202
+    },
+    {
+      "path": "res/drawable-xxxhdpi-v4/abc_text_select_handle_left_mtrl.png",
+      "bytes": 513,
+      "compressed_bytes": 513
+    },
+    {
+      "path": "res/drawable-xxxhdpi-v4/abc_text_select_handle_right_mtrl.png",
+      "bytes": 513,
+      "compressed_bytes": 513
+    },
+    {
+      "path": "res/drawable-xxxhdpi-v4/bf_bugfender_logo.png",
+      "bytes": 1928,
+      "compressed_bytes": 1928
+    },
+    {
+      "path": "res/drawable-xxxhdpi-v4/bf_ic_close.png",
+      "bytes": 387,
+      "compressed_bytes": 387
+    },
+    {
+      "path": "res/drawable-xxxhdpi-v4/btn_flash.png",
+      "bytes": 635,
+      "compressed_bytes": 635
+    },
+    {
+      "path": "res/drawable-xxxhdpi-v4/btn_flip.png",
+      "bytes": 1278,
+      "compressed_bytes": 1278
+    },
+    {
+      "path": "res/drawable-xxxhdpi-v4/btn_mute.png",
+      "bytes": 969,
+      "compressed_bytes": 969
+    },
+    {
+      "path": "res/drawable-xxxhdpi-v4/btn_mute_a.png",
+      "bytes": 1359,
+      "compressed_bytes": 1359
+    },
+    {
+      "path": "res/drawable-xxxhdpi-v4/btn_quick_settings.png",
+      "bytes": 1028,
+      "compressed_bytes": 1028
+    },
+    {
+      "path": "res/drawable-xxxhdpi-v4/btn_settings.png",
+      "bytes": 1304,
+      "compressed_bytes": 1304
+    },
+    {
+      "path": "res/drawable-xxxhdpi-v4/btn_shoot.png",
+      "bytes": 1561,
+      "compressed_bytes": 1561
+    },
+    {
+      "path": "res/interpolator/btn_checkbox_checked_mtrl_animation_interpolator_0.xml",
+      "bytes": 316,
+      "compressed_bytes": 187
+    },
+    {
+      "path": "res/interpolator/btn_checkbox_checked_mtrl_animation_interpolator_1.xml",
+      "bytes": 328,
+      "compressed_bytes": 190
+    },
+    {
+      "path": "res/interpolator/btn_checkbox_unchecked_mtrl_animation_interpolator_0.xml",
+      "bytes": 316,
+      "compressed_bytes": 187
+    },
+    {
+      "path": "res/interpolator/btn_checkbox_unchecked_mtrl_animation_interpolator_1.xml",
+      "bytes": 328,
+      "compressed_bytes": 190
+    },
+    {
+      "path": "res/interpolator/btn_radio_to_off_mtrl_animation_interpolator_0.xml",
+      "bytes": 320,
+      "compressed_bytes": 190
+    },
+    {
+      "path": "res/interpolator/btn_radio_to_on_mtrl_animation_interpolator_0.xml",
+      "bytes": 320,
+      "compressed_bytes": 190
+    },
+    {
+      "path": "res/interpolator/fast_out_slow_in.xml",
+      "bytes": 400,
+      "compressed_bytes": 214
+    },
+    {
+      "path": "res/interpolator/mtrl_linear.xml",
+      "bytes": 132,
+      "compressed_bytes": 75
+    },
+    {
+      "path": "res/interpolator-v21/mtrl_fast_out_linear_in.xml",
+      "bytes": 400,
+      "compressed_bytes": 211
+    },
+    {
+      "path": "res/interpolator-v21/mtrl_fast_out_slow_in.xml",
+      "bytes": 400,
+      "compressed_bytes": 214
+    },
+    {
+      "path": "res/interpolator-v21/mtrl_linear_out_slow_in.xml",
+      "bytes": 400,
+      "compressed_bytes": 211
+    },
+    {
+      "path": "res/layout/abc_action_bar_title_item.xml",
+      "bytes": 872,
+      "compressed_bytes": 389
+    },
+    {
+      "path": "res/layout/abc_action_bar_up_container.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/abc_action_menu_item_layout.xml",
+      "bytes": 768,
+      "compressed_bytes": 395
+    },
+    {
+      "path": "res/layout/abc_action_menu_layout.xml",
+      "bytes": 576,
+      "compressed_bytes": 296
+    },
+    {
+      "path": "res/layout/abc_action_mode_bar.xml",
+      "bytes": 464,
+      "compressed_bytes": 268
+    },
+    {
+      "path": "res/layout/abc_action_mode_close_item_material.xml",
+      "bytes": 840,
+      "compressed_bytes": 425
+    },
+    {
+      "path": "res/layout/abc_activity_chooser_view.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/abc_activity_chooser_view_list_item.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/abc_alert_dialog_button_bar_material.xml",
+      "bytes": 1584,
+      "compressed_bytes": 613
+    },
+    {
+      "path": "res/layout/abc_alert_dialog_material.xml",
+      "bytes": 2476,
+      "compressed_bytes": 777
+    },
+    {
+      "path": "res/layout/abc_alert_dialog_title_material.xml",
+      "bytes": 1560,
+      "compressed_bytes": 647
+    },
+    {
+      "path": "res/layout/abc_cascading_menu_item_layout.xml",
+      "bytes": 1868,
+      "compressed_bytes": 713
+    },
+    {
+      "path": "res/layout/abc_dialog_title_material.xml",
+      "bytes": 1116,
+      "compressed_bytes": 525
+    },
+    {
+      "path": "res/layout/abc_expanded_menu_layout.xml",
+      "bytes": 388,
+      "compressed_bytes": 232
+    },
+    {
+      "path": "res/layout/abc_list_menu_item_checkbox.xml",
+      "bytes": 528,
+      "compressed_bytes": 285
+    },
+    {
+      "path": "res/layout/abc_list_menu_item_icon.xml",
+      "bytes": 780,
+      "compressed_bytes": 381
+    },
+    {
+      "path": "res/layout/abc_list_menu_item_layout.xml",
+      "bytes": 1396,
+      "compressed_bytes": 598
+    },
+    {
+      "path": "res/layout/abc_list_menu_item_radio.xml",
+      "bytes": 532,
+      "compressed_bytes": 287
+    },
+    {
+      "path": "res/layout/abc_popup_menu_header_item_layout.xml",
+      "bytes": 848,
+      "compressed_bytes": 434
+    },
+    {
+      "path": "res/layout/abc_popup_menu_item_layout.xml",
+      "bytes": 2072,
+      "compressed_bytes": 810
+    },
+    {
+      "path": "res/layout/abc_screen_content_include.xml",
+      "bytes": 548,
+      "compressed_bytes": 297
+    },
+    {
+      "path": "res/layout/abc_screen_simple.xml",
+      "bytes": 832,
+      "compressed_bytes": 395
+    },
+    {
+      "path": "res/layout/abc_screen_simple_overlay_action_mode.xml",
+      "bytes": 792,
+      "compressed_bytes": 376
+    },
+    {
+      "path": "res/layout/abc_search_dropdown_item_icons_2line.xml",
+      "bytes": 1916,
+      "compressed_bytes": 668
+    },
+    {
+      "path": "res/layout/abc_search_view.xml",
+      "bytes": 3472,
+      "compressed_bytes": 1101
+    },
+    {
+      "path": "res/layout/abc_select_dialog_material.xml",
+      "bytes": 1020,
+      "compressed_bytes": 536
+    },
+    {
+      "path": "res/layout/abc_tooltip.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/about_us.xml",
+      "bytes": 1144,
+      "compressed_bytes": 476
+    },
+    {
+      "path": "res/layout/activity_export_grove.xml",
+      "bytes": 2564,
+      "compressed_bytes": 896
+    },
+    {
+      "path": "res/layout/activity_settings_onepane.xml",
+      "bytes": 472,
+      "compressed_bytes": 236
+    },
+    {
+      "path": "res/layout/activity_start.xml",
+      "bytes": 440,
+      "compressed_bytes": 249
+    },
+    {
+      "path": "res/layout/activity_usb.xml",
+      "bytes": 6856,
+      "compressed_bytes": 1372
+    },
+    {
+      "path": "res/layout/alert_fragment_page.xml",
+      "bytes": 352,
+      "compressed_bytes": 199
+    },
+    {
+      "path": "res/layout/bf_feedback_screen.xml",
+      "bytes": 3944,
+      "compressed_bytes": 1183
+    },
+    {
+      "path": "res/layout/color_picker.xml",
+      "bytes": 524,
+      "compressed_bytes": 275
+    },
+    {
+      "path": "res/layout/color_picker_dialog.xml",
+      "bytes": 1072,
+      "compressed_bytes": 411
+    },
+    {
+      "path": "res/layout/custom_dialog.xml",
+      "bytes": 612,
+      "compressed_bytes": 311
+    },
+    {
+      "path": "res/layout/design_bottom_navigation_item.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/design_bottom_sheet_dialog.xml",
+      "bytes": 1224,
+      "compressed_bytes": 518
+    },
+    {
+      "path": "res/layout/design_layout_snackbar.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/design_layout_snackbar_include.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/design_layout_tab_icon.xml",
+      "bytes": 408,
+      "compressed_bytes": 235
+    },
+    {
+      "path": "res/layout/design_layout_tab_text.xml",
+      "bytes": 436,
+      "compressed_bytes": 247
+    },
+    {
+      "path": "res/layout/design_menu_item_action_area.xml",
+      "bytes": 320,
+      "compressed_bytes": 188
+    },
+    {
+      "path": "res/layout/design_navigation_item.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/design_navigation_item_header.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/design_navigation_item_separator.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/design_navigation_item_subheader.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/design_navigation_menu.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/design_navigation_menu_item.xml",
+      "bytes": 856,
+      "compressed_bytes": 434
+    },
+    {
+      "path": "res/layout/design_text_input_end_icon.xml",
+      "bytes": 656,
+      "compressed_bytes": 368
+    },
+    {
+      "path": "res/layout/design_text_input_start_icon.xml",
+      "bytes": 652,
+      "compressed_bytes": 363
+    },
+    {
+      "path": "res/layout/dialog_start_broadcast.xml",
+      "bytes": 1180,
+      "compressed_bytes": 505
+    },
+    {
+      "path": "res/layout/expand_button.xml",
+      "bytes": 1720,
+      "compressed_bytes": 725
+    },
+    {
+      "path": "res/layout/image_frame.xml",
+      "bytes": 1088,
+      "compressed_bytes": 497
+    },
+    {
+      "path": "res/layout/import_grove.xml",
+      "bytes": 676,
+      "compressed_bytes": 348
+    },
+    {
+      "path": "res/layout/item_picker.xml",
+      "bytes": 1064,
+      "compressed_bytes": 464
+    },
+    {
+      "path": "res/layout/list_item_bluetooth_device_info.xml",
+      "bytes": 1204,
+      "compressed_bytes": 485
+    },
+    {
+      "path": "res/layout/m3_alert_dialog.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/m3_alert_dialog_actions.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/m3_alert_dialog_title.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/m3_auto_complete_simple_item.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/material_chip_input_combo.xml",
+      "bytes": 372,
+      "compressed_bytes": 225
+    },
+    {
+      "path": "res/layout/material_clock_display.xml",
+      "bytes": 1132,
+      "compressed_bytes": 483
+    },
+    {
+      "path": "res/layout/material_clock_display_divider.xml",
+      "bytes": 492,
+      "compressed_bytes": 287
+    },
+    {
+      "path": "res/layout/material_clock_period_toggle.xml",
+      "bytes": 1464,
+      "compressed_bytes": 647
+    },
+    {
+      "path": "res/layout/material_clockface_textview.xml",
+      "bytes": 476,
+      "compressed_bytes": 271
+    },
+    {
+      "path": "res/layout/material_clockface_view.xml",
+      "bytes": 1012,
+      "compressed_bytes": 471
+    },
+    {
+      "path": "res/layout/material_radial_view_group.xml",
+      "bytes": 768,
+      "compressed_bytes": 352
+    },
+    {
+      "path": "res/layout/material_textinput_timepicker.xml",
+      "bytes": 1052,
+      "compressed_bytes": 475
+    },
+    {
+      "path": "res/layout/material_time_chip.xml",
+      "bytes": 380,
+      "compressed_bytes": 227
+    },
+    {
+      "path": "res/layout/material_time_input.xml",
+      "bytes": 1160,
+      "compressed_bytes": 528
+    },
+    {
+      "path": "res/layout/material_timepicker.xml",
+      "bytes": 1136,
+      "compressed_bytes": 489
+    },
+    {
+      "path": "res/layout/material_timepicker_dialog.xml",
+      "bytes": 3184,
+      "compressed_bytes": 1049
+    },
+    {
+      "path": "res/layout/material_timepicker_textinput_display.xml",
+      "bytes": 684,
+      "compressed_bytes": 305
+    },
+    {
+      "path": "res/layout/mtrl_alert_dialog.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/mtrl_alert_dialog_actions.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/mtrl_alert_dialog_title.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/mtrl_alert_select_dialog_item.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/mtrl_alert_select_dialog_multichoice.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/mtrl_alert_select_dialog_singlechoice.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/mtrl_auto_complete_simple_item.xml",
+      "bytes": 612,
+      "compressed_bytes": 323
+    },
+    {
+      "path": "res/layout/mtrl_calendar_day.xml",
+      "bytes": 352,
+      "compressed_bytes": 208
+    },
+    {
+      "path": "res/layout/mtrl_calendar_day_of_week.xml",
+      "bytes": 352,
+      "compressed_bytes": 208
+    },
+    {
+      "path": "res/layout/mtrl_calendar_days_of_week.xml",
+      "bytes": 436,
+      "compressed_bytes": 259
+    },
+    {
+      "path": "res/layout/mtrl_calendar_horizontal.xml",
+      "bytes": 1176,
+      "compressed_bytes": 446
+    },
+    {
+      "path": "res/layout/mtrl_calendar_month_labeled.xml",
+      "bytes": 728,
+      "compressed_bytes": 370
+    },
+    {
+      "path": "res/layout/mtrl_calendar_month_navigation.xml",
+      "bytes": 1748,
+      "compressed_bytes": 656
+    },
+    {
+      "path": "res/layout/mtrl_calendar_months.xml",
+      "bytes": 428,
+      "compressed_bytes": 244
+    },
+    {
+      "path": "res/layout/mtrl_calendar_vertical.xml",
+      "bytes": 740,
+      "compressed_bytes": 338
+    },
+    {
+      "path": "res/layout/mtrl_calendar_year.xml",
+      "bytes": 352,
+      "compressed_bytes": 207
+    },
+    {
+      "path": "res/layout/mtrl_layout_snackbar.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/mtrl_layout_snackbar_include.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/mtrl_navigation_rail_item.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/mtrl_picker_actions.xml",
+      "bytes": 984,
+      "compressed_bytes": 440
+    },
+    {
+      "path": "res/layout/mtrl_picker_dialog.xml",
+      "bytes": 1172,
+      "compressed_bytes": 481
+    },
+    {
+      "path": "res/layout/mtrl_picker_fullscreen.xml",
+      "bytes": 880,
+      "compressed_bytes": 417
+    },
+    {
+      "path": "res/layout/mtrl_picker_header_dialog.xml",
+      "bytes": 1532,
+      "compressed_bytes": 604
+    },
+    {
+      "path": "res/layout/mtrl_picker_header_fullscreen.xml",
+      "bytes": 2800,
+      "compressed_bytes": 1003
+    },
+    {
+      "path": "res/layout/mtrl_picker_header_selection_text.xml",
+      "bytes": 712,
+      "compressed_bytes": 368
+    },
+    {
+      "path": "res/layout/mtrl_picker_header_title_text.xml",
+      "bytes": 624,
+      "compressed_bytes": 323
+    },
+    {
+      "path": "res/layout/mtrl_picker_header_toggle.xml",
+      "bytes": 528,
+      "compressed_bytes": 300
+    },
+    {
+      "path": "res/layout/mtrl_picker_text_input_date.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/mtrl_picker_text_input_date_range.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout/notification_template_part_chronometer.xml",
+      "bytes": 440,
+      "compressed_bytes": 262
+    },
+    {
+      "path": "res/layout/notification_template_part_time.xml",
+      "bytes": 440,
+      "compressed_bytes": 264
+    },
+    {
+      "path": "res/layout/pref_image_layer_buttons.xml",
+      "bytes": 968,
+      "compressed_bytes": 438
+    },
+    {
+      "path": "res/layout/pref_image_layer_edit_buttons.xml",
+      "bytes": 976,
+      "compressed_bytes": 439
+    },
+    {
+      "path": "res/layout/preference.xml",
+      "bytes": 2352,
+      "compressed_bytes": 882
+    },
+    {
+      "path": "res/layout/preference_category.xml",
+      "bytes": 384,
+      "compressed_bytes": 219
+    },
+    {
+      "path": "res/layout/preference_category_material.xml",
+      "bytes": 1768,
+      "compressed_bytes": 734
+    },
+    {
+      "path": "res/layout/preference_dialog_edittext.xml",
+      "bytes": 1312,
+      "compressed_bytes": 525
+    },
+    {
+      "path": "res/layout/preference_dropdown.xml",
+      "bytes": 2544,
+      "compressed_bytes": 932
+    },
+    {
+      "path": "res/layout/preference_dropdown_material.xml",
+      "bytes": 712,
+      "compressed_bytes": 349
+    },
+    {
+      "path": "res/layout/preference_information.xml",
+      "bytes": 1732,
+      "compressed_bytes": 657
+    },
+    {
+      "path": "res/layout/preference_information_material.xml",
+      "bytes": 2056,
+      "compressed_bytes": 755
+    },
+    {
+      "path": "res/layout/preference_list_fragment.xml",
+      "bytes": 812,
+      "compressed_bytes": 369
+    },
+    {
+      "path": "res/layout/preference_material.xml",
+      "bytes": 2052,
+      "compressed_bytes": 820
+    },
+    {
+      "path": "res/layout/preference_recyclerview.xml",
+      "bytes": 544,
+      "compressed_bytes": 301
+    },
+    {
+      "path": "res/layout/preference_widget_checkbox.xml",
+      "bytes": 472,
+      "compressed_bytes": 261
+    },
+    {
+      "path": "res/layout/preference_widget_radiobutton.xml",
+      "bytes": 480,
+      "compressed_bytes": 264
+    },
+    {
+      "path": "res/layout/preference_widget_seekbar.xml",
+      "bytes": 2896,
+      "compressed_bytes": 1027
+    },
+    {
+      "path": "res/layout/preference_widget_seekbar_material.xml",
+      "bytes": 3096,
+      "compressed_bytes": 1096
+    },
+    {
+      "path": "res/layout/preference_widget_switch.xml",
+      "bytes": 472,
+      "compressed_bytes": 260
+    },
+    {
+      "path": "res/layout/preference_widget_switch_compat.xml",
+      "bytes": 504,
+      "compressed_bytes": 281
+    },
+    {
+      "path": "res/layout/seekbar_preference.xml",
+      "bytes": 648,
+      "compressed_bytes": 278
+    },
+    {
+      "path": "res/layout/select_dialog_item_material.xml",
+      "bytes": 640,
+      "compressed_bytes": 352
+    },
+    {
+      "path": "res/layout/select_dialog_multichoice_material.xml",
+      "bytes": 864,
+      "compressed_bytes": 444
+    },
+    {
+      "path": "res/layout/select_dialog_singlechoice_material.xml",
+      "bytes": 864,
+      "compressed_bytes": 444
+    },
+    {
+      "path": "res/layout/settings_nav_panel_item.xml",
+      "bytes": 844,
+      "compressed_bytes": 418
+    },
+    {
+      "path": "res/layout/settings_nav_panel_separator.xml",
+      "bytes": 356,
+      "compressed_bytes": 206
+    },
+    {
+      "path": "res/layout/settings_nav_panel_view.xml",
+      "bytes": 536,
+      "compressed_bytes": 259
+    },
+    {
+      "path": "res/layout/streamer.xml",
+      "bytes": 20064,
+      "compressed_bytes": 3512
+    },
+    {
+      "path": "res/layout/support_simple_spinner_dropdown_item.xml",
+      "bytes": 464,
+      "compressed_bytes": 270
+    },
+    {
+      "path": "res/layout/test_action_chip.xml",
+      "bytes": 488,
+      "compressed_bytes": 279
+    },
+    {
+      "path": "res/layout/test_chip_zero_corner_radius.xml",
+      "bytes": 640,
+      "compressed_bytes": 339
+    },
+    {
+      "path": "res/layout/test_design_checkbox.xml",
+      "bytes": 836,
+      "compressed_bytes": 344
+    },
+    {
+      "path": "res/layout/test_design_radiobutton.xml",
+      "bytes": 840,
+      "compressed_bytes": 347
+    },
+    {
+      "path": "res/layout/test_exposed_dropdown_menu.xml",
+      "bytes": 1320,
+      "compressed_bytes": 499
+    },
+    {
+      "path": "res/layout/test_navigation_bar_item_layout.xml",
+      "bytes": 1528,
+      "compressed_bytes": 607
+    },
+    {
+      "path": "res/layout/test_reflow_chipgroup.xml",
+      "bytes": 1060,
+      "compressed_bytes": 361
+    },
+    {
+      "path": "res/layout/test_toolbar.xml",
+      "bytes": 360,
+      "compressed_bytes": 212
+    },
+    {
+      "path": "res/layout/test_toolbar_custom_background.xml",
+      "bytes": 400,
+      "compressed_bytes": 237
+    },
+    {
+      "path": "res/layout/test_toolbar_elevation.xml",
+      "bytes": 400,
+      "compressed_bytes": 236
+    },
+    {
+      "path": "res/layout/test_toolbar_surface.xml",
+      "bytes": 392,
+      "compressed_bytes": 233
+    },
+    {
+      "path": "res/layout/text_view_with_line_height_from_appearance.xml",
+      "bytes": 408,
+      "compressed_bytes": 242
+    },
+    {
+      "path": "res/layout/text_view_with_line_height_from_layout.xml",
+      "bytes": 552,
+      "compressed_bytes": 294
+    },
+    {
+      "path": "res/layout/text_view_with_line_height_from_style.xml",
+      "bytes": 396,
+      "compressed_bytes": 236
+    },
+    {
+      "path": "res/layout/text_view_with_theme_line_height.xml",
+      "bytes": 408,
+      "compressed_bytes": 242
+    },
+    {
+      "path": "res/layout/text_view_without_line_height.xml",
+      "bytes": 364,
+      "compressed_bytes": 212
+    },
+    {
+      "path": "res/layout/view_frame_selector.xml",
+      "bytes": 5248,
+      "compressed_bytes": 1009
+    },
+    {
+      "path": "res/layout/wizard.xml",
+      "bytes": 11008,
+      "compressed_bytes": 2000
+    },
+    {
+      "path": "res/layout/wizard_holder.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout-land/material_clock_period_toggle_land.xml",
+      "bytes": 1232,
+      "compressed_bytes": 519
+    },
+    {
+      "path": "res/layout-land/material_timepicker.xml",
+      "bytes": 1884,
+      "compressed_bytes": 698
+    },
+    {
+      "path": "res/layout-land/mtrl_picker_header_dialog.xml",
+      "bytes": 1532,
+      "compressed_bytes": 608
+    },
+    {
+      "path": "res/layout-ldrtl-v17/material_textinput_timepicker.xml",
+      "bytes": 1100,
+      "compressed_bytes": 494
+    },
+    {
+      "path": "res/layout-sw600dp-v13/design_layout_snackbar.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout-sw600dp-v13/mtrl_layout_snackbar.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/layout-v21/notification_action.xml",
+      "bytes": 1052,
+      "compressed_bytes": 486
+    },
+    {
+      "path": "res/layout-v21/notification_action_tombstone.xml",
+      "bytes": 1228,
+      "compressed_bytes": 539
+    },
+    {
+      "path": "res/layout-v21/notification_template_custom_big.xml",
+      "bytes": 2456,
+      "compressed_bytes": 792
+    },
+    {
+      "path": "res/layout-v21/notification_template_icon_group.xml",
+      "bytes": 988,
+      "compressed_bytes": 422
+    },
+    {
+      "path": "res/layout-v26/abc_screen_toolbar.xml",
+      "bytes": 1560,
+      "compressed_bytes": 652
+    },
+    {
+      "path": "res/layout-v26/mtrl_calendar_month.xml",
+      "bytes": 744,
+      "compressed_bytes": 422
+    },
+    {
+      "path": "res/layout-watch-v20/abc_alert_dialog_button_bar_material.xml",
+      "bytes": 1208,
+      "compressed_bytes": 471
+    },
+    {
+      "path": "res/layout-watch-v20/abc_alert_dialog_title_material.xml",
+      "bytes": 1352,
+      "compressed_bytes": 550
+    },
+    {
+      "path": "res/mipmap-anydpi-v26/ic_launcher.xml",
+      "bytes": 448,
+      "compressed_bytes": 220
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/btn_repeat_shutter_default.png",
+      "bytes": 67,
+      "compressed_bytes": 67
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/btn_repeat_shutter_pressed.png",
+      "bytes": 67,
+      "compressed_bytes": 67
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/btn_repeat_shutter_recording_holo.png",
+      "bytes": 67,
+      "compressed_bytes": 67
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/btn_repeat_shutter_recording_pressed_holo.png",
+      "bytes": 67,
+      "compressed_bytes": 67
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/btn_shutter_default.png",
+      "bytes": 67,
+      "compressed_bytes": 67
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/btn_shutter_pressed.png",
+      "bytes": 67,
+      "compressed_bytes": 67
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/btn_shutter_video_default.png",
+      "bytes": 67,
+      "compressed_bytes": 67
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/btn_shutter_video_pressed.png",
+      "bytes": 67,
+      "compressed_bytes": 67
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/btn_video_shutter_recording_holo.png",
+      "bytes": 67,
+      "compressed_bytes": 67
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/btn_video_shutter_recording_pressed_holo.png",
+      "bytes": 67,
+      "compressed_bytes": 67
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/ic_color_circle.png",
+      "bytes": 2557,
+      "compressed_bytes": 2557
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/ic_decrement.png",
+      "bytes": 762,
+      "compressed_bytes": 762
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/ic_drawer.png",
+      "bytes": 67,
+      "compressed_bytes": 67
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/ic_frame_circle.png",
+      "bytes": 1458,
+      "compressed_bytes": 1458
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/ic_frame_circle_2.png",
+      "bytes": 1857,
+      "compressed_bytes": 1857
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/ic_frame_cross.png",
+      "bytes": 462,
+      "compressed_bytes": 462
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/ic_frame_cross_circle.png",
+      "bytes": 1552,
+      "compressed_bytes": 1552
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/ic_frame_cross_circle2.png",
+      "bytes": 1906,
+      "compressed_bytes": 1906
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/ic_frame_cross_quarter.png",
+      "bytes": 536,
+      "compressed_bytes": 536
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/ic_frame_frame.png",
+      "bytes": 281,
+      "compressed_bytes": 281
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/ic_increment.png",
+      "bytes": 763,
+      "compressed_bytes": 763
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/ic_launcher.png",
+      "bytes": 4843,
+      "compressed_bytes": 4843
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/ic_launcher_adaptive_back.png",
+      "bytes": 3240,
+      "compressed_bytes": 3240
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/ic_launcher_adaptive_fore.png",
+      "bytes": 4131,
+      "compressed_bytes": 4131
+    },
+    {
+      "path": "res/mipmap-hdpi-v4/ic_transparent.png",
+      "bytes": 67,
+      "compressed_bytes": 67
+    },
+    {
+      "path": "res/mipmap-ldpi-v4/ic_color_circle.png",
+      "bytes": 1080,
+      "compressed_bytes": 1080
+    },
+    {
+      "path": "res/mipmap-ldpi-v4/ic_frame_circle.png",
+      "bytes": 618,
+      "compressed_bytes": 618
+    },
+    {
+      "path": "res/mipmap-ldpi-v4/ic_frame_circle_2.png",
+      "bytes": 668,
+      "compressed_bytes": 668
+    },
+    {
+      "path": "res/mipmap-ldpi-v4/ic_frame_cross.png",
+      "bytes": 298,
+      "compressed_bytes": 298
+    },
+    {
+      "path": "res/mipmap-ldpi-v4/ic_frame_cross_circle.png",
+      "bytes": 653,
+      "compressed_bytes": 653
+    },
+    {
+      "path": "res/mipmap-ldpi-v4/ic_frame_cross_circle2.png",
+      "bytes": 707,
+      "compressed_bytes": 707
+    },
+    {
+      "path": "res/mipmap-ldpi-v4/ic_frame_cross_quarter.png",
+      "bytes": 333,
+      "compressed_bytes": 333
+    },
+    {
+      "path": "res/mipmap-ldpi-v4/ic_frame_frame.png",
+      "bytes": 178,
+      "compressed_bytes": 178
+    },
+    {
+      "path": "res/mipmap-ldpi-v4/ic_transparent.png",
+      "bytes": 67,
+      "compressed_bytes": 67
+    },
+    {
+      "path": "res/mipmap-mdpi-v4/ic_color_circle.png",
+      "bytes": 1659,
+      "compressed_bytes": 1659
+    },
+    {
+      "path": "res/mipmap-mdpi-v4/ic_drawer.png",
+      "bytes": 67,
+      "compressed_bytes": 67
+    },
+    {
+      "path": "res/mipmap-mdpi-v4/ic_frame_circle.png",
+      "bytes": 924,
+      "compressed_bytes": 924
+    },
+    {
+      "path": "res/mipmap-mdpi-v4/ic_frame_circle_2.png",
+      "bytes": 1112,
+      "compressed_bytes": 1112
+    },
+    {
+      "path": "res/mipmap-mdpi-v4/ic_frame_cross.png",
+      "bytes": 396,
+      "compressed_bytes": 396
+    },
+    {
+      "path": "res/mipmap-mdpi-v4/ic_frame_cross_circle.png",
+      "bytes": 1015,
+      "compressed_bytes": 1015
+    },
+    {
+      "path": "res/mipmap-mdpi-v4/ic_frame_cross_circle2.png",
+      "bytes": 1172,
+      "compressed_bytes": 1172
+    },
+    {
+      "path": "res/mipmap-mdpi-v4/ic_frame_cross_quarter.png",
+      "bytes": 401,
+      "compressed_bytes": 401
+    },
+    {
+      "path": "res/mipmap-mdpi-v4/ic_frame_frame.png",
+      "bytes": 210,
+      "compressed_bytes": 210
+    },
+    {
+      "path": "res/mipmap-mdpi-v4/ic_launcher.png",
+      "bytes": 2871,
+      "compressed_bytes": 2871
+    },
+    {
+      "path": "res/mipmap-mdpi-v4/ic_launcher_adaptive_back.png",
+      "bytes": 1952,
+      "compressed_bytes": 1952
+    },
+    {
+      "path": "res/mipmap-mdpi-v4/ic_launcher_adaptive_fore.png",
+      "bytes": 2349,
+      "compressed_bytes": 2349
+    },
+    {
+      "path": "res/mipmap-mdpi-v4/ic_transparent.png",
+      "bytes": 67,
+      "compressed_bytes": 67
+    },
+    {
+      "path": "res/mipmap-xhdpi-v4/ic_color_circle.png",
+      "bytes": 3594,
+      "compressed_bytes": 3594
+    },
+    {
+      "path": "res/mipmap-xhdpi-v4/ic_drawer.png",
+      "bytes": 67,
+      "compressed_bytes": 67
+    },
+    {
+      "path": "res/mipmap-xhdpi-v4/ic_frame_circle.png",
+      "bytes": 2068,
+      "compressed_bytes": 2068
+    },
+    {
+      "path": "res/mipmap-xhdpi-v4/ic_frame_circle_2.png",
+      "bytes": 2673,
+      "compressed_bytes": 2673
+    },
+    {
+      "path": "res/mipmap-xhdpi-v4/ic_frame_cross.png",
+      "bytes": 555,
+      "compressed_bytes": 555
+    },
+    {
+      "path": "res/mipmap-xhdpi-v4/ic_frame_cross_circle.png",
+      "bytes": 2182,
+      "compressed_bytes": 2182
+    },
+    {
+      "path": "res/mipmap-xhdpi-v4/ic_frame_cross_circle2.png",
+      "bytes": 2698,
+      "compressed_bytes": 2698
+    },
+    {
+      "path": "res/mipmap-xhdpi-v4/ic_frame_cross_quarter.png",
+      "bytes": 643,
+      "compressed_bytes": 643
+    },
+    {
+      "path": "res/mipmap-xhdpi-v4/ic_frame_frame.png",
+      "bytes": 323,
+      "compressed_bytes": 323
+    },
+    {
+      "path": "res/mipmap-xhdpi-v4/ic_launcher.png",
+      "bytes": 6966,
+      "compressed_bytes": 6966
+    },
+    {
+      "path": "res/mipmap-xhdpi-v4/ic_launcher_adaptive_back.png",
+      "bytes": 4538,
+      "compressed_bytes": 4538
+    },
+    {
+      "path": "res/mipmap-xhdpi-v4/ic_launcher_adaptive_fore.png",
+      "bytes": 5535,
+      "compressed_bytes": 5535
+    },
+    {
+      "path": "res/mipmap-xhdpi-v4/ic_transparent.png",
+      "bytes": 67,
+      "compressed_bytes": 67
+    },
+    {
+      "path": "res/mipmap-xxhdpi-v4/ic_color_circle.png",
+      "bytes": 5792,
+      "compressed_bytes": 5792
+    },
+    {
+      "path": "res/mipmap-xxhdpi-v4/ic_drawer.png",
+      "bytes": 67,
+      "compressed_bytes": 67
+    },
+    {
+      "path": "res/mipmap-xxhdpi-v4/ic_frame_circle.png",
+      "bytes": 1555,
+      "compressed_bytes": 1555
+    },
+    {
+      "path": "res/mipmap-xxhdpi-v4/ic_frame_circle_2.png",
+      "bytes": 2011,
+      "compressed_bytes": 2011
+    },
+    {
+      "path": "res/mipmap-xxhdpi-v4/ic_frame_cross.png",
+      "bytes": 608,
+      "compressed_bytes": 608
+    },
+    {
+      "path": "res/mipmap-xxhdpi-v4/ic_frame_cross_circle.png",
+      "bytes": 1877,
+      "compressed_bytes": 1877
+    },
+    {
+      "path": "res/mipmap-xxhdpi-v4/ic_frame_cross_circle2.png",
+      "bytes": 2265,
+      "compressed_bytes": 2265
+    },
+    {
+      "path": "res/mipmap-xxhdpi-v4/ic_frame_cross_quarter.png",
+      "bytes": 682,
+      "compressed_bytes": 682
+    },
+    {
+      "path": "res/mipmap-xxhdpi-v4/ic_frame_frame.png",
+      "bytes": 339,
+      "compressed_bytes": 339
+    },
+    {
+      "path": "res/mipmap-xxhdpi-v4/ic_launcher.png",
+      "bytes": 11440,
+      "compressed_bytes": 11440
+    },
+    {
+      "path": "res/mipmap-xxhdpi-v4/ic_launcher_adaptive_back.png",
+      "bytes": 7342,
+      "compressed_bytes": 7342
+    },
+    {
+      "path": "res/mipmap-xxhdpi-v4/ic_launcher_adaptive_fore.png",
+      "bytes": 9801,
+      "compressed_bytes": 9801
+    },
+    {
+      "path": "res/mipmap-xxhdpi-v4/ic_transparent.png",
+      "bytes": 67,
+      "compressed_bytes": 67
+    },
+    {
+      "path": "res/mipmap-xxxhdpi-v4/ic_color_circle.png",
+      "bytes": 8263,
+      "compressed_bytes": 8263
+    },
+    {
+      "path": "res/mipmap-xxxhdpi-v4/ic_frame_circle.png",
+      "bytes": 2069,
+      "compressed_bytes": 2069
+    },
+    {
+      "path": "res/mipmap-xxxhdpi-v4/ic_frame_circle_2.png",
+      "bytes": 2643,
+      "compressed_bytes": 2643
+    },
+    {
+      "path": "res/mipmap-xxxhdpi-v4/ic_frame_cross.png",
+      "bytes": 692,
+      "compressed_bytes": 692
+    },
+    {
+      "path": "res/mipmap-xxxhdpi-v4/ic_frame_cross_circle.png",
+      "bytes": 2463,
+      "compressed_bytes": 2463
+    },
+    {
+      "path": "res/mipmap-xxxhdpi-v4/ic_frame_cross_circle2.png",
+      "bytes": 3016,
+      "compressed_bytes": 3016
+    },
+    {
+      "path": "res/mipmap-xxxhdpi-v4/ic_frame_cross_quarter.png",
+      "bytes": 805,
+      "compressed_bytes": 805
+    },
+    {
+      "path": "res/mipmap-xxxhdpi-v4/ic_frame_frame.png",
+      "bytes": 420,
+      "compressed_bytes": 420
+    },
+    {
+      "path": "res/mipmap-xxxhdpi-v4/ic_launcher.png",
+      "bytes": 16918,
+      "compressed_bytes": 16918
+    },
+    {
+      "path": "res/mipmap-xxxhdpi-v4/ic_launcher_adaptive_back.png",
+      "bytes": 10005,
+      "compressed_bytes": 10005
+    },
+    {
+      "path": "res/mipmap-xxxhdpi-v4/ic_launcher_adaptive_fore.png",
+      "bytes": 12914,
+      "compressed_bytes": 12914
+    },
+    {
+      "path": "res/mipmap-xxxhdpi-v4/ic_transparent.png",
+      "bytes": 67,
+      "compressed_bytes": 67
+    },
+    {
+      "path": "res/raw/gitlog.json",
+      "bytes": 2,
+      "compressed_bytes": 2
+    },
+    {
+      "path": "res/raw/speakersilent.mp3",
+      "bytes": 128105,
+      "compressed_bytes": 128105
+    },
+    {
+      "path": "res/raw/test440.mp3",
+      "bytes": 66855,
+      "compressed_bytes": 66855
+    },
+    {
+      "path": "res/xml/backup_rules.xml",
+      "bytes": 476,
+      "compressed_bytes": 228
+    },
+    {
+      "path": "res/xml/changelog.xml",
+      "bytes": 120,
+      "compressed_bytes": 65
+    },
+    {
+      "path": "res/xml/changelog_master.xml",
+      "bytes": 9696,
+      "compressed_bytes": 2574
+    },
+    {
+      "path": "res/xml/pref_dummy.xml",
+      "bytes": 148,
+      "compressed_bytes": 86
+    },
+    {
+      "path": "res/xml/prefs_audio.xml",
+      "bytes": 2696,
+      "compressed_bytes": 749
+    },
+    {
+      "path": "res/xml/prefs_bonding.xml",
+      "bytes": 2844,
+      "compressed_bytes": 807
+    },
+    {
+      "path": "res/xml/prefs_developer.xml",
+      "bytes": 4836,
+      "compressed_bytes": 1125
+    },
+    {
+      "path": "res/xml/prefs_display.xml",
+      "bytes": 1440,
+      "compressed_bytes": 530
+    },
+    {
+      "path": "res/xml/prefs_image_layer_edit.xml",
+      "bytes": 4364,
+      "compressed_bytes": 1070
+    },
+    {
+      "path": "res/xml/prefs_image_layers.xml",
+      "bytes": 1312,
+      "compressed_bytes": 429
+    },
+    {
+      "path": "res/xml/prefs_image_layers_root.xml",
+      "bytes": 808,
+      "compressed_bytes": 345
+    },
+    {
+      "path": "res/xml/prefs_image_layers_web.xml",
+      "bytes": 452,
+      "compressed_bytes": 243
+    },
+    {
+      "path": "res/xml/prefs_record.xml",
+      "bytes": 1984,
+      "compressed_bytes": 611
+    },
+    {
+      "path": "res/xml/prefs_root.xml",
+      "bytes": 2700,
+      "compressed_bytes": 695
+    },
+    {
+      "path": "res/xml/prefs_streamer.xml",
+      "bytes": 2792,
+      "compressed_bytes": 657
+    },
+    {
+      "path": "res/xml/prefs_support.xml",
+      "bytes": 828,
+      "compressed_bytes": 284
+    },
+    {
+      "path": "res/xml/prefs_video.xml",
+      "bytes": 6768,
+      "compressed_bytes": 1429
+    },
+    {
+      "path": "res/xml/splits0.xml",
+      "bytes": 8404,
+      "compressed_bytes": 945
+    },
+    {
+      "path": "res/xml/standalone_badge.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/xml/standalone_badge_gravity_bottom_end.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/xml/standalone_badge_gravity_bottom_start.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/xml/standalone_badge_gravity_top_start.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "res/xml/standalone_badge_offset.xml",
+      "bytes": 112,
+      "compressed_bytes": 54
+    },
+    {
+      "path": "resources.arsc",
+      "bytes": 1394396,
+      "compressed_bytes": 1394396
+    },
+    {
+      "path": "w/publicsuffix/NOTICE",
+      "bytes": 218,
+      "compressed_bytes": 149
+    },
+    {
+      "path": "w/publicsuffix/publicsuffixes.gz",
+      "bytes": 37730,
+      "compressed_bytes": 37730
+    },
+    {
+      "path": "stamp-cert-sha256",
+      "bytes": 32,
+      "compressed_bytes": 35
+    }
+  ]
+}

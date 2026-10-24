@@ -1,0 +1,67 @@
+
+artifacts/unpacked/lib/arm64-v8a/libuvccamera.so:	file format elf64-littleaarch64
+
+Program Header:
+    PHDR off    0x0000000000000040 vaddr 0x0000000000000040 paddr 0x0000000000000040 align 2**3
+         filesz 0x00000000000001f8 memsz 0x00000000000001f8 flags r--
+    LOAD off    0x0000000000000000 vaddr 0x0000000000000000 paddr 0x0000000000000000 align 2**12
+         filesz 0x000000000000b270 memsz 0x000000000000b270 flags r-x
+    LOAD off    0x000000000000b270 vaddr 0x000000000000c270 paddr 0x000000000000c270 align 2**12
+         filesz 0x0000000000000578 memsz 0x0000000000000578 flags rw-
+    LOAD off    0x000000000000b7e8 vaddr 0x000000000000d7e8 paddr 0x000000000000d7e8 align 2**12
+         filesz 0x0000000000000028 memsz 0x0000000000000898 flags rw-
+ DYNAMIC off    0x000000000000b348 vaddr 0x000000000000c348 paddr 0x000000000000c348 align 2**3
+         filesz 0x0000000000000230 memsz 0x0000000000000230 flags rw-
+   RELRO off    0x000000000000b270 vaddr 0x000000000000c270 paddr 0x000000000000c270 align 2**0
+         filesz 0x0000000000000578 memsz 0x0000000000000d90 flags r--
+EH_FRAME off    0x0000000000003a44 vaddr 0x0000000000003a44 paddr 0x0000000000003a44 align 2**2
+         filesz 0x000000000000026c memsz 0x000000000000026c flags r--
+   STACK off    0x0000000000000000 vaddr 0x0000000000000000 paddr 0x0000000000000000 align 2**64
+         filesz 0x0000000000000000 memsz 0x0000000000000000 flags rw-
+    NOTE off    0x0000000000000238 vaddr 0x0000000000000238 paddr 0x0000000000000238 align 2**2
+         filesz 0x00000000000000bc memsz 0x00000000000000bc flags r--
+
+Dynamic Section:
+  NEEDED       libuvc.so
+  NEEDED       libusb1.0.so
+  NEEDED       libjpeg.so
+  NEEDED       libyyjson.so
+  NEEDED       libjnigraphics.so
+  NEEDED       libandroid.so
+  NEEDED       liblog.so
+  NEEDED       libm.so
+  NEEDED       libc++_shared.so
+  NEEDED       libdl.so
+  NEEDED       libc.so
+  SONAME       libuvccamera.so
+  FLAGS        0x0000000000000008
+  FLAGS_1      0x0000000000000001
+  RELA         0x0000000000001b00
+  RELASZ       0x0000000000000390
+  RELAENT      0x0000000000000018
+  RELACOUNT    0x0000000000000016
+  JMPREL       0x0000000000001e90
+  PLTRELSZ     0x0000000000000630
+  PLTGOT       0x000000000000c5c0
+  PLTREL       0x0000000000000007
+  SYMTAB       0x00000000000002f8
+  SYMENT       0x0000000000000018
+  STRTAB       0x0000000000000db4
+  STRSZ        0x0000000000000d4b
+  GNU_HASH     0x0000000000000ce0
+  INIT_ARRAY   0x000000000000c340
+  INIT_ARRAYSZ 0x0000000000000008
+  FINI_ARRAY   0x000000000000c330
+  FINI_ARRAYSZ 0x0000000000000010
+  VERSYM       0x0000000000000bb0
+  VERNEED      0x0000000000000c6c
+  VERNEEDNUM   0x0000000000000003
+
+Version References:
+  required from libjpeg.so:
+    0x0939edd2 0x00 04 LIBJPEGTURBO_6.2
+    0x04cdffe2 0x00 03 LIBJPEG_6.2
+  required from libdl.so:
+    0x00050d63 0x00 05 LIBC
+  required from libc.so:
+    0x00050d63 0x00 02 LIBC

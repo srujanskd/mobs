@@ -1,0 +1,12 @@
+
+artifacts/unpacked/lib/armeabi-v7a/liblog.so:	file format elf32-littlearm
+
+DYNAMIC SYMBOL TABLE:
+00001374 g    DF .text	00000002 __android_log_assert
+00001380 g    DF .text	00000002 __android_log_is_loggable
+00001382 g    DF .text	00000002 __android_log_is_loggable_len
+00001376 g    DF .text	00000002 __android_log_buf_print
+00001378 g    DF .text	00000002 __android_log_buf_write
+0000137a g    DF .text	00000002 __android_log_print
+0000137c g    DF .text	00000002 __android_log_vprint
+0000137e g    DF .text	00000002 __android_log_write

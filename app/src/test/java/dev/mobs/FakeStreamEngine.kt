@@ -19,12 +19,16 @@ class FakeStreamEngine : StreamEngine {
     var released = 0
     var stopped = 0
     var switches = 0
+    var sceneRefreshes = 0
     val started = mutableListOf<StreamDestination>()
 
     override fun prepare(video: VideoProfile, audio: AudioProfile) = PrepareResult.Success
     override fun attachPreview(surface: Surface, width: Int, height: Int) = Unit
     override fun setPreviewSize(width: Int, height: Int) = Unit
+    override fun setPreviewFill(fill: Boolean) = Unit
     override fun detachPreview() { detached++ }
+    override fun setScene(scene: dev.mobs.scene.Scene) { state.update { it.copy(scene = scene) } }
+    override fun refreshScene(scene: dev.mobs.scene.Scene) { sceneRefreshes++; setScene(scene) }
     override fun switchCamera() { switches++ }
     override fun setMicrophoneMuted(muted: Boolean) {
         state.update { it.copy(microphoneMuted = muted) }

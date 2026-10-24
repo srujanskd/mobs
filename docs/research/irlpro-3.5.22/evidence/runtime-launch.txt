@@ -1,0 +1,7 @@
+Starting: Intent { cmp=app.irlpro.android/com.wmspanel.streamer.LaunchActivity }
+Status: ok
+LaunchState: COLD
+Activity: com.google.android.permissioncontroller/com.android.permissioncontroller.permission.ui.GrantPermissionsActivity
+TotalTime: 2090
+WaitTime: 2120
+Complete

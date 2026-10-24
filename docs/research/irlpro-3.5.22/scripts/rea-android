@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+export JAVA_HOME='/Applications/Android Studio.app/Contents/jbr/Contents/Home'
+export REA_JADX_MCP_JAR="$ROOT/tools/android/jadx-headless-mcp-0.7.1-all.jar"
+if [[ ! -x "$JAVA_HOME/bin/java" ]]; then
+  echo 'Android Studio JDK is unavailable. Update JAVA_HOME in scripts/rea-android.' >&2
+  exit 1
+fi
+printf '%s  %s\n' '6e5eacf500b64292bfb73c49797c1958f6ee44646e43e868039ae7feb573ff75' "$REA_JADX_MCP_JAR" | shasum -a 256 -c - >&2
+exec npx -y rea-agents@6.7.0 "$@"

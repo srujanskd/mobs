@@ -13,10 +13,19 @@ import androidx.activity.compose.LocalActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.draw.clip
+import androidx.compose.material3.Surface
+import androidx.compose.material3.HorizontalDivider
+import dev.mobs.scene.Scene
+import dev.mobs.scene.SceneSource
+import dev.mobs.scene.SourceKind
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -49,7 +58,12 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.pluralStringResource
@@ -88,7 +102,17 @@ fun CameraScreen(
     modifier: Modifier = Modifier,
     viewModel: CameraViewModel = viewModel(factory = CameraViewModel.Factory),
 ) {
+    val sceneModel: SceneViewModel = viewModel(factory = SceneViewModel.Factory)
+    val collection by sceneModel.collection.collectAsStateWithLifecycle()
+    val refreshing by sceneModel.refreshing.collectAsStateWithLifecycle()
+    val refreshNotice by sceneModel.notice.collectAsStateWithLifecycle()
+    val sceneStoreError by sceneModel.error.collectAsStateWithLifecycle()
+    var showScenes by rememberSaveable { mutableStateOf(false) }
     val session = rememberStreamSession()
+    DisposableEffect(session, sceneModel) {
+        sceneModel.bind(session?.engine)
+        onDispose { sceneModel.bind(null) }
+    }
     DisposableEffect(session, viewModel) {
         if (session != null) viewModel.bind(session.engine, session.thermal)
         onDispose { viewModel.unbind() }
@@ -96,6 +120,7 @@ fun CameraScreen(
     val editorState by viewModel.state.collectAsStateWithLifecycle()
     val destination by viewModel.destination.collectAsStateWithLifecycle()
     val thermal by viewModel.thermal.collectAsStateWithLifecycle()
+    var showCameraSettings by rememberSaveable { mutableStateOf(false) }
     var showSetup by rememberSaveable { mutableStateOf(false) }
     var confirmStop by rememberSaveable { mutableStateOf(false) }
     var showText by rememberSaveable { mutableStateOf(false) }
@@ -108,7 +133,19 @@ fun CameraScreen(
     val launchLogoPicker = {
         pickLogo.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
     }
+    var fillPreview by rememberSaveable { mutableStateOf(true) }
     var previewOff by rememberSaveable { mutableStateOf(false) }
+    if (showScenes && collection != null) {
+        SceneEditor(
+            collection = collection!!,
+            dualCameraSupport = editorState?.dualCameraSupport ?: dev.mobs.scene.DualCameraSupport(),
+            onSave = sceneModel::save, onDelete = sceneModel::delete, onClose = { showScenes = false },
+        )
+    }
+    if (sceneStoreError != null) AlertDialog(
+        onDismissRequest = sceneModel::dismissError, text = { Text(sceneStoreError.orEmpty()) },
+        confirmButton = { TextButton(onClick = sceneModel::dismissError) { Text("OK") } },
+    )
     val state = editorState
     if (state == null) {
         Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -134,123 +171,127 @@ fun CameraScreen(
         return
     }
 
-    Box(modifier = modifier.fillMaxSize().background(Color.Black)) {
-        val error = state.profileError
-        if (error != null) {
-            Column(
-                modifier = Modifier.fillMaxSize().padding(32.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterVertically),
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                Text(
-                    stringResource(
-                        R.string.profile_unsupported,
-                        state.video.width,
-                        state.video.height,
-                        state.video.fps,
-                    ),
-                    style = MaterialTheme.typography.titleMedium,
-                )
-                Text(error, style = MaterialTheme.typography.bodyMedium)
-            }
-        } else {
-            key(session?.engine) {
-                EnginePreview(
-                    viewModel = viewModel,
-                    fps = state.video.fps,
-                    modifier = Modifier
-                        .align(Alignment.Center)
-                        .fillMaxHeight()
-                        .aspectRatio(state.video.width.toFloat() / state.video.height.toFloat()),
-                )
-            }
-        }
+    val activity = LocalActivity.current
+    DisposableEffect(activity) {
+        val controller = activity?.window?.let { WindowCompat.getInsetsController(it, it.decorView) }
+        controller?.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        controller?.hide(WindowInsetsCompat.Type.systemBars())
+        onDispose { controller?.show(WindowInsetsCompat.Type.systemBars()) }
+    }
+    LaunchedEffect(fillPreview, session) { viewModel.setPreviewFill(fillPreview) }
 
-        Column(modifier = Modifier.align(Alignment.TopStart).padding(16.dp)) {
-            Text(
-                text = statusLine(state.camera, state.video.width, state.video.height, state.video.fps),
-                color = Color.White,
-                style = MaterialTheme.typography.labelLarge,
-            )
-            ThermalStatus(thermal)
+    Box(modifier = modifier.fillMaxSize().background(Color.Black).testTag("studio-fullscreen")) {
+        // Controls are siblings of the preview. None of their sizes constrain its surface.
+        if (state.profileError != null) {
+            Column(Modifier.align(Alignment.Center).padding(32.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                StudioGlyph(StudioIcon.CAMERA, null, StudioAccent)
+                Text(state.profileError, style = MaterialTheme.typography.bodyMedium)
+            }
+        } else key(session?.engine) {
+            EnginePreview(viewModel, state.video.fps, Modifier.fillMaxSize().testTag("studio-preview"))
         }
-
-        Column(
-            modifier = Modifier.align(Alignment.TopEnd).padding(16.dp),
-            horizontalAlignment = Alignment.End,
-        ) {
-            ConnectionStatus(connection = state.connection, stats = state.stats)
-            if (!state.streamActive) {
-                val context = LocalContext.current
-                TextButton(onClick = { shareSessionLogs(context) }) {
-                    Text(stringResource(R.string.action_share_logs))
+        Box(Modifier.fillMaxSize().background(Brush.verticalGradient(listOf(Color.Black.copy(alpha = .6f), Color.Transparent, Color.Transparent, Color.Black.copy(alpha = .7f)))))
+        Box(Modifier.fillMaxSize().displayCutoutPadding().padding(16.dp)) {
+            Column(Modifier.align(Alignment.TopStart).background(Color(0xB30C1018), RoundedCornerShape(16.dp)).padding(horizontal = 14.dp, vertical = 10.dp)) {
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    if (state.streamActive) Text("● LIVE", color = Color(0xFFFF879B), style = MaterialTheme.typography.labelMedium)
+                    Text(state.scene?.name ?: "Camera", style = MaterialTheme.typography.titleSmall, color = Color.White)
                 }
+                Text("${state.video.height}p · ${state.video.fps} fps${if (state.microphoneMuted) " · Mic muted" else ""}", style = MaterialTheme.typography.labelSmall, color = Color(0xFFBBC5D8))
             }
-        }
-
-        Row(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-                .padding(16.dp),
-            horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally),
-        ) {
-            Button(onClick = viewModel::toggleMicrophone) {
-                Text(
-                    stringResource(
-                        if (state.microphoneMuted) R.string.action_unmute else R.string.action_mute,
-                    ),
-                )
+            Row(Modifier.align(Alignment.TopEnd).background(Color(0xB30C1018), RoundedCornerShape(16.dp)).padding(6.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                ConnectionStatus(connection = state.connection, stats = state.stats)
+                StudioAction(StudioIcon.FRAME, if (fillPreview) "Fit entire output" else "Fill preview", active = !fillPreview, onClick = { fillPreview = !fillPreview })
+                if (refreshing) Box(Modifier.size(48.dp), contentAlignment = Alignment.Center) { CircularProgressIndicator(Modifier.size(24.dp), strokeWidth = 2.dp) }
+                else StudioAction(StudioIcon.REFRESH, "Refresh scenes and sources", enabled = collection != null, onClick = sceneModel::refresh)
             }
-            Button(onClick = viewModel::switchCamera) {
-                Text(
-                    stringResource(
-                        when (state.cameraFacing) {
-                            CameraFacing.REAR -> R.string.action_camera_front
-                            CameraFacing.FRONT -> R.string.action_camera_rear
-                        },
-                    ),
-                )
+            val notice = state.sceneError ?: state.recordingError ?: refreshNotice
+            notice?.let {
+                Text(it, Modifier.align(Alignment.TopCenter).padding(top = 76.dp).widthIn(max = 520.dp).background(Color.Black.copy(alpha = .8f), RoundedCornerShape(12.dp)).padding(12.dp),
+                    color = if (state.sceneError != null || state.recordingError != null) Color(0xFFFFA1B3) else StudioAccent, style = MaterialTheme.typography.labelSmall)
             }
-            OutlinedButton(onClick = { showText = true }) {
-                Text(stringResource(R.string.action_text_overlay))
-            }
-            OutlinedButton(onClick = { if (state.logoOverlay == null) launchLogoPicker() else showLogo = true }) {
-                Text(stringResource(R.string.action_logo))
-            }
-            if (state.streamActive) {
-                OutlinedButton(onClick = { previewOff = true }) {
-                    Text(stringResource(R.string.action_preview_off))
+            Column(Modifier.align(Alignment.BottomCenter).fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.Bottom, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                    Row(Modifier.weight(1f).horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
+                        collection?.scenes?.forEach { scene ->
+                            FilterChip(selected = state.scene?.id == scene.id, onClick = { sceneModel.activate(scene) }, label = { Text(scene.name) }, colors = androidx.compose.material3.FilterChipDefaults.filterChipColors(containerColor = Color(0xB30C1018), selectedContainerColor = Color(0xD93D456E)))
+                        }
+                    }
+                    val camera = state.scene?.sources?.firstOrNull { it.visible && it.kind in Scene.CAMERA_KINDS }
+                    if (camera != null) {
+                        val context = LocalContext.current
+                        val lenses = remember(camera.kind, state.scene?.cameras) { dev.mobs.render.sceneLensOptions(context, camera.kind, state.scene!!.cameras.size == 2) }
+                        val feedback = state.cameraZoom[camera.id]
+                        Column(Modifier.weight(1f), horizontalAlignment = Alignment.End) {
+                            if (feedback?.confirmed != true || kotlin.math.abs(feedback.requested - camera.zoom) >= .03f) {
+                                Text(if (feedback?.failed == true) "Camera at ${feedback.actual?.let(::lensLabel) ?: "unknown zoom"}"
+                                    else "Switching to ${lensLabel(camera.zoom)}", color = Color.White, style = MaterialTheme.typography.labelSmall,
+                                    modifier = Modifier.background(Color.Black.copy(alpha = .65f), RoundedCornerShape(8.dp)).padding(horizontal = 8.dp, vertical = 4.dp))
+                            }
+                            Row(Modifier.horizontalScroll(rememberScrollState()).background(Color(0xB30C1018), RoundedCornerShape(30.dp)).padding(horizontal = 6.dp), horizontalArrangement = Arrangement.spacedBy(2.dp)) {
+                                lenses.forEach { ratio ->
+                                    TextButton(onClick = { state.scene?.let { sceneModel.save(it.update(camera.copy(zoom = ratio)), true) } }, contentPadding = PaddingValues(horizontal = 8.dp)) {
+                                        Text(lensLabel(ratio), color = if (feedback?.actual?.let { kotlin.math.abs(it - ratio) < .03f } == true) StudioAccent else Color.White)
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
-            }
-            OutlinedButton(
-                onClick = { showSetup = true },
-                enabled = !state.streamActive && destination != SavedDestination.Loading,
-            ) {
-                Text(stringResource(R.string.action_stream_setup))
-            }
-            when {
-                state.streamActive -> Button(
-                    onClick = { confirmStop = true },
-                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error),
-                ) {
-                    Text(stringResource(R.string.action_stop_stream))
-                }
-                destination is SavedDestination.Ready -> Button(
-                    onClick = viewModel::goLive,
-                    enabled = state.profileError == null && !thermal.level.isCritical(),
-                ) {
-                    Text(stringResource(R.string.action_go_live))
-                }
-                else -> Button(
-                    onClick = { showSetup = true },
-                    enabled = destination == SavedDestination.Missing,
-                ) {
-                    Text(stringResource(R.string.action_set_up_stream))
+                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Row(Modifier.background(Color(0xB30C1018), RoundedCornerShape(18.dp)).padding(6.dp), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                        StudioAction(StudioIcon.MIC, stringResource(if (state.microphoneMuted) R.string.action_unmute else R.string.action_mute), active = state.microphoneMuted, off = state.microphoneMuted, onClick = viewModel::toggleMicrophone)
+                        StudioAction(StudioIcon.CAMERA, "Camera controls", onClick = { showCameraSettings = true })
+                        StudioAction(StudioIcon.FLIP, "Switch camera", onClick = {
+                            val scene = state.scene
+                            val cameras = scene?.sources?.filter { it.kind in Scene.CAMERA_KINDS }.orEmpty()
+                            if (scene != null && cameras.size == 1) {
+                                val camera = cameras.single()
+                                val kind = if (camera.kind == SourceKind.REAR_CAMERA) SourceKind.FRONT_CAMERA else SourceKind.REAR_CAMERA
+                                sceneModel.save(scene.update(camera.copy(kind = kind, name = if (kind == SourceKind.FRONT_CAMERA) "Front camera" else "Rear camera", zoom = 1f)), true)
+                            } else showCameraSettings = true
+                        })
+                        StudioAction(StudioIcon.LAYERS, "Scene editor", enabled = collection != null, onClick = { showScenes = true })
+                        StudioAction(StudioIcon.SETTINGS, stringResource(R.string.action_stream_setup), enabled = !state.streamActive && destination != SavedDestination.Loading, onClick = { showSetup = true })
+                        if (state.streamActive) StudioAction(StudioIcon.EYE, stringResource(R.string.action_preview_off), onClick = { previewOff = true })
+                        else {
+                            val context = LocalContext.current
+                            StudioAction(StudioIcon.SHARE, "Share session logs", onClick = { shareSessionLogs(context) })
+                        }
+                    }
+                    Column(Modifier.weight(1f).background(Color(0x990C1018), RoundedCornerShape(12.dp)).padding(8.dp)) { ThermalStatus(thermal) }
+                    when {
+                        state.streamActive -> Button(onClick = { confirmStop = true }, colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE95573)), shape = RoundedCornerShape(16.dp), contentPadding = PaddingValues(horizontal = 24.dp, vertical = 16.dp)) { Text(stringResource(R.string.action_stop_stream)) }
+                        destination is SavedDestination.Ready -> Button(onClick = viewModel::goLive, enabled = state.profileError == null && !thermal.level.isCritical(), shape = RoundedCornerShape(16.dp), contentPadding = PaddingValues(horizontal = 24.dp, vertical = 16.dp)) { Text(stringResource(R.string.action_go_live)) }
+                        else -> Button(onClick = { showSetup = true }, enabled = destination == SavedDestination.Missing, shape = RoundedCornerShape(16.dp), contentPadding = PaddingValues(horizontal = 24.dp, vertical = 16.dp)) { Text(stringResource(R.string.action_set_up_stream)) }
+                    }
                 }
             }
         }
     }
+
+    LaunchedEffect(refreshNotice) {
+        if (refreshNotice != null) { delay(3_000); sceneModel.dismissNotice() }
+    }
+    if (showCameraSettings) AlertDialog(
+        onDismissRequest = { showCameraSettings = false },
+        title = { Text("Camera") },
+        text = {
+            Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                val scene = state.scene
+                val cameras = scene?.sources?.filter { it.kind in Scene.CAMERA_KINDS }.orEmpty()
+                if (cameras.isEmpty()) Text("Add a camera in the scene editor.")
+                cameras.forEach { source ->
+                    CameraSourceControls(source, scene!!.cameras.size == 2, feedback = state.cameraZoom[source.id], live = true, onChange = { sceneModel.save(scene.update(it), true) })
+                    if (cameras.size == 1) OutlinedButton(onClick = {
+                        val kind = if (source.kind == SourceKind.REAR_CAMERA) SourceKind.FRONT_CAMERA else SourceKind.REAR_CAMERA
+                        sceneModel.save(scene.update(source.copy(kind = kind, name = if (kind == SourceKind.FRONT_CAMERA) "Front camera" else "Rear camera", zoom = 1f)), true)
+                    }) { Text(if (source.kind == SourceKind.REAR_CAMERA) "Switch to front camera" else "Switch to rear camera") }
+                }
+            }
+        },
+        confirmButton = { TextButton(onClick = { showCameraSettings = false }) { Text("Done") } },
+    )
 
     if (showSetup) {
         StreamSetupDialog(

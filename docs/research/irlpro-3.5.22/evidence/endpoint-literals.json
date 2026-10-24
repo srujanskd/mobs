@@ -1,0 +1,152 @@
+[
+  {
+    "value": "http://schemas.android.com/apk/res/android",
+    "file": "artifacts/jadx/sources/com/google/android/material/chip/Chip.java",
+    "line": 323
+  },
+  {
+    "value": "http://schemas.android.com/apk/res/android",
+    "file": "artifacts/jadx/sources/com/google/android/material/chip/Chip.java",
+    "line": 326
+  },
+  {
+    "value": "http://schemas.android.com/apk/res/android",
+    "file": "artifacts/jadx/sources/com/google/android/material/chip/Chip.java",
+    "line": 329
+  },
+  {
+    "value": "http://schemas.android.com/apk/res/android",
+    "file": "artifacts/jadx/sources/com/google/android/material/chip/Chip.java",
+    "line": 332
+  },
+  {
+    "value": "http://schemas.android.com/apk/res/android",
+    "file": "artifacts/jadx/sources/com/google/android/material/chip/Chip.java",
+    "line": 335
+  },
+  {
+    "value": "http://schemas.android.com/apk/res/android",
+    "file": "artifacts/jadx/sources/com/google/android/material/chip/Chip.java",
+    "line": 338
+  },
+  {
+    "value": "http://schemas.android.com/apk/res/android",
+    "file": "artifacts/jadx/sources/com/google/android/material/chip/Chip.java",
+    "line": 338
+  },
+  {
+    "value": "http://schemas.android.com/apk/res/android",
+    "file": "artifacts/jadx/sources/com/google/android/material/chip/Chip.java",
+    "line": 338
+  },
+  {
+    "value": "http://schemas.android.com/apk/res/android",
+    "file": "artifacts/jadx/sources/com/google/android/material/chip/Chip.java",
+    "line": 338
+  },
+  {
+    "value": "http://schemas.android.com/apk/res/android",
+    "file": "artifacts/jadx/sources/com/google/android/material/chip/Chip.java",
+    "line": 341
+  },
+  {
+    "value": "http://schemas.android.com/apk/res-auto",
+    "file": "artifacts/jadx/sources/com/google/android/material/chip/aux.java",
+    "line": 1360
+  },
+  {
+    "value": "http://schemas.android.com/apk/res-auto",
+    "file": "artifacts/jadx/sources/com/google/android/material/chip/aux.java",
+    "line": 1360
+  },
+  {
+    "value": "http://schemas.android.com/apk/res-auto",
+    "file": "artifacts/jadx/sources/com/google/android/material/chip/aux.java",
+    "line": 1370
+  },
+  {
+    "value": "http://schemas.android.com/apk/res-auto",
+    "file": "artifacts/jadx/sources/com/google/android/material/chip/aux.java",
+    "line": 1370
+  },
+  {
+    "value": "http://schemas.android.com/apk/res-auto",
+    "file": "artifacts/jadx/sources/com/google/android/material/chip/aux.java",
+    "line": 1378
+  },
+  {
+    "value": "http://schemas.android.com/apk/res-auto",
+    "file": "artifacts/jadx/sources/com/google/android/material/chip/aux.java",
+    "line": 1378
+  },
+  {
+    "value": "http://support.newrelic.com.",
+    "file": "artifacts/jadx/sources/com/newrelic/agent/android/NewRelic.java",
+    "line": 129
+  },
+  {
+    "value": "rtmp://%1$s:%2$d/%3$s",
+    "file": "artifacts/jadx/sources/com/wmspanel/libstream/s.java",
+    "line": 491
+  },
+  {
+    "value": "https://irlpro.app/api/twitch_stream/",
+    "file": "artifacts/jadx/sources/com/wmspanel/streamer/StreamerServiceActivity.java",
+    "line": 527
+  },
+  {
+    "value": "https://kick.com/api/v2/channels/",
+    "file": "artifacts/jadx/sources/com/wmspanel/streamer/StreamerServiceActivity.java",
+    "line": 539
+  },
+  {
+    "value": "https://irlpro.app/multichat/?twitchchannel=",
+    "file": "artifacts/jadx/sources/com/wmspanel/streamer/aux.java",
+    "line": 575
+  },
+  {
+    "value": "https://streamelements.com/dashboard/xxxxxxxxxxxxxxx/activity/popout",
+    "file": "artifacts/jadx/sources/com/wmspanel/streamer/aux.java",
+    "line": 630
+  },
+  {
+    "value": "https://streamlabs.com/dashboard/recent-events?token=",
+    "file": "artifacts/jadx/sources/com/wmspanel/streamer/aux.java",
+    "line": 635
+  },
+  {
+    "value": "https://toon.at/widget/controller/",
+    "file": "artifacts/jadx/sources/com/wmspanel/streamer/aux.java",
+    "line": 638
+  },
+  {
+    "value": "rtmp://live.twitch.tv/app/",
+    "file": "artifacts/jadx/sources/com/wmspanel/streamer/preference/ConnectionWizard.java",
+    "line": 289
+  },
+  {
+    "value": "https://api.bugfender.com/",
+    "file": "artifacts/jadx/sources/p008COm6/g0.java",
+    "line": 12
+  },
+  {
+    "value": "https://dashboard.bugfender.com",
+    "file": "artifacts/jadx/sources/p008COm6/k0.java",
+    "line": 19
+  },
+  {
+    "value": "https://irlpro.app/api/bonding/",
+    "file": "artifacts/jadx/sources/p046LpT5/t0.java",
+    "line": 80
+  },
+  {
+    "value": "srtla://stream.global.irl.run:5000",
+    "file": "artifacts/jadx/sources/p046LpT5/t0.java",
+    "line": 140
+  },
+  {
+    "value": "https://docs.objectbox.io/android/app-bundle-and-split-apk",
+    "file": "artifacts/jadx/sources/p049LpT8/lpt6.java",
+    "line": 88
+  }
+]

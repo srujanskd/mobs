@@ -1,0 +1,50 @@
+
+artifacts/unpacked/lib/x86/libyyjson.so:	file format elf32-i386
+
+DYNAMIC SYMBOL TABLE:
+00000000      DF *UND*	00000000 (LIBC)       __cxa_finalize
+00000000      DF *UND*	00000000 (LIBC)       __cxa_atexit
+00000000      DF *UND*	00000000 (LIBC)       __register_atfork
+00000000      DF *UND*	00000000 (LIBC)       memcpy
+00000000      DF *UND*	00000000 (LIBC)       memcmp
+00000000      DF *UND*	00000000 (LIBC)       memset
+00000000      DF *UND*	00000000 (LIBC)       fopen
+00000000      DF *UND*	00000000 (LIBC)       fseek
+00000000      DF *UND*	00000000 (LIBC)       rewind
+00000000      DF *UND*	00000000 (LIBC)       fread
+00000000      DF *UND*	00000000 (LIBC)       fclose
+00000000      DF *UND*	00000000 (LIBC)       ftell
+00000000      DF *UND*	00000000 (LIBC)       memmove
+00000000      DF *UND*	00000000 (LIBC)       fwrite
+00000000      DF *UND*	00000000 (LIBC)       malloc
+00000000      DF *UND*	00000000 (LIBC)       realloc
+00000000      DF *UND*	00000000 (LIBC)       free
+00008e60 g    DF .text	00000061              unsafe_yyjson_str_pool_grow
+00008f40 g    DF .text	00000079              yyjson_mut_doc_free
+0000a0a0 g    DF .text	00000560              unsafe_yyjson_get_pointer
+00021980 g    DF .text	00002e6f              yyjson_read_number
+00028cc0 g    DF .text	00000041              yyjson_write_file
+0002cff0 g    DF .text	00000041              yyjson_mut_write_opts
+00009130 g    DF .text	000003db              yyjson_val_mut_copy
+0000af80 g    DF .text	000004e2              yyjson_mut_merge_patch
+00009030 g    DF .text	000000fb              yyjson_doc_mut_copy
+00009630 g    DF .text	0000002e              yyjson_mut_val_mut_copy
+00009840 g    DF .text	000000e7              yyjson_mut_val_imut_copy
+0000aac0 g    DF .text	000004bc              yyjson_merge_patch
+00028b60 g    DF .text	00000159              yyjson_val_write_file
+0002d040 g    DF .text	00000159              yyjson_mut_val_write_file
+00008ed0 g    DF .text	00000070              unsafe_yyjson_val_pool_grow
+00021670 g    DF .text	0000030d              yyjson_read_file
+00028b10 g    DF .text	00000041              yyjson_write_opts
+00008ad0 g    DF .text	00000006              yyjson_version
+00008fc0 g    DF .text	0000006e              yyjson_mut_doc_new
+00009b50 g    DF .text	0000030c              unsafe_yyjson_equals
+00009e60 g    DF .text	00000236              unsafe_yyjson_mut_equals
+0002d1a0 g    DF .text	00000041              yyjson_mut_write_file
+00008ae0 g    DF .text	00000079              yyjson_alc_pool_init
+0000a600 g    DF .text	000004bd              unsafe_yyjson_mut_get_pointer
+000247f0 g    DF .text	00004314              yyjson_val_write_opts
+00028d10 g    DF .text	000042da              yyjson_mut_val_write_opts
+00009510 g    DF .text	0000011b              yyjson_mut_doc_mut_copy
+00009800 g    DF .text	00000032              yyjson_mut_doc_imut_copy
+0000b470 g    DF .text	00012173              yyjson_read_opts

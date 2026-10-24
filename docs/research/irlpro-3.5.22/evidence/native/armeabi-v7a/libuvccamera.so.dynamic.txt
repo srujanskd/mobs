@@ -1,0 +1,67 @@
+
+artifacts/unpacked/lib/armeabi-v7a/libuvccamera.so:	file format elf32-littlearm
+
+Program Header:
+    PHDR off    0x00000034 vaddr 0x00000034 paddr 0x00000034 align 2**2
+         filesz 0x00000120 memsz 0x00000120 flags r--
+    LOAD off    0x00000000 vaddr 0x00000000 paddr 0x00000000 align 2**12
+         filesz 0x00004a60 memsz 0x00004a60 flags r-x
+    LOAD off    0x00004a60 vaddr 0x00005a60 paddr 0x00005a60 align 2**12
+         filesz 0x00000264 memsz 0x00000264 flags rw-
+    LOAD off    0x00004cc8 vaddr 0x00006cc8 paddr 0x00006cc8 align 2**12
+         filesz 0x00000000 memsz 0x00000018 flags rw-
+ DYNAMIC off    0x00004a88 vaddr 0x00005a88 paddr 0x00005a88 align 2**2
+         filesz 0x00000118 memsz 0x00000118 flags rw-
+   RELRO off    0x00004a60 vaddr 0x00005a60 paddr 0x00005a60 align 2**0
+         filesz 0x00000264 memsz 0x000005a0 flags r--
+   STACK off    0x00000000 vaddr 0x00000000 paddr 0x00000000 align 2**64
+         filesz 0x00000000 memsz 0x00000000 flags rw-
+    NOTE off    0x00000154 vaddr 0x00000154 paddr 0x00000154 align 2**2
+         filesz 0x000000bc memsz 0x000000bc flags r--
+ UNKNOWN off    0x00001708 vaddr 0x00001708 paddr 0x00001708 align 2**2
+         filesz 0x00000138 memsz 0x00000138 flags r--
+
+Dynamic Section:
+  NEEDED       libuvc.so
+  NEEDED       libusb1.0.so
+  NEEDED       libjpeg.so
+  NEEDED       libyyjson.so
+  NEEDED       libjnigraphics.so
+  NEEDED       libandroid.so
+  NEEDED       liblog.so
+  NEEDED       libm.so
+  NEEDED       libc++_shared.so
+  NEEDED       libdl.so
+  NEEDED       libc.so
+  SONAME       libuvccamera.so
+  FLAGS        0x00000008
+  FLAGS_1      0x00000001
+  REL          0x00001678
+  RELSZ        0x00000090
+  RELENT       0x00000008
+  RELCOUNT     0x00000004
+  JMPREL       0x00001840
+  PLTRELSZ     0x000001e8
+  PLTGOT       0x00005bc4
+  PLTREL       0x00000011
+  SYMTAB       0x00000210
+  SYMENT       0x00000010
+  STRTAB       0x00000974
+  STRSZ        0x00000d02
+  GNU_HASH     0x000008a0
+  INIT_ARRAY   0x00005a84
+  INIT_ARRAYSZ 0x00000004
+  FINI_ARRAY   0x00005a7c
+  FINI_ARRAYSZ 0x00000008
+  VERSYM       0x00000780
+  VERNEED      0x00000830
+  VERNEEDNUM   0x00000003
+
+Version References:
+  required from libjpeg.so:
+    0x0939edd2 0x00 04 LIBJPEGTURBO_6.2
+    0x04cdffe2 0x00 03 LIBJPEG_6.2
+  required from libm.so:
+    0x00050d63 0x00 05 LIBC
+  required from libc.so:
+    0x00050d63 0x00 02 LIBC

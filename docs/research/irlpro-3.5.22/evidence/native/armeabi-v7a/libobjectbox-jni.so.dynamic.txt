@@ -1,0 +1,63 @@
+
+artifacts/unpacked/lib/armeabi-v7a/libobjectbox-jni.so:	file format elf32-littlearm
+
+Program Header:
+    PHDR off    0x00000034 vaddr 0x00000034 paddr 0x00000034 align 2**2
+         filesz 0x00000100 memsz 0x00000100 flags r--
+    LOAD off    0x00000000 vaddr 0x00000000 paddr 0x00000000 align 2**12
+         filesz 0x0011f9b1 memsz 0x0011f9b1 flags r-x
+    LOAD off    0x00120190 vaddr 0x00121190 paddr 0x00121190 align 2**12
+         filesz 0x000040ac memsz 0x00004610 flags rw-
+ DYNAMIC off    0x0012377c vaddr 0x0012477c paddr 0x0012477c align 2**2
+         filesz 0x00000120 memsz 0x00000120 flags rw-
+    NOTE off    0x00000134 vaddr 0x00000134 paddr 0x00000134 align 2**2
+         filesz 0x000000bc memsz 0x000000bc flags r--
+   STACK off    0x00000000 vaddr 0x00000000 paddr 0x00000000 align 2**4
+         filesz 0x00000000 memsz 0x00000000 flags rw-
+ UNKNOWN off    0x000f04f8 vaddr 0x000f04f8 paddr 0x000f04f8 align 2**2
+         filesz 0x00007f98 memsz 0x00007f98 flags r--
+   RELRO off    0x00120190 vaddr 0x00121190 paddr 0x00121190 align 2**2
+         filesz 0x00003e70 memsz 0x00003e70 flags rw-
+
+Dynamic Section:
+  PLTGOT       0x00124a68
+  PLTRELSZ     0x00000b18
+  JMPREL       0x0001c04c
+  PLTREL       0x00000011
+  REL          0x00015d4c
+  RELSZ        0x00006300
+  RELENT       0x00000008
+  RELCOUNT     0x000009d3
+  SYMTAB       0x000001f0
+  SYMENT       0x00000010
+  STRTAB       0x00005780
+  STRSZ        0x0000ada4
+  GNU_HASH     0x00010524
+  HASH         0x00012c94
+  NEEDED       libc.so
+  NEEDED       liblog.so
+  NEEDED       libm.so
+  NEEDED       libdl.so
+  SONAME       libobjectbox-jni.so
+  FINI_ARRAY   0x00124734
+  FINI_ARRAYSZ 0x00000008
+  INIT_ARRAY   0x0012473c
+  INIT_ARRAYSZ 0x00000040
+  FLAGS        0x00000008
+  FLAGS_1      0x00000001
+  VERSYM       0x0001521c
+  VERDEF       0x00015cd0
+  VERDEFNUM    0x00000001
+  VERNEED      0x00015cec
+  VERNEEDNUM   0x00000003
+
+Version definitions:
+1 0x01 0x0b676a7f libobjectbox-jni.so
+
+Version References:
+  required from libc.so:
+    0x00050d63 0x00 02 LIBC
+  required from libm.so:
+    0x00050d63 0x00 03 LIBC
+  required from libdl.so:
+    0x00050d63 0x00 04 LIBC

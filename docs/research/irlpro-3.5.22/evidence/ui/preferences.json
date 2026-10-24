@@ -1,0 +1,2752 @@
+[
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_audio.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/bluetooth_title",
+      "key": "@string/bluetooth_key",
+      "defaultValue": "@string/bluetooth_default",
+      "summaryOn": "@string/bluetooth_help",
+      "summaryOff": ""
+    },
+    "resolved": {
+      "title": "Prefer Bluetooth Mic/Headset",
+      "key": "use_bluetooth",
+      "defaultValue": "false",
+      "summaryOn": "If recording over Bluetooth doesn\\'t work, try changing the audio source.",
+      "summaryOff": ""
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_audio.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/audio_src_entries",
+      "title": "@string/audio_src_title",
+      "key": "@string/audio_src_key",
+      "summary": "@string/audio_src_summary",
+      "defaultValue": "@string/audio_src_camcorder",
+      "entryValues": "@array/audio_src_values"
+    },
+    "resolved": {
+      "entries": [
+        "@string/audio_src_entry_camcorder",
+        "@string/audio_src_entry_mic",
+        "@string/audio_src_entry_default",
+        "@string/audio_src_entry_voice_communication",
+        "@string/audio_src_entry_voice_recognition",
+        "@string/audio_src_entry_unprocessed"
+      ],
+      "title": "Audio source",
+      "key": "pref_audio_src_key",
+      "summary": "Microphone to use for recording audio. Note that the exact behaviour of the options depends on how the option is implemented on your device.",
+      "defaultValue": "audio_src_camcorder",
+      "entryValues": [
+        "@string/audio_src_camcorder",
+        "@string/audio_src_mic",
+        "@string/audio_src_default",
+        "@string/audio_src_voice_communication",
+        "@string/audio_src_voice_recognition",
+        "@string/audio_src_unprocessed"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_audio.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/audio_src_entries",
+      "title": "@string/bluetooth_src_title",
+      "key": "@string/bluetooth_src_key",
+      "summary": "@string/audio_src_summary",
+      "defaultValue": "@string/audio_src_voice_communication",
+      "entryValues": "@array/audio_src_values"
+    },
+    "resolved": {
+      "entries": [
+        "@string/audio_src_entry_camcorder",
+        "@string/audio_src_entry_mic",
+        "@string/audio_src_entry_default",
+        "@string/audio_src_entry_voice_communication",
+        "@string/audio_src_entry_voice_recognition",
+        "@string/audio_src_entry_unprocessed"
+      ],
+      "title": "Bluetooth audio source",
+      "key": "bluetooth_src_key",
+      "summary": "Microphone to use for recording audio. Note that the exact behaviour of the options depends on how the option is implemented on your device.",
+      "defaultValue": "audio_src_voice_communication",
+      "entryValues": [
+        "@string/audio_src_camcorder",
+        "@string/audio_src_mic",
+        "@string/audio_src_default",
+        "@string/audio_src_voice_communication",
+        "@string/audio_src_voice_recognition",
+        "@string/audio_src_unprocessed"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_audio.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/channel_count_entries",
+      "title": "@string/channel_count_title",
+      "key": "@string/channel_count_key",
+      "defaultValue": "@string/channel_count_default",
+      "entryValues": "@array/channel_count_values"
+    },
+    "resolved": {
+      "entries": [
+        "@string/channel_count_mono",
+        "@string/channel_count_stereo"
+      ],
+      "title": "Audio channels",
+      "key": "channel_count_list",
+      "defaultValue": "2",
+      "entryValues": [
+        "1",
+        "2"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_audio.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/audio_bitrate_entries",
+      "title": "@string/audio_bitrate_title",
+      "key": "@string/audio_bitrate_key",
+      "defaultValue": "@string/audio_bitrate_value_auto",
+      "entryValues": "@array/audio_bitrate_values"
+    },
+    "resolved": {
+      "entries": [
+        "@string/audio_bitrate_auto",
+        "@string/audio_bitrate_16",
+        "@string/audio_bitrate_24",
+        "@string/audio_bitrate_32",
+        "@string/audio_bitrate_64",
+        "@string/audio_bitrate_96",
+        "@string/audio_bitrate_128",
+        "@string/audio_bitrate_160",
+        "@string/audio_bitrate_256",
+        "@string/audio_bitrate_320"
+      ],
+      "title": "Bitrate",
+      "key": "audio_bitrate",
+      "defaultValue": "0",
+      "entryValues": [
+        "@string/audio_bitrate_value_auto",
+        "16000",
+        "24000",
+        "32000",
+        "64000",
+        "96000",
+        "128000",
+        "160000",
+        "256000",
+        "320000"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_audio.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/sample_rate_entries",
+      "title": "@string/sample_rate_title",
+      "key": "@string/sample_rate_key",
+      "defaultValue": "@string/sample_rate_default",
+      "entryValues": "@array/sample_rate_values"
+    },
+    "resolved": {
+      "entries": [
+        "44100"
+      ],
+      "title": "Sample rate",
+      "key": "sample_rate_list",
+      "defaultValue": "44100",
+      "entryValues": [
+        "44100"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_audio.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/speaker_sound_title",
+      "key": "@string/speaker_sound_key",
+      "summary": "@string/speaker_sound_summary",
+      "defaultValue": "@string/speaker_sound_default"
+    },
+    "resolved": {
+      "title": "Keep Speakers Awake",
+      "key": "speaker_sound",
+      "summary": "Periodically play a silent sound to keep bluetooth speaker awake",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_audio.xml",
+    "component": "androidx.preference.SeekBarPreference",
+    "raw": {
+      "persistent": "false",
+      "max": "500",
+      "title": "@string/input_gain_title",
+      "key": "@string/input_gain_slider_key"
+    },
+    "resolved": {
+      "persistent": "false",
+      "max": "500",
+      "title": "Input gain",
+      "key": "input_gain_slider"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_audio.xml",
+    "component": "androidx.preference.Preference",
+    "raw": {
+      "persistent": "false",
+      "key": "@string/input_gain_reset_key",
+      "summary": "@string/input_gain_reset_hint_pref_screen"
+    },
+    "resolved": {
+      "persistent": "false",
+      "key": "input_gain_reset",
+      "summary": "Tap to reset to 0dB"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_audio.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/audio_fx_aec_title",
+      "key": "@string/audio_fx_aec_key",
+      "defaultValue": "false",
+      "isPreferenceVisible": "false"
+    },
+    "resolved": {
+      "title": "Acoustic Echo Canceler (AEC)",
+      "key": "audio_fx_aec",
+      "defaultValue": "false",
+      "isPreferenceVisible": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_audio.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/audio_fx_agc_title",
+      "key": "@string/audio_fx_agc_key",
+      "defaultValue": "false",
+      "isPreferenceVisible": "false"
+    },
+    "resolved": {
+      "title": "Automatic Gain Control (AGC)",
+      "key": "audio_fx_agc",
+      "defaultValue": "false",
+      "isPreferenceVisible": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_audio.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/audio_fx_ns_title",
+      "key": "@string/audio_fx_ns_key",
+      "defaultValue": "false",
+      "isPreferenceVisible": "false"
+    },
+    "resolved": {
+      "title": "Noise Suppressor (NS)",
+      "key": "audio_fx_ns",
+      "defaultValue": "false",
+      "isPreferenceVisible": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_bonding.xml",
+    "component": "com.wmspanel.streamer.ui.RadioButtonPreference",
+    "raw": {
+      "persistent": "false",
+      "title": "@string/bonding_service_mode_bond_title",
+      "key": "@string/bonding_service_mode_bond_key",
+      "summary": "@string/bonding_service_mode_bond_summary",
+      "defaultValue": "false"
+    },
+    "resolved": {
+      "persistent": "false",
+      "title": "Bonding Only",
+      "key": "bonding_service_mode_bond",
+      "summary": "Only bond the connections, video is sent straight to the destination",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_bonding.xml",
+    "component": "com.wmspanel.streamer.ui.RadioButtonPreference",
+    "raw": {
+      "persistent": "false",
+      "title": "@string/bonding_service_mode_nodrop_title",
+      "key": "@string/bonding_service_mode_nodrop_key",
+      "summary": "@string/bonding_service_mode_nodrop_summary",
+      "defaultValue": "false",
+      "isPreferenceVisible": "false"
+    },
+    "resolved": {
+      "persistent": "false",
+      "title": "NoDrop - Free Beta",
+      "key": "bonding_service_mode_nodrop",
+      "summary": "Improve your stream experience for users, keep your stream up even if your connection drops, with BRB scene. Additionally allows more efficient network usage, using less bandwidth for the same quality.",
+      "defaultValue": "false",
+      "isPreferenceVisible": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_bonding.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/nodrop_resolution_entries",
+      "title": "@string/nodrop_resolution_title",
+      "key": "@string/nodrop_resolution_key",
+      "summary": "@string/nodrop_resolution_summary",
+      "defaultValue": "@string/nodrop_resolution_default",
+      "entryValues": "@array/nodrop_resolution_values",
+      "isPreferenceVisible": "false"
+    },
+    "resolved": {
+      "entries": [
+        "1920x1080 \u2013 30 fps",
+        "1280x720 \u2013 60 fps",
+        "1280x720 \u2013 30 fps"
+      ],
+      "title": "NoDrop Output Resolution",
+      "key": "nodrop_resolution",
+      "summary": "Select the output resolution from the NoDrop server",
+      "defaultValue": "0",
+      "entryValues": [
+        "0",
+        "1",
+        "2"
+      ],
+      "isPreferenceVisible": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_bonding.xml",
+    "component": "com.wmspanel.streamer.ui.LongSummaryPreferenceCategory",
+    "raw": {
+      "title": "@string/bonding_connections_title",
+      "key": "bonding_pref_cat",
+      "summary": "@string/bonding_connections_summary"
+    },
+    "resolved": {
+      "title": "Connections",
+      "key": "bonding_pref_cat",
+      "summary": "Enable Bonding for the following connections:"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_bonding.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/bonding_conn_cellular_enable_title",
+      "key": "@string/bonding_conn_cellular_enable_key",
+      "defaultValue": "@string/bonding_conn_cellular_enable_default"
+    },
+    "resolved": {
+      "title": "Enable Cellular",
+      "key": "conn_cellular_enable",
+      "defaultValue": "true"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_bonding.xml",
+    "component": "androidx.preference.SeekBarPreference",
+    "raw": {
+      "max": "100",
+      "title": "@string/bonding_conn_cellular_weight_title",
+      "key": "@string/bonding_conn_cellular_weight_key",
+      "defaultValue": "@string/bonding_conn_cellular_weight_default",
+      "min": "0",
+      "showSeekBarValue": "true"
+    },
+    "resolved": {
+      "max": "100",
+      "title": "Cellular Weight",
+      "key": "conn_cellular_weight",
+      "defaultValue": "100",
+      "min": "0",
+      "showSeekBarValue": "true"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_bonding.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/bonding_conn_wifi_enable_title",
+      "key": "@string/bonding_conn_wifi_enable_key",
+      "defaultValue": "@string/bonding_conn_wifi_enable_default"
+    },
+    "resolved": {
+      "title": "Enable WiFi",
+      "key": "conn_wifi_enable",
+      "defaultValue": "true"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_bonding.xml",
+    "component": "androidx.preference.SeekBarPreference",
+    "raw": {
+      "max": "100",
+      "title": "@string/bonding_conn_wifi_weight_title",
+      "key": "@string/bonding_conn_wifi_weight_key",
+      "defaultValue": "@string/bonding_conn_wifi_weight_default",
+      "min": "0",
+      "showSeekBarValue": "true"
+    },
+    "resolved": {
+      "max": "100",
+      "title": "WiFi Weight",
+      "key": "conn_wifi_weight",
+      "defaultValue": "100",
+      "min": "0",
+      "showSeekBarValue": "true"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_bonding.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/bonding_conn_ethernet_enable_title",
+      "key": "@string/bonding_conn_ethernet_enable_key",
+      "defaultValue": "@string/bonding_conn_ethernet_enable_default"
+    },
+    "resolved": {
+      "title": "Enable Ethernet/USB Connection",
+      "key": "conn_ethernet_enable",
+      "defaultValue": "true"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_bonding.xml",
+    "component": "androidx.preference.SeekBarPreference",
+    "raw": {
+      "max": "100",
+      "title": "@string/bonding_conn_ethernet_weight_title",
+      "key": "@string/bonding_conn_ethernet_weight_key",
+      "defaultValue": "@string/bonding_conn_ethernet_weight_default",
+      "min": "0",
+      "showSeekBarValue": "true"
+    },
+    "resolved": {
+      "max": "100",
+      "title": "Ethernet Weight",
+      "key": "conn_ethernet_weight",
+      "defaultValue": "100",
+      "min": "0",
+      "showSeekBarValue": "true"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/show_status_bar_title",
+      "key": "@string/show_status_bar_key",
+      "defaultValue": "@string/show_status_bar_default"
+    },
+    "resolved": {
+      "title": "Show status bar on broadcast page",
+      "key": "pref_show_status_bar",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/show_srtla_debug_title",
+      "key": "@string/show_srtla_debug_key",
+      "defaultValue": "@string/show_srtla_debug_default"
+    },
+    "resolved": {
+      "title": "Show SRTLA Debug",
+      "key": "pref_show_srtla_debug",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/allow_rtmp_hvec_title",
+      "key": "@string/allow_rtmp_hvec_key",
+      "defaultValue": "@string/allow_rtmp_hvec_default"
+    },
+    "resolved": {
+      "title": "Allow RTMP HEVC",
+      "key": "pref_allow_rtmp_hvec",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/srtla_experimental_title",
+      "key": "@string/srtla_experimental_key",
+      "summary": "@string/srtla_experimental_summary",
+      "defaultValue": "@string/srtla_experimental_default"
+    },
+    "resolved": {
+      "title": "Experimental SRTLA Tweaks",
+      "key": "pref_srtla_experimental",
+      "summary": "Enables any tweaks I\\'m testing that aren\\'t ready yet",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "enabled": "false",
+      "title": "@string/foreground_service_title",
+      "key": "@string/foreground_service_key",
+      "summary": "@string/foreground_service_summary",
+      "defaultValue": "@string/foreground_service_default"
+    },
+    "resolved": {
+      "enabled": "false",
+      "title": "Keep streaming when not in focus.",
+      "key": "pref_foreground_service",
+      "summary": "This is always enabled now.",
+      "defaultValue": "true"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/idle_timeout_entries",
+      "title": "@string/idle_timeout_title",
+      "key": "@string/idle_timeout_key",
+      "summary": "@string/idle_timeout_summary",
+      "defaultValue": "@string/idle_timeout_default",
+      "entryValues": "@array/idle_timeout_values"
+    },
+    "resolved": {
+      "entries": [
+        "@string/idle_timeout_30s",
+        "@string/idle_timeout_1m",
+        "@string/idle_timeout_2m",
+        "@string/idle_timeout_5m",
+        "@string/idle_timeout_disabled"
+      ],
+      "title": "Quit if inactive in background",
+      "key": "idle_timeout",
+      "summary": "If IRL Pro sits in background and has no active connections, it will quit after a timeout.",
+      "defaultValue": "60",
+      "entryValues": [
+        "30",
+        "60",
+        "120",
+        "300",
+        "0"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "enabled": "false",
+      "entries": "@array/camera_api_entries",
+      "title": "@string/camera_api_title",
+      "key": "@string/camera_api_key",
+      "summary": "@string/camera_api_summary",
+      "defaultValue": "@string/camera_api_value_auto",
+      "entryValues": "@array/camera_api_values"
+    },
+    "resolved": {
+      "enabled": "false",
+      "entries": [
+        "@string/camera_api_auto",
+        "@string/camera_api_camera",
+        "@string/camera_api_camera2"
+      ],
+      "title": "Preferred camera API",
+      "key": "camera_api",
+      "summary": "Disable Camera2 API only if you have some issues with camera like some resolutions or framerates are not available.",
+      "defaultValue": "0",
+      "entryValues": [
+        "@string/camera_api_value_auto",
+        "@string/camera_api_value_camera",
+        "@string/camera_api_value_camera2"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/pictures_as_previewed_title",
+      "key": "@string/pictures_as_previewed_key",
+      "summary": "@string/pictures_as_previewed_summary",
+      "defaultValue": "@string/pictures_as_previewed_default"
+    },
+    "resolved": {
+      "title": "Mirror front camera",
+      "key": "pictures_as_previewed",
+      "summary": "Stream and record front camera as appears in preview (mirrored).",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "enabled": "false",
+      "title": "@string/horizon_title",
+      "key": "@string/horizon_key",
+      "summary": "@string/horizon_summary",
+      "defaultValue": "@string/horizon_default"
+    },
+    "resolved": {
+      "enabled": "false",
+      "title": "Horizon stream demo",
+      "key": "pref_horizon_key",
+      "summary": "Say no to vertical videos.",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/volume_keys_action_entries",
+      "title": "@string/volume_keys_action_title",
+      "key": "@string/volume_keys_action_key",
+      "defaultValue": "@string/volume_keys_action_do_nothing",
+      "entryValues": "@array/volume_keys_action_values"
+    },
+    "resolved": {
+      "entries": [
+        "@string/volume_keys_start_stop",
+        "@string/volume_keys_zoom",
+        "@string/volume_keys_flip",
+        "@string/volume_keys_do_nothing"
+      ],
+      "title": "Volume keys",
+      "key": "volume_keys_action",
+      "defaultValue": "0",
+      "entryValues": [
+        "@string/volume_keys_action_start_stop",
+        "@string/volume_keys_action_zoom",
+        "@string/volume_keys_action_flip",
+        "@string/volume_keys_action_do_nothing"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/bypass_connectivity_manager_title",
+      "key": "@string/bypass_connectivity_manager_key",
+      "summary": "@string/bypass_connectivity_manager_summary",
+      "defaultValue": "@string/bypass_connectivity_manager_default"
+    },
+    "resolved": {
+      "title": "Don\\'t check network connection",
+      "key": "bypass_connectivity_manager",
+      "summary": "Enable this only if you have serious issues with connectivity, e.g. USB tethering not working.",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/sailfish_encoding_workaround_title",
+      "key": "@string/sailfish_encoding_workaround_key",
+      "summary": "@string/sailfish_encoding_workaround_summary",
+      "defaultValue": "@string/sailfish_encoding_workaround_default"
+    },
+    "resolved": {
+      "title": "Convert between android camera timestamp and system time",
+      "key": "sailfish_encoding_workaround",
+      "summary": "Enable this to workaround Google Nexus 6P (angler) and Google Pixel (sailfish) camera flip issue.",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/use_custom_buffer_duration_title",
+      "key": "@string/use_custom_buffer_duration_key",
+      "defaultValue": "@string/use_custom_buffer_duration_default",
+      "summaryOn": "@string/use_custom_buffer_duration_on",
+      "summaryOff": "@string/use_custom_buffer_duration_off"
+    },
+    "resolved": {
+      "title": "Enable custom encoder buffer size",
+      "key": "use_custom_buffer_duration",
+      "defaultValue": "false",
+      "summaryOn": "Encoder buffer size is now defined manually.",
+      "summaryOff": "Use recommended encoder buffer size."
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "component": "androidx.preference.EditTextPreference",
+    "raw": {
+      "title": "@string/circular_buffer_duration_title",
+      "key": "@string/circular_buffer_duration_key",
+      "defaultValue": "@string/circular_buffer_duration_default"
+    },
+    "resolved": {
+      "title": "Encoder buffer size (ms)",
+      "key": "circular_buffer_duration",
+      "defaultValue": "2000"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "enabled": "false",
+      "title": "@string/usb_camera_title",
+      "key": "@string/usb_camera_key",
+      "summary": "@string/usb_camera_summary",
+      "defaultValue": "@string/usb_camera_default"
+    },
+    "resolved": {
+      "enabled": "false",
+      "title": "USB Camera",
+      "key": "usb_camera",
+      "summary": "Take picture from USB UVC camera.",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "component": "androidx.preference.Preference",
+    "raw": {
+      "persistent": "false",
+      "key": "@string/usb_camera_warning_key",
+      "summary": "@string/usb_camera_warning"
+    },
+    "resolved": {
+      "persistent": "false",
+      "key": "usb_camera_warning",
+      "summary": "USB OTG works unstable unfortunately and it\\'s dependent on hardware capabilities. So if you enable this feature and it doesn\\'t work, this means IRL Pro can\\'t handle it.\\n\\nTap on this message to read more details on our website."
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "component": "androidx.preference.EditTextPreference",
+    "raw": {
+      "title": "@string/usb_camera_frame_height_title",
+      "key": "@string/usb_camera_frame_height_key",
+      "defaultValue": "@string/usb_camera_frame_height_default"
+    },
+    "resolved": {
+      "title": "Frame height",
+      "key": "usb_camera_frame_height",
+      "defaultValue": "480"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "component": "androidx.preference.EditTextPreference",
+    "raw": {
+      "title": "@string/usb_camera_frame_width_title",
+      "key": "@string/usb_camera_frame_width_key",
+      "defaultValue": "@string/usb_camera_frame_width_default"
+    },
+    "resolved": {
+      "title": "Frame width",
+      "key": "usb_camera_frame_width",
+      "defaultValue": "640"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/usb_camera_format_entries",
+      "title": "@string/usb_camera_format_title",
+      "key": "@string/usb_camera_format_key",
+      "defaultValue": "@string/usb_camera_format_default",
+      "entryValues": "@array/usb_camera_format_values"
+    },
+    "resolved": {
+      "entries": [
+        "MJPEG",
+        "YUYV"
+      ],
+      "title": "Preview format",
+      "key": "usb_camera_format",
+      "defaultValue": "1",
+      "entryValues": [
+        "1",
+        "0"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/web_contents_debugging_enabled_title",
+      "key": "@string/web_contents_debugging_enabled_key",
+      "summary": "@string/web_contents_debugging_enabled_summary",
+      "defaultValue": "@string/web_contents_debugging_enabled_default"
+    },
+    "resolved": {
+      "title": "Web contents debugging",
+      "key": "web_contents_debugging_enabled",
+      "summary": "Debug WebViews using Chrome Developer Tools",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/web_geo_enabled_title",
+      "key": "@string/web_geo_enabled_key",
+      "summary": "@string/web_geo_enabled_summary",
+      "defaultValue": "@string/web_geo_enabled_default"
+    },
+    "resolved": {
+      "title": "Web overlay geo enabled",
+      "key": "web_geo_enabled",
+      "summary": "Allow web overlays to access location",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "component": "androidx.preference.Preference",
+    "raw": {
+      "persistent": "false",
+      "title": "@string/web_clear_cookies_title",
+      "key": "@string/web_clear_cookies_key"
+    },
+    "resolved": {
+      "persistent": "false",
+      "title": "Clear all cookies from web overlays",
+      "key": "web_clear_cookies"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "component": "androidx.preference.Preference",
+    "raw": {
+      "persistent": "false",
+      "title": "@string/send_diagnostics_title",
+      "key": "@string/send_diagnostics_key"
+    },
+    "resolved": {
+      "persistent": "false",
+      "title": "Send cameras debug details to developers",
+      "key": "send_diagnostics"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_display.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/audio_meter_title",
+      "key": "@string/audio_meter_key",
+      "defaultValue": "@string/audio_meter_default"
+    },
+    "resolved": {
+      "title": "Show audio level meter",
+      "key": "audio_meter",
+      "defaultValue": "true"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_display.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/show_grid_title",
+      "key": "@string/show_grid_key",
+      "defaultValue": "@string/show_grid_default"
+    },
+    "resolved": {
+      "title": "Grid 3x3",
+      "key": "show_grid",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_display.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/show_safe_margins_title",
+      "key": "@string/show_safe_margins_key",
+      "defaultValue": "@string/show_safe_margins_key"
+    },
+    "resolved": {
+      "title": "Show safe margins",
+      "key": "show_safe_margins",
+      "defaultValue": "show_safe_margins"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_display.xml",
+    "component": "androidx.preference.MultiSelectListPreference",
+    "raw": {
+      "entries": "@array/safe_margins_ratios_entries",
+      "title": "@string/safe_margins_ratios_title",
+      "key": "@string/safe_margins_ratios_key",
+      "defaultValue": "@array/safe_margins_ratios_default",
+      "dialogTitle": "@string/safe_margins_ratios_title",
+      "entryValues": "@array/safe_margins_ratios_values"
+    },
+    "resolved": {
+      "entries": [
+        "1:1 (1.0)",
+        "5:4 (1.25)",
+        "4:3 (1.33)",
+        "3:2 (1.5)",
+        "14:9 (1.56)",
+        "16:9 (1.78)",
+        "2:1 (2.0)",
+        "19.5:9 (2.17)",
+        "21:9 (2.33)"
+      ],
+      "title": "Safe margins ratios",
+      "key": "safe_margins_ratios",
+      "defaultValue": [
+        "1.78"
+      ],
+      "dialogTitle": "Safe margins ratios",
+      "entryValues": [
+        "1.0",
+        "1.25",
+        "1.33",
+        "1.5",
+        "1.56",
+        "1.78",
+        "2.0",
+        "2.17",
+        "2.33"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_display.xml",
+    "component": "androidx.preference.SeekBarPreference",
+    "raw": {
+      "max": "@integer/safe_margin_indent_max",
+      "title": "@string/safe_margin_indent_title",
+      "key": "@string/safe_margin_indent_key",
+      "defaultValue": "@integer/safe_margin_indent_default",
+      "min": "@integer/safe_margin_indent_min",
+      "seekBarIncrement": "@integer/safe_margin_indent_increment",
+      "showSeekBarValue": "true"
+    },
+    "resolved": {
+      "max": "@integer/safe_margin_indent_max",
+      "title": "Safe margin indent %",
+      "key": "safe_margin_indent",
+      "defaultValue": "@integer/safe_margin_indent_default",
+      "min": "@integer/safe_margin_indent_min",
+      "seekBarIncrement": "@integer/safe_margin_indent_increment",
+      "showSeekBarValue": "true"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "component": "androidx.preference.EditTextPreference",
+    "raw": {
+      "persistent": "false",
+      "title": "@string/layer_name_title",
+      "key": "@string/layer_name_key",
+      "summary": "",
+      "defaultValue": ""
+    },
+    "resolved": {
+      "persistent": "false",
+      "title": "Name",
+      "key": "name",
+      "summary": "",
+      "defaultValue": ""
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "persistent": "false",
+      "entries": "@array/layer_type_entries",
+      "title": "@string/layer_type_title",
+      "key": "@string/layer_type_key",
+      "defaultValue": "0",
+      "entryValues": "@array/layer_type_values"
+    },
+    "resolved": {
+      "persistent": "false",
+      "entries": [
+        "@string/layer_type_picture",
+        "@string/layer_type_text"
+      ],
+      "title": "Type",
+      "key": "layer_type",
+      "defaultValue": "0",
+      "entryValues": [
+        "0",
+        "1"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "component": "androidx.preference.EditTextPreference",
+    "raw": {
+      "persistent": "false",
+      "title": "@string/layer_html_title",
+      "key": "@string/layer_html_key"
+    },
+    "resolved": {
+      "persistent": "false",
+      "title": "HTML code",
+      "key": "layer_html"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "component": "androidx.preference.EditTextPreference",
+    "raw": {
+      "persistent": "false",
+      "title": "@string/layer_url_title",
+      "key": "@string/layer_url_key",
+      "inputType": "textUri"
+    },
+    "resolved": {
+      "persistent": "false",
+      "title": "URL",
+      "key": "url",
+      "inputType": "textUri"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "component": "androidx.preference.EditTextPreference",
+    "raw": {
+      "persistent": "false",
+      "title": "@string/weblayer_custom_css_title",
+      "key": "@string/weblayer_custom_css_key",
+      "summary": "@string/weblayer_custom_css_default",
+      "defaultValue": "@string/weblayer_custom_css_default"
+    },
+    "resolved": {
+      "persistent": "false",
+      "title": "Custom CSS",
+      "key": "weblayer_custom_css",
+      "summary": "body { background-color: rgba(0, 0, 0, 0); margin: 0px auto; overflow: hidden; }",
+      "defaultValue": "body { background-color: rgba(0, 0, 0, 0); margin: 0px auto; overflow: hidden; }"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "persistent": "false",
+      "entries": "@array/weblayer_draw_entries",
+      "title": "@string/weblayer_draw_title",
+      "key": "@string/weblayer_draw_key",
+      "defaultValue": "@string/weblayer_draw_on_preview_and_stream_value",
+      "entryValues": "@array/weblayer_draw_values"
+    },
+    "resolved": {
+      "persistent": "false",
+      "entries": [
+        "@string/weblayer_draw_on_preview_and_stream",
+        "@string/weblayer_draw_on_preview",
+        "@string/weblayer_draw_on_stream"
+      ],
+      "title": "View mode",
+      "key": "weblayer_draw",
+      "defaultValue": "0",
+      "entryValues": [
+        "@string/weblayer_draw_on_preview_and_stream_value",
+        "@string/weblayer_draw_on_preview_value",
+        "@string/weblayer_draw_on_stream_value"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "component": "androidx.preference.Preference",
+    "raw": {
+      "title": "@string/layer_select_file_title",
+      "key": "@string/layer_select_file_key"
+    },
+    "resolved": {
+      "title": "Select file",
+      "key": "select_file"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "component": "androidx.preference.Preference",
+    "raw": {
+      "key": "@string/layer_hint_key",
+      "summary": "@string/layer_url_description"
+    },
+    "resolved": {
+      "key": "image_layer_hint",
+      "summary": "You may either specify remote file url or select local file"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "persistent": "false",
+      "title": "@string/layer_periodic_refresh_title",
+      "key": "@string/layer_periodic_refresh_key"
+    },
+    "resolved": {
+      "persistent": "false",
+      "title": "Periodic refresh",
+      "key": "periodic_refresh"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "component": "androidx.preference.EditTextPreference",
+    "raw": {
+      "persistent": "false",
+      "title": "@string/layer_periodic_refresh_interval_title",
+      "key": "@string/layer_periodic_refresh_interval_key",
+      "summary": ""
+    },
+    "resolved": {
+      "persistent": "false",
+      "title": "Refresh interval (sec)",
+      "key": "periodic_refresh_interval",
+      "summary": ""
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "persistent": "false",
+      "title": "@string/layer_active_title",
+      "key": "@string/layer_active_key"
+    },
+    "resolved": {
+      "persistent": "false",
+      "title": "Active",
+      "key": "active"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "component": "androidx.preference.SeekBarPreference",
+    "raw": {
+      "persistent": "false",
+      "max": "100",
+      "title": "@string/layer_scale_title",
+      "key": "@string/layer_scale_key",
+      "min": "0",
+      "seekBarIncrement": "1"
+    },
+    "resolved": {
+      "persistent": "false",
+      "max": "100",
+      "title": "Scale",
+      "key": "scale",
+      "min": "0",
+      "seekBarIncrement": "1"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "component": "androidx.preference.Preference",
+    "raw": {
+      "key": "@string/layer_scale_hint_key",
+      "summary": "@string/layer_scale_description"
+    },
+    "resolved": {
+      "key": "image_layer_scale_hint",
+      "summary": "Scale is relative to video resolution, on 100% it fills entire screen. When set to \\\"Off\\\", original size is used."
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "component": "androidx.preference.DropDownPreference",
+    "raw": {
+      "persistent": "false",
+      "entries": "@array/layer_positions",
+      "title": "@string/layer_position_title",
+      "key": "@string/layer_position_key",
+      "defaultValue": "0.5:0.5",
+      "entryValues": "@array/layer_position_values"
+    },
+    "resolved": {
+      "persistent": "false",
+      "entries": [
+        "@string/layer_postion_top_left",
+        "@string/layer_postion_top_right",
+        "@string/layer_postion_center",
+        "@string/layer_postion_bottom_left",
+        "@string/layer_postion_bottom_right",
+        "@string/layer_postion_custom"
+      ],
+      "title": "Position",
+      "key": "pos",
+      "defaultValue": "0.5:0.5",
+      "entryValues": [
+        "0.0:0.0",
+        "1.0:0.0",
+        "0.5:0.5",
+        "0.0:1.0",
+        "1.0:1.0",
+        ""
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "component": "androidx.preference.SeekBarPreference",
+    "raw": {
+      "persistent": "false",
+      "max": "100",
+      "title": "@string/layer_position_x_title",
+      "key": "@string/layer_position_x_key",
+      "defaultValue": "0",
+      "min": "-100",
+      "seekBarIncrement": "1"
+    },
+    "resolved": {
+      "persistent": "false",
+      "max": "100",
+      "title": "H Position",
+      "key": "pos_x",
+      "defaultValue": "0",
+      "min": "-100",
+      "seekBarIncrement": "1"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "component": "androidx.preference.SeekBarPreference",
+    "raw": {
+      "persistent": "false",
+      "max": "100",
+      "title": "@string/layer_position_y_title",
+      "key": "@string/layer_position_y_key",
+      "defaultValue": "0",
+      "min": "-100",
+      "seekBarIncrement": "1"
+    },
+    "resolved": {
+      "persistent": "false",
+      "max": "100",
+      "title": "V Position",
+      "key": "pos_y",
+      "defaultValue": "0",
+      "min": "-100",
+      "seekBarIncrement": "1"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "component": "androidx.preference.EditTextPreference",
+    "raw": {
+      "persistent": "false",
+      "title": "@string/layer_zorder_title",
+      "key": "@string/layer_zorder_key",
+      "summary": ""
+    },
+    "resolved": {
+      "persistent": "false",
+      "title": "Z Order",
+      "key": "z_order",
+      "summary": ""
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "component": "androidx.preference.Preference",
+    "raw": {
+      "key": "@string/layer_zorder_hint_key",
+      "summary": "@string/layer_zorder_description"
+    },
+    "resolved": {
+      "key": "image_layer_zorder_hint",
+      "summary": "Layers with greater Z Order will appear at front."
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "component": "androidx.preference.PreferenceCategory",
+    "raw": {
+      "title": "@string/weblayer_viewport_category_title",
+      "key": "@string/weblayer_viewport_category_key",
+      "summary": "@string/weblayer_viewport_category_summary"
+    },
+    "resolved": {
+      "title": "WebView options",
+      "key": "weblayer_viewport_category",
+      "summary": "Width/Height scaled to 1080p canvas"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "component": "androidx.preference.EditTextPreference",
+    "raw": {
+      "persistent": "false",
+      "title": "@string/weblayer_width_title",
+      "key": "@string/weblayer_width_key",
+      "summary": "@string/weblayer_width_default",
+      "defaultValue": "@string/weblayer_width_default"
+    },
+    "resolved": {
+      "persistent": "false",
+      "title": "Width",
+      "key": "weblayer_width",
+      "summary": "1280",
+      "defaultValue": "1280"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "component": "androidx.preference.EditTextPreference",
+    "raw": {
+      "persistent": "false",
+      "title": "@string/weblayer_height_title",
+      "key": "@string/weblayer_height_key",
+      "summary": "@string/weblayer_height_default",
+      "defaultValue": "@string/weblayer_height_default"
+    },
+    "resolved": {
+      "persistent": "false",
+      "title": "Height",
+      "key": "weblayer_height",
+      "summary": "720",
+      "defaultValue": "720"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "component": "androidx.preference.EditTextPreference",
+    "raw": {
+      "persistent": "false",
+      "title": "@string/weblayer_scale_in_percents_title",
+      "key": "@string/weblayer_scale_in_percents_key",
+      "summary": "@string/weblayer_scale_in_percents_default",
+      "defaultValue": "@string/weblayer_scale_in_percents_default"
+    },
+    "resolved": {
+      "persistent": "false",
+      "title": "Scale in percents",
+      "key": "scale_in_percents",
+      "summary": "100",
+      "defaultValue": "100"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "component": "androidx.preference.PreferenceCategory",
+    "raw": {
+      "layout": "@layout/pref_image_layer_buttons",
+      "key": "@string/layer_new_panel_key"
+    },
+    "resolved": {
+      "layout": "@layout/pref_image_layer_buttons",
+      "key": "new_panel"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "component": "androidx.preference.PreferenceCategory",
+    "raw": {
+      "layout": "@layout/pref_image_layer_edit_buttons",
+      "key": "@string/layer_edit_panel_key"
+    },
+    "resolved": {
+      "layout": "@layout/pref_image_layer_edit_buttons",
+      "key": "edit_panel"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layers.xml",
+    "component": "androidx.preference.PreferenceCategory",
+    "raw": {
+      "key": "@string/layers_pause_category_key"
+    },
+    "resolved": {
+      "key": "layers_pause"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layers.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/layers_show_preview_title",
+      "key": "@string/layers_show_preview_key",
+      "defaultValue": "@string/layers_show_preview_default"
+    },
+    "resolved": {
+      "title": "Show layers on preview",
+      "key": "layers_show_on_preview",
+      "defaultValue": "true"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layers.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/layers_standby_enabled_title",
+      "key": "@string/layers_standby_enabled_key",
+      "defaultValue": "@string/layers_standby_enabled_default"
+    },
+    "resolved": {
+      "title": "Enable standby mode",
+      "key": "layers_standby_on",
+      "defaultValue": "true"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layers.xml",
+    "component": "androidx.preference.MultiSelectListPreference",
+    "raw": {
+      "title": "@string/layers_standby_list_title",
+      "key": "@string/layers_standby_list_key",
+      "dialogTitle": "@string/layers_standby_list_title"
+    },
+    "resolved": {
+      "title": "Standby overlays",
+      "key": "layers_standby_list",
+      "dialogTitle": "Standby overlays"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layers.xml",
+    "component": "androidx.preference.MultiSelectListPreference",
+    "raw": {
+      "title": "@string/layers_pause_list_title",
+      "key": "@string/layers_pause_list_key",
+      "dialogTitle": "@string/layers_pause_list_title"
+    },
+    "resolved": {
+      "title": "Pause overlays",
+      "key": "layers_pause_list",
+      "dialogTitle": "Pause overlays"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layers.xml",
+    "component": "androidx.preference.PreferenceCategory",
+    "raw": {
+      "title": "@string/layers_list_category_title",
+      "key": "@string/layers_list_category_key"
+    },
+    "resolved": {
+      "title": "Layers",
+      "key": "layers_list"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layers.xml",
+    "component": "androidx.preference.PreferenceCategory",
+    "raw": {
+      "key": "@string/layers_utils_category_key"
+    },
+    "resolved": {
+      "key": "layers_utils"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layers.xml",
+    "component": "Preference",
+    "raw": {
+      "title": "@string/layers_check_title",
+      "key": "@string/layers_check_key"
+    },
+    "resolved": {
+      "title": "Check layers images availability",
+      "key": "layers_check"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layers_root.xml",
+    "component": "androidx.preference.Preference",
+    "raw": {
+      "key": "@string/pref_fragment_header_web_key",
+      "fragment": "com.wmspanel.streamer.preference.PreferenceFragmentImageLayerWeb",
+      "title": "@string/pref_fragment_header_web"
+    },
+    "resolved": {
+      "key": "web_widgets_root",
+      "fragment": "com.wmspanel.streamer.preference.PreferenceFragmentImageLayerWeb",
+      "title": "Web Overlays"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_image_layers_web.xml",
+    "component": "androidx.preference.PreferenceCategory",
+    "raw": {
+      "title": "@string/weblayers_list_category_title",
+      "key": "@string/weblayers_list_category_key",
+      "summary": "@string/weblayers_list_category_summary"
+    },
+    "resolved": {
+      "title": "Web overlays",
+      "key": "weblayers_list",
+      "summary": "For perf, no more than 3\u20134 web overlays are recommended"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_record.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/mp4rec_title",
+      "key": "@string/mp4rec_key",
+      "defaultValue": "@string/mp4rec_default"
+    },
+    "resolved": {
+      "title": "Record stream",
+      "key": "pref_mp4rec_key",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_record.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/split_record_title",
+      "key": "@string/split_record_key",
+      "defaultValue": "@string/split_record_default",
+      "summaryOn": "@string/split_record_summary"
+    },
+    "resolved": {
+      "title": "Split video into sections",
+      "key": "split_record",
+      "defaultValue": "true",
+      "summaryOn": "Video recording is split into sections by default for reliability purposes. You may disable this if you need."
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_record.xml",
+    "component": "androidx.preference.EditTextPreference",
+    "raw": {
+      "title": "@string/record_duration_title",
+      "key": "@string/record_duration_key",
+      "defaultValue": "@string/record_duration_default"
+    },
+    "resolved": {
+      "title": "Sections duration (minutes)",
+      "key": "record_duration",
+      "defaultValue": "30"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_record.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/snapshot_format_entries",
+      "title": "@string/pref_snapshot_format_title",
+      "key": "@string/pref_snapshot_format_key",
+      "defaultValue": "@string/snapshot_jpeg",
+      "entryValues": "@array/snapshot_format_values"
+    },
+    "resolved": {
+      "entries": [
+        "@string/snapshot_entry_jpeg",
+        "@string/snapshot_entry_png",
+        "@string/snapshot_entry_webp"
+      ],
+      "title": "Snapshot format",
+      "key": "pref_snapshot_format_key",
+      "defaultValue": "snapshot_jpeg",
+      "entryValues": [
+        "@string/snapshot_jpeg",
+        "@string/snapshot_png",
+        "@string/snapshot_webp"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_record.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/snapshot_quality_entries",
+      "title": "@string/snapshot_quality_title",
+      "key": "@string/snapshot_quality_key",
+      "defaultValue": "@string/snapshot_quality_90",
+      "entryValues": "@array/snapshot_quality_values"
+    },
+    "resolved": {
+      "entries": [
+        "@string/snapshot_quality_entry_100",
+        "@string/snapshot_quality_entry_95",
+        "@string/snapshot_quality_entry_90",
+        "@string/snapshot_quality_entry_85"
+      ],
+      "title": "Snapshot quality",
+      "key": "pref_snapshot_quality_key",
+      "defaultValue": "90",
+      "entryValues": [
+        "@string/snapshot_quality_100",
+        "@string/snapshot_quality_95",
+        "@string/snapshot_quality_90",
+        "@string/snapshot_quality_85"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_record.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "persistent": "false",
+      "title": "@string/use_saf_title",
+      "key": "@string/use_saf_key",
+      "summary": "@string/use_saf_summary",
+      "defaultValue": "false"
+    },
+    "resolved": {
+      "persistent": "false",
+      "title": "Use Storage Access Framework",
+      "key": "use_saf",
+      "summary": "Whether to use Storage Access Framework for saving photos and videos. This should be enabled to allow saving to external SD cards.",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_record.xml",
+    "component": "androidx.preference.Preference",
+    "raw": {
+      "title": "@string/custom_dir_title",
+      "key": "@string/custom_dir_key"
+    },
+    "resolved": {
+      "title": "Save to",
+      "key": "custom_dir"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_record.xml",
+    "component": "androidx.preference.PreferenceCategory",
+    "raw": {
+      "title": "@string/log_category_title",
+      "key": "@string/log_category_key"
+    },
+    "resolved": {
+      "title": "Log",
+      "key": "log_category"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_record.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/log_to_file_title",
+      "key": "@string/log_to_file_key",
+      "defaultValue": "@string/log_to_file_default"
+    },
+    "resolved": {
+      "title": "Write log to file",
+      "key": "log_to_file",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_record.xml",
+    "component": "androidx.preference.Preference",
+    "raw": {
+      "title": "@string/custom_dir_title",
+      "key": "@string/log_dir_key"
+    },
+    "resolved": {
+      "title": "Save to",
+      "key": "log_dir"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_root.xml",
+    "component": "androidx.preference.PreferenceCategory",
+    "raw": {
+      "key": "@string/pref_fragment_version_key",
+      "title": "@string/pref_fragment_header_version"
+    },
+    "resolved": {
+      "key": "version_header",
+      "title": "IRL Pro"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "component": "androidx.preference.EditTextPreference",
+    "raw": {
+      "title": "@string/streamer_twitch_username_title",
+      "key": "@string/streamer_twitch_username_key",
+      "summary": "@string/streamer_twitch_username_summary",
+      "defaultValue": ""
+    },
+    "resolved": {
+      "title": "Twitch Username",
+      "key": "twitch_username",
+      "summary": "This is for the chat overlay and view count/title, set to blank to disable",
+      "defaultValue": ""
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "component": "androidx.preference.EditTextPreference",
+    "raw": {
+      "title": "@string/streamer_kick_username_title",
+      "key": "@string/streamer_kick_username_key",
+      "summary": "@string/streamer_kick_username_summary",
+      "defaultValue": ""
+    },
+    "resolved": {
+      "title": "Kick Username",
+      "key": "kick_username",
+      "summary": "(BETA) - Kick.com does not have an official API so this may break at any time",
+      "defaultValue": ""
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/streamer_chat_show_platform_title",
+      "key": "@string/streamer_chat_show_platform_key",
+      "summary": "@string/streamer_chat_show_platform_summary",
+      "defaultValue": "false"
+    },
+    "resolved": {
+      "title": "Show platform icons",
+      "key": "chat_show_platform_key",
+      "summary": "Show the chat platform icon per chat message (Twitch, Kick, etc.)",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/streamer_chat_show_bots_title",
+      "key": "@string/streamer_chat_show_bots_key",
+      "defaultValue": "@string/streamer_chat_show_bots_default"
+    },
+    "resolved": {
+      "title": "Show bots in chat",
+      "key": "chat_show_bots_key",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/streamer_chat_show_commands_title",
+      "key": "@string/streamer_chat_show_commands_key",
+      "defaultValue": "@string/streamer_chat_show_commands_default"
+    },
+    "resolved": {
+      "title": "Show commands in chat",
+      "key": "chat_show_commands_key",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "component": "androidx.preference.EditTextPreference",
+    "raw": {
+      "title": "@string/streamer_chat_scale_title",
+      "key": "@string/streamer_chat_scale_key",
+      "defaultValue": "@string/streamer_chat_scale_default"
+    },
+    "resolved": {
+      "title": "Chat font scale",
+      "key": "chat_scale_key",
+      "defaultValue": "220"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/streamer_chat_small_title",
+      "key": "@string/streamer_chat_small_key",
+      "summary": "@string/streamer_chat_small_summary",
+      "defaultValue": "false"
+    },
+    "resolved": {
+      "title": "Smaller chat box",
+      "key": "chat_small_key",
+      "summary": "Half the height of the chat box",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/streamer_chat_margin_title",
+      "key": "@string/streamer_chat_margin_key",
+      "summary": "@string/streamer_chat_margin_summary",
+      "defaultValue": "false"
+    },
+    "resolved": {
+      "title": "Increase chat left margin",
+      "key": "chat_margin_key",
+      "summary": "Shift over chat from the left, useful for clip on lenses",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/streamer_chat_right_title",
+      "key": "@string/streamer_chat_right_key",
+      "summary": "@string/streamer_chat_right_summary",
+      "defaultValue": "false"
+    },
+    "resolved": {
+      "title": "Right chat box",
+      "key": "chat_right_key",
+      "summary": "Move chat box to the right",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/streamer_show_user_count_title",
+      "key": "@string/streamer_show_user_count_key",
+      "defaultValue": "@string/streamer_show_user_count_default"
+    },
+    "resolved": {
+      "title": "Show user count",
+      "key": "chat_show_user_count_key",
+      "defaultValue": "true"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "component": "androidx.preference.EditTextPreference",
+    "raw": {
+      "title": "@string/streamer_streamlabs_api_title",
+      "key": "@string/streamer_streamlabs_api_key",
+      "summary": "@string/streamer_streamlabs_api_summary",
+      "defaultValue": ""
+    },
+    "resolved": {
+      "title": "Streamlabs API Key",
+      "key": "streamlabs_api_key",
+      "summary": "This is for the local alert replay/view dashboard. You get it from API Settings, looks like AABF3L45J3L2LKJ74LK5",
+      "defaultValue": ""
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/streamer_streamelements_title",
+      "key": "@string/streamer_streamelements_key",
+      "summary": "@string/streamer_streamelements_summary",
+      "defaultValue": "false"
+    },
+    "resolved": {
+      "title": "Enable Streamelements Dashboard",
+      "key": "streamelements_enable",
+      "summary": "Enables the activity/replay dashboard locally. You will have to login manually because SE doesn\\'t have a token",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "component": "androidx.preference.EditTextPreference",
+    "raw": {
+      "title": "@string/streamer_toonation_api_title",
+      "key": "@string/streamer_toonation_api_key",
+      "summary": "@string/streamer_toonation_api_summary",
+      "defaultValue": ""
+    },
+    "resolved": {
+      "title": "Toonation API Key",
+      "key": "toonation_api_key",
+      "summary": "This is for the local alert replay/view dashboard. Looks like 9b6b77b411b345b87bdf6e6c5a811751. You get it from the remote control url widget/controller/xxxxxxxxxxxxxxxxxxxx",
+      "defaultValue": ""
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "component": "androidx.preference.EditTextPreference",
+    "raw": {
+      "title": "@string/streamer_custom_url_title",
+      "key": "@string/streamer_custom_url_key",
+      "summary": "@string/streamer_custom_url_summary",
+      "defaultValue": ""
+    },
+    "resolved": {
+      "title": "Custom Page",
+      "key": "custom_url_key",
+      "summary": "Enter a url for a custom page in the popup",
+      "defaultValue": ""
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "component": "androidx.preference.EditTextPreference",
+    "raw": {
+      "title": "@string/streamer_alert_scale_title",
+      "key": "@string/streamer_alert_scale_key",
+      "defaultValue": "@string/streamer_alert_scale_default"
+    },
+    "resolved": {
+      "title": "Alert dashboard scale",
+      "key": "alert_scale_key",
+      "defaultValue": "280"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_support.xml",
+    "component": "androidx.preference.Preference",
+    "raw": {
+      "persistent": "false",
+      "title": "@string/pref_discord",
+      "key": "@string/discord_key"
+    },
+    "resolved": {
+      "persistent": "false",
+      "title": "Discord",
+      "key": "discord"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_support.xml",
+    "component": "androidx.preference.Preference",
+    "raw": {
+      "persistent": "false",
+      "title": "@string/send_diagnostics_title",
+      "key": "@string/send_diagnostics_key"
+    },
+    "resolved": {
+      "persistent": "false",
+      "title": "Send cameras debug details to developers",
+      "key": "send_diagnostics"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_support.xml",
+    "component": "androidx.preference.Preference",
+    "raw": {
+      "persistent": "false",
+      "title": "@string/reset_app_settings",
+      "key": "@string/reset_app_settings_key"
+    },
+    "resolved": {
+      "persistent": "false",
+      "title": "Reset app settings",
+      "key": "reset_app_settings"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_support.xml",
+    "component": "androidx.preference.Preference",
+    "raw": {
+      "persistent": "false",
+      "title": "@string/pref_about_us",
+      "key": "@string/about_us_key"
+    },
+    "resolved": {
+      "persistent": "false",
+      "title": "About IRL Pro",
+      "key": "about_us"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "enabled": "false",
+      "entries": "@array/concurrent_camera_mode_entries",
+      "title": "@string/concurrent_camera_mode_title",
+      "key": "@string/concurrent_camera_mode_key",
+      "summary": "Disabled for now",
+      "defaultValue": "@string/concurrent_camera_mode_off",
+      "entryValues": "@array/concurrent_camera_mode_values"
+    },
+    "resolved": {
+      "enabled": "false",
+      "entries": [
+        "@string/concurrent_camera_off",
+        "@string/concurrent_camera_picture_in_picture"
+      ],
+      "title": "Multi-camera capture",
+      "key": "concurrent_camera_mode",
+      "summary": "Disabled for now",
+      "defaultValue": "0",
+      "entryValues": [
+        "@string/concurrent_camera_mode_off",
+        "@string/concurrent_camera_mode_picture_in_picture"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.PreferenceCategory",
+    "raw": {
+      "title": "@string/pref_category_camera_title",
+      "key": "@string/pref_category_camera_key"
+    },
+    "resolved": {
+      "title": "Camera",
+      "key": "category_camera"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/cam_entries",
+      "title": "@string/cam_title",
+      "key": "@string/cam_key",
+      "defaultValue": "0",
+      "entryValues": "@array/cam_values"
+    },
+    "resolved": {
+      "entries": [
+        "0"
+      ],
+      "title": "Start app with",
+      "key": "cam_list",
+      "defaultValue": "0",
+      "entryValues": [
+        "0"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.Preference",
+    "raw": {
+      "title": "@string/sub_camera_select_title",
+      "key": "@string/sub_camera_select_fragment_key",
+      "fragment": "com.wmspanel.streamer.preference.PreferenceFragmentCameraSelect",
+      "isPreferenceVisible": "false"
+    },
+    "resolved": {
+      "title": "Flip between physical sub-cameras",
+      "key": "sub_camera_select",
+      "fragment": "com.wmspanel.streamer.preference.PreferenceFragmentCameraSelect",
+      "isPreferenceVisible": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/video_size_entries",
+      "title": "@string/video_size_title",
+      "key": "@string/video_size_key",
+      "defaultValue": "0",
+      "entryValues": "@array/video_size_values"
+    },
+    "resolved": {
+      "entries": [
+        "640x480"
+      ],
+      "title": "Resolution",
+      "key": "video_size_list",
+      "defaultValue": "0",
+      "entryValues": [
+        "0"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/fps_range_entries",
+      "title": "@string/fps_range_title",
+      "key": "@string/fps_range_key",
+      "defaultValue": "0",
+      "entryValues": "@array/fps_range_values"
+    },
+    "resolved": {
+      "entries": [
+        "@string/fps_range_none"
+      ],
+      "title": "FPS",
+      "key": "fps_range",
+      "defaultValue": "0",
+      "entryValues": [
+        "0"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "enabled": "false",
+      "entries": "@array/video_orientation_entries",
+      "title": "@string/video_orientation_title",
+      "key": "@string/video_orientation_key",
+      "defaultValue": "@string/video_orientation_value_landscape",
+      "entryValues": "@array/video_orientation_values"
+    },
+    "resolved": {
+      "enabled": "false",
+      "entries": [
+        "@string/video_orientation_landscape",
+        "@string/video_orientation_portrait"
+      ],
+      "title": "Orientation",
+      "key": "video_orientation",
+      "defaultValue": "0",
+      "entryValues": [
+        "@string/video_orientation_value_landscape",
+        "@string/video_orientation_value_portrait"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "enabled": "false",
+      "title": "@string/live_rotation_title",
+      "key": "@string/live_rotation_key",
+      "defaultValue": "@string/live_rotation_default"
+    },
+    "resolved": {
+      "enabled": "false",
+      "title": "Live rotation",
+      "key": "adjust_stream_orientation",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/reverse_orientation_title",
+      "key": "@string/reverse_orientation_key",
+      "defaultValue": "@string/reverse_orientation_default"
+    },
+    "resolved": {
+      "title": "Reverse Orientation",
+      "key": "reverse_orientation",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/double_tap_flip_title",
+      "key": "@string/double_tap_flip_key",
+      "defaultValue": "@string/double_tap_flip_default"
+    },
+    "resolved": {
+      "title": "Double Tap to Flip Camera",
+      "key": "double_tap_flip",
+      "defaultValue": "false"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "enabled": "false",
+      "entries": "@array/live_rotation_mode_entries",
+      "title": "@string/live_rotation_mode_title",
+      "key": "@string/live_rotation_mode_key",
+      "defaultValue": "@string/live_rotation_value_follow",
+      "entryValues": "@array/live_rotation_mode_values"
+    },
+    "resolved": {
+      "enabled": "false",
+      "entries": [
+        "@string/live_rotation_mode_follow",
+        "@string/live_rotation_mode_lock"
+      ],
+      "title": "Live rotation mode",
+      "key": "live_rotation_mode",
+      "defaultValue": "0",
+      "entryValues": [
+        "@string/live_rotation_value_follow",
+        "@string/live_rotation_value_lock"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "enabled": "false",
+      "title": "@string/foreground_service_title",
+      "key": "@string/foreground_service_key",
+      "summary": "@string/foreground_service_summary",
+      "defaultValue": "@string/foreground_service_default"
+    },
+    "resolved": {
+      "enabled": "false",
+      "title": "Keep streaming when not in focus.",
+      "key": "pref_foreground_service",
+      "summary": "This is always enabled now.",
+      "defaultValue": "true"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/focus_mode_entries",
+      "title": "@string/focus_mode_title",
+      "key": "@string/focus_mode_key",
+      "defaultValue": "@string/focus_mode_continuous_video",
+      "entryValues": "@array/focus_mode_values"
+    },
+    "resolved": {
+      "entries": [
+        "@string/focus_continuous_video",
+        "@string/focus_infinity"
+      ],
+      "title": "Focus mode",
+      "key": "focus_mode",
+      "defaultValue": "0",
+      "entryValues": [
+        "@string/focus_mode_continuous_video",
+        "@string/focus_mode_infinity"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/awb_mode_entries",
+      "title": "@string/awb_mode_title",
+      "key": "@string/awb_mode_key",
+      "defaultValue": "@string/awb_mode_auto",
+      "entryValues": "@array/awb_mode_values"
+    },
+    "resolved": {
+      "entries": [
+        "@string/awb_auto",
+        "@string/awb_cloudy_daylight",
+        "@string/awb_daylight",
+        "@string/awb_fluorescent",
+        "@string/awb_incandescent",
+        "@string/awb_shade",
+        "@string/awb_twilight",
+        "@string/awb_warm_fluorescent"
+      ],
+      "title": "White balance",
+      "key": "awb_mode",
+      "defaultValue": "0",
+      "entryValues": [
+        "@string/awb_mode_auto",
+        "@string/awb_mode_cloudy_daylight",
+        "@string/awb_mode_daylight",
+        "@string/awb_mode_fluorescent",
+        "@string/awb_mode_incandescent",
+        "@string/awb_mode_shade",
+        "@string/awb_mode_twilight",
+        "@string/awb_mode_warm_fluorescent"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/antibanding_mode_entries",
+      "title": "@string/antibanding_mode_title",
+      "key": "@string/antibanding_mode_key",
+      "defaultValue": "@string/antibanding_mode_auto",
+      "entryValues": "@array/antibanding_mode_values"
+    },
+    "resolved": {
+      "entries": [
+        "@string/antibanding_off",
+        "@string/antibanding_50hz",
+        "@string/antibanding_60hz",
+        "@string/antibanding_auto"
+      ],
+      "title": "Anti-flicker",
+      "key": "antibanding_mode_2",
+      "defaultValue": "3",
+      "entryValues": [
+        "@string/antibanding_mode_off",
+        "@string/antibanding_mode_50hz",
+        "@string/antibanding_mode_60hz",
+        "@string/antibanding_mode_auto"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/exposure_compensation_entries",
+      "title": "@string/exposure_compensation_title",
+      "key": "@string/exposure_compensation_key",
+      "defaultValue": "0",
+      "entryValues": "@array/exposure_compensation_values"
+    },
+    "resolved": {
+      "entries": [
+        "0"
+      ],
+      "title": "Exposure compensation",
+      "key": "exposure_compensation",
+      "defaultValue": "0",
+      "entryValues": [
+        "0"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.PreferenceCategory",
+    "raw": {
+      "title": "@string/pref_category_concurrent_camera_title",
+      "key": "@string/pref_category_concurrent_camera_key"
+    },
+    "resolved": {
+      "title": "Multi-camera",
+      "key": "category_concurrent_camera"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/concurrent_cam_dummy_entries",
+      "title": "@string/concurrent_cam_set_title",
+      "key": "@string/concurrent_cam_set_key",
+      "defaultValue": "@string/concurrent_cam_dummy",
+      "entryValues": "@array/concurrent_cam_dummy_values"
+    },
+    "resolved": {
+      "entries": [
+        "@string/concurrent_cam_dummy"
+      ],
+      "title": "Set of camera devices",
+      "key": "concurrent_cam_set",
+      "defaultValue": "-1",
+      "entryValues": [
+        "@string/concurrent_cam_dummy"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/concurrent_cam_dummy_entries",
+      "title": "@string/concurrent_cam_host_title",
+      "key": "@string/concurrent_cam_host_key",
+      "defaultValue": "@string/concurrent_cam_dummy",
+      "entryValues": "@array/concurrent_cam_dummy_values"
+    },
+    "resolved": {
+      "entries": [
+        "@string/concurrent_cam_dummy"
+      ],
+      "title": "Camera #1",
+      "key": "concurrent_cam_host",
+      "defaultValue": "-1",
+      "entryValues": [
+        "@string/concurrent_cam_dummy"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/concurrent_cam_dummy_entries",
+      "title": "@string/concurrent_cam_guest_title",
+      "key": "@string/concurrent_cam_guest_key",
+      "defaultValue": "@string/concurrent_cam_dummy",
+      "entryValues": "@array/concurrent_cam_dummy_values"
+    },
+    "resolved": {
+      "entries": [
+        "@string/concurrent_cam_dummy"
+      ],
+      "title": "Camera #2",
+      "key": "concurrent_cam_guest",
+      "defaultValue": "-1",
+      "entryValues": [
+        "@string/concurrent_cam_dummy"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "title": "@string/video_size_title",
+      "key": "@string/concurrent_cam_video_size_key",
+      "defaultValue": "@string/concurrent_cam_dummy"
+    },
+    "resolved": {
+      "title": "Resolution",
+      "key": "concurrent_cam_video_size",
+      "defaultValue": "-1"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "title": "@string/fps_range_title",
+      "key": "@string/concurrent_cam_fps_key",
+      "defaultValue": "@string/concurrent_cam_dummy"
+    },
+    "resolved": {
+      "title": "FPS",
+      "key": "concurrent_cam_fps",
+      "defaultValue": "-1"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/video_orientation_entries",
+      "title": "@string/video_orientation_title",
+      "key": "@string/concurrent_cam_video_orientation_key",
+      "defaultValue": "@string/video_orientation_value_landscape",
+      "entryValues": "@array/video_orientation_values"
+    },
+    "resolved": {
+      "entries": [
+        "@string/video_orientation_landscape",
+        "@string/video_orientation_portrait"
+      ],
+      "title": "Orientation",
+      "key": "concurrent_cam_video_orientation",
+      "defaultValue": "0",
+      "entryValues": [
+        "@string/video_orientation_value_landscape",
+        "@string/video_orientation_value_portrait"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/use_bitrate_table_title",
+      "key": "@string/use_bitrate_table_key",
+      "defaultValue": "@string/use_bitrate_table_default",
+      "summaryOn": "@string/use_bitrate_table_summary_on",
+      "summaryOff": "@string/use_bitrate_table_summary_off"
+    },
+    "resolved": {
+      "title": "Bitrate matches resolution",
+      "key": "use_bitrate_table",
+      "defaultValue": "true",
+      "summaryOn": "Bitrate matches the value recommended based on resolution and frame rate.",
+      "summaryOff": "Bitrate is now defined manually."
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.EditTextPreference",
+    "raw": {
+      "title": "@string/bitrate_title",
+      "key": "@string/bitrate_key",
+      "defaultValue": "@string/bitrate_default"
+    },
+    "resolved": {
+      "title": "Bitrate",
+      "key": "bitrate_edit",
+      "defaultValue": "2000"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/video_bitrate_mode_entries",
+      "title": "@string/video_bitrate_mode_title",
+      "key": "@string/video_bitrate_mode_key",
+      "defaultValue": "@string/option_value_none",
+      "entryValues": "@array/video_bitrate_mode_values"
+    },
+    "resolved": {
+      "entries": [
+        "@string/option_none",
+        "@string/video_bitrate_cq",
+        "@string/video_bitrate_vbr",
+        "@string/video_bitrate_cbr",
+        "@string/video_bitrate_cbr_fd"
+      ],
+      "title": "Bitrate mode",
+      "key": "video_bitrate_mode",
+      "defaultValue": "-1",
+      "entryValues": [
+        "@string/option_value_none",
+        "@string/video_bitrate_mode_cq",
+        "@string/video_bitrate_mode_vbr",
+        "@string/video_bitrate_mode_cbr",
+        "@string/video_bitrate_mode_cbr_fd"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.EditTextPreference",
+    "raw": {
+      "title": "@string/key_frame_interval_title",
+      "key": "@string/key_frame_interval_key",
+      "defaultValue": "@string/key_frame_interval_default"
+    },
+    "resolved": {
+      "title": "Keyframe frequency",
+      "key": "key_frame_interval_edit",
+      "defaultValue": "2"
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/video_codec_entries",
+      "title": "@string/video_codec_title",
+      "key": "@string/video_codec_key",
+      "summary": "@string/video_codec_summary",
+      "defaultValue": "@string/video_codec_auto",
+      "entryValues": "@array/video_codec_values"
+    },
+    "resolved": {
+      "entries": [
+        "Auto",
+        "H.264",
+        "HEVC"
+      ],
+      "title": "Format",
+      "key": "video_codec",
+      "summary": "Auto = H.264 for RTMP, HEVC for all others",
+      "defaultValue": "video/auto",
+      "entryValues": [
+        "video/auto",
+        "video/avc",
+        "video/hevc"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "visibility": "invisible",
+      "title": "@string/adjust_bitrate_format_title",
+      "key": "@string/adjust_bitrate_format_key",
+      "defaultValue": "@string/adjust_bitrate_format_default",
+      "summaryOn": "@string/adjust_bitrate_format_summary_on",
+      "summaryOff": "@string/adjust_bitrate_format_summary_off"
+    },
+    "resolved": {
+      "visibility": "invisible",
+      "title": "Auto adjust bitrate based on format",
+      "key": "adjust_bitrate_format",
+      "defaultValue": "true",
+      "summaryOn": "Bitrate adjusts based on the format being used.",
+      "summaryOff": "Bitrate won\\'t change when the format changes."
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/video_codec_profile_entries",
+      "title": "@string/avc_codec_profile_title",
+      "key": "@string/avc_codec_profile_key",
+      "defaultValue": "@string/option_value_none",
+      "entryValues": "@array/video_codec_profile_values"
+    },
+    "resolved": {
+      "entries": [
+        "@string/option_none"
+      ],
+      "title": "H.264 profile",
+      "key": "avc_codec_profile",
+      "defaultValue": "-1",
+      "entryValues": [
+        "@string/option_value_none"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/video_codec_profile_entries",
+      "title": "@string/hevc_codec_profile_title",
+      "key": "@string/hevc_codec_profile_key",
+      "defaultValue": "@string/option_value_none",
+      "entryValues": "@array/video_codec_profile_values"
+    },
+    "resolved": {
+      "entries": [
+        "@string/option_none"
+      ],
+      "title": "HEVC profile",
+      "key": "hevc_codec_profile",
+      "defaultValue": "-1",
+      "entryValues": [
+        "@string/option_value_none"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/video_stabilization_mode_entries",
+      "title": "@string/video_stabilization_mode_title",
+      "key": "@string/video_stabilization_mode_key",
+      "defaultValue": "@string/video_stabilization_mode_on",
+      "entryValues": "@array/video_stabilization_mode_values"
+    },
+    "resolved": {
+      "entries": [
+        "@string/option_none",
+        "@string/video_stabilization_off",
+        "@string/video_stabilization_on"
+      ],
+      "title": "Electronic image stabilization",
+      "key": "video_stabilization_mode3",
+      "defaultValue": "1",
+      "entryValues": [
+        "@string/option_value_none",
+        "@string/video_stabilization_mode_off",
+        "@string/video_stabilization_mode_on"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/video_stabilization_mode_entries",
+      "title": "@string/optical_stabilization_mode_title",
+      "key": "@string/optical_stabilization_mode_key",
+      "defaultValue": "@string/video_stabilization_mode_on",
+      "entryValues": "@array/video_stabilization_mode_values"
+    },
+    "resolved": {
+      "entries": [
+        "@string/option_none",
+        "@string/video_stabilization_off",
+        "@string/video_stabilization_on"
+      ],
+      "title": "Optical image stabilization",
+      "key": "optical_stabilization_mode3",
+      "defaultValue": "1",
+      "entryValues": [
+        "@string/option_value_none",
+        "@string/video_stabilization_mode_off",
+        "@string/video_stabilization_mode_on"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/noise_reduction_entries",
+      "title": "@string/noise_reduction_mode_title",
+      "key": "@string/noise_reduction_mode_key",
+      "defaultValue": "@string/noise_reduction_mode_fast",
+      "entryValues": "@array/noise_reduction_values"
+    },
+    "resolved": {
+      "entries": [
+        "@string/option_none",
+        "@string/noise_reduction_off",
+        "@string/noise_reduction_fast",
+        "@string/noise_reduction_hight_quality",
+        "@string/noise_reduction_minimal"
+      ],
+      "title": "Noise reduction",
+      "key": "noise_reduction_mode2",
+      "defaultValue": "1",
+      "entryValues": [
+        "@string/option_value_none",
+        "@string/noise_reduction_mode_off",
+        "@string/noise_reduction_mode_fast",
+        "@string/noise_reduction_mode_hight_quality",
+        "@string/noise_reduction_mode_minimal"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.ListPreference",
+    "raw": {
+      "entries": "@array/adaptive_bitrate_entries",
+      "title": "@string/adaptive_bitrate_title",
+      "key": "@string/adaptive_bitrate_key",
+      "defaultValue": "@string/adaptive_bitrate_value_auto",
+      "entryValues": "@array/adaptive_bitrate_values"
+    },
+    "resolved": {
+      "entries": [
+        "@string/adaptive_bitrate_auto",
+        "@string/adaptive_bitrate_hybrid2",
+        "@string/adaptive_bitrate_logarithmic_descend",
+        "@string/adaptive_bitrate_ladder_ascend",
+        "@string/adaptive_bitrate_hybrid",
+        "@string/adaptive_bitrate_off",
+        "@string/adaptive_bitrate_hybrid3"
+      ],
+      "title": "Mode",
+      "key": "adaptive_bitrate2",
+      "defaultValue": "0",
+      "entryValues": [
+        "@string/adaptive_bitrate_value_auto",
+        "@string/adaptive_bitrate_value_hybrid2",
+        "@string/adaptive_bitrate_value_logarithmic_descend",
+        "@string/adaptive_bitrate_value_ladder_ascend",
+        "@string/adaptive_bitrate_value_hybrid",
+        "@string/adaptive_bitrate_value_off",
+        "@string/adaptive_bitrate_value_hybrid3"
+      ]
+    }
+  },
+  {
+    "file": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "component": "androidx.preference.SwitchPreference",
+    "raw": {
+      "title": "@string/adaptive_fps_title",
+      "key": "@string/adaptive_fps_key",
+      "summary": "@string/adaptive_fps_hint",
+      "defaultValue": "false"
+    },
+    "resolved": {
+      "title": "Adaptive frame rate",
+      "key": "adaptive_fps",
+      "summary": "Reduce frame rate related to bitrate drop in adaptive bitrate mode. However this can cause issues when it changes fps. YMMV",
+      "defaultValue": "false"
+    }
+  }
+]

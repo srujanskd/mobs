@@ -1,0 +1,12 @@
+
+artifacts/unpacked/lib/arm64-v8a/liblog.so:	file format elf64-littleaarch64
+
+DYNAMIC SYMBOL TABLE:
+0000000000001000 g    DF .text	0000000000000008 __android_log_assert
+0000000000001030 g    DF .text	0000000000000008 __android_log_is_loggable
+0000000000001038 g    DF .text	0000000000000008 __android_log_is_loggable_len
+0000000000001008 g    DF .text	0000000000000008 __android_log_buf_print
+0000000000001010 g    DF .text	0000000000000008 __android_log_buf_write
+0000000000001018 g    DF .text	0000000000000008 __android_log_print
+0000000000001020 g    DF .text	0000000000000008 __android_log_vprint
+0000000000001028 g    DF .text	0000000000000008 __android_log_write

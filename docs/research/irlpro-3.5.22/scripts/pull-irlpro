@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+ADB='/Users/srujankashyapd/Library/Android/sdk/platform-tools/adb'
+if [[ $# -ne 1 ]]; then
+  echo 'Usage: scripts/pull-irlpro DEVICE_SERIAL' >&2
+  "$ADB" devices -l
+  exit 1
+fi
+SERIAL="$1"
+DEST="$ROOT/artifacts/device-$(date +%Y%m%d-%H%M%S)"
+PATHS="$("$ADB" -s "$SERIAL" shell pm path app.irlpro.android | tr -d '\r')"
+if [[ -z "$PATHS" ]]; then
+  echo 'IRL Pro is not installed or this device is unavailable.' >&2
+  exit 1
+fi
+mkdir -p "$DEST"
+printf '%s\n' "$PATHS" > "$DEST/device-package-paths.txt"
+while IFS= read -r line; do
+  case "$line" in
+    package:*) REMOTE="${line#package:}"; "$ADB" -s "$SERIAL" pull "$REMOTE" "$DEST/$(basename "$REMOTE")" ;;
+    *) echo "Unexpected package path response: $line" >&2; exit 1 ;;
+  esac
+done <<< "$PATHS"
+shasum -a 256 "$DEST/"*.apk > "$DEST/SHA256SUMS"
+printf 'Saved APKs and hashes in %s\n' "$DEST"

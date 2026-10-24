@@ -1,0 +1,33 @@
+
+artifacts/unpacked/lib/x86/liblog.so:	file format elf32-i386
+
+Program Header:
+    PHDR off    0x00000034 vaddr 0x00000034 paddr 0x00000034 align 2**2
+         filesz 0x00000120 memsz 0x00000120 flags r--
+    LOAD off    0x00000000 vaddr 0x00000000 paddr 0x00000000 align 2**12
+         filesz 0x000004cc memsz 0x000004cc flags r--
+    LOAD off    0x000004d0 vaddr 0x000014d0 paddr 0x000014d0 align 2**12
+         filesz 0x0000007a memsz 0x0000007a flags r-x
+    LOAD off    0x0000054c vaddr 0x0000254c paddr 0x0000254c align 2**12
+         filesz 0x00000050 memsz 0x00000050 flags rw-
+ DYNAMIC off    0x0000054c vaddr 0x0000254c paddr 0x0000254c align 2**2
+         filesz 0x00000050 memsz 0x00000050 flags rw-
+   RELRO off    0x0000054c vaddr 0x0000254c paddr 0x0000254c align 2**0
+         filesz 0x00000050 memsz 0x00000ab4 flags r--
+EH_FRAME off    0x00000364 vaddr 0x00000364 paddr 0x00000364 align 2**2
+         filesz 0x0000004c memsz 0x0000004c flags r--
+   STACK off    0x00000000 vaddr 0x00000000 paddr 0x00000000 align 2**64
+         filesz 0x00000000 memsz 0x00000000 flags rw-
+    NOTE off    0x00000154 vaddr 0x00000154 paddr 0x00000154 align 2**2
+         filesz 0x00000020 memsz 0x00000020 flags r--
+
+Dynamic Section:
+  SONAME   liblog.so
+  FLAGS    0x00000008
+  FLAGS_1  0x00000001
+  SYMTAB   0x00000174
+  SYMENT   0x00000010
+  STRTAB   0x0000029c
+  STRSZ    0x000000c5
+  GNU_HASH 0x00000204
+  HASH     0x0000024c

@@ -1,0 +1,177 @@
+244 Android
+250 r23b
+290 7779620
+2e5  *CK
+d49 CI~J
+dff 4<Fv|
+e1d __cxa_atexit
+e2a __cxa_finalize
+e39 __register_atfork
+e4b Java_com_wmspanel_streamer_Srtla_startSRTLA
+e77 __FD_CLR_chk
+e84 __FD_ISSET_chk
+e93 __FD_SET_chk
+ea0 __android_log_print
+eb4 __memcpy_chk
+ec1 __sendto_chk
+ece __stack_chk_fail
+edf active_connections
+ef2 active_fds
+efd add_active_fd
+f0b addr_len
+f14 atoi
+f19 bind
+f1e calloc
+f25 cleanupFD
+f2f close
+f35 conn_find_by_src
+f46 conn_register_srt_ack
+f5c connection_housekeeping
+f74 conns
+f7a do_update_conns
+f8a experimental
+f97 fclose
+f9e fopen
+fa4 fread
+faa free
+faf freeaddrinfo
+fbc fwrite
+fc3 get_ms
+fca get_pkt_idx
+fd6 get_seconds
+fe2 get_srt_sn
+fed get_srt_type
+ffa getaddrinfo
+1006 getsockopt
+1011 handle_srt_data
+1021 handle_srtla_data
+1033 is_srtla_reg2
+1041 jniEnv
+1048 listenfd
+1051 max_act_fd
+105c memcmp
+1063 memset
+106a obj_cls
+1072 open_conns
+107d open_socket
+1089 parse_ip
+1092 parse_port
+109d perror
+10a4 print_addr
+10af print_help
+10ba recvfrom
+10c3 reg_pkt
+10cb register_nak
+10d8 register_srt_ack
+10e9 register_srtla_ack
+10fc remove_active_fd
+110d select
+1114 select_conn
+1120 send_fat_keepalive
+1133 send_keepalive
+1142 send_reg2
+114c sendto
+1153 setsockopt
+115e setup_conns
+116a socket
+1171 source_ip_file
+1180 srt_addr
+1189 srtla_addr
+1194 srtla_id
+119d stderr
+11a4 strsep
+11ab terminate
+11b5 try_reg1
+11be update_conns
+11cb _global_addr_buf
+11dc clock_gettime
+11ea exit
+11ef exit_help
+11f9 inet_addr
+1203 inet_ntop
+120d is_srt_ack
+1218 is_srtla_keepalive
+122b is_srtla_reg1
+1239 is_srtla_reg3
+1247 port_no
+124f strtol
+1256 libc.so
+125e LIBC
+1263 LIBC_O
+126a liblog.so
+1274 libm.so
+127c libdl.so
+1285 libsrtla.so
+1994 srtlaC
+199b Syntax: srtla_send SRT_LISTEN_PORT SRTLA_HOST SRTLA_PORT BIND_IPS_FILE
+19e3 -v      Print the version and exit
+1a07 Listen port %s
+1a16 urandom null
+1a23 Added connection via %s fd %d (%p)
+1a47 Failed to set receive timeout
+1a65 Trying to connect to %s...
+1a81 setSrtlaIp
+1a8c (Ljava/lang/String;)V
+1aa2 ()Ljava/lang/String;
+1ab7 warning: no available connections
+1ada %s (%p): connection established
+1afd getLastUpdate
+1b0b /dev/urandom
+1b18 (I)V
+1b20 updateConn
+1b2b (Ljava/lang/String;IIIIIIJJJJJI)V
+1b4d Got connection IP %s and fd %d and weight %d
+1b7a Update connection weight %d via %s fd %d (%p)
+1ba9 Failed to establish any initial connections to %s:%s, aborting
+1be9 %s (%p): sendto() failed, disabling the connection
+1c1d socket creation failed
+1c34 Starting main loop
+1c47 openeing %d
+1c53 Out IP %s
+1c5d getConnsString
+1c6c Socket closed , openeing
+1c85 %s:%d (%p): in flight: %d, kp: %d, win: %d, tot pkts: %lld, tot bytes %lld, tot real bytes %lld - %.0f kbps - %.0f real kbps, last_rcvd %ld
+1d12 Starting srtla
+1d21 %s (%p): connection failed, attempting to reconnect
+1d56 Dest %s:%s
+1d61 Failed to set send timeout
+1d7c Index changed, getting update
+1d9a %s (%p): got a mismatching ID in SRTLA_REG2
+1dc9 We got a packet back!
+1ddf shouldKill
+1dea The connection group has failed, restarting all connections
+1e27 cleanupFD
+1e35 bind failed
+1e41 Removed connection via %s (%p)
+2683 ThB@
+2707 ThB@
+2b67 r(}(
+32cd %@qk
+3eeb ThB@
+449f R!P&
+452f R!P&
+4780  D@xB
+516c Android (7714059, based on r416183c1) clang version 12.0.8 (https://android.googlesource.com/toolchain/llvm-project c935d99d7cf2016289302412d708641d52d2f7ee)
+520b Linker: LLD 12.0.8 (/buildbot/src/android/llvm-r416183/out/llvm-project/lld c935d99d7cf2016289302412d708641d52d2f7ee)
+5282 .fini_array
+528e .text
+5294 .got
+5299 .comment
+52a2 .note.android.ident
+52b6 .got.plt
+52bf .rela.plt
+52c9 .bss
+52ce .dynstr
+52d6 .eh_frame_hdr
+52e4 .gnu.version_r
+52f3 .data.rel.ro
+5300 .rela.dyn
+530a .gnu.version
+5317 .dynsym
+531f .gnu.hash
+5329 .eh_frame
+5333 .note.gnu.build-id
+5346 .dynamic
+534f .shstrtab
+5359 .rodata
+5361 .data

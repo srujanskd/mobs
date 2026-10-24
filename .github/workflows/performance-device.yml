@@ -1,0 +1,35 @@
+name: Physical device performance
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: android-performance-phone
+  cancel-in-progress: false
+jobs:
+  startup:
+    # A dedicated, unlocked, temperature-stable Android phone must be attached to this runner.
+    # Keep untrusted pull requests off this runner. This workflow is manual on a trusted ref.
+    runs-on: [self-hosted, android-performance]
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - run: ./gradlew :benchmarks:connectedBenchmarkAndroidTest --console=plain
+      - name: Evaluate startup budgets
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+          files = list(Path('benchmarks/build/outputs').rglob('*benchmarkData.json'))
+          if len(files) != 1:
+              raise SystemExit(f'Expected one benchmark JSON, found {len(files)}')
+          subprocess.run(['python3', 'scripts/performance/check_startup.py', str(files[0]), '--output', 'performance-results/startup.json'], check=True)
+          PY
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: phone-performance
+          path: |
+            benchmarks/build/outputs/
+            benchmarks/build/reports/
+            performance-results/

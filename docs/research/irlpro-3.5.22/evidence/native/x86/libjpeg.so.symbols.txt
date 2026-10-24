@@ -1,0 +1,147 @@
+
+artifacts/unpacked/lib/x86/libjpeg.so:	file format elf32-i386
+
+DYNAMIC SYMBOL TABLE:
+00000000      DF *UND*	00000000 (LIBC)       __cxa_finalize
+00000000      DF *UND*	00000000 (LIBC)       __cxa_atexit
+00000000      DF *UND*	00000000 (LIBC)       __register_atfork
+00000000      DF *UND*	00000000 (LIBC)       memset
+00000000      DF *UND*	00000000 (LIBC)       memcpy
+00000000      DF *UND*	00000000 (LIBC)       fwrite
+00000000      DF *UND*	00000000 (LIBC)       fflush
+00000000      DF *UND*	00000000 (LIBC)       ferror
+00000000      DF *UND*	00000000 (LIBC)       malloc
+00000000      DF *UND*	00000000 (LIBC)       free
+00000000      DF *UND*	00000000 (LIBC)       fread
+00000000      DF *UND*	00000000 (LIBC)       exit
+00000000      DO *UND*	00000000 (LIBC)       stderr
+00000000      DF *UND*	00000000 (LIBC)       fprintf
+00000000      DF *UND*	00000000 (LIBC)       snprintf
+00000000      DF *UND*	00000000 (LIBC)       getenv
+00000000      DF *UND*	00000000 (LIBC)       strlen
+00000000      DF *UND*	00000000 (LIBC)       strncpy
+00000000      DF *UND*	00000000 (LIBC)       sscanf
+000409a0 g    DF .text	000000de  LIBJPEG_6.2 jpeg_write_raw_data
+00055e50 g    DF .text	00000948  LIBJPEG_6.2 jinit_c_master_control
+00053800 g    DF .text	000000af  LIBJPEG_6.2 jinit_c_main_controller
+000641d0 g    DF .text	000007c1  LIBJPEG_6.2 jinit_color_deconverter
+00075b80 g    DF .text	00000178  LIBJPEG_6.2 jpeg_read_coefficients
+00089cc0 g    DF .text	00000003  LIBJPEG_6.2 jpeg_mem_init
+0007c120 g    DF .text	00001568  LIBJPEG_6.2 jpeg_idct_11x11
+00089cd0 g    DF .text	00000001  LIBJPEG_6.2 jpeg_mem_term
+00089c40 g    DF .text	00000021  LIBJPEG_6.2 jpeg_free_large
+00060470 g    DF .text	00000021  LIBJPEG_6.2 jpeg_abort_decompress
+00078a80 g    DF .text	00000493  LIBJPEG_6.2 jpeg_idct_ifast
+00076fc0 g    DF .text	000015a2  LIBJPEG_6.2 jpeg_fdct_islow
+00026294 g    DO .rodata	00000140  LIBJPEG_6.2 jpeg_natural_order
+000588d0 g    DF .text	00001444  LIBJPEG_6.2 jpeg_set_linear_quality
+00079a90 g    DF .text	00000972  LIBJPEG_6.2 jpeg_idct_5x5
+00089c70 g    DF .text	0000001e  LIBJPEG_6.2 jpeg_mem_available
+00089be0 g    DF .text	00000021  LIBJPEG_6.2 jpeg_free_small
+00040650 g    DF .text	000000a4  LIBJPEG_6.2 jpeg_write_marker
+00075f20 g    DF .text	00000729  LIBJPEG_6.2 jpeg_fdct_float
+00046260 g    DF .text	00000682  LIBJPEG_6.2 jpeg_make_c_derived_tbl
+00057a00 g    DF .text	00000036  LIBJPEG_6.2 jpeg_alloc_huff_table
+000883d0 g    DF .text	000000c8  LIBJPEG_6.2 jcopy_sample_rows
+00060740 g    DF .text	00000043  LIBJPEG_6.2 jpeg_input_complete
+000607e0 g    DF .text	000000b9  LIBJPEG_6.2 jpeg_finish_decompress
+00074af0 g    DF .text	0000036d  LIBJPEG_6.2 jinit_upsampler
+0005a790 g    DF .text	00000832  LIBJPEG_6.2 jpeg_simple_progression
+00070230 g    DF .text	0000053e  LIBJPEG_6.2 jinit_master_decompress
+00061a10 g    DF .text	00000112  LIBJPEGTURBO_6.2 jpeg_mem_dest
+00080b70 g    DF .text	000015dc  LIBJPEG_6.2 jpeg_idct_15x15
+00069c60 g    DF .text	0000015d  LIBJPEG_6.2 jpeg_fill_bit_buffer
+0008b700 g    DF .text	0000012a  LIBJPEG_6.2 jinit_arith_decoder
+0005e5d0 g    DF .text	00000216  LIBJPEG_6.2 jinit_downsampler
+0005f960 g    DF .text	00000399  LIBJPEG_6.2 jpeg_copy_critical_parameters
+00061dc0 g    DF .text	000000b8  LIBJPEGTURBO_6.2 jpeg_mem_src
+00069ed0 g    DF .text	000002e6  LIBJPEG_6.2 jinit_huff_decoder
+000a9444 g    DO .data.rel.ro	00000208  LIBJPEG_6.2 jpeg_std_message_table
+00040550 g    DF .text	000000fb  LIBJPEG_6.2 jpeg_finish_compress
+000797f0 g    DF .text	0000029f  LIBJPEG_6.2 jpeg_idct_6x6
+00061580 g    DF .text	000000ca  LIBJPEG_6.2 jpeg_read_raw_data
+0006fa10 g    DF .text	00000792  LIBJPEG_6.2 jpeg_calc_output_dimensions
+00040770 g    DF .text	0000002a  LIBJPEG_6.2 jpeg_write_m_byte
+0005afd0 g    DF .text	00000049  LIBJPEG_6.2 jinit_phuff_encoder
+0007d690 g    DF .text	00001072  LIBJPEG_6.2 jpeg_idct_12x12
+00089c10 g    DF .text	00000021  LIBJPEG_6.2 jpeg_get_large
+00040810 g    DF .text	00000090  LIBJPEG_6.2 jpeg_start_compress
+00057a40 g    DF .text	00000e88  LIBJPEG_6.2 jpeg_add_quant_table
+0005a490 g    DF .text	000002f2  LIBJPEG_6.2 jpeg_set_colorspace
+00060510 g    DF .text	0000022e  LIBJPEG_6.2 jpeg_consume_input
+00075d00 g    DF .text	00000066  LIBJPEG_6.2 jpeg_std_error
+000407a0 g    DF .text	00000062  LIBJPEG_6.2 jpeg_write_tables
+000434e0 g    DF .text	00000227  LIBJPEG_6.2 jinit_forward_dct
+0005db10 g    DF .text	0000055d  LIBJPEG_6.2 jinit_c_prep_controller
+0006b740 g    DF .text	00000067  LIBJPEG_6.2 jinit_input_controller
+00061650 g    DF .text	0000014a  LIBJPEG_6.2 jpeg_start_output
+0006f380 g    DF .text	00000061  LIBJPEG_6.2 jpeg_set_marker_processor
+000701b0 g    DF .text	0000007b  LIBJPEG_6.2 jpeg_new_colormap
+00089bb0 g    DF .text	00000021  LIBJPEG_6.2 jpeg_get_small
+00088500 g    DF .text	00000187  LIBJPEG_6.2 jinit_memory_mgr
+00057930 g    DF .text	00000050  LIBJPEG_6.2 jpeg_abort
+0005f7f0 g    DF .text	00000166  LIBJPEG_6.2 jpeg_write_coefficients
+00061ee0 g    DF .text	00000174  LIBJPEG_6.2 jinit_d_coef_controller
+00079460 g    DF .text	0000038e  LIBJPEG_6.2 jpeg_idct_7x7
+00083f20 g    DF .text	00000043  LIBJPEG_6.2 jpeg_idct_1x1
+00040700 g    DF .text	00000061  LIBJPEG_6.2 jpeg_write_m_header
+000883b0 g    DF .text	0000001a  LIBJPEG_6.2 jround_up
+00076650 g    DF .text	00000963  LIBJPEG_6.2 jpeg_fdct_ifast
+00088390 g    DF .text	00000011  LIBJPEG_6.2 jdiv_round_up
+00082150 g    DF .text	00001183  LIBJPEG_6.2 jpeg_idct_16x16
+00068630 g    DF .text	0000162d  LIBJPEG_6.2 jpeg_make_d_derived_tbl
+00085790 g    DF .text	0000059b  LIBJPEG_6.2 jinit_2pass_quantizer
+00089ce0 g    DF .text	00000079  LIBJPEG_6.2 jinit_arith_encoder
+00040350 g    DF .text	000000e3  LIBJPEG_6.2 jpeg_CreateCompress
+000468f0 g    DF .text	000002e0  LIBJPEG_6.2 jpeg_gen_optimal_table
+00046bd0 g    DF .text	0000004a  LIBJPEG_6.2 jinit_huff_encoder
+00083f70 g    DF .text	000007db  LIBJPEG_6.2 jinit_1pass_quantizer
+00089c90 g    DF .text	00000027  LIBJPEG_6.2 jpeg_open_backing_store
+00053510 g    DF .text	000001d5  LIBJPEG_6.2 jpeg_write_icc_profile
+000839c0 g    DF .text	00000556  LIBJPEG_6.2 jpeg_idct_2x2
+0007e710 g    DF .text	00000fbc  LIBJPEG_6.2 jpeg_idct_13x13
+00059d60 g    DF .text	0000005e  LIBJPEG_6.2 jpeg_set_quality
+00060790 g    DF .text	00000043  LIBJPEG_6.2 jpeg_has_multiple_scans
+00078f20 g    DF .text	0000053a  LIBJPEG_6.2 jpeg_idct_islow
+00040470 g    DF .text	00000021  LIBJPEG_6.2 jpeg_abort_compress
+00040a80 g    DF .text	00000117  LIBJPEG_6.2 jinit_c_coef_controller
+00041930 g    DF .text	00000281  LIBJPEG_6.2 jinit_color_converter
+00059dc0 g    DF .text	00000377  LIBJPEG_6.2 jpeg_set_defaults
+00060310 g    DF .text	0000012e  LIBJPEG_6.2 jpeg_CreateDecompress
+00060d80 g    DF .text	00000612  LIBJPEG_6.2 jpeg_skip_scanlines
+00078570 g    DF .text	0000050d  LIBJPEG_6.2 jpeg_idct_float
+0006bef0 g    DF .text	000001c9  LIBJPEG_6.2 jinit_d_main_controller
+000884d0 g    DF .text	00000027  LIBJPEG_6.2 jzero_far
+00060440 g    DF .text	00000021  LIBJPEG_6.2 jpeg_destroy_decompress
+0007b3d0 g    DF .text	00000d49  LIBJPEG_6.2 jpeg_idct_10x10
+0007a6e0 g    DF .text	00000ce3  LIBJPEG_6.2 jpeg_idct_9x9
+0006ed50 g    DF .text	000000d5  LIBJPEG_6.2 jpeg_save_markers
+00074760 g    DF .text	000000af  LIBJPEG_6.2 jinit_d_post_controller
+00040440 g    DF .text	00000021  LIBJPEG_6.2 jpeg_destroy_compress
+000536f0 g    DF .text	00000109  LIBJPEG_6.2 jinit_compress_master
+00061c00 g    DF .text	000000b5  LIBJPEG_6.2 jpeg_stdio_src
+0007a410 g    DF .text	000002c6  LIBJPEG_6.2 jpeg_idct_3x3
+00057980 g    DF .text	00000034  LIBJPEG_6.2 jpeg_destroy
+000884a0 g    DF .text	0000002d  LIBJPEG_6.2 jcopy_block_row
+00053a10 g    DF .text	00000074  LIBJPEG_6.2 jinit_marker_writer
+000579c0 g    DF .text	00000036  LIBJPEG_6.2 jpeg_alloc_quant_table
+0006cea0 g    DF .text	000000f7  LIBJPEG_6.2 jinit_marker_reader
+000608a0 g    DF .text	000001ba  LIBJPEG_6.2 jpeg_start_decompress
+000404a0 g    DF .text	000000a5  LIBJPEG_6.2 jpeg_suppress_tables
+000408a0 g    DF .text	000000f6  LIBJPEG_6.2 jpeg_write_scanlines
+00061860 g    DF .text	00000075  LIBJPEG_6.2 jpeg_stdio_dest
+0006cbe0 g    DF .text	00000151  LIBJPEG_6.2 jpeg_resync_to_restart
+00067710 g    DF .text	000000e7  LIBJPEG_6.2 jinit_inverse_dct
+000263e4 g    DO .rodata	000001c8  LIBJPEG_6.2 jpeg_aritab
+00059d20 g    DF .text	00000035  LIBJPEG_6.2 jpeg_quality_scaling
+00060cd0 g    DF .text	000000aa  LIBJPEG_6.2 jpeg_read_scanlines
+000617a0 g    DF .text	0000009d  LIBJPEG_6.2 jpeg_finish_output
+0007f6d0 g    DF .text	00001497  LIBJPEG_6.2 jpeg_idct_14x14
+00069dc0 g    DF .text	00000102  LIBJPEG_6.2 jpeg_huff_decode
+0005a140 g    DF .text	00000350  LIBJPEG_6.2 jpeg_default_colorspace
+000832e0 g    DF .text	000006e0  LIBJPEG_6.2 jpeg_idct_4x4
+0006b130 g    DF .text	0000060a  LIBJPEG_6.2 jpeg_read_icc_profile
+000604a0 g    DF .text	0000006e  LIBJPEG_6.2 jpeg_read_header
+00060a60 g    DF .text	00000263  LIBJPEG_6.2 jpeg_crop_scanline
+00070930 g    DF .text	00000341  LIBJPEG_6.2 jinit_merged_upsampler
+000734a0 g    DF .text	000000ea  LIBJPEG_6.2 jinit_phuff_decoder

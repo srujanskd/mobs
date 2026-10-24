@@ -1,0 +1,25 @@
+{
+  "min_duration_s": 1800,
+  "endurance_duration_s": 10800,
+  "warmup_s": 30,
+  "min_samples": 300,
+  "max_sample_gap_s": 2.5,
+  "min_mean_fps": 29.0,
+  "min_p05_fps": 28.0,
+  "max_disconnected_fraction": 0.01,
+  "max_transport_drop_ratio": 0.01,
+  "max_rss_growth_mb": 64,
+  "max_severe_thermal_fraction": 0,
+  "min_start_battery_pct": 100,
+  "min_end_battery_pct": 10,
+  "baseline_regression": {
+    "mean_fps": 0.02,
+    "p05_fps": 0.03,
+    "rss_growth_mb": 16
+  },
+  "startup": {
+    "max_median_ms": 1500,
+    "max_p95_ms": 2000,
+    "max_regression_fraction": 0.1
+  }
+}

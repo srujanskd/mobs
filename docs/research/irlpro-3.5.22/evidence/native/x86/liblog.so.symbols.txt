@@ -1,0 +1,12 @@
+
+artifacts/unpacked/lib/x86/liblog.so:	file format elf32-i386
+
+DYNAMIC SYMBOL TABLE:
+000014d0 g    DF .text	0000000a __android_log_assert
+00001530 g    DF .text	0000000a __android_log_is_loggable
+00001540 g    DF .text	0000000a __android_log_is_loggable_len
+000014e0 g    DF .text	0000000a __android_log_buf_print
+000014f0 g    DF .text	0000000a __android_log_buf_write
+00001500 g    DF .text	0000000a __android_log_print
+00001510 g    DF .text	0000000a __android_log_vprint
+00001520 g    DF .text	0000000a __android_log_write

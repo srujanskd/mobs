@@ -1,6 +1,6 @@
 # Android IRL streaming plan
 
-Prepared September 8, 2026. Scope confirmed: phone camera first, with editable scenes and YouTube streaming, chat, text, and goals. This is a proposed implementation plan; no Android app or device benchmark exists yet.
+Prepared September 8, 2026. Scope confirmed: phone camera first, with editable scenes and YouTube streaming, chat, text, and goals. This document began as a proposed implementation plan. Mobs now has a streaming implementation and limited device observations; see the project README for the current baseline. Sustained power and device acceptance gates remain open.
 
 ## Recommendation
 
@@ -45,7 +45,17 @@ The central workflow is: create scenes, add and arrange sources, configure YouTu
 
 Example live scene: full-screen rear camera, title at the top, recent chat in the lower left, and a goal bar along the bottom. The editor shows selection handles only to the streamer.
 
-Defer screen capture, simultaneous cameras, arbitrary browser sources, animated media, transitions beyond cuts, external donation services, multistreaming, bonding, replay buffers, and desktop OBS plugin compatibility. These can follow the camera-first release.
+Defer screen capture, arbitrary browser sources, animated media, transitions beyond cuts, external donation services, multistreaming, bonding, replay buffers, and desktop OBS plugin compatibility. These can follow the camera-first release.
+
+## October 21, 2026 scope update
+
+Continue implementation in Mobs using the [IRL Pro findings handoff](irlpro-handoff.md) and its preserved [research bundle](research/irlpro-3.5.22/README.md). IRL Pro is a behavioral and media/network reference alongside the existing Moblin and Streamlabs references. Recovered implementations are not a buildable Mobs engine, and emulator observations from IRL Pro do not satisfy Mobs acceptance gates.
+
+Simultaneous front/back camera capture is now requested work. Schedule a capability and media-engine feasibility check after the single-camera stability/power proof, then implement picture-in-picture or split-screen composition and camera swapping behind `StreamEngine`. Confirm the first device and exact layout requirements during that milestone. Preserve a usable single-camera path when concurrent capture is unsupported, and keep one outgoing encoder session through layout changes where the engine supports it.
+
+Require received-video checks for both feeds, crop/mirroring, cadence, sync, camera interruption, lifecycle/reconnect, and independent thermal/power measurement. The existing 1080p30 and three-hour single-camera targets remain; dual camera needs its own supported device/profile and measured endurance result. Its delivery estimate is open until the capture/compositor proof. The original single-camera usable-alpha scope remains a distinct gate.
+
+Keep bitrate-only adaptation as the baseline. IRL Pro's optional capture-FPS reduction does not meet the mandatory 30 fps gate. Additional transports, SRTLA bonding with a receiver, USB/DJI inputs, browser overlays, and MP4 recording remain separately scoped work. Existing queue-aware adaptation, TLS validation, foreground ownership, encrypted secrets, and diagnostic redaction should be preserved while applying the findings.
 
 ## Architecture
 
@@ -195,3 +205,11 @@ Use bounded network queues and retry with backoff. Reduce bitrate under congesti
 Apply the power and three-hour sustained-performance gates above. Verify successful reconnection when connectivity returns. Record actual frame drops, heat, battery use, and recovery time. Exercise Unicode/emoji chat, long messages, large image imports, stale authorization, quota errors, and repeated scene switches. Focus automated tests on scene persistence/migrations, placement math, event deduplication, and broadcast state transitions; use physical devices for capture/codec/lifecycle verification.
 
 The immediate implementation milestone is deliberately concrete: stream the rear camera to YouTube with a text label and a goal bar, then cut to a BRB scene without restarting the stream.
+
+## October 24, 2026 scene-editor implementation
+
+The user clarified that general OBS-style scene creation and multiple-source layouts are required, with dual front/rear capture essential. A dedicated BRB toggle is not the requested feature. The implementation now includes saved scene collections, draggable/resizable source layouts, multiple text/image/color layers, rear/front camera sources, source order/visibility/opacity/locks, explicit draft Apply, and direct scene switches. Camera-free scenes use the same compositor and keep the encoder/transport session.
+
+Concurrent front/rear capture is implemented behind device capability and exact session-configuration checks. It requests 1080p rear plus 720p front into 1080p30 output. This does not close native-cadence, orientation, power, or endurance acceptance for any phone. Dual camera is now part of the scene milestone, with separate single-camera and dual-camera performance cases. Chat, goals, DJI, audio scene policies, and final physical acceptance remain open.
+
+The [performance and stability suite](performance-and-stability.md) adds automated correctness checks, virtual-time stress, device compositor/editor tests, startup benchmarking, streaming measurement budgets, and physical-run manifests. Regression budgets are provisional until repeated phone baselines exist. No zero-regression guarantee or physical endurance result follows from automated correctness tests.

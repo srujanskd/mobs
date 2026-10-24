@@ -65,9 +65,9 @@ class SessionRecorderTest {
 
         val lines = sessions().single().readLines()
         assertEquals(SessionRecorder.CSV_HEADER, lines[0])
-        assertEquals(4, lines.size) // Header plus samples at 0, 1 and 2 seconds.
+        assertEquals(5, lines.size) // Header, samples at 0, 1 and 2 seconds, and terminal marker.
         assertEquals(
-            "2026-10-04T10:00:01Z,1.0,reconnecting,6400000,7000000,30,3,false,moderate,0.610,87,36.4,-812000,4120,false",
+            "2026-10-04T10:00:01Z,1.0,reconnecting,6400000,7000000,30,3,false,moderate,0.610,87,36.4,-812000,4120,false,1920,1080,30,1,true,false,false,,,,sample,0,0",
             lines[2],
         )
         assertFalse("reason text must not reach the CSV", lines.any { "socket" in it })
@@ -82,7 +82,7 @@ class SessionRecorderTest {
             ThermalState(),
             BatterySample(null, null, null, null, plugged = true),
         )
-        assertEquals("2026-10-04T10:00:00Z,0.0,idle,0,0,0,0,false,none,,,,,,true", row)
+        assertEquals("2026-10-04T10:00:00Z,0.0,idle,0,0,0,0,false,none,,,,,,true,1920,1080,30,1,true,false,false,,,,sample,0,0", row)
     }
 
     @Test
@@ -153,6 +153,33 @@ class SessionRecorderTest {
         engine.state.value = StreamEngineState(streamActive = true)
         runCurrent()
         assertEquals(listOf("session-20261004-100000-000.csv"), sessions().map(File::getName))
+    }
+
+    @Test
+    fun storageFailureDoesNotStopTheStreamAndANewSessionCanRecordAfterRecovery() = runTest {
+        val blocked = File(folder.root, "blocked").apply { writeText("not a directory") }
+        val engine = FakeStreamEngine()
+        val failures = mutableListOf<String>()
+        SessionRecorder(blocked, engine, MutableStateFlow(ThermalState()), { battery }, backgroundScope,
+            StandardTestDispatcher(testScheduler), { testScheduler.currentTime }, { EPOCH_MS + testScheduler.currentTime },
+            onFailure = failures::add)
+        engine.state.value = StreamEngineState(streamActive = true)
+        runCurrent()
+        assertEquals(1, failures.size)
+        assertTrue(engine.state.value.streamActive)
+        assertEquals(0, engine.stopped)
+        engine.state.value = StreamEngineState()
+        runCurrent()
+        blocked.delete()
+        blocked.mkdirs()
+        advanceTimeBy(1_000)
+        engine.state.value = StreamEngineState(streamActive = true)
+        runCurrent()
+        engine.stopStream("fixture terminal failure")
+        runCurrent()
+        val rows = blocked.listFiles()!!.single().readLines()
+        assertEquals("end", rows.last().split(",")[25])
+        assertEquals("failed", rows.last().split(",")[2])
     }
 
     private companion object {

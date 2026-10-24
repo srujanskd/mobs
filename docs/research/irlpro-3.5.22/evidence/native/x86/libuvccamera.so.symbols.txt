@@ -1,0 +1,97 @@
+
+artifacts/unpacked/lib/x86/libuvccamera.so:	file format elf32-i386
+
+DYNAMIC SYMBOL TABLE:
+00000000      DF *UND*	00000000 (LIBC)       __cxa_finalize
+00000000      DF *UND*	00000000 (LIBC)       __cxa_atexit
+00000000      DF *UND*	00000000 (LIBC)       __register_atfork
+00000000      DF *UND*	00000000 (LIBC)       memcpy
+00000000      DF *UND*	00000000              ANativeWindow_lock
+00000000      DF *UND*	00000000              ANativeWindow_unlockAndPost
+00000000      DF *UND*	00000000 (LIBC)       __stack_chk_fail
+00000000      DF *UND*	00000000 (LIBC)       memset
+00000000      DF *UND*	00000000 (LIBJPEG_6.2) jpeg_std_error
+00000000      DF *UND*	00000000 (LIBC)       setjmp
+00000000      DF *UND*	00000000 (LIBJPEG_6.2) jpeg_CreateDecompress
+00000000      DF *UND*	00000000 (LIBJPEGTURBO_6.2) jpeg_mem_src
+00000000      DF *UND*	00000000 (LIBJPEG_6.2) jpeg_read_header
+00000000      DF *UND*	00000000 (LIBJPEG_6.2) jpeg_alloc_huff_table
+00000000      DF *UND*	00000000 (LIBJPEG_6.2) jpeg_start_decompress
+00000000      DF *UND*	00000000 (LIBJPEG_6.2) jpeg_read_scanlines
+00000000      DF *UND*	00000000 (LIBJPEG_6.2) jpeg_finish_decompress
+00000000      DF *UND*	00000000 (LIBJPEG_6.2) jpeg_destroy_decompress
+00000000      DF *UND*	00000000 (LIBC)       longjmp
+00000000      DF *UND*	00000000              yyjson_mut_doc_new
+00000000      DF *UND*	00000000              unsafe_yyjson_val_pool_grow
+00000000      DF *UND*	00000000              yyjson_mut_doc_free
+00000000      DF *UND*	00000000              __cxa_begin_catch
+00000000      DF *UND*	00000000              _ZSt9terminatev
+00000000      DF *UND*	00000000              _ZdlPv
+00000000      DO *UND*	00000000              _ZTVN10__cxxabiv117__class_type_infoE
+00000000      DF *UND*	00000000              __gxx_personality_v0
+00000000      DF *UND*	00000000              libusb_set_option
+00000000      DF *UND*	00000000              uvc_init
+00000000      DF *UND*	00000000              __android_log_print
+00000000      DF *UND*	00000000              uvc_exit
+00000000      DF *UND*	00000000              _Znwj
+00000000      DF *UND*	00000000              uvc_wrap
+00000000      DF *UND*	00000000              uvc_get_format_descs
+00000000      DF *UND*	00000000 (LIBC)       memcmp
+00000000      DF *UND*	00000000              __cxa_end_catch
+00000000      DF *UND*	00000000              yyjson_mut_write_opts
+00000000      DF *UND*	00000000 (LIBC)       free
+00000000      DF *UND*	00000000              uvc_close
+00000000      DF *UND*	00000000              ANativeWindow_fromSurface
+00000000      DF *UND*	00000000              ANativeWindow_setBuffersGeometry
+00000000      DF *UND*	00000000              uvc_get_stream_ctrl_format_size
+00000000      DF *UND*	00000000              uvc_start_streaming
+00000000      DF *UND*	00000000 (LIBC)       malloc
+00000000      DF *UND*	00000000              uvc_stop_streaming
+00000000      DF *UND*	00000000 (LIBC)       ceilf
+00000000      DF *UND*	00000000              _ZNSt6__ndk112__next_primeEj
+00000000      DF *UND*	00000000              __cxa_allocate_exception
+00000000      DF *UND*	00000000              _ZNSt12length_errorD1Ev
+00000000      DO *UND*	00000000              _ZTISt12length_error
+00000000      DF *UND*	00000000              __cxa_throw
+00000000      DF *UND*	00000000              __cxa_free_exception
+00000000      DF *UND*	00000000              _ZNSt11logic_errorC2EPKc
+00000000      DO *UND*	00000000              _ZTVSt12length_error
+00000000      DF *UND*	00000000              _ZNSt12out_of_rangeD1Ev
+00000000      DO *UND*	00000000              _ZTISt12out_of_range
+00000000      DO *UND*	00000000              _ZTVSt12out_of_range
+00000000      DO *UND*	00000000 (LIBC)       __sF
+00000000      DF *UND*	00000000 (LIBC)       fprintf
+00000000      DF *UND*	00000000 (LIBC)       fflush
+00000000      DF *UND*	00000000 (LIBC)       abort
+00000000      DF *UND*	00000000 (LIBC)       pthread_rwlock_wrlock
+00000000      DF *UND*	00000000 (LIBC)       pthread_rwlock_unlock
+00000000      DF *UND*	00000000 (LIBC)       dl_iterate_phdr
+00000000      DF *UND*	00000000 (LIBC)       pthread_rwlock_rdlock
+00000000      DF *UND*	00000000 (LIBC)       fwrite
+00007790 g    DF .text	00000101              _Z2cbP9uvc_framePv
+00006130 g    DF .text	0000008a              Java_com_wmspanel_libuvccamera_UVCCamera_init
+000061c0 g    DF .text	00000052              Java_com_wmspanel_libuvccamera_UVCCamera_exit
+00007170 g    DF .text	000001d1              Java_com_wmspanel_libuvccamera_UVCCamera_close
+00007ef0  w   DF .text	000001d7              _ZNSt6__ndk112__hash_tableINS_17__hash_value_typeIiNS_10unique_ptrI6ClientNS_14default_deleteIS3_EEEEEENS_22__unordered_map_hasherIiS7_NS_4hashIiEELb1EEENS_21__unordered_map_equalIiS7_NS_8equal_toIiEELb1EEENS_9allocatorIS7_EEE8__rehashEj
+00005700 g    DF .text	0000046d              _Z9jpeg2rgbxPhjS_ii
+00006010 g    DF .text	00000037              _ZN6ClientD2Ev
+00006080 g    DF .text	0000003f              _ZN6ClientD0Ev
+0000d0a4 g    DO .data.rel.ro	00000008              _ZTI6Client
+00001ca8 g    DO .rodata	00000008              _ZTS6Client
+00005f70 g    DF .text	00000098              _ZN6ClientC1Ev
+00006fc0 g    DF .text	000001aa              Java_com_wmspanel_libuvccamera_UVCCamera_formatDescs
+00008170  w   DF .text	0000016d              _ZNSt6__ndk112__hash_tableINS_17__hash_value_typeIiNS_10unique_ptrI6ClientNS_14default_deleteIS3_EEEEEENS_22__unordered_map_hasherIiS7_NS_4hashIiEELb1EEENS_21__unordered_map_equalIiS7_NS_8equal_toIiEELb1EEENS_9allocatorIS7_EEE14__erase_uniqueIiEEjRKT_
+000082e0  w   DF .text	00000142              _ZNSt6__ndk112__hash_tableINS_17__hash_value_typeIiNS_10unique_ptrI6ClientNS_14default_deleteIS3_EEEEEENS_22__unordered_map_hasherIiS7_NS_4hashIiEELb1EEENS_21__unordered_map_equalIiS7_NS_8equal_toIiEELb1EEENS_9allocatorIS7_EEE6removeENS_21__hash_const_iteratorIPNS_11__hash_nodeIS7_PvEEEE
+00006220 g    DF .text	0000021d              Java_com_wmspanel_libuvccamera_UVCCamera_wrap
+00007520 g    DF .text	00000268              Java_com_wmspanel_libuvccamera_UVCCamera_startStreaming
+00005430 g    DF .text	0000021f              _Z9copyFramePKhPhiiii
+00005650 g    DF .text	000000a9              _Z13copyToSurfacePKhiiPP13ANativeWindow
+00005bb0 g    DF .text	000003bd              _Z9yuyv2rgbxPKhjPhj
+00006440 g    DF .text	00000b7e              Java_com_wmspanel_libuvccamera_UVCCamera_getFormatDescs
+00007350 g    DF .text	000001c5              Java_com_wmspanel_libuvccamera_UVCCamera_setSurface
+00005f70 g    DF .text	00000098              _ZN6ClientC2Ev
+0000d094 g    DO .data.rel.ro	00000010              _ZTV6Client
+00006010 g    DF .text	00000037              _ZN6ClientD1Ev
+00007a50  w   DF .text	0000028e              _ZNSt6__ndk112__hash_tableINS_17__hash_value_typeIiNS_10unique_ptrI6ClientNS_14default_deleteIS3_EEEEEENS_22__unordered_map_hasherIiS7_NS_4hashIiEELb1EEENS_21__unordered_map_equalIiS7_NS_8equal_toIiEELb1EEENS_9allocatorIS7_EEE25__emplace_unique_key_argsIiJRKNS_21piecewise_construct_tENS_5tupleIJRKiEEENSN_IJEEEEEENS_4pairINS_15__hash_iteratorIPNS_11__hash_nodeIS7_PvEEEEbEERKT_DpOT0_
+000078a0 g    DF .text	000001a4              Java_com_wmspanel_libuvccamera_UVCCamera_stopStreaming
+00007ce0  w   DF .text	00000114              _ZNSt6__ndk112__hash_tableINS_17__hash_value_typeIiNS_10unique_ptrI6ClientNS_14default_deleteIS3_EEEEEENS_22__unordered_map_hasherIiS7_NS_4hashIiEELb1EEENS_21__unordered_map_equalIiS7_NS_8equal_toIiEELb1EEENS_9allocatorIS7_EEE6rehashEj

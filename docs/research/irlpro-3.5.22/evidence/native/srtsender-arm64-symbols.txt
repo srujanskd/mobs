@@ -1,0 +1,317 @@
+
+artifacts/unpacked/lib/arm64-v8a/libsrtsender.so:	file format elf64-littleaarch64
+
+DYNAMIC SYMBOL TABLE:
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       __cxa_atexit
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       __cxa_finalize
+0000000000000000      DF *UND*	0000000000000000              _ZNKSt6__ndk120__vector_base_commonILb1EE20__throw_length_errorEv
+0000000000000000      DF *UND*	0000000000000000              _ZNSt11logic_errorC2EPKc
+0000000000000000      DF *UND*	0000000000000000              _ZNSt12length_errorD1Ev
+0000000000000000      DO *UND*	0000000000000000              _ZTISt12length_error
+0000000000000000      DO *UND*	0000000000000000              _ZTVN10__cxxabiv117__class_type_infoE
+0000000000000000      DO *UND*	0000000000000000              _ZTVN10__cxxabiv120__si_class_type_infoE
+0000000000000000      DO *UND*	0000000000000000              _ZTVSt12length_error
+0000000000000000      DF *UND*	0000000000000000              _ZdlPv
+0000000000000000      DF *UND*	0000000000000000              _Znwm
+0000000000000000      DF *UND*	0000000000000000              __android_log_print
+0000000000000000      DF *UND*	0000000000000000              __cxa_allocate_exception
+0000000000000000      DF *UND*	0000000000000000              __cxa_free_exception
+0000000000000000      DF *UND*	0000000000000000              __cxa_throw
+0000000000000000      DF *UND*	0000000000000000              __gxx_personality_v0
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       __memcpy_chk
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       __stack_chk_fail
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       memcmp
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       memcpy
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       memset
+0000000000000000      DF *UND*	0000000000000000              _ZNSt6__ndk119__shared_weak_count14__release_weakEv
+0000000000000000      DF *UND*	0000000000000000              __cxa_pure_virtual
+0000000000000000      DF *UND*	0000000000000000              _ZNSt6__ndk112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEC1ERKS5_
+0000000000000000      DF *UND*	0000000000000000              _ZdaPv
+0000000000000000      DF *UND*	0000000000000000              _Znam
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       memmove
+0000000000000000      DF *UND*	0000000000000000              srt_recv
+0000000000000000      DF *UND*	0000000000000000              _ZNSt6__ndk15mutexD1Ev
+0000000000000000      DF *UND*	0000000000000000              _ZNSt12out_of_rangeD1Ev
+0000000000000000      DF *UND*	0000000000000000              _ZNSt6__ndk112__next_primeEm
+0000000000000000      DF *UND*	0000000000000000              _ZNSt6__ndk15mutex4lockEv
+0000000000000000      DF *UND*	0000000000000000              _ZNSt6__ndk15mutex6unlockEv
+0000000000000000      DF *UND*	0000000000000000              _ZSt9terminatev
+0000000000000000      DO *UND*	0000000000000000              _ZTISt12out_of_range
+0000000000000000      DO *UND*	0000000000000000              _ZTVSt12out_of_range
+0000000000000000      DF *UND*	0000000000000000              __cxa_begin_catch
+0000000000000000      DF *UND*	0000000000000000              __cxa_end_catch
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       __strlen_chk
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       __vsprintf_chk
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       free
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       freeaddrinfo
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       getaddrinfo
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       getnameinfo
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       inet_ntop
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       malloc
+0000000000000000      DF *UND*	0000000000000000              rist_destroy
+0000000000000000      DF *UND*	0000000000000000              rist_flow_id_create
+0000000000000000      DF *UND*	0000000000000000              rist_parse_address2
+0000000000000000      DF *UND*	0000000000000000              rist_peer_config_free2
+0000000000000000      DF *UND*	0000000000000000              rist_peer_create
+0000000000000000      DF *UND*	0000000000000000              rist_peer_destroy
+0000000000000000      DF *UND*	0000000000000000              rist_sender_create
+0000000000000000      DF *UND*	0000000000000000              rist_sender_data_write
+0000000000000000      DF *UND*	0000000000000000              rist_start
+0000000000000000      DF *UND*	0000000000000000              rist_stats_callback_set
+0000000000000000      DF *UND*	0000000000000000              rist_stats_free
+0000000000000000      DF *UND*	0000000000000000              srt_accept
+0000000000000000      DF *UND*	0000000000000000              srt_bind
+0000000000000000      DF *UND*	0000000000000000              srt_bstats
+0000000000000000      DF *UND*	0000000000000000              srt_cleanup
+0000000000000000      DF *UND*	0000000000000000              srt_close
+0000000000000000      DF *UND*	0000000000000000              srt_connect
+0000000000000000      DF *UND*	0000000000000000              srt_create_socket
+0000000000000000      DF *UND*	0000000000000000              srt_getlasterror
+0000000000000000      DF *UND*	0000000000000000              srt_getlasterror_str
+0000000000000000      DF *UND*	0000000000000000              srt_getrejectreason
+0000000000000000      DF *UND*	0000000000000000              srt_listen
+0000000000000000      DF *UND*	0000000000000000              srt_rendezvous
+0000000000000000      DF *UND*	0000000000000000              srt_sendmsg
+0000000000000000      DF *UND*	0000000000000000              srt_setsockflag
+0000000000000000      DF *UND*	0000000000000000              srt_startup
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       strlen
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       strncpy
+0000000000000000      DO *UND*	0000000000000000 (LIBC)       __sF
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       abort
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       fflush
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       fprintf
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       dl_iterate_phdr
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       fwrite
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       pthread_rwlock_rdlock
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       pthread_rwlock_unlock
+0000000000000000      DF *UND*	0000000000000000 (LIBC)       pthread_rwlock_wrlock
+000000000000e598 g    DF .text	0000000000000054              _Z16mpa_check_headerhhh
+0000000000014118 g    DF .text	0000000000000274              _ZN12PatProcessor14processOrphansEv
+0000000000022d88 g    DO .data.rel.ro	0000000000000030              _ZTV25SCTE35SpliceInfoProcessor
+000000000001ac80 g    DF .text	00000000000001c8              Java_com_wmspanel_libsrtsender_SrtSender_srtClose
+00000000000187dc g    DF .text	0000000000000094              _Z15getrejectreasoni
+000000000000e87c g    DF .text	000000000000015c              _ZN17MPEG2TSLiveStream9pushFrameERKNSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEEtPKhjllb
+0000000000010c30 g    DF .text	0000000000000010              _ZN7Mpeg2Ts25add_adaptation_field_flagEPh
+0000000000015b10  w   DF .text	0000000000000130              _ZNSt6__ndk16__treeINS_12__value_typeIt12PmtProcessorEENS_19__map_value_compareItS3_NS_4lessItEELb1EEENS_9allocatorIS3_EEE25__emplace_unique_key_argsItJNS_4pairItS2_EEEEENSC_INS_15__tree_iteratorIS3_PNS_11__tree_nodeIS3_PvEElEEbEERKT_DpOT0_
+0000000000015d68 g    DF .text	00000000000000a4              _ZN15StreamProcessorC1EP25IMpeg2TSTransportListenerRKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEt
+0000000000017b94 g    DF .text	000000000000000c              _ZN6Client14setApplicationEiP7_JNIEnvP8_jobject
+00000000000109b0  w   DF .text	00000000000001a0              _ZNSt6__ndk127__tree_balance_after_insertIPNS_16__tree_node_baseIPvEEEEvT_S5_
+000000000001545c  w   DF .text	00000000000003b0              _ZNSt6__ndk113__tree_removeIPNS_16__tree_node_baseIPvEEEEvT_S5_
+000000000001769c g    DF .text	0000000000000060              _ZN6Client19set_video_codec_avcEPKhj
+0000000000019180 g    DF .text	00000000000000e8              _Z14sendBufferRistP6Client
+000000000000eecc g    DF .text	000000000000052c              _ZN17MPEG2TSLiveStream22processMP3AudioMessageEPKhj
+0000000000022c60  w   DO .data.rel.ro	0000000000000010              _ZTI20BaseMPEG2TSException
+0000000000012e0c g    DF .text	0000000000000278              _ZN16SectionProcessor7ProcessEbPKhth
+00000000000180a8 g    DF .text	00000000000001c0              Java_com_wmspanel_libsrtsender_SrtSender_ristRegister
+00000000000133f0 g    DF .text	0000000000000398              _ZN12PmtProcessor14ProcessSectionEPKh
+0000000000015e0c g    DF .text	0000000000000048              _ZN15StreamProcessorD1Ev
+0000000000016c9c g    DF .text	00000000000000d8              _ZN22Mpeg2TSTransportStreamD2Ev
+000000000001a158 g    DF .text	00000000000002d8              Java_com_wmspanel_libsrtsender_SrtSender_receive
+0000000000017090 g    DF .text	0000000000000008              _ZN12SocketBuffer20get_buffer_used_sizeEv
+00000000000132f0 g    DF .text	0000000000000010              _ZN12PmtProcessor9isChangedEv
+00000000000186d0 g    DF .text	000000000000010c              _Z8srtCloseP6Client
+000000000000e288 g    DF .text	0000000000000028              _ZN11AACDurationC1Ev
+0000000000016f68 g    DF .text	00000000000000dc              _ZN12SocketBuffer5writeEPKhj
+0000000000013104 g    DF .text	000000000000003c              _ZN12PmtProcessorC2ERKS_
+0000000000016ec8 g    DF .text	00000000000000a0              _ZN12SocketBuffer16ensureBufferSizeEj
+00000000000179d0 g    DF .text	00000000000000e8              _ZN6Client19processAudioMessageEPKhjm
+000000000001a430 g    DF .text	0000000000000264              Java_com_wmspanel_libsrtsender_SrtSender_getActualIds
+0000000000009240 g    DO .rodata	0000000000000040              MPEG_SAMPLES_PER_FRAME
+0000000000009200 g    DO .rodata	0000000000000040              MPEG_SAMPLING_RATES
+000000000000af54  w   DO .rodata	0000000000000021              _ZTS30BufferTooSmallMPEG2TSException
+0000000000013788 g    DF .text	0000000000000090              _ZN12PmtProcessor20ProcessSectionHeaderEPKh
+0000000000022d28 g    DO .data.rel.ro	0000000000000018              _ZTI12PmtProcessor
+0000000000016420  w   DF .text	0000000000000040              _ZN25SCTE35SpliceInfoProcessorD0Ev
+0000000000022dc8 g    DO .data.rel.ro	0000000000000018              _ZTI15StreamProcessor
+0000000000016ea4 g    DF .text	000000000000000c              _ZN12SocketBufferC2Ejj
+000000000001aac4 g    DF .text	000000000000013c              Java_com_wmspanel_libsrtsender_SrtSender_getRistStatsSenderPeer
+00000000000197d4 g    DF .text	00000000000002b8              Java_com_wmspanel_libsrtsender_SrtSender_sendAacFrame
+00000000000122a0 g    DF .text	0000000000000258              _ZN7Mpeg2Ts30write_mpeg2ts_with_muxrate_avcEPhjRjPKhjRhtbmjjS0_jRmmm
+00000000000131b4 g    DF .text	000000000000013c              _ZN12PmtProcessor13setOrphanFlagEv
+0000000000013160 g    DF .text	000000000000003c              _ZN12PmtProcessorD0Ev
+0000000000015288  w   DF .text	0000000000000100              _ZNSt6__ndk16__treeINS_12__value_typeItNS_4pairI16MpegtsStreamInfobEEEENS_19__map_value_compareItS5_NS_4lessItEELb1EEENS_9allocatorIS5_EEE15__emplace_multiIJRKNS2_IKtS4_EEEEENS_15__tree_iteratorIS5_PNS_11__tree_nodeIS5_PvEElEEDpOT_
+0000000000015e0c g    DF .text	0000000000000048              _ZN15StreamProcessorD2Ev
+000000000000e30c g    DF .text	0000000000000044              _ZN11AACDurationaSERKS_
+0000000000017098 g    DF .text	0000000000000008              _ZN12SocketBuffer6bufferEv
+000000000000e724 g    DF .text	0000000000000150              _ZN17MPEG2TSLiveStreamC2EP14LiveStreamInfo
+0000000000009280 g    DO .rodata	0000000000000040              MPEG4_SAMPLING_RATE
+000000000000e288 g    DF .text	0000000000000028              _ZN11AACDurationC2Ev
+0000000000013ef0 g    DF .text	0000000000000098              _ZN12PatProcessorC1Ev
+0000000000017ab8 g    DF .text	0000000000000054              _ZN6Client7getSizeEi
+000000000000f3f8 g    DF .text	0000000000000004              _ZN17MPEG2TSLiveStream14pushSpliceInfoERKNSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEEtPKhj
+0000000000010da8 g    DF .text	00000000000001a4              _ZN7Mpeg2Ts37add_adaptation_field_with_precise_pcrEPhRhbPKms
+0000000000012e08 g    DF .text	0000000000000004              _ZN16SectionProcessorD0Ev
+0000000000022cb8 g    DO .data.rel.ro	0000000000000030              _ZTV12PmtProcessor
+0000000000017b0c g    DF .text	0000000000000054              _ZN6Client15getConfigRecordEi
+00000000000159e4  w   DF .text	000000000000012c              _ZNSt6__ndk16__treeINS_12__value_typeIt12PmtProcessorEENS_19__map_value_compareItS3_NS_4lessItEELb1EEENS_9allocatorIS3_EEE25__emplace_unique_key_argsItJRKNS_21piecewise_construct_tENS_5tupleIJRKtEEENSF_IJEEEEEENS_4pairINS_15__tree_iteratorIS3_PNS_11__tree_nodeIS3_PvEElEEbEERKT_DpOT0_
+000000000000afc2 g    DO .rodata	0000000000000012              _ZTS15StreamProcessor
+0000000000022d58 g    DO .data.rel.ro	0000000000000030              _ZTV15StreamProcessor
+00000000000170a0 g    DF .text	00000000000000e0              _ZN12SocketBuffer4recvEii
+000000000000e2d8 g    DF .text	0000000000000034              _ZN11AACDuration9addFramesEhh
+0000000000010b54 g    DF .text	000000000000006c              _ZN7Mpeg2Ts5crc32EPhii
+0000000000013104 g    DF .text	000000000000003c              _ZN12PmtProcessorC1ERKS_
+0000000000013140 g    DF .text	0000000000000020              _ZN12PmtProcessorD1Ev
+0000000000022d40 g    DO .data.rel.ro	0000000000000018              _ZTI12PatProcessor
+0000000000016ec0 g    DF .text	0000000000000008              _ZN12SocketBuffer5resetEv
+0000000000010bc0 g    DF .text	000000000000003c              _ZN7Mpeg2Ts17checkAvailabilityEjj
+0000000000010b50 g    DF .text	0000000000000004              _ZN7Mpeg2TsC1Ev
+0000000000015cdc  w   DF .text	000000000000004c              _ZNSt6__ndk16__treeINS_12__value_typeItNS_3mapIthNS_4lessItEENS_9allocatorINS_4pairIKthEEEEEEEENS_19__map_value_compareItSB_S4_Lb1EEENS5_ISB_EEE7destroyEPNS_11__tree_nodeISB_PvEE
+00000000000175d0 g    DF .text	0000000000000024              _ZN6ClientD0Ev
+0000000000019fd8 g    DF .text	0000000000000180              Java_com_wmspanel_libsrtsender_SrtSender_getSrtStats
+0000000000017c74 g    DF .text	0000000000000050              Java_com_wmspanel_libsrtsender_SrtSender_srtCleanup
+0000000000022c38  w   DO .data.rel.ro	0000000000000010              _ZTI25IMpeg2TSTransportListener
+0000000000010bfc g    DF .text	0000000000000034              _ZN7Mpeg2Ts11init_packetEPhRhtbh
+0000000000013ef0 g    DF .text	0000000000000098              _ZN12PatProcessorC2Ev
+000000000001a694 g    DF .text	00000000000001cc              Java_com_wmspanel_libsrtsender_SrtSender_getConfigRecord
+0000000000011d50 g    DF .text	0000000000000550              _ZN7Mpeg2Ts40write_mpeg2ts_annexB_sample_with_muxrateEPhjRjPKhjRS0_RhtS5_Rmmmjb
+000000000001438c g    DF .text	0000000000000008              _ZN12PatProcessor7getHashEv
+0000000000012e04 g    DF .text	0000000000000004              _ZN16SectionProcessorD1Ev
+00000000000163fc  w   DF .text	0000000000000024              _ZN25SCTE35SpliceInfoProcessorD2Ev
+0000000000017b60 g    DF .text	0000000000000008              _ZN6Client19processCurrentBlockEPKh
+00000000000166e0 g    DF .text	0000000000000110              _ZN22Mpeg2TSTransportStream22updateAvailableStreamsEv
+000000000001a860 g    DF .text	0000000000000264              Java_com_wmspanel_libsrtsender_SrtSender_ristConnect
+0000000000019000 g    DF .text	0000000000000180              _Z13sendBufferSrtP7_JNIEnvP6ClientP10_jintArray
+000000000001319c g    DF .text	0000000000000008              _ZN12PmtProcessor16getProgramNumberEv
+0000000000016220  w   DF .text	0000000000000138              _ZN15StreamProcessor11write_chunkEPKhi
+0000000000016db4  w   DF .text	0000000000000078              _ZNSt6__ndk16__treeINS_12__value_typeItNS_10shared_ptrI17Mpeg2tsDescriptorEEEENS_19__map_value_compareItS5_NS_4lessItEELb1EEENS_9allocatorIS5_EEE7destroyEPNS_11__tree_nodeIS5_PvEE
+0000000000017ba0 g    DF .text	000000000000000c              _ZN6Client17removeApplicationEv
+00000000000189a0 g    DF .text	00000000000005b0              Java_com_wmspanel_libsrtsender_SrtSender_srtConnect
+0000000000019268 g    DF .text	0000000000000178              _Z10sendBufferP7_JNIEnvP6ClientP10_jintArray
+00000000000188f4 g    DF .text	00000000000000ac              _Z14sockaddr_allocit
+0000000000022c48 g    DO .data.rel.ro	0000000000000018              _ZTI17MPEG2TSLiveStream
+0000000000012c44 g    DF .text	000000000000017c              _ZN7Mpeg2Ts19fill_pat_pmt_tablesEhhPhh
+0000000000013140 g    DF .text	0000000000000020              _ZN12PmtProcessorD2Ev
+0000000000022ce8 g    DO .data.rel.ro	0000000000000030              _ZTV12PatProcessor
+000000000000e5ec g    DF .text	0000000000000138              _Z16mpa_parse_headerPKhjRjS1_
+000000000000ee98 g    DF .text	0000000000000034              _ZN17MPEG2TSLiveStream10audioResetEv
+00000000000111ec g    DF .text	00000000000003ec              _ZN7Mpeg2Ts26write_mpeg2ts_video_headerEhtbjRPhllS0_jRjRhS3_S0_jPKm
+0000000000010b50 g    DF .text	0000000000000004              _ZN7Mpeg2TsC2Ev
+0000000000016e6c g    DF .text	0000000000000038              _Z12get_pes_timePKh
+0000000000016460 g    DF .text	00000000000000a0              _ZN22Mpeg2TSTransportStreamC1EP25IMpeg2TSTransportListenerRKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE
+0000000000016e2c  w   DF .text	0000000000000040              _ZNSt6__ndk16__treeItNS_4lessItEENS_9allocatorItEEE7destroyEPNS_11__tree_nodeItPvEE
+0000000000017958 g    DF .text	0000000000000060              _ZN6Client19set_audio_codec_aacEPKhj
+00000000000174d0 g    DF .text	0000000000000100              _ZN6ClientD1Ev
+00000000000108c8 g    DF .text	0000000000000068              _ZN17MPEG2TSLiveStream5resetEv
+0000000000012bc8 g    DF .text	000000000000007c              _ZN7Mpeg2Ts12time_compareEmjmj
+000000000001267c g    DF .text	00000000000001a4              _ZN7Mpeg2Ts31write_mpeg2ts_with_muxrate_hevcEPhjRjPKhjRhtbmjjS0_jRmmm
+0000000000013e84 g    DF .text	000000000000006c              _ZN12PatProcessor20ProcessSectionHeaderEPKh
+00000000000176fc g    DF .text	00000000000000bc              _ZN6Client20set_video_codec_hevcEPKhjS1_jS1_j
+000000000000e2b0 g    DF .text	0000000000000028              _ZN11AACDuration5resetEv
+00000000000131ac g    DF .text	0000000000000008              _ZN12PmtProcessor15resetOrphanFlagEv
+0000000000012e04 g    DF .text	0000000000000004              _ZN16SectionProcessorD2Ev
+0000000000019e98 g    DF .text	0000000000000140              Java_com_wmspanel_libsrtsender_SrtSender_srtBstats
+000000000000f3fc g    DF .text	00000000000002e8              _ZN17MPEG2TSLiveStream15updateAvailableERKNSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEERKNS0_3mapIthNS0_4lessItEENS4_INS0_4pairIKthEEEEEERKNS9_ItNS0_10shared_ptrI17Mpeg2tsDescriptorEESB_NS4_INSC_ISD_SL_EEEEEERNS0_3setItSB_NS4_ItEEEE
+0000000000022d18 g    DO .data.rel.ro	0000000000000010              _ZTI16SectionProcessor
+0000000000015e98 g    DF .text	0000000000000024              _ZN15StreamProcessor5ResetEv
+0000000000022de0 g    DO .data.rel.ro	0000000000000018              _ZTI25SCTE35SpliceInfoProcessor
+000000000001b5f0 g    DF .text	000000000000139c              _Z14copy_srt_statsP7_JNIEnvP12CBytePerfMonP8_jobject
+0000000000018060 g    DF .text	0000000000000048              _Z15ristLogCallbackPv14rist_log_levelPKc
+0000000000011a5c g    DF .text	00000000000000c0              _ZN7Mpeg2Ts45calculate_final_mpeg2ts_video_avc_sample_sizeEPKhj
+00000000000167f0 g    DF .text	0000000000000440              _ZN22Mpeg2TSTransportStream20applyActiveStreamIdsERNSt6__ndk13setItNS0_4lessItEENS0_9allocatorItEEEERNS0_3mapIthS3_NS4_INS0_4pairIKthEEEEEE
+0000000000018870 g    DF .text	0000000000000084              _Z17writeRejectReasonP7_JNIEnvP10_jintArrayi
+0000000000013f88 g    DF .text	0000000000000064              _ZN12PatProcessor5ResetEv
+00000000000174d0 g    DF .text	0000000000000100              _ZN6ClientD2Ev
+0000000000018268 g    DF .text	0000000000000054              Java_com_wmspanel_libsrtsender_SrtSender_unregister
+0000000000010f4c g    DF .text	0000000000000040              _ZN7Mpeg2Ts12set_pes_timeEPhl
+0000000000014074 g    DF .text	00000000000000a4              _ZN12PatProcessor10ProcessPMTEtbPKhtRb
+0000000000014394 g    DF .text	0000000000000644              _ZN12PatProcessor22getTransportStreamInfoER26MPEG2TSTransportStreamInfo
+0000000000015c9c  w   DF .text	0000000000000040              _ZNSt6__ndk16__treeINS_12__value_typeIttEENS_19__map_value_compareItS2_NS_4lessItEELb1EEENS_9allocatorIS2_EEE7destroyEPNS_11__tree_nodeIS2_PvEE
+000000000000af90 g    DO .rodata	0000000000000013              _ZTS16SectionProcessor
+0000000000022db8  w   DO .data.rel.ro	0000000000000010              _ZTI16IStreamProcessor
+00000000000179b8 g    DF .text	0000000000000018              _ZN6Client19set_audio_codec_mp3Ev
+0000000000015210  w   DF .text	0000000000000078              _ZNSt6__ndk16__treeINS_12__value_typeItNS_4pairI16MpegtsStreamInfobEEEENS_19__map_value_compareItS5_NS_4lessItEELb1EEENS_9allocatorIS5_EEE7destroyEPNS_11__tree_nodeIS5_PvEE
+0000000000016c30 g    DF .text	000000000000004c              _ZN22Mpeg2TSTransportStream13removeOrphansEv
+000000000001402c g    DF .text	0000000000000048              _ZN12PatProcessorD0Ev
+000000000000afa3 g    DO .rodata	000000000000000f              _ZTS12PmtProcessor
+00000000000163f8 g    DF .text	0000000000000004              _ZN25SCTE35SpliceInfoProcessor5ResetEv
+0000000000019c30 g    DF .text	0000000000000134              Java_com_wmspanel_libsrtsender_SrtSender_pktSndDrop
+000000000001076c g    DF .text	000000000000015c              _ZN17MPEG2TSLiveStream22processAdtsAudioHeaderEPKh
+000000000000ab07 g    DO .rodata	0000000000000014              _ZTS17MPEG2TSLiveStream
+0000000000022c08 g    DO .data.rel.ro	0000000000000030              _ZTV17MPEG2TSLiveStream
+0000000000015c40  w   DF .text	000000000000005c              _ZNSt6__ndk16__treeINS_12__value_typeIt12PmtProcessorEENS_19__map_value_compareItS3_NS_4lessItEELb1EEENS_9allocatorIS3_EEE7destroyEPNS_11__tree_nodeIS3_PvEE
+000000000001b158  w   DF .text	0000000000000180              _ZNSt6__ndk112__hash_tableINS_17__hash_value_typeIiNS_10unique_ptrI6ClientNS_14default_deleteIS3_EEEEEENS_22__unordered_map_hasherIiS7_NS_4hashIiEELb1EEENS_21__unordered_map_equalIiS7_NS_8equal_toIiEELb1EEENS_9allocatorIS7_EEE8__rehashEm
+0000000000022c88 g    DO .data.rel.ro	0000000000000030              _ZTV16SectionProcessor
+0000000000016c8c g    DF .text	0000000000000008              _ZN22Mpeg2TSTransportStream7getHashEv
+0000000000016358 g    DF .text	000000000000003c              _ZN25SCTE35SpliceInfoProcessorC1EP25IMpeg2TSTransportListenerRKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEt
+000000000000afd4  w   DO .rodata	0000000000000013              _ZTS16IStreamProcessor
+0000000000016d74  w   DF .text	0000000000000040              _ZNSt6__ndk16__treeINS_12__value_typeItP16IStreamProcessorEENS_19__map_value_compareItS4_NS_4lessItEELb1EEENS_9allocatorIS4_EEE7destroyEPNS_11__tree_nodeIS4_PvEE
+0000000000017c24 g    DF .text	0000000000000050              Java_com_wmspanel_libsrtsender_SrtSender_srtStartup
+0000000000016eb0 g    DF .text	0000000000000010              _ZN12SocketBufferD1Ev
+0000000000016ea4 g    DF .text	000000000000000c              _ZN12SocketBufferC1Ejj
+0000000000013818 g    DF .text	000000000000066c              _ZN12PatProcessor14ProcessSectionEPKh
+0000000000019a8c g    DF .text	00000000000001a4              Java_com_wmspanel_libsrtsender_SrtSender_sendPatPmt
+0000000000013fec g    DF .text	0000000000000040              _ZN12PatProcessorD1Ev
+0000000000016500 g    DF .text	00000000000001e0              _ZN22Mpeg2TSTransportStream19processCurrentBlockEPKh
+0000000000019488 g    DF .text	00000000000000a8              _Z14writeHevcFrameP6ClientPhiS1_ilih
+000000000000e874 g    DF .text	0000000000000008              _ZN17MPEG2TSLiveStream27shouldUpdateAvailableStreamERKNSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE
+00000000000115d8 g    DF .text	0000000000000484              _ZN7Mpeg2Ts27write_mpeg2ts_annexB_sampleEPhjRjPKhjRS0_RhtS5_b
+0000000000017180 g    DF .text	0000000000000350              _ZN6ClientC1Ei
+000000000000ab1b  w   DO .rodata	000000000000001c              _ZTS25IMpeg2TSTransportListener
+0000000000015d68 g    DF .text	00000000000000a4              _ZN15StreamProcessorC2EP25IMpeg2TSTransportListenerRKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEt
+000000000000afb2 g    DO .rodata	000000000000000f              _ZTS12PatProcessor
+0000000000010c40 g    DF .text	0000000000000168              _ZN7Mpeg2Ts20add_adaptation_fieldEPhRhbPKls
+0000000000015388  w   DF .text	00000000000000d4              _ZNSt6__ndk16__treeINS_12__value_typeItNS_4pairI16MpegtsStreamInfobEEEENS_19__map_value_compareItS5_NS_4lessItEELb1EEENS_9allocatorIS5_EEE5eraseENS_21__tree_const_iteratorIS5_PNS_11__tree_nodeIS5_PvEElEE
+0000000000016eb0 g    DF .text	0000000000000010              _ZN12SocketBufferD2Ev
+0000000000011b1c g    DF .text	0000000000000234              _ZN7Mpeg2Ts17write_mpeg2ts_avcEPhjRjPKhjRhtbmjjS0_j
+00000000000130cc g    DF .text	0000000000000038              _ZN12PmtProcessorC1Et
+0000000000012ddc g    DF .text	000000000000000c              _ZN16SectionProcessor5ResetEv
+0000000000016358 g    DF .text	000000000000003c              _ZN25SCTE35SpliceInfoProcessorC2EP25IMpeg2TSTransportListenerRKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEt
+0000000000022c70  w   DO .data.rel.ro	0000000000000018              _ZTI30BufferTooSmallMPEG2TSException
+0000000000013fec g    DF .text	0000000000000040              _ZN12PatProcessorD2Ev
+0000000000013084 g    DF .text	0000000000000014              _ZN12PmtProcessor5ResetEv
+00000000000193e0 g    DF .text	00000000000000a8              _Z13writeAvcFrameP6ClientPhiS1_ilih
+00000000000131a4 g    DF .text	0000000000000008              _ZN12PmtProcessor8isOrphanEv
+0000000000013098 g    DF .text	0000000000000034              _ZN12PmtProcessorC1Ev
+0000000000015d28  w   DF .text	0000000000000040              _ZNSt6__ndk16__treeINS_12__value_typeIthEENS_19__map_value_compareItS2_NS_4lessItEELb1EEENS_9allocatorIS2_EEE7destroyEPNS_11__tree_nodeIS2_PvEE
+0000000000017180 g    DF .text	0000000000000350              _ZN6ClientC2Ei
+000000000001ac00 g    DF .text	0000000000000080              _Z9ristCloseP6Client
+0000000000015ebc g    DF .text	0000000000000364              _ZN15StreamProcessor7ProcessEbbPKht
+0000000000017044 g    DF .text	000000000000004c              _ZN12SocketBuffer4skipEj
+00000000000178bc  w   DF .text	000000000000009c              _ZN7_JNIEnv14CallVoidMethodEP8_jobjectP10_jmethodIDz
+00000000000182bc g    DF .text	0000000000000414              _Z9srtSocketP6Clientb
+000000000001b358  w   DF .text	0000000000000130              _ZNSt6__ndk112__hash_tableINS_17__hash_value_typeIiNS_10unique_ptrI6ClientNS_14default_deleteIS3_EEEEEENS_22__unordered_map_hasherIiS7_NS_4hashIiEELb1EEENS_21__unordered_map_equalIiS7_NS_8equal_toIiEELb1EEENS_9allocatorIS7_EEE14__erase_uniqueIiEEmRKT_
+000000000001b074  w   DF .text	00000000000000e4              _ZNSt6__ndk112__hash_tableINS_17__hash_value_typeIiNS_10unique_ptrI6ClientNS_14default_deleteIS3_EEEEEENS_22__unordered_map_hasherIiS7_NS_4hashIiEELb1EEENS_21__unordered_map_equalIiS7_NS_8equal_toIiEELb1EEENS_9allocatorIS7_EEE6rehashEm
+000000000000f6e4 g    DF .text	0000000000000824              _ZN17MPEG2TSLiveStream30processAVCVideoMessageInternalEPKhj
+0000000000012de8 g    DF .text	000000000000001c              _ZN16SectionProcessorC2ERKS_
+0000000000014ee0  w   DF .text	0000000000000330              _ZNSt6__ndk16__treeINS_12__value_typeItNS_4pairI16MpegtsStreamInfobEEEENS_19__map_value_compareItS5_NS_4lessItEELb1EEENS_9allocatorIS5_EEE14__assign_multiINS_21__tree_const_iteratorIS5_PNS_11__tree_nodeIS5_PvEElEEEEvT_SK_
+000000000001580c  w   DF .text	00000000000001d8              _ZNSt6__ndk16vectorI16MpegtsStreamInfoNS_9allocatorIS1_EEE21__push_back_slow_pathIRKS1_EEvOT_
+0000000000017cc4 g    DF .text	0000000000000300              Java_com_wmspanel_libsrtsender_SrtSender_register
+0000000000008e00 g    DO .rodata	0000000000000400              MPEG_BIT_RATE
+00000000000111b0 g    DF .text	000000000000003c              _ZN7Mpeg2Ts18build_mpeg2ts_timeEmj
+000000000000afe7 g    DO .rodata	000000000000001c              _ZTS25SCTE35SpliceInfoProcessor
+000000000000e9d8 g    DF .text	00000000000001f0              _ZN17MPEG2TSLiveStream25processAnnexBVideoMessageEPKhj
+000000000000e724 g    DF .text	0000000000000150              _ZN17MPEG2TSLiveStreamC1EP14LiveStreamInfo
+0000000000010f8c g    DF .text	0000000000000224              _ZN7Mpeg2Ts14add_pes_headerEPhRhlljb
+00000000000130cc g    DF .text	0000000000000038              _ZN12PmtProcessorC2Et
+0000000000016c94 g    DF .text	0000000000000008              _ZN22Mpeg2TSTransportStream22getTransportStreamInfoER26MPEG2TSTransportStreamInfo
+0000000000022e58 g    DO .data.rel.ro	0000000000000018              _ZTI6Client
+000000000001ae48  w   DF .text	000000000000022c              _ZNSt6__ndk112__hash_tableINS_17__hash_value_typeIiNS_10unique_ptrI6ClientNS_14default_deleteIS3_EEEEEENS_22__unordered_map_hasherIiS7_NS_4hashIiEELb1EEENS_21__unordered_map_equalIiS7_NS_8equal_toIiEELb1EEENS_9allocatorIS7_EEE25__emplace_unique_key_argsIiJRKNS_21piecewise_construct_tENS_5tupleIJRKiEEENSN_IJEEEEEENS_4pairINS_15__hash_iteratorIPNS_11__hash_nodeIS7_PvEEEEbEERKT_DpOT0_
+000000000001b488  w   DF .text	0000000000000134              _ZNSt6__ndk112__hash_tableINS_17__hash_value_typeIiNS_10unique_ptrI6ClientNS_14default_deleteIS3_EEEEEENS_22__unordered_map_hasherIiS7_NS_4hashIiEELb1EEENS_21__unordered_map_equalIiS7_NS_8equal_toIiEELb1EEENS_9allocatorIS7_EEE6removeENS_21__hash_const_iteratorIPNS_11__hash_nodeIS7_PvEEEE
+000000000000e350 g    DF .text	0000000000000138              _ZN11AACDuration11getDurationERmS0_
+0000000000017b68 g    DF .text	000000000000002c              _ZN6Client12getActualIdsERtRhS0_S1_
+0000000000019530 g    DF .text	00000000000002a4              Java_com_wmspanel_libsrtsender_SrtSender_sendVideoFrame
+000000000000ff08 g    DF .text	0000000000000864              _ZN17MPEG2TSLiveStream31processHEVCVideoMessageInternalEPKhj
+00000000000124f8 g    DF .text	0000000000000184              _ZN7Mpeg2Ts18write_mpeg2ts_hevcEPhjRjPKhjRhtbmjjS0_j
+0000000000013300 g    DF .text	00000000000000f0              _ZN12PmtProcessor14copyStreamInfoERNSt6__ndk16vectorI16MpegtsStreamInfoNS0_9allocatorIS2_EEEE
+0000000000013098 g    DF .text	0000000000000034              _ZN12PmtProcessorC2Ev
+0000000000016460 g    DF .text	00000000000000a0              _ZN22Mpeg2TSTransportStreamC2EP25IMpeg2TSTransportListenerRKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE
+000000000000ec18 g    DF .text	0000000000000280              _ZN17MPEG2TSLiveStream22processAACAudioMessageEPKhj
+00000000000149d8 g    DF .text	0000000000000508              _ZN12PatProcessor22getAllAvailableStreamsERNSt6__ndk13mapIthNS0_4lessItEENS0_9allocatorINS0_4pairIKthEEEEEERNS1_ItNS0_10shared_ptrI17Mpeg2tsDescriptorEES3_NS4_INS5_IS6_SD_EEEEEE
+00000000000177b8 g    DF .text	0000000000000104              _ZN6Client19processVideoMessageEPKhjmmh
+0000000000022e48  w   DO .data.rel.ro	0000000000000010              _ZTI14LiveStreamInfo
+000000000000e488 g    DF .text	0000000000000110              _ZN11AACDuration18getMpeg2tsDurationEv
+000000000000ebc8 g    DF .text	0000000000000050              _ZN17MPEG2TSLiveStream10videoResetEv
+0000000000016394 g    DF .text	0000000000000064              _ZN25SCTE35SpliceInfoProcessor7ProcessEbbPKht
+00000000000175f4 g    DF .text	00000000000000a8              _ZN6Client6expandEv
+0000000000017fc4 g    DF .text	000000000000009c              _Z17ristStatsCallbackPvPK10rist_stats
+0000000000012dc0 g    DF .text	000000000000001c              _ZN16SectionProcessorC2Ev
+0000000000015e54 g    DF .text	0000000000000044              _ZN15StreamProcessorD0Ev
+0000000000016c7c g    DF .text	0000000000000010              _ZN22Mpeg2TSTransportStream14getStreamStateEv
+0000000000016c9c g    DF .text	00000000000000d8              _ZN22Mpeg2TSTransportStreamD1Ev
+000000000000b022  w   DO .rodata	0000000000000011              _ZTS14LiveStreamInfo
+0000000000019d64 g    DF .text	0000000000000134              Java_com_wmspanel_libsrtsender_SrtSender_pktSent
+0000000000012820 g    DF .text	00000000000003a8              _ZN7Mpeg2Ts19write_mpeg2ts_audioEPhjRjPKhjRhtbmjjS0_PKm
+000000000000af75  w   DO .rodata	0000000000000017              _ZTS20BaseMPEG2TSException
+000000000000b01a g    DO .rodata	0000000000000008              _ZTS6Client
+0000000000022df8 g    DO .data.rel.ro	0000000000000050              _ZTV6Client
+000000000001c98c g    DF .text	0000000000000230              _Z27copy_rist_sender_peer_statsP7_JNIEnvP6ClientP8_jobject

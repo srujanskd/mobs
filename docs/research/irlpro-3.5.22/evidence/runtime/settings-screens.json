@@ -1,0 +1,732 @@
+[
+  {
+    "screen": "streamer",
+    "labels": [
+      {
+        "text": "",
+        "description": "Navigate up",
+        "bounds": "[0,63][147,210]"
+      },
+      {
+        "text": "Streamer options",
+        "description": "",
+        "bounds": "[189,101][600,172]"
+      },
+      {
+        "text": "Chat",
+        "description": "",
+        "bounds": "[189,273][1038,324]"
+      },
+      {
+        "text": "Twitch Username",
+        "description": "",
+        "bounds": "[189,387][514,444]"
+      },
+      {
+        "text": "This is for the chat overlay and view count/title, set to blank to disable",
+        "description": "",
+        "bounds": "[189,444][1038,538]"
+      },
+      {
+        "text": "Kick Username",
+        "description": "",
+        "bounds": "[189,622][468,679]"
+      },
+      {
+        "text": "(BETA) - Kick.com does not have an official API so this may break at any time",
+        "description": "",
+        "bounds": "[189,679][1038,773]"
+      },
+      {
+        "text": "Show platform icons",
+        "description": "",
+        "bounds": "[189,857][575,914]"
+      },
+      {
+        "text": "Show the chat platform icon per chat message (Twitch, Kick, etc.)",
+        "description": "",
+        "bounds": "[189,914][874,1008]"
+      },
+      {
+        "text": "Show bots in chat",
+        "description": "",
+        "bounds": "[189,1092][522,1149]"
+      },
+      {
+        "text": "Show commands in chat",
+        "description": "",
+        "bounds": "[189,1233][650,1290]"
+      },
+      {
+        "text": "Chat font scale",
+        "description": "",
+        "bounds": "[189,1374][471,1431]"
+      },
+      {
+        "text": "220",
+        "description": "",
+        "bounds": "[189,1431][252,1482]"
+      },
+      {
+        "text": "Smaller chat box",
+        "description": "",
+        "bounds": "[189,1566][501,1623]"
+      },
+      {
+        "text": "Half the height of the chat box",
+        "description": "",
+        "bounds": "[189,1623][682,1674]"
+      },
+      {
+        "text": "Increase chat left margin",
+        "description": "",
+        "bounds": "[189,1758][652,1815]"
+      },
+      {
+        "text": "Shift over chat from the left, useful for clip on lenses",
+        "description": "",
+        "bounds": "[189,1815][874,1909]"
+      },
+      {
+        "text": "Right chat box",
+        "description": "",
+        "bounds": "[189,1993][457,2050]"
+      },
+      {
+        "text": "Move chat box to the right",
+        "description": "",
+        "bounds": "[189,2050][615,2101]"
+      },
+      {
+        "text": "Other",
+        "description": "",
+        "bounds": "[189,2206][1038,2257]"
+      },
+      {
+        "text": "Show user count",
+        "description": "",
+        "bounds": "[189,2320][500,2337]"
+      }
+    ]
+  },
+  {
+    "screen": "bonding",
+    "labels": [
+      {
+        "text": "",
+        "description": "Navigate up",
+        "bounds": "[0,63][147,210]"
+      },
+      {
+        "text": "Bonding and NoDrop options",
+        "description": "",
+        "bounds": "[189,101][875,172]"
+      },
+      {
+        "text": "Bonding",
+        "description": "",
+        "bounds": "[189,273][1038,324]"
+      },
+      {
+        "text": "Bonding is the process of using multiple internet connections, such as cellular + wifi, to improve streaming bandwidth and reliability.\nThere are two supported methods:",
+        "description": "",
+        "bounds": "[189,324][1038,504]"
+      },
+      {
+        "text": "1. Own Bonding Server (SRTLA)",
+        "description": "",
+        "bounds": "[189,588][1038,639]"
+      },
+      {
+        "text": "To use custom bonding server (IRL Toolkit, Belabox Cloud, SRTLA Server, etc), bonding, enter a provided connection url srtla://host:port",
+        "description": "",
+        "bounds": "[189,639][1038,776]"
+      },
+      {
+        "text": "2. Connection Bonding Service",
+        "description": "",
+        "bounds": "[189,860][1038,911]"
+      },
+      {
+        "text": "Built in Bonding (Courtesy of IRL Toolkit)\nWorks when streaming direct to Twitch, or an rtmp/srt server without bonding support.",
+        "description": "",
+        "bounds": "[189,911][1038,1048]"
+      },
+      {
+        "text": "Bonding Only",
+        "description": "",
+        "bounds": "[189,1111][435,1168]"
+      },
+      {
+        "text": "Only bond the connections, video is sent straight to the destination",
+        "description": "",
+        "bounds": "[189,1168][912,1262]"
+      },
+      {
+        "text": "Connections",
+        "description": "",
+        "bounds": "[189,1367][1038,1418]"
+      },
+      {
+        "text": "Enable Bonding for the following connections:",
+        "description": "",
+        "bounds": "[189,1418][939,1469]"
+      },
+      {
+        "text": "Advanced Bonding Settings",
+        "description": "",
+        "bounds": "[189,1553][1038,1604]"
+      },
+      {
+        "text": "Tune what links are enabled when bonding and their relative weights. Weights are relative so don't have an effect if only one connection enabled.\nThis can be adjusted live in the quick settings network tab.",
+        "description": "",
+        "bounds": "[189,1604][1038,1827]"
+      },
+      {
+        "text": "Enable Cellular",
+        "description": "",
+        "bounds": "[189,1890][464,1947]"
+      },
+      {
+        "text": "Cellular Weight",
+        "description": "",
+        "bounds": "[189,2010][468,2067]"
+      },
+      {
+        "text": "100",
+        "description": "",
+        "bounds": "[901,2101][996,2158]"
+      },
+      {
+        "text": "Enable WiFi",
+        "description": "",
+        "bounds": "[189,2255][405,2312]"
+      }
+    ]
+  },
+  {
+    "screen": "connections",
+    "labels": [
+      {
+        "text": "",
+        "description": "Navigate up",
+        "bounds": "[0,63][147,210]"
+      },
+      {
+        "text": "Outgoing connections",
+        "description": "",
+        "bounds": "[189,101][713,172]"
+      },
+      {
+        "text": "Long hold to edit a connection, only one active at a time.",
+        "description": "",
+        "bounds": "[189,252][1038,346]"
+      },
+      {
+        "text": "New connection",
+        "description": "",
+        "bounds": "[189,430][490,487]"
+      },
+      {
+        "text": "Manage connections",
+        "description": "",
+        "bounds": "[189,571][580,628]"
+      }
+    ]
+  },
+  {
+    "screen": "video",
+    "labels": [
+      {
+        "text": "",
+        "description": "Navigate up",
+        "bounds": "[0,63][147,210]"
+      },
+      {
+        "text": "Video parameters",
+        "description": "",
+        "bounds": "[189,101][611,172]"
+      },
+      {
+        "text": "Camera",
+        "description": "",
+        "bounds": "[189,273][1038,324]"
+      },
+      {
+        "text": "Start app with",
+        "description": "",
+        "bounds": "[189,387][451,444]"
+      },
+      {
+        "text": "Front camera (1)",
+        "description": "",
+        "bounds": "[189,444][463,495]"
+      },
+      {
+        "text": "Flip between physical sub-cameras",
+        "description": "",
+        "bounds": "[189,579][843,636]"
+      },
+      {
+        "text": "Resolution",
+        "description": "",
+        "bounds": "[189,720][387,777]"
+      },
+      {
+        "text": "1920x1080 (16:9)",
+        "description": "",
+        "bounds": "[189,777][482,828]"
+      },
+      {
+        "text": "FPS",
+        "description": "",
+        "bounds": "[189,912][264,969]"
+      },
+      {
+        "text": "System default",
+        "description": "",
+        "bounds": "[189,969][436,1020]"
+      },
+      {
+        "text": "Orientation",
+        "description": "",
+        "bounds": "[189,1104][395,1161]"
+      },
+      {
+        "text": "Landscape",
+        "description": "",
+        "bounds": "[189,1161][369,1212]"
+      },
+      {
+        "text": "Live rotation",
+        "description": "",
+        "bounds": "[189,1296][420,1353]"
+      },
+      {
+        "text": "Reverse Orientation",
+        "description": "",
+        "bounds": "[189,1437][553,1494]"
+      },
+      {
+        "text": "Double Tap to Flip Camera",
+        "description": "",
+        "bounds": "[189,1578][680,1635]"
+      },
+      {
+        "text": "Background streaming",
+        "description": "",
+        "bounds": "[189,1740][1038,1791]"
+      },
+      {
+        "text": "Keep streaming when not in focus.",
+        "description": "",
+        "bounds": "[189,1854][833,1911]"
+      },
+      {
+        "text": "This is always enabled now.",
+        "description": "",
+        "bounds": "[189,1911][645,1962]"
+      },
+      {
+        "text": "Start new lens with",
+        "description": "",
+        "bounds": "[189,2067][1038,2118]"
+      },
+      {
+        "text": "Focus mode",
+        "description": "",
+        "bounds": "[189,2181][420,2238]"
+      },
+      {
+        "text": "Continuous auto focus",
+        "description": "",
+        "bounds": "[189,2238][558,2289]"
+      }
+    ]
+  },
+  {
+    "screen": "audio",
+    "labels": [
+      {
+        "text": "",
+        "description": "Navigate up",
+        "bounds": "[0,63][147,210]"
+      },
+      {
+        "text": "Audio parameters",
+        "description": "",
+        "bounds": "[189,101][612,172]"
+      },
+      {
+        "text": "Prefer Bluetooth Mic/Headset",
+        "description": "",
+        "bounds": "[189,252][745,309]"
+      },
+      {
+        "text": "Audio source",
+        "description": "",
+        "bounds": "[189,393][434,450]"
+      },
+      {
+        "text": "Microphone to use for recording audio. Note that the exact behaviour of the options depends on how the option is implemented on your device.",
+        "description": "",
+        "bounds": "[189,450][1038,587]"
+      },
+      {
+        "text": "Audio channels",
+        "description": "",
+        "bounds": "[189,671][475,728]"
+      },
+      {
+        "text": "Stereo",
+        "description": "",
+        "bounds": "[189,728][297,779]"
+      },
+      {
+        "text": "Bitrate",
+        "description": "",
+        "bounds": "[189,863][312,920]"
+      },
+      {
+        "text": "Auto",
+        "description": "",
+        "bounds": "[189,920][266,971]"
+      },
+      {
+        "text": "Sample rate",
+        "description": "",
+        "bounds": "[189,1055][413,1112]"
+      },
+      {
+        "text": "44100",
+        "description": "",
+        "bounds": "[189,1112][294,1163]"
+      },
+      {
+        "text": "Keep Speakers Awake",
+        "description": "",
+        "bounds": "[189,1247][599,1304]"
+      },
+      {
+        "text": "Periodically play a silent sound to keep bluetooth speaker awake",
+        "description": "",
+        "bounds": "[189,1304][874,1398]"
+      },
+      {
+        "text": "Processing",
+        "description": "",
+        "bounds": "[189,1503][1038,1554]"
+      },
+      {
+        "text": "Input gain",
+        "description": "",
+        "bounds": "[189,1596][374,1653]"
+      },
+      {
+        "text": "0.0dB",
+        "description": "",
+        "bounds": "[189,1653][285,1704]"
+      },
+      {
+        "text": "Tap to reset to 0dB",
+        "description": "",
+        "bounds": "[189,1892][500,1943]"
+      }
+    ]
+  },
+  {
+    "screen": "recording",
+    "labels": [
+      {
+        "text": "",
+        "description": "Navigate up",
+        "bounds": "[0,63][147,210]"
+      },
+      {
+        "text": "Recording options",
+        "description": "",
+        "bounds": "[189,101][623,172]"
+      },
+      {
+        "text": "Record stream",
+        "description": "",
+        "bounds": "[189,252][463,309]"
+      },
+      {
+        "text": "WARNING: Recording will stop when the battery level is critically low, usually ~7%.",
+        "description": "",
+        "bounds": "[189,393][1038,487]"
+      },
+      {
+        "text": "Split video into sections",
+        "description": "",
+        "bounds": "[189,571][632,628]"
+      },
+      {
+        "text": "Video recording is split into sections by default for reliability purposes. You may disable this if you need.",
+        "description": "",
+        "bounds": "[189,628][874,765]"
+      },
+      {
+        "text": "Sections duration (minutes)",
+        "description": "",
+        "bounds": "[189,849][706,906]"
+      },
+      {
+        "text": "30",
+        "description": "",
+        "bounds": "[189,906][231,957]"
+      },
+      {
+        "text": "Snapshot format",
+        "description": "",
+        "bounds": "[189,1041][504,1098]"
+      },
+      {
+        "text": "JPEG",
+        "description": "",
+        "bounds": "[189,1098][278,1149]"
+      },
+      {
+        "text": "Snapshot quality",
+        "description": "",
+        "bounds": "[189,1233][501,1290]"
+      },
+      {
+        "text": "90",
+        "description": "",
+        "bounds": "[189,1290][231,1341]"
+      },
+      {
+        "text": "Use Storage Access Framework",
+        "description": "",
+        "bounds": "[189,1425][781,1482]"
+      },
+      {
+        "text": "Whether to use Storage Access Framework for saving photos and videos. This should be enabled to allow saving to external SD cards.",
+        "description": "",
+        "bounds": "[189,1482][874,1662]"
+      },
+      {
+        "text": "Save to",
+        "description": "",
+        "bounds": "[189,1746][327,1803]"
+      },
+      {
+        "text": "DCIM/IRLPro, Podcasts/IRLPro",
+        "description": "",
+        "bounds": "[189,1803][699,1854]"
+      },
+      {
+        "text": "Log",
+        "description": "",
+        "bounds": "[189,1959][1038,2010]"
+      },
+      {
+        "text": "Write log to file",
+        "description": "",
+        "bounds": "[189,2073][467,2130]"
+      },
+      {
+        "text": "Save to",
+        "description": "",
+        "bounds": "[189,2214][327,2271]"
+      }
+    ]
+  },
+  {
+    "screen": "display",
+    "labels": [
+      {
+        "text": "",
+        "description": "Navigate up",
+        "bounds": "[0,63][147,210]"
+      },
+      {
+        "text": "Display",
+        "description": "",
+        "bounds": "[189,101][364,172]"
+      },
+      {
+        "text": "Show audio level meter",
+        "description": "",
+        "bounds": "[189,252][620,309]"
+      },
+      {
+        "text": "Grid 3x3",
+        "description": "",
+        "bounds": "[189,393][345,450]"
+      },
+      {
+        "text": "Show safe margins",
+        "description": "",
+        "bounds": "[189,534][548,591]"
+      }
+    ]
+  },
+  {
+    "screen": "overlays",
+    "labels": [
+      {
+        "text": "",
+        "description": "Navigate up",
+        "bounds": "[0,63][147,210]"
+      },
+      {
+        "text": "Settings",
+        "description": "",
+        "bounds": "[189,101][386,172]"
+      },
+      {
+        "text": "Text/Picture Overlays",
+        "description": "",
+        "bounds": "[189,252][588,309]"
+      },
+      {
+        "text": "Web Overlays",
+        "description": "",
+        "bounds": "[189,393][441,450]"
+      }
+    ]
+  },
+  {
+    "screen": "import-export",
+    "labels": [
+      {
+        "text": "",
+        "description": "Navigate up",
+        "bounds": "[0,63][147,210]"
+      },
+      {
+        "text": "Import/Export Settings",
+        "description": "",
+        "bounds": "[189,101][735,172]"
+      },
+      {
+        "text": "Import settings",
+        "description": "",
+        "bounds": "[189,252][476,309]"
+      },
+      {
+        "text": "Scan QR code",
+        "description": "",
+        "bounds": "[189,393][449,450]"
+      },
+      {
+        "text": "You can take a picture of QR code with your camera app which recognizes QR.",
+        "description": "",
+        "bounds": "[189,534][1038,628]"
+      },
+      {
+        "text": "Export settings",
+        "description": "",
+        "bounds": "[189,712][473,769]"
+      }
+    ]
+  },
+  {
+    "screen": "advanced",
+    "labels": [
+      {
+        "text": "",
+        "description": "Navigate up",
+        "bounds": "[0,63][147,210]"
+      },
+      {
+        "text": "Advanced options",
+        "description": "",
+        "bounds": "[189,101][617,172]"
+      },
+      {
+        "text": "Misc Settings",
+        "description": "",
+        "bounds": "[189,273][1038,324]"
+      },
+      {
+        "text": "Show status bar on broadcast page",
+        "description": "",
+        "bounds": "[189,387][852,444]"
+      },
+      {
+        "text": "Show SRTLA Debug",
+        "description": "",
+        "bounds": "[189,528][559,585]"
+      },
+      {
+        "text": "Allow RTMP HEVC",
+        "description": "",
+        "bounds": "[189,669][534,726]"
+      },
+      {
+        "text": "Experimental SRTLA Tweaks",
+        "description": "",
+        "bounds": "[189,810][722,867]"
+      },
+      {
+        "text": "Enables any tweaks I'm testing that aren't ready yet",
+        "description": "",
+        "bounds": "[189,867][874,961]"
+      },
+      {
+        "text": "Background streaming",
+        "description": "",
+        "bounds": "[189,1066][1038,1117]"
+      },
+      {
+        "text": "Keep streaming when not in focus.",
+        "description": "",
+        "bounds": "[189,1180][833,1237]"
+      },
+      {
+        "text": "This is always enabled now.",
+        "description": "",
+        "bounds": "[189,1237][645,1288]"
+      },
+      {
+        "text": "Quit if inactive in background",
+        "description": "",
+        "bounds": "[189,1372][728,1429]"
+      },
+      {
+        "text": "If IRL Pro sits in background and has no active connections, it will quit after a timeout.",
+        "description": "",
+        "bounds": "[189,1429][1038,1523]"
+      },
+      {
+        "text": "Advanced options",
+        "description": "",
+        "bounds": "[189,1628][1038,1679]"
+      },
+      {
+        "text": "Preferred camera API",
+        "description": "",
+        "bounds": "[189,1742][587,1799]"
+      },
+      {
+        "text": "Disable Camera2 API only if you have some issues with camera like some resolutions or framerates are not available.",
+        "description": "",
+        "bounds": "[189,1799][1038,1936]"
+      },
+      {
+        "text": "Mirror front camera",
+        "description": "",
+        "bounds": "[189,2020][552,2077]"
+      },
+      {
+        "text": "Stream and record front camera as appears in preview (mirrored).",
+        "description": "",
+        "bounds": "[189,2077][874,2171]"
+      },
+      {
+        "text": "Horizon stream demo",
+        "description": "",
+        "bounds": "[189,2255][594,2312]"
+      },
+      {
+        "text": "Say no to vertical videos.",
+        "description": "",
+        "bounds": "[189,2312][598,2337]"
+      }
+    ]
+  }
+]

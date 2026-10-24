@@ -1,0 +1,62 @@
+
+artifacts/unpacked/lib/armeabi-v7a/libjpeg.so:	file format elf32-littlearm
+
+Program Header:
+    PHDR off    0x00000034 vaddr 0x00000034 paddr 0x00000034 align 2**2
+         filesz 0x00000140 memsz 0x00000140 flags r--
+    LOAD off    0x00000000 vaddr 0x00000000 paddr 0x00000000 align 2**12
+         filesz 0x00004b18 memsz 0x00004b18 flags r--
+    LOAD off    0x00004b20 vaddr 0x00005b20 paddr 0x00005b20 align 2**12
+         filesz 0x0004c5e0 memsz 0x0004c5e0 flags r-x
+    LOAD off    0x00051100 vaddr 0x00053100 paddr 0x00053100 align 2**12
+         filesz 0x000005d0 memsz 0x000005d0 flags rw-
+    LOAD off    0x000516d0 vaddr 0x000546d0 paddr 0x000546d0 align 2**12
+         filesz 0x00000004 memsz 0x00000005 flags rw-
+ DYNAMIC off    0x000513c8 vaddr 0x000533c8 paddr 0x000533c8 align 2**2
+         filesz 0x000000e0 memsz 0x000000e0 flags rw-
+   RELRO off    0x00051100 vaddr 0x00053100 paddr 0x00053100 align 2**0
+         filesz 0x000005d0 memsz 0x00000f00 flags r--
+   STACK off    0x00000000 vaddr 0x00000000 paddr 0x00000000 align 2**64
+         filesz 0x00000000 memsz 0x00000000 flags rw-
+    NOTE off    0x00000174 vaddr 0x00000174 paddr 0x00000174 align 2**2
+         filesz 0x000000b0 memsz 0x000000b0 flags r--
+ UNKNOWN off    0x0000263c vaddr 0x0000263c paddr 0x0000263c align 2**2
+         filesz 0x00000038 memsz 0x00000038 flags r--
+
+Dynamic Section:
+  NEEDED       libm.so
+  NEEDED       libdl.so
+  NEEDED       libc.so
+  SONAME       libjpeg.so
+  FLAGS        0x00000008
+  FLAGS_1      0x00000001
+  REL          0x00001ee4
+  RELSZ        0x00000758
+  RELENT       0x00000008
+  RELCOUNT     0x000000d1
+  JMPREL       0x00002674
+  PLTRELSZ     0x00000268
+  PLTGOT       0x00053590
+  PLTREL       0x00000011
+  SYMTAB       0x00000224
+  SYMENT       0x00000010
+  STRTAB       0x000014bc
+  STRSZ        0x00000a27
+  GNU_HASH     0x00000cb8
+  HASH         0x00001034
+  FINI_ARRAY   0x000533c0
+  FINI_ARRAYSZ 0x00000008
+  VERSYM       0x00000b24
+  VERDEF       0x00000c44
+  VERDEFNUM    0x00000003
+  VERNEED      0x00000c98
+  VERNEEDNUM   0x00000001
+
+Version definitions:
+1 0x01 0x016cca0f libjpeg.so
+2 0x00 0x0939edd2 LIBJPEGTURBO_6.2
+3 0x00 0x04cdffe2 LIBJPEG_6.2
+
+Version References:
+  required from libc.so:
+    0x00050d63 0x00 04 LIBC

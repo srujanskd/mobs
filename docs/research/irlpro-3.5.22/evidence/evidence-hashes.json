@@ -1,0 +1,927 @@
+[
+  {
+    "path": "evidence/AndroidManifest.xml",
+    "bytes": 7019,
+    "sha256": "bff54bc16f896269b2c4caa8adb26f2032d8c63c01bc07c3030e4e9a58ebe27b"
+  },
+  {
+    "path": "evidence/apk-inventory.json",
+    "bytes": 129531,
+    "sha256": "53a1687ae33096d7582b065865ee5006de2003d6ecdc4e724c5ea249e7140578"
+  },
+  {
+    "path": "evidence/emulator.log",
+    "bytes": 10099,
+    "sha256": "ed5a200a6270e51babc9f913d4fc7bf1c8009c9bf0ca8f2080ff10a544b6ac8c"
+  },
+  {
+    "path": "evidence/endpoint-literals.json",
+    "bytes": 4703,
+    "sha256": "8e5d4656feefd864b48d834974f41fa63cedb9634bce37530d66f1d342bcb5e4"
+  },
+  {
+    "path": "evidence/jadx-api.txt",
+    "bytes": 11420,
+    "sha256": "68ef565e8c48b45b49cf5fa35381530a4b2dd74f950ed937b0890c08a6e9b636"
+  },
+  {
+    "path": "evidence/jadx-export.log",
+    "bytes": 34292,
+    "sha256": "a70e8b73e37b1bbe3ed52f9b84a753e8d116231cb3b78dff737e454e609ff745"
+  },
+  {
+    "path": "evidence/native/arm64-v8a/libc++_shared.so.dynamic.txt",
+    "bytes": 3053,
+    "sha256": "862c51daaf3ecace63402fed1b20aa4fe5b962e3b5b9e6cd2ab1d8fef7e647f3"
+  },
+  {
+    "path": "evidence/native/arm64-v8a/libc++_shared.so.symbols.txt",
+    "bytes": 267002,
+    "sha256": "6e053a971384f6ce24f7eee826f5688c13317a7b334919d48a859da14ed1033d"
+  },
+  {
+    "path": "evidence/native/arm64-v8a/libjpeg.so.dynamic.txt",
+    "bytes": 2846,
+    "sha256": "b14a4f62c07f3af1f3a96e9d49802566bc1a1509e24e0684bc0eb283dae1f849"
+  },
+  {
+    "path": "evidence/native/arm64-v8a/libjpeg.so.symbols.txt",
+    "bytes": 11846,
+    "sha256": "b0f15270c28f99c276a460cc9c3c9ba3907a91560987d7aa2ea10e474c24d43f"
+  },
+  {
+    "path": "evidence/native/arm64-v8a/liblog.so.dynamic.txt",
+    "bytes": 2303,
+    "sha256": "caad307e7565e3036027eefd3a283a6ccff8cf13160fbb74319740ca64144ae6"
+  },
+  {
+    "path": "evidence/native/arm64-v8a/liblog.so.symbols.txt",
+    "bytes": 670,
+    "sha256": "a07d4b26f0bc36fc3f11f3f62faf59461c793277106c404e957b2b72b6508ba3"
+  },
+  {
+    "path": "evidence/native/arm64-v8a/libobjectbox-jni.so.dynamic.txt",
+    "bytes": 2492,
+    "sha256": "eb6c05ad7d05d5cb88c8cd33f39a663d134748aa0abf2a5b399f47b1f25d43d4"
+  },
+  {
+    "path": "evidence/native/arm64-v8a/libobjectbox-jni.so.symbols.txt",
+    "bytes": 125885,
+    "sha256": "dcef96e17d31a5e806638a552531274d848010d8b2ac23801d3fc4c5eed92f43"
+  },
+  {
+    "path": "evidence/native/arm64-v8a/librist.so.dynamic.txt",
+    "bytes": 2948,
+    "sha256": "c77efcbfab1779304159b2f1efe6bf59c0ee77e5f1184e05203a544f952a655c"
+  },
+  {
+    "path": "evidence/native/arm64-v8a/librist.so.symbols.txt",
+    "bytes": 12302,
+    "sha256": "57f7d28a8c7e8e99876d9eee022859ddb877a537775da606016c506071a66673"
+  },
+  {
+    "path": "evidence/native/arm64-v8a/libsrt.so.dynamic.txt",
+    "bytes": 2835,
+    "sha256": "77324780ec5234565ea102fd0b2f72e1fc5d98a64f30d3035bdd94ff772ca6b9"
+  },
+  {
+    "path": "evidence/native/arm64-v8a/libsrt.so.symbols.txt",
+    "bytes": 877623,
+    "sha256": "85f79c1eda69e92f107d7940ee33017afd1234baa6fd73bdebbcd39a941ba8ad"
+  },
+  {
+    "path": "evidence/native/arm64-v8a/libsrtla.so.dynamic.txt",
+    "bytes": 2518,
+    "sha256": "a652c0639141b46089c913bd58ae4e0f7ef5e20e658b92a6eb60cfeaab4a76a0"
+  },
+  {
+    "path": "evidence/native/arm64-v8a/libsrtla.so.symbols.txt",
+    "bytes": 6721,
+    "sha256": "14a2563702592d7079f55bd59effb80a82c9ede34093536c0adddb330da320e2"
+  },
+  {
+    "path": "evidence/native/arm64-v8a/libsrtsender.so.dynamic.txt",
+    "bytes": 2735,
+    "sha256": "0f4525f2dee2acdca860a544558295f85aacc6f14fd0c660806f64000b014e77"
+  },
+  {
+    "path": "evidence/native/arm64-v8a/libsrtsender.so.symbols.txt",
+    "bytes": 33471,
+    "sha256": "ae3aa16980060f290e468fe7b3d189e864a6415db49403810b5c92aba892594b"
+  },
+  {
+    "path": "evidence/native/arm64-v8a/libusb1.0.so.dynamic.txt",
+    "bytes": 2620,
+    "sha256": "3ed934b23256501e10e94ea26f08c506a735137c698cc05b07d5ebb9ffe78ea5"
+  },
+  {
+    "path": "evidence/native/arm64-v8a/libusb1.0.so.symbols.txt",
+    "bytes": 13319,
+    "sha256": "998355efa745b41fc9f70e5e4d4ca9228a68744c7940f722ed249592e13a4951"
+  },
+  {
+    "path": "evidence/native/arm64-v8a/libuvc.so.dynamic.txt",
+    "bytes": 2842,
+    "sha256": "27cc9ef822e05446c102522b04f930e9339ead50ad4e66b96746bb39fb5027e7"
+  },
+  {
+    "path": "evidence/native/arm64-v8a/libuvc.so.symbols.txt",
+    "bytes": 20708,
+    "sha256": "fe05a8ebb4f71fc3520d6cecfc49b10eda0f883ffe0b0a82d723afd171739847"
+  },
+  {
+    "path": "evidence/native/arm64-v8a/libuvccamera.so.dynamic.txt",
+    "bytes": 2922,
+    "sha256": "0172bee33a3d1991a417d165009f2d19f2f1cc55844409aaddabb21754ccd84a"
+  },
+  {
+    "path": "evidence/native/arm64-v8a/libuvccamera.so.symbols.txt",
+    "bytes": 8969,
+    "sha256": "3ef1ba5e9a2ef16096da69edffb7d3e83374dbfee2a2192a02794ac6d873ce7a"
+  },
+  {
+    "path": "evidence/native/arm64-v8a/libyyjson.so.dynamic.txt",
+    "bytes": 2499,
+    "sha256": "fafd3c2be28659344703525743fbd913fffcd1a910ba7810c9c2f55b91e9f3af"
+  },
+  {
+    "path": "evidence/native/arm64-v8a/libyyjson.so.symbols.txt",
+    "bytes": 3691,
+    "sha256": "30cf94e0f4ed58be4b94dc5ea6a67e3b06411a7da1c1e0115b9e325fbc44ee56"
+  },
+  {
+    "path": "evidence/native/armeabi-v7a/libc++_shared.so.dynamic.txt",
+    "bytes": 2060,
+    "sha256": "c935f6603af5049921904aa4921ad39851bfe583ba9873363fdf199b8aec5fe1"
+  },
+  {
+    "path": "evidence/native/armeabi-v7a/libc++_shared.so.symbols.txt",
+    "bytes": 243611,
+    "sha256": "b310ad5722333bac03ca2062d3c6a03c4a24bcce9d8465847d244ff73471de59"
+  },
+  {
+    "path": "evidence/native/armeabi-v7a/libjpeg.so.dynamic.txt",
+    "bytes": 2260,
+    "sha256": "30eaf9691d698b6de870438c461624d76c74bc38bafbeae3dc8a1f3ee92ce081"
+  },
+  {
+    "path": "evidence/native/armeabi-v7a/libjpeg.so.symbols.txt",
+    "bytes": 9083,
+    "sha256": "93e3d26f2f6a9c65d5083d1ab00c2de42514f9835ca42e35ffa62fdd52b36f27"
+  },
+  {
+    "path": "evidence/native/armeabi-v7a/liblog.so.dynamic.txt",
+    "bytes": 1445,
+    "sha256": "d7e785dd53bb1fcebc475d7a5ddbc69b6a7b92e9885726f565068f03b1326074"
+  },
+  {
+    "path": "evidence/native/armeabi-v7a/liblog.so.symbols.txt",
+    "bytes": 540,
+    "sha256": "13bba96704512bfa78f869ee5305a49ff5c6678e755f99b334309a9b534d81c2"
+  },
+  {
+    "path": "evidence/native/armeabi-v7a/libobjectbox-jni.so.dynamic.txt",
+    "bytes": 2151,
+    "sha256": "b4fed77b9cbb11ecf7e8a30b5a8f00c70e9688c84af9207d75fc976a7c9baa61"
+  },
+  {
+    "path": "evidence/native/armeabi-v7a/libobjectbox-jni.so.symbols.txt",
+    "bytes": 107331,
+    "sha256": "8073ef88ac4702970a1e7293af13594ea1709fdec5fd97cced71f6fffba5e8ff"
+  },
+  {
+    "path": "evidence/native/armeabi-v7a/librist.so.dynamic.txt",
+    "bytes": 2298,
+    "sha256": "c48caac8b6d1bc4e7a34aa39533d1333591d7913e1e3259b973133f9498d4f8e"
+  },
+  {
+    "path": "evidence/native/armeabi-v7a/librist.so.symbols.txt",
+    "bytes": 9718,
+    "sha256": "aafbb18f55380dd5cf2d13330c024e16eeed3db6185d817b9f95890603bb3f9d"
+  },
+  {
+    "path": "evidence/native/armeabi-v7a/libsrt.so.dynamic.txt",
+    "bytes": 2249,
+    "sha256": "43b2443bd0601b7df845373152fb73142b18e39b8c4b2d72e86ed7d008715b1d"
+  },
+  {
+    "path": "evidence/native/armeabi-v7a/libsrt.so.symbols.txt",
+    "bytes": 729657,
+    "sha256": "a6e318aa3be94dbf8295c10848082aae810746a5315ae50edf89288338be83ef"
+  },
+  {
+    "path": "evidence/native/armeabi-v7a/libsrtla.so.dynamic.txt",
+    "bytes": 1996,
+    "sha256": "fe47ec16b9bdb540ac340cc9121e9e4d92656c4d5463599234ef48983081cf49"
+  },
+  {
+    "path": "evidence/native/armeabi-v7a/libsrtla.so.symbols.txt",
+    "bytes": 5378,
+    "sha256": "8fa3041dc689d7755cc6f5b90e445ba22f38352600f84b17c828c45f244c5fae"
+  },
+  {
+    "path": "evidence/native/armeabi-v7a/libsrtsender.so.dynamic.txt",
+    "bytes": 2242,
+    "sha256": "2be531dc586a4ce1c3cf1d670ee3c498d642de0903f2b3a61ac937451a6c9499"
+  },
+  {
+    "path": "evidence/native/armeabi-v7a/libsrtsender.so.symbols.txt",
+    "bytes": 28327,
+    "sha256": "624b2d39a56a03cba193b720e173562444bae27466efd648dad2cd5b8b00774c"
+  },
+  {
+    "path": "evidence/native/armeabi-v7a/libusb1.0.so.dynamic.txt",
+    "bytes": 2022,
+    "sha256": "cb38caa9fdcc791b62b22acfc294278b066b167c7603a9cdc68b6fdb74dd8f09"
+  },
+  {
+    "path": "evidence/native/armeabi-v7a/libusb1.0.so.symbols.txt",
+    "bytes": 10846,
+    "sha256": "597f5ac612811edc0b1e5aacaf9b03bc60b27c5ad9f5a9b479e7a73d763c35cf"
+  },
+  {
+    "path": "evidence/native/armeabi-v7a/libuvc.so.dynamic.txt",
+    "bytes": 2272,
+    "sha256": "9954cbffe79d35f3086e7a84bd79c3e2f4647779bbb8843db3faf08b19734172"
+  },
+  {
+    "path": "evidence/native/armeabi-v7a/libuvc.so.symbols.txt",
+    "bytes": 16746,
+    "sha256": "f18e08ff0071425ad0aab79c015327069a83bfb7ebc1e816c69742f3b14411ed"
+  },
+  {
+    "path": "evidence/native/armeabi-v7a/libuvccamera.so.dynamic.txt",
+    "bytes": 2383,
+    "sha256": "01f5732b3baeecc90bc59d43fe262fa0c83077663e55abe0d528dcdd86bd3a08"
+  },
+  {
+    "path": "evidence/native/armeabi-v7a/libuvccamera.so.symbols.txt",
+    "bytes": 7152,
+    "sha256": "14a99e4f3641d08b18a240eaaac3408e2e3f8318653914cb0aef9030b9d1ea54"
+  },
+  {
+    "path": "evidence/native/armeabi-v7a/libyyjson.so.dynamic.txt",
+    "bytes": 1969,
+    "sha256": "6289f0b1ab8275f14633cdbac171b3dc953adf5c6b2289234697fac12db1919f"
+  },
+  {
+    "path": "evidence/native/armeabi-v7a/libyyjson.so.symbols.txt",
+    "bytes": 2953,
+    "sha256": "ec03d384c0f6761c424cdde7a889c8f6aafc9560f488720d6398c19b4a7946e4"
+  },
+  {
+    "path": "evidence/native/inventory.py",
+    "bytes": 986,
+    "sha256": "18f2614bfb0cba9bb790066499ba89c4cf350f5b9a9485d68c00a09b1ee3824c"
+  },
+  {
+    "path": "evidence/native/library-inventory.json",
+    "bytes": 62002,
+    "sha256": "5f3338d4d0cc9245d5499a87238f7a21acfc1c065876b5476270d9b510acbe70"
+  },
+  {
+    "path": "evidence/native/rist-arm64-symbols.txt",
+    "bytes": 12302,
+    "sha256": "57f7d28a8c7e8e99876d9eee022859ddb877a537775da606016c506071a66673"
+  },
+  {
+    "path": "evidence/native/srt-arm64-symbols.txt",
+    "bytes": 877623,
+    "sha256": "85f79c1eda69e92f107d7940ee33017afd1234baa6fd73bdebbcd39a941ba8ad"
+  },
+  {
+    "path": "evidence/native/srtla-arm64-disassembly.txt",
+    "bytes": 122340,
+    "sha256": "b57d9154d0c66b850bf7b91adfc66d246856259a096a4f437591a7223246ebae"
+  },
+  {
+    "path": "evidence/native/srtla-arm64-strings.txt",
+    "bytes": 3768,
+    "sha256": "ce20a8e15e697f7e0ce4ebfb8cd4ccfb99b2ba9346ed8096b0f63369f7ff7299"
+  },
+  {
+    "path": "evidence/native/srtsender-arm64-disassembly.txt",
+    "bytes": 1136303,
+    "sha256": "f964915a00108e7ea9536cd275473c963500bf322164333aeffa042f745bbb33"
+  },
+  {
+    "path": "evidence/native/srtsender-arm64-dynamic.txt",
+    "bytes": 2735,
+    "sha256": "0f4525f2dee2acdca860a544558295f85aacc6f14fd0c660806f64000b014e77"
+  },
+  {
+    "path": "evidence/native/srtsender-arm64-strings.txt",
+    "bytes": 27223,
+    "sha256": "81044239b09af36bbe5f7079558ffa99cbf9905f9ac4bed9d1d537ce359e7041"
+  },
+  {
+    "path": "evidence/native/srtsender-arm64-symbols.txt",
+    "bytes": 33471,
+    "sha256": "ae3aa16980060f290e468fe7b3d189e864a6415db49403810b5c92aba892594b"
+  },
+  {
+    "path": "evidence/native/x86/libc++_shared.so.dynamic.txt",
+    "bytes": 2173,
+    "sha256": "6af12b8a9c33eeab86bf93b3bb54874dfcd924e8f3071bc51afedddb7c8297d9"
+  },
+  {
+    "path": "evidence/native/x86/libc++_shared.so.symbols.txt",
+    "bytes": 225643,
+    "sha256": "a2506d16d78b50073bc111851e5fb81733203d7f23db4db92c981b18770bde94"
+  },
+  {
+    "path": "evidence/native/x86/libjpeg.so.dynamic.txt",
+    "bytes": 2373,
+    "sha256": "1acf5e6001ab9fa1fbbcff10169f503da50643f47ba9ed1f415399156916cf68"
+  },
+  {
+    "path": "evidence/native/x86/libjpeg.so.symbols.txt",
+    "bytes": 9070,
+    "sha256": "10eee25e98e40974f0618fd59743d432eccdbeffced758f2b04bce2c64d3ee7a"
+  },
+  {
+    "path": "evidence/native/x86/liblog.so.dynamic.txt",
+    "bytes": 1432,
+    "sha256": "0cdda52177be80bbb26723c9756d01423712c03a6901b8f109d30539507df4e5"
+  },
+  {
+    "path": "evidence/native/x86/liblog.so.symbols.txt",
+    "bytes": 527,
+    "sha256": "ef8b425f8f40fe2a93757a2749fd7df582a7dc122f393b0a043f7a8860241a29"
+  },
+  {
+    "path": "evidence/native/x86/libobjectbox-jni.so.dynamic.txt",
+    "bytes": 2138,
+    "sha256": "bef0c28266c53424c74650ef86e6fbeb373d6bf60cf366e64118ab6ccfc1f694"
+  },
+  {
+    "path": "evidence/native/x86/libobjectbox-jni.so.symbols.txt",
+    "bytes": 103277,
+    "sha256": "442096cb489221d4c39588c7a3400ece7e0ff3e1eeedce5b176c39a5795ff56f"
+  },
+  {
+    "path": "evidence/native/x86/librist.so.dynamic.txt",
+    "bytes": 2285,
+    "sha256": "8c138457d778da005b0bcdb95ad8670f9befd66cd6e383845aec6559d06ee49f"
+  },
+  {
+    "path": "evidence/native/x86/librist.so.symbols.txt",
+    "bytes": 9705,
+    "sha256": "2dbee6d9ecbdb268ca3f03457f7b093ca1046ba860606037638bcaf561ee14a2"
+  },
+  {
+    "path": "evidence/native/x86/libsrt.so.dynamic.txt",
+    "bytes": 2362,
+    "sha256": "acc72a354ecb7e0f3afed39232fdff6eb0f30174180d7e6aa4a5b6bb57e3f5ff"
+  },
+  {
+    "path": "evidence/native/x86/libsrt.so.symbols.txt",
+    "bytes": 723096,
+    "sha256": "b1e4da9abc20dbb8c4f7d3958b691cb0608af07bbf7c229930bb8a3301e58c27"
+  },
+  {
+    "path": "evidence/native/x86/libsrtla.so.dynamic.txt",
+    "bytes": 2109,
+    "sha256": "a0b059dde69ecdd96055fb85e0c967a8ac7d0763b3a732c6c2dc696bf767fce7"
+  },
+  {
+    "path": "evidence/native/x86/libsrtla.so.symbols.txt",
+    "bytes": 5302,
+    "sha256": "b3de472c49581eea396c90f5f5242ec16e12e7a6361128f71d90be1fbbe79016"
+  },
+  {
+    "path": "evidence/native/x86/libsrtsender.so.dynamic.txt",
+    "bytes": 2355,
+    "sha256": "f1499a2020d42b5885decd77ef68dfed6838d1f0467b7f44fc58f456435cef1c"
+  },
+  {
+    "path": "evidence/native/x86/libsrtsender.so.symbols.txt",
+    "bytes": 28499,
+    "sha256": "cf8ba84069d3b4edd01a58aceadceeed1c601e4683fec1922e94547061486a3f"
+  },
+  {
+    "path": "evidence/native/x86/libusb1.0.so.dynamic.txt",
+    "bytes": 2135,
+    "sha256": "d7ddd75a95a0398789ae9512f03aea6cab55eed2038bcd377a49dc5544d6a989"
+  },
+  {
+    "path": "evidence/native/x86/libusb1.0.so.symbols.txt",
+    "bytes": 10590,
+    "sha256": "24f746ff3fa7618fcf5eefed6c5b82882332d8eb39639f43a4f4446ddbf7c327"
+  },
+  {
+    "path": "evidence/native/x86/libuvc.so.dynamic.txt",
+    "bytes": 2385,
+    "sha256": "23633b576182e85b90d5ec6ea568c0fa0aa41e9358b4d20a3c00e16aa73d9d4f"
+  },
+  {
+    "path": "evidence/native/x86/libuvc.so.symbols.txt",
+    "bytes": 16681,
+    "sha256": "71344f68201626ddc4c182c067dd53970eb0687fcf008c1177fd0ee55c5f3606"
+  },
+  {
+    "path": "evidence/native/x86/libuvccamera.so.dynamic.txt",
+    "bytes": 2550,
+    "sha256": "e2dacaaa9b39ea0c85862bae008c108252fe81a064b069a7fd197a23dcf29570"
+  },
+  {
+    "path": "evidence/native/x86/libuvccamera.so.symbols.txt",
+    "bytes": 7533,
+    "sha256": "14232a7985b4eb97a2582376ba95e45510875120c3cf442364756178e7b1bd16"
+  },
+  {
+    "path": "evidence/native/x86/libyyjson.so.dynamic.txt",
+    "bytes": 2082,
+    "sha256": "19243ceafb7090230c2ddd80c98d9d3bc8b930edf43f119c2fc7126a3a01e748"
+  },
+  {
+    "path": "evidence/native/x86/libyyjson.so.symbols.txt",
+    "bytes": 2940,
+    "sha256": "959d19c45cb32103eaee917253c3fbf11c0fb9349dc8066c96bc999bbb3bfe9e"
+  },
+  {
+    "path": "evidence/native/x86_64/libc++_shared.so.dynamic.txt",
+    "bytes": 2762,
+    "sha256": "22753369807836a998338aac6db2ac618e509d5f2f9b998e3e16e8dd1c1dae75"
+  },
+  {
+    "path": "evidence/native/x86_64/libc++_shared.so.symbols.txt",
+    "bytes": 266557,
+    "sha256": "911ba3282b83f7fcc84464f5484180665a36d2541319e6c9983f0649f46bba54"
+  },
+  {
+    "path": "evidence/native/x86_64/libjpeg.so.dynamic.txt",
+    "bytes": 3002,
+    "sha256": "ddb7effe0b39b88f1fa202a24129684324f4fffd17e3898fa570710d2185bf78"
+  },
+  {
+    "path": "evidence/native/x86_64/libjpeg.so.symbols.txt",
+    "bytes": 11363,
+    "sha256": "44725ed1e2697459fd4d13093098066224390da0acf8b2457357e6756d18f5d6"
+  },
+  {
+    "path": "evidence/native/x86_64/liblog.so.dynamic.txt",
+    "bytes": 1861,
+    "sha256": "d32b653ad40eadba8b16427c4942a070b8c935c27cc71360b2e7594e4b289637"
+  },
+  {
+    "path": "evidence/native/x86_64/liblog.so.symbols.txt",
+    "bytes": 660,
+    "sha256": "fd87603f45adf8ce6bd65172b0f6bd10fd629ef7f164d020da03ad37861bf717"
+  },
+  {
+    "path": "evidence/native/x86_64/libobjectbox-jni.so.dynamic.txt",
+    "bytes": 2610,
+    "sha256": "865271571df5633f1bf9b1c2df3bb494fb04d14c457992a2076742729f614ceb"
+  },
+  {
+    "path": "evidence/native/x86_64/libobjectbox-jni.so.symbols.txt",
+    "bytes": 125007,
+    "sha256": "4e90b13aba3c7332c0dff16942a4bd9a1522ee3ce437d60472f8b3a0372e67aa"
+  },
+  {
+    "path": "evidence/native/x86_64/librist.so.dynamic.txt",
+    "bytes": 2938,
+    "sha256": "8e83eb5ca6dc4bd041ea38a9e05a16597eb10f2899f0a56714a424b67848bc0f"
+  },
+  {
+    "path": "evidence/native/x86_64/librist.so.symbols.txt",
+    "bytes": 12292,
+    "sha256": "3697ae5f1e6a56e77715693af1bd58ebfe9d3a0e0932450d3a90c4d53befac01"
+  },
+  {
+    "path": "evidence/native/x86_64/libsrt.so.dynamic.txt",
+    "bytes": 2991,
+    "sha256": "6498080f56c34ae566837539293176f04f3ae4395fae7ae9790f7ea73e5d9595"
+  },
+  {
+    "path": "evidence/native/x86_64/libsrt.so.symbols.txt",
+    "bytes": 880292,
+    "sha256": "9a4589f38cdc31dde61e0ba69da07d85de46ca497c13992217756f7e59e2a148"
+  },
+  {
+    "path": "evidence/native/x86_64/libsrtla.so.dynamic.txt",
+    "bytes": 2674,
+    "sha256": "0016ba7595839eb82f0a2097d95895add486892abfe66a8bd4ce04bd1f65637d"
+  },
+  {
+    "path": "evidence/native/x86_64/libsrtla.so.symbols.txt",
+    "bytes": 6779,
+    "sha256": "b1cb4ddb7fd44277b58ee23f6e2c083f324327e4c8e1b778d74e7ee41a9ba6e0"
+  },
+  {
+    "path": "evidence/native/x86_64/libsrtsender.so.dynamic.txt",
+    "bytes": 2891,
+    "sha256": "1342c3ef6e9967e1903d9a919149b09077caade73c43c1b91aff7a031c3c3e7b"
+  },
+  {
+    "path": "evidence/native/x86_64/libsrtsender.so.symbols.txt",
+    "bytes": 33461,
+    "sha256": "07bd139bdc1c7f4b37baefe22661dd23129e097fdc03f04ff86e4a420a959b9b"
+  },
+  {
+    "path": "evidence/native/x86_64/libusb1.0.so.dynamic.txt",
+    "bytes": 2708,
+    "sha256": "8111651b617ee7a5b3438ddf6fcfac34888ea9612f179059bf21bd9c506f1ac7"
+  },
+  {
+    "path": "evidence/native/x86_64/libusb1.0.so.symbols.txt",
+    "bytes": 13155,
+    "sha256": "3fd9f740a2469fc8cf4d7b5e98e174207064ef42e2169e75a894a89a99871d61"
+  },
+  {
+    "path": "evidence/native/x86_64/libuvc.so.dynamic.txt",
+    "bytes": 2998,
+    "sha256": "929fe212d41614fef5475d5e6ffd1011646b0fe42275fce8b3d62f8e8a89ba16"
+  },
+  {
+    "path": "evidence/native/x86_64/libuvc.so.symbols.txt",
+    "bytes": 20698,
+    "sha256": "b41246f4fc7a3e53646c7ead070983018de86d24c55bed8f8ff33736669bf222"
+  },
+  {
+    "path": "evidence/native/x86_64/libuvccamera.so.dynamic.txt",
+    "bytes": 3078,
+    "sha256": "3b73a455ad3cc3c88cd608e72f534efc99175079d78f355d0b4fde8b1f8c3b33"
+  },
+  {
+    "path": "evidence/native/x86_64/libuvccamera.so.symbols.txt",
+    "bytes": 8959,
+    "sha256": "f8206312b9ae6a7fa386e85519bc1c04d590238a14ae7053e51ac12244175c00"
+  },
+  {
+    "path": "evidence/native/x86_64/libyyjson.so.dynamic.txt",
+    "bytes": 2655,
+    "sha256": "ee62c6d6a729265f0f63f6872249b0a13bb6cbeb37dea1b112383beedc903e06"
+  },
+  {
+    "path": "evidence/native/x86_64/libyyjson.so.symbols.txt",
+    "bytes": 3681,
+    "sha256": "44a6662427af9d4d2aea89bacae5387ddf7cd4fbd9893a8f5eb9bafca7c47420"
+  },
+  {
+    "path": "evidence/package.json",
+    "bytes": 20394,
+    "sha256": "3396cb8fd0afb826f394e9cf2f5d61109492523b04a929c010230bbf7783cf20"
+  },
+  {
+    "path": "evidence/preferences.json",
+    "bytes": 98872,
+    "sha256": "d45d817c7a4939a82d290e33ab8db782ac8b32cdfaa4dca1339c862a28b5d1fc"
+  },
+  {
+    "path": "evidence/rea-android-help.txt",
+    "bytes": 810,
+    "sha256": "3bf062934b9a0b234079ba417aca32459f7518e14ebdfecf884759e674e284be"
+  },
+  {
+    "path": "evidence/rea-doctor-configured.json",
+    "bytes": 10879,
+    "sha256": "5d1448f3bad4199e90ec1defca2a8344e9d2e660f4c4dac8d00276b3f012d50c"
+  },
+  {
+    "path": "evidence/rea-srtla-class.json",
+    "bytes": 15211,
+    "sha256": "0d7059b25a4045f69df7e133e3e520d6af74dde27bdcfe19a8e1b32bc3117e56"
+  },
+  {
+    "path": "evidence/rea-srtla-getConnsString.json",
+    "bytes": 11305,
+    "sha256": "007f051bcedde8fc5411b5d4359cd5e2adbf94a1fb7eb0a081b93fa1c5bc9959"
+  },
+  {
+    "path": "evidence/rea-srtla-start-references.json",
+    "bytes": 11562,
+    "sha256": "da5f83e26b75f75dc17551040fa2f7408fc8bf1e430237b0225a8e36f680be9f"
+  },
+  {
+    "path": "evidence/runtime/advanced.png",
+    "bytes": 224989,
+    "sha256": "35c63a387aa59850dd2893e60375d225c7dfd4310986996f5c280b851dcf34a3"
+  },
+  {
+    "path": "evidence/runtime/advanced.xml",
+    "bytes": 27237,
+    "sha256": "1004d4364fb6d3099fa941d35120de863771fef7b7ec98dc1b27ad4de165cb0f"
+  },
+  {
+    "path": "evidence/runtime/after-import.xml",
+    "bytes": 11913,
+    "sha256": "b6caf379f58a1ff936dff4729a680519228e8b4eec53c08405e77c08947fd8f0"
+  },
+  {
+    "path": "evidence/runtime/app-logcat.txt",
+    "bytes": 69099,
+    "sha256": "7b54cedf5ccf8d82f26494817289836e54706cff82dcded4306715e27c85e93b"
+  },
+  {
+    "path": "evidence/runtime/app-recording.mp4",
+    "bytes": 1960061,
+    "sha256": "bdf407f6975468dd484139e44dad011fd55ac79ba2374f673f7d6b5b537ac599"
+  },
+  {
+    "path": "evidence/runtime/audio.png",
+    "bytes": 152583,
+    "sha256": "b7c8149ac57efe64644ccd54ed693203a19e80df652912ccffb343ab373638b1"
+  },
+  {
+    "path": "evidence/runtime/audio.xml",
+    "bytes": 21005,
+    "sha256": "61df5a496284a5865aa44584e7e1a1044de977afe1ee11b9a66205fcaec943d7"
+  },
+  {
+    "path": "evidence/runtime/bonding.png",
+    "bytes": 280169,
+    "sha256": "9b586b8972e306f0c1d97fefe306b9db1bcf47416b19a522c4f149fc39a5d078"
+  },
+  {
+    "path": "evidence/runtime/bonding.xml",
+    "bytes": 22743,
+    "sha256": "ed8ee285c2d5d53f05a8c6a2ba1d7704381b9e9c089b3443917fdb0aa6c190e4"
+  },
+  {
+    "path": "evidence/runtime/broadcast-local.png",
+    "bytes": 95406,
+    "sha256": "19aeb141112911b12a2a0dd17557513c8fb27a9273c4fdcd4f04e47e20c9617e"
+  },
+  {
+    "path": "evidence/runtime/broadcast-local.xml",
+    "bytes": 6564,
+    "sha256": "bcc07b4a44590fc29cc165971db0007c55a2b9be412459574335435851eff5e6"
+  },
+  {
+    "path": "evidence/runtime/connections.png",
+    "bytes": 58708,
+    "sha256": "cd948fd7048e59c17e7199898f8e2fc2febdaaa9b5982544d8d78aeb97795452"
+  },
+  {
+    "path": "evidence/runtime/connections.xml",
+    "bytes": 9409,
+    "sha256": "bfa690dbff3571345fa2bd4f89eabbb30751a0cb0fa58871072b9ea783ed706c"
+  },
+  {
+    "path": "evidence/runtime/display.png",
+    "bytes": 59070,
+    "sha256": "ea006eaa053c5728edcad28fd3c41058b9d224a6ac1748973b8c33d873cacce0"
+  },
+  {
+    "path": "evidence/runtime/display.xml",
+    "bytes": 11605,
+    "sha256": "fc88e4fea77f41173042cc9eb5e892efa002c7f1540d93179dcaa89c9383b426"
+  },
+  {
+    "path": "evidence/runtime/import-command.txt",
+    "bytes": 424,
+    "sha256": "3241dafc2055ab811807fdbca03e2730e23b78f4b341eee9b39ded12b66364d3"
+  },
+  {
+    "path": "evidence/runtime/import-confirmation.xml",
+    "bytes": 6979,
+    "sha256": "63f80d8683c2e597d3bc6b7c0d6ae129248c154185e6e5823cb26092ad1dae25"
+  },
+  {
+    "path": "evidence/runtime/import-export.png",
+    "bytes": 74288,
+    "sha256": "d39022567ffae01ff9cd2c40d71dd61aa0b6c5d7143fa9efc1112b1101825b5a"
+  },
+  {
+    "path": "evidence/runtime/import-export.xml",
+    "bytes": 10519,
+    "sha256": "7dcc73d8ca0593d1da35e3810c13541aa800086e9d2e26e99fd3c2d2ff938339"
+  },
+  {
+    "path": "evidence/runtime/local-recording-active.png",
+    "bytes": 100897,
+    "sha256": "0385d1370e383b98077bbc8bbcf5ec0d9b973c30a4ae066e5550231641689d84"
+  },
+  {
+    "path": "evidence/runtime/local-recording-active.xml",
+    "bytes": 12687,
+    "sha256": "01892fae26fbb593208becebd7da1e0cd7ffc1d25ad03f9bbd3c8241c99b3907"
+  },
+  {
+    "path": "evidence/runtime/main.png",
+    "bytes": 117665,
+    "sha256": "948142d28ac0db09e321fc9e42beda2f953c25cdda2a50d371f132da3d63a640"
+  },
+  {
+    "path": "evidence/runtime/main.xml",
+    "bytes": 6690,
+    "sha256": "822bb02f2f454ee37f969eb15630e86d63e5e1c54c9004f083a841f2e0955e22"
+  },
+  {
+    "path": "evidence/runtime/overlays.png",
+    "bytes": 45295,
+    "sha256": "05d3e66b5c5d0cfd0b354d0b41008e7592a1904c5b5e3569ace7ed459a1a1378"
+  },
+  {
+    "path": "evidence/runtime/overlays.xml",
+    "bytes": 8256,
+    "sha256": "109b6284ad70aa73f5e2bb3a678986807d27e89b8f7319c1aaa4ee0fc9a1c985"
+  },
+  {
+    "path": "evidence/runtime/preview.png",
+    "bytes": 83587,
+    "sha256": "e23fa0cfd3ee68da52faceec971ebec6fc463ab4279b87fa788c3009debd067a"
+  },
+  {
+    "path": "evidence/runtime/preview.xml",
+    "bytes": 11913,
+    "sha256": "26d8baea8542043f270f7c9beb930a42bc13e77a903afc0941cc6370dda01ada"
+  },
+  {
+    "path": "evidence/runtime/record-enabled-preview.xml",
+    "bytes": 6564,
+    "sha256": "bcc07b4a44590fc29cc165971db0007c55a2b9be412459574335435851eff5e6"
+  },
+  {
+    "path": "evidence/runtime/record-import.xml",
+    "bytes": 6969,
+    "sha256": "2bc1f9b79ceb894e0f379b8cb9bb561b783b5c1f5076668d50ef927490e41a72"
+  },
+  {
+    "path": "evidence/runtime/recording-decode.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "evidence/runtime/recording-files-after-stop.txt",
+    "bytes": 121,
+    "sha256": "c1b6f6873da4864c590b42cda4afbf7cecd55b7e6a8bc1c6cc070f303eafc48a"
+  },
+  {
+    "path": "evidence/runtime/recording-files.txt",
+    "bytes": 8,
+    "sha256": "bf22d9341614e23448d92045f9ada00f2d62b00491261ec5843adca20e5a4b3a"
+  },
+  {
+    "path": "evidence/runtime/recording-probe.json",
+    "bytes": 4579,
+    "sha256": "a111aaacd63b13a4b509b246ab6e9758d22a32289d34c9c6be7ff37a843a0968"
+  },
+  {
+    "path": "evidence/runtime/recording.png",
+    "bytes": 215023,
+    "sha256": "7866d174bbbf44f69c66f6e4a70c5c70904f83c99073c1bda24b6a1e6027162b"
+  },
+  {
+    "path": "evidence/runtime/recording.xml",
+    "bytes": 23751,
+    "sha256": "3326bdaed8f86e7b5fffddd63a3b3ed337c6ae7467a399386c77c91c20755173"
+  },
+  {
+    "path": "evidence/runtime/relaunch.txt",
+    "bytes": 225,
+    "sha256": "47e3e16b03102ac35f68b8be24809826863eb0f9a173ac22b23862533d957852"
+  },
+  {
+    "path": "evidence/runtime/rtmp-decode.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "evidence/runtime/rtmp-loopback.flv",
+    "bytes": 320726,
+    "sha256": "1829208cbd80df7695fd67c3ed42307d6fda0e7c64bb510b6738b50eac825b08"
+  },
+  {
+    "path": "evidence/runtime/rtmp-probe.json",
+    "bytes": 3752,
+    "sha256": "29a186daa5c1dd2c85ea2d36e62c4b773cc255d7b880cb874083ae6e71f37bef"
+  },
+  {
+    "path": "evidence/runtime/rtmp-receiver.log",
+    "bytes": 1453,
+    "sha256": "401f5940fe736f9303b0a362d77729cd67fd34199e257969e1ad48e80d45bd6c"
+  },
+  {
+    "path": "evidence/runtime/settings-capture.log",
+    "bytes": 4301,
+    "sha256": "3efb7049d21eb1bf9fbabc1635cde90a0fbc4f58db67bbb15db939ba1f7b6382"
+  },
+  {
+    "path": "evidence/runtime/settings-screens.json",
+    "bytes": 18504,
+    "sha256": "219f25d4b2cd060def6f17f9c2ae7ef162d99a12758e62b00a7d8ad1eff28f33"
+  },
+  {
+    "path": "evidence/runtime/settings.png",
+    "bytes": 115373,
+    "sha256": "b41ab5d41d5921456f457013da038aff951938b880b50315abd525358b58fed7"
+  },
+  {
+    "path": "evidence/runtime/settings.xml",
+    "bytes": 20387,
+    "sha256": "cec1f1423cc8ae80b992284637479602ab85249e0f9fa32ea28882619b6ec657"
+  },
+  {
+    "path": "evidence/runtime/start-record-confirmation.xml",
+    "bytes": 11913,
+    "sha256": "a79af1a185769833900665ee97cd71584b7953f3ffc9d55552949ede154f5e7a"
+  },
+  {
+    "path": "evidence/runtime/start-record-confirmation2.xml",
+    "bytes": 6653,
+    "sha256": "53669a04dcf66691d20b25facc3cf783a1fcc70004621c633f47d055c87cb618"
+  },
+  {
+    "path": "evidence/runtime/startup.png",
+    "bytes": 64862,
+    "sha256": "ad4cb78442d416c4304d35aefeec2cdc98f988bbe0c2499be4f39d99e571aaaa"
+  },
+  {
+    "path": "evidence/runtime/startup.xml",
+    "bytes": 5921,
+    "sha256": "65c943737ef27c867c97dadc284af27c2b51424cca90615790fbcd5b9ad252ab"
+  },
+  {
+    "path": "evidence/runtime/stop-confirmation.xml",
+    "bytes": 7472,
+    "sha256": "1904a321352fb64611cec0fa5af8845393e5928bf93cef23870aecd02835ea40"
+  },
+  {
+    "path": "evidence/runtime/stopped.xml",
+    "bytes": 11913,
+    "sha256": "c7380d079c9b12acad172e67ae283ac7d40400793ca8904ddd3aaf65a15a82f2"
+  },
+  {
+    "path": "evidence/runtime/streamer.png",
+    "bytes": 206416,
+    "sha256": "f379ce7d264a1dd0b406db4ef1811bb36c8d234cea76a556e4d1a24a6db56333"
+  },
+  {
+    "path": "evidence/runtime/streamer.xml",
+    "bytes": 27480,
+    "sha256": "04f3f77cf04710857b0d6361277a5bd78e6b3e10002de7274f6c6b1b854dfa04"
+  },
+  {
+    "path": "evidence/runtime/streaming-active.png",
+    "bytes": 95209,
+    "sha256": "14d11b482179252fd06089077c59c3d2ab8d848f1208f796cfaf840054fd66ea"
+  },
+  {
+    "path": "evidence/runtime/streaming-active.xml",
+    "bytes": 6564,
+    "sha256": "bcc07b4a44590fc29cc165971db0007c55a2b9be412459574335435851eff5e6"
+  },
+  {
+    "path": "evidence/runtime/streaming.png",
+    "bytes": 105831,
+    "sha256": "df8be40b523018939fb30cceed72212a7b4a7204b9fbfe87d0725d0e874d6007"
+  },
+  {
+    "path": "evidence/runtime/streaming.xml",
+    "bytes": 6622,
+    "sha256": "ecb52b9c36ebf104b3fd06635d7d3afc0c1ee6d9344b572e6323193c07336f8c"
+  },
+  {
+    "path": "evidence/runtime/ui-dump-command.txt",
+    "bytes": 50,
+    "sha256": "84181017b850e2e3c711c7d754005c42cf7c2c8811fec6a96a40c27fa5f1530f"
+  },
+  {
+    "path": "evidence/runtime/video.png",
+    "bytes": 157949,
+    "sha256": "2734adca2bf9392a2faf43046901045e912a8c0cbc853926953f6b95f543a367"
+  },
+  {
+    "path": "evidence/runtime/video.xml",
+    "bytes": 26470,
+    "sha256": "1e5b24913112bf6b65004465d63a35681d07b01ae6e499a9584315833ac88e8c"
+  },
+  {
+    "path": "evidence/runtime-install.txt",
+    "bytes": 36,
+    "sha256": "781a31c82430c97897af612ece5e0ca2205e301cb5ff121ce2660541ea5182c7"
+  },
+  {
+    "path": "evidence/runtime-launch.txt",
+    "bytes": 272,
+    "sha256": "9f298f617aae012934a7a0ff0f8cbdbab872f34c22774e1fd6b39db8cc863b0c"
+  },
+  {
+    "path": "evidence/signature.txt",
+    "bytes": 1775,
+    "sha256": "d884ae7d5029ef3b7fb13db412d214e985928c561a6e31b2f72e25444d806f2a"
+  },
+  {
+    "path": "evidence/smali-export.log",
+    "bytes": 467,
+    "sha256": "3ac5e27faa9475df238e9ebcd0a3b5a56ec50b843481b2018acfa148a5ec0cc8"
+  },
+  {
+    "path": "evidence/source-catalog.json",
+    "bytes": 463054,
+    "sha256": "cb64173553f3fa721d78120385208b6c7fd678f98a3afb22c886ce648477142b"
+  },
+  {
+    "path": "evidence/ui/preferences.json",
+    "bytes": 87295,
+    "sha256": "ecbfd43d9d3f6ee1f55ff796e6307a9a45cc4cf1622e9368b96f78d2cec528f3"
+  },
+  {
+    "path": "evidence/wmspanel-classes.json",
+    "bytes": 14026,
+    "sha256": "bc1847b808869f776af3b44c69c55e0e180dde5acbfd9ada8665ab4e499d35ef"
+  }
+]

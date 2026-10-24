@@ -85,6 +85,8 @@ class CameraViewModel(
         mutableState.value = null
     }
 
+    fun setPreviewFill(fill: Boolean) { engine?.setPreviewFill(fill) }
+
     fun updatePreview(surface: Surface, width: Int, height: Int) {
         val engine = engine ?: return
         if (engine.state.value.previewing) engine.setPreviewSize(width, height)

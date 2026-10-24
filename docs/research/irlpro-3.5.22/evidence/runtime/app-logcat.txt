@@ -1,0 +1,785 @@
+--------- beginning of main
+I/libprocessgroup(17886): Created cgroup /sys/fs/cgroup/apps/uid_10233/pid_17886
+--------- beginning of system
+I/DisplayManager(17886): Choreographer implicitly registered for the refresh rate.
+D/DesktopExperienceFlags(17886): Toggle override initialized to: false
+I/GFXSTREAM(17886): [eglDisplay.cpp(297)] Opening libGLESv1_CM_emulation.so
+I/GFXSTREAM(17886): [eglDisplay.cpp(297)] Opening libGLESv2_emulation.so
+W/libc    (17886): Access denied finding property "vendor.mesa.virtgpu.kumquat"
+W/HWUI    (17886): Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+W/HWUI    (17886): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+I/com.newrelic.android(17886): Loaded configuration: HarvestConfiguration{collect_network_errors=true, cross_process_id='null', data_report_period=60, data_token=[0, 0], error_limit=50, report_max_transaction_age=600, report_max_transaction_count=1000, response_body_limit=2048, server_timestamp=0, stack_trace_limit=100, activity_trace_max_size=65534, activity_trace_max_report_attempts=1, activity_trace_min_utilization=0.30000001192092896, at_capture=ActivityTraceConfiguration{maxTotalTraceCount=1}, priority_encoding_key=d67afc830dab717fd163bfcb0b8b88423e9a1a3b, account_id=, application_id=}
+I/com.newrelic.android(17886): Application state monitor has started
+I/com.newrelic.android(17886): Analytics Controller initialized: enabled[true]
+I/com.newrelic.android(17886): Measurement Engine initialized.
+I/com.newrelic.android(17886): New Relic Agent v6.5.0
+E/com.newrelic.android(17886): Harvest instance is not running! Session duration will be invalid
+I/com.newrelic.android(17886): Connecting, saved state is not available: DataToken{accountId=0, agentId=0}
+E/com.newrelic.android(17886): Failed to retrieve collector response: Unable to resolve host "mobile-collector.newrelic.com": No address associated with hostname
+E/com.newrelic.android(17886): HarvestConnection: Attempting to convert network exception java.net.UnknownHostException to error code.
+E/com.newrelic.android(17886): An unknown error occurred when connecting to the Collector.
+D/StreamerServiceActivity(17886): FLOW - Activity On create
+D/ActivityCommons(17886): FLOW - Activitycommon On create
+I/HWUI    (17886): Using FreeType backend (prop=Auto)
+I/WebViewFactory(17886): Loading com.google.android.webview version 145.0.7632.218 (code 763221804)
+V/ResourcesManager(17886): The following library key has been added: ResourcesKey{ mHash=4eb43025 mResDir=null mSplitDirs=[] mOverlayDirs=[] mLibDirs=[/data/app/~~we3KB7lI5BFBWQ0oWI8Lyw==/com.google.android.webview-OS-QzKlt9NDB5PiAoLaCBA==/WebViewGoogle.apk,/system/framework/android.test.base.jar,/system_ext/framework/androidx.window.extensions.jar] mDisplayId=0 mOverrideConfig=v37 mCompatInfo={420dpi always-compat} mLoaders=[]}
+D/ApplicationLoaders(17886): Returning zygote-cached class loader: /system/framework/android.test.base.jar
+D/ApplicationLoaders(17886): Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+D/nativeloader(17886): Configuring clns-10 for other apk /data/app/~~we3KB7lI5BFBWQ0oWI8Lyw==/com.google.android.webview-OS-QzKlt9NDB5PiAoLaCBA==/WebViewGoogle.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~we3KB7lI5BFBWQ0oWI8Lyw==/com.google.android.webview-OS-QzKlt9NDB5PiAoLaCBA==/lib/arm64:/data/app/~~we3KB7lI5BFBWQ0oWI8Lyw==/com.google.android.webview-OS-QzKlt9NDB5PiAoLaCBA==/WebViewGoogle.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand
+I/cr_WVCFactoryProvider(17886): version=145.0.7632.218 (763221804) minSdkVersion=29 multiprocess=true packageId=2 splits=<none>
+D/nativeloader(17886): Load /data/app/~~we3KB7lI5BFBWQ0oWI8Lyw==/com.google.android.webview-OS-QzKlt9NDB5PiAoLaCBA==/WebViewGoogle.apk!/lib/arm64-v8a/libwebviewchromium.so using class loader ns clns-10 (caller=/data/app/~~we3KB7lI5BFBWQ0oWI8Lyw==/com.google.android.webview-OS-QzKlt9NDB5PiAoLaCBA==/WebViewGoogle.apk): ok
+D/nativeloader(17886): Load /system/lib64/libwebviewchromium_plat_support.so using class loader ns clns-10 (caller=/data/app/~~we3KB7lI5BFBWQ0oWI8Lyw==/com.google.android.webview-OS-QzKlt9NDB5PiAoLaCBA==/WebViewGoogle.apk): ok
+I/chromium(17886): [1021/114044.716977:INFO:android_webview/browser/variations/variations_seed_loader.cc:67] Failed to open file for reading.: No such file or directory (2)
+I/chromium(17886): [1021/114044.719258:INFO:android_webview/browser/variations/variations_seed_loader.cc:67] Failed to open file for reading.: No such file or directory (2)
+I/cr_LibraryLoader(17886): Successfully loaded native library
+I/cr_CachingUmaRecorder(17886): Flushed 18 samples from 18 histograms, 0 samples were dropped.
+I/cr_ChildProcLH(17886): ScopedServiceBindingBatch.tryActivate: false
+I/cr_CombinedPProvider(17886): #registerProvider() provider:WV.qk@a2a9bb0 isPolicyCacheEnabled:false policyProvidersSize:0
+I/cr_PolicyProvider(17886): #setManagerAndSource() 0
+I/cr_DisplayManager(17886): Is Display Topology available: false
+I/cr_CombinedPProvider(17886): #linkNativeInternal() 1
+I/cr_AppResProvider(17886): #getApplicationRestrictionsFromUserManager() Bundle[EMPTY_PARCEL]
+I/cr_PolicyProvider(17886): #notifySettingsAvailable() 0
+I/cr_CombinedPProvider(17886): #onSettingsAvailable() 0
+I/cr_CombinedPProvider(17886): #flushPolicies()
+W/chromium(17886): [WARNING:net/dns/dns_config_service_android.cc:69] Failed to read DnsConfig.
+W/chromium(17886): [WARNING:android_webview/browser/network_service/net_helpers.cc:137] HTTP Cache size is: 20971520
+W/TabLayout(17886): MODE_SCROLLABLE + GRAVITY_FILL is not supported, GRAVITY_START will be used instead
+W/HWUI    (17886): Unknown dataspace 0
+W/libc    (17886): Access denied finding property "vendor.mesa.virtgpu.kumquat"
+I/ActivityCommons(17886): Setting up controls
+I/ActivityCommons(17886): twitch is , kick is 
+I/ActivityCommons(17886): chatScale is 220
+D/ActivityCommons(17886): Removing all alert activities 0
+D/StreamerServiceActivity(17886): FLOW - Activity On start, intent null? true
+D/AudioSystem(17886): onNewServiceWithAdapter: media.audio_flinger service obtained 0x7209a62fd0
+D/AudioSystem(17886): getService: IAudioFlingerService retrieved: 0x71b9a28ed0  IAudioFlinger cached: 0x7209a62fd0
+D/StreamerServiceActivity(17886): FLOW - Activity On resume
+D/StreamerServiceActivity(17886): ROT RESUME 0
+D/InsetsController(17886): Setting requestedVisibleTypes to 498 (was 503)
+D/WindowOnBackDispatcher(17886): setTopOnBackInvokedCallback (unwrapped): android.view.ViewRootImpl$$ExternalSyntheticLambda14@7ca17fe
+I/CameraManagerGlobal(17886): Connecting to camera service
+I/Surface (17886): Creating surface for consumer unnamed-17886-0 with slotExpansion=1 for 64 slots
+I/Surface (17886): Creating surface for consumer VRI[StreamerServiceActivity]#0(BLAST Consumer)0 with slotExpansion=1 for 64 slots
+D/CompatChangeReporter(17886): Compat change id reported: 244358506; UID 10233; state: ENABLED
+D/VRI[StreamerServiceActivity](17886): WindowInsets changed: 1080x2400 mandatorySystemGestures:[0,63,0,0] 
+D/WindowOnBackDispatcher(17886): setTopOnBackInvokedCallback (unwrapped): android.view.ViewRootImpl$$ExternalSyntheticLambda14@dec9129
+I/Surface (17886): Creating surface for consumer unnamed-17886-1 with slotExpansion=1 for 64 slots
+I/Surface (17886): Creating surface for consumer VRI[StreamerServiceActivity]#1(BLAST Consumer)1 with slotExpansion=1 for 64 slots
+D/VRI[StreamerServiceActivity](17886): WindowInsets changed: 2400x1080 navigationBars:[0,0,0,63] mandatorySystemGestures:[0,63,0,84] 
+I/Surface (17886): Creating surface for consumer unnamed-17886-2 with slotExpansion=1 for 64 slots
+I/Surface (17886): Creating surface for consumer c11c757 SurfaceView[app.irlpro.android/com.wmspanel.streamer.StreamerServiceActivity]#2(BLAST Consumer)2 with slotExpansion=1 for 64 slots
+D/StreamerServiceActivity(17886): Got battery info, temp 25.0 volts 5.0
+D/StreamerService(17886): FLOW - service On create
+D/StreamerService(17886): FLOW onStartCommand: 1
+D/StreamerService(17886): FLOW attach Surface(name=null mNativeObject=483345732160)/@0x401bdfb
+D/StreamerService(17886): FLOW - createStreamer(), null? true
+I/EventLog(17886): {type=MIC, audioSource=5, channelCount=2, sampleRate=44100, bitRate=96000, aec=false, agc=false, ns=false}
+D/StreamerBuilder(17886): {type=MIC, audioSource=5, channelCount=2, sampleRate=44100, bitRate=96000, aec=false, agc=false, ns=false}
+D/CameraSettings(17886): Reduce 4K to 1080p
+D/StreamerService(17886): Hevc forced? false
+I/EventLog(17886): {mime=video/avc, bitRate=6000000, fps=30.0, keyFrameInterval=2, videoSize=1920x1080, bitRateMode=-1, keyFrameInterval=2}
+D/StreamerBuilder(17886): {mime=video/avc, bitRate=6000000, fps=30.0, keyFrameInterval=2, videoSize=1920x1080, bitRateMode=-1, keyFrameInterval=2}
+I/EventLog(17886): {cameraId=1, physicalCameraId=null, fpsRange=null, videoSize=1920x1080}
+D/StreamerBuilder(17886): {cameraId=1, physicalCameraId=null, fpsRange=null, videoSize=1920x1080}
+D/CameraListHelper(17886): Def Camera #1 resolution: 1920x1080
+I/EventLog(17886): {cameraId=10, physicalCameraId=null, fpsRange=null, videoSize=1280x720}
+D/StreamerBuilder(17886): {cameraId=10, physicalCameraId=null, fpsRange=null, videoSize=1280x720}
+D/CameraListHelper(17886): Def Camera #10 resolution: 1280x720 facingBACK fov 104 uni 1-104.0
+D/PopupCameraOptions(17886): addCameraFlipSection v[1, 10]
+D/PopupCameraOptions(17886): addCameraFlipSection e[id:1 [65° FoV, front], id:10 [104° FoV, rear]]
+E/EventLog(17886): H.264, 1920x1080
+D/MediaCodecList(17886): codecHandlesFormat: no format, so no extra checks
+D/MediaCodecList(17886): codecHandlesFormat: no format, so no extra checks
+I/MediaCodec(17886): Retry enabled for HDCP failure
+I/ApexCodecsLazy(17886): ApexCodecs loaded
+I/Codec2Client(17886): Available Codec2 services: "default" "software" "__ApexCodecs__"
+W/.irlpro.android(17886): Failed to query component store for system resources: 6
+D/CCodec  (17886): allocate(c2.android.aac.encoder)
+I/CCodec  (17886): setting up 'default' as default (vendor) store
+I/CCodec  (17886): Created component [c2.android.aac.encoder] for [c2.android.aac.encoder]
+D/CCodecConfig(17886): read media type: audio/mp4a-latm
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: algo.buffers.max-count.values
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: output.subscribed-indices.values
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: input.buffers.allocator-ids.values
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: output.buffers.allocator-ids.values
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: algo.buffers.allocator-ids.values
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: output.buffers.pool-ids.values
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: algo.buffers.pool-ids.values
+I/CCodecConfig(17886): query failed after returning 10 values (BAD_INDEX)
+D/CCodecConfig(17886): c2 config diff is Dict {
+D/CCodecConfig(17886):   c2::u32 coded.bitrate.value = 64000
+D/CCodecConfig(17886):   c2::u32 coded.pl.level = 0
+D/CCodecConfig(17886):   c2::u32 coded.pl.profile = 8192
+D/CCodecConfig(17886):   c2::u32 coding.aac-sbr-mode.value = 3
+D/CCodecConfig(17886):   c2::u32 input.buffers.max-size.value = 2048
+D/CCodecConfig(17886):   c2::u32 input.delay.value = 0
+D/CCodecConfig(17886):   string input.media-type.value = "audio/raw"
+D/CCodecConfig(17886):   c2::u32 output.large-frame.max-size = 0
+D/CCodecConfig(17886):   c2::u32 output.large-frame.threshold-size = 0
+D/CCodecConfig(17886):   string output.media-type.value = "audio/mp4a-latm"
+D/CCodecConfig(17886):   c2::u32 raw.channel-count.value = 1
+D/CCodecConfig(17886):   c2::u32 raw.sample-rate.value = 44100
+D/CCodecConfig(17886): }
+I/EventLog(17886): c2.android.aac.encoder
+D/StreamerBuilder(17886): c2.android.aac.encoder
+I/EventLog(17886): {sample-rate=44100, mime=audio/mp4a-latm, channel-count=2, aac-profile=2, bitrate=96000}
+D/StreamerBuilder(17886): {sample-rate=44100, mime=audio/mp4a-latm, channel-count=2, aac-profile=2, bitrate=96000}
+D/MediaCodecList(17886): codecHandlesFormat: no format, so no extra checks
+I/MediaCodec(17886): Retry enabled for HDCP failure
+W/.irlpro.android(17886): Failed to query component store for system resources: 6
+D/CCodec  (17886): allocate(c2.android.avc.encoder)
+I/CCodec  (17886): setting up 'default' as default (vendor) store
+W/.irlpro.android(17886): AIBinder_linkToDeath is being called with a non-null cookie and no onUnlink callback set. Use AIBinder_DeathRecipient_setOnUnlinked to manage the lifetime of the cookie. This will become an abort.
+I/CCodec  (17886): Created component [c2.android.avc.encoder] for [c2.android.avc.encoder]
+D/CCodecConfig(17886): read media type: video/avc
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: algo.buffers.max-count.values
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: output.subscribed-indices.values
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: input.buffers.allocator-ids.values
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: output.buffers.allocator-ids.values
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: algo.buffers.allocator-ids.values
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: output.buffers.pool-ids.values
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: algo.buffers.pool-ids.values
+D/ReflectedParamUpdater(17886): ignored struct field coding.gop.values
+D/ReflectedParamUpdater(17886): ignored struct field coding.qp.values
+D/CCodecConfig(17886): ignoring local param raw.color (0xc2001809) as it is already supported
+I/CCodecConfig(17886): query failed after returning 13 values (BAD_INDEX)
+D/CCodecConfig(17886): c2 config diff is Dict {
+D/CCodecConfig(17886):   c2::u32 algo.bitrate-mode.value = 3
+D/CCodecConfig(17886):   c2::i32 coded.average-qp.value = 0
+D/CCodecConfig(17886):   c2::u32 coded.bitrate.value = 64000
+D/CCodecConfig(17886):   c2::float coded.frame-rate.value = 1
+D/CCodecConfig(17886):   c2::u32 coded.layer-index.value = 0
+D/CCodecConfig(17886):   c2::u32 coded.picture-type.value = 0
+D/CCodecConfig(17886):   c2::u32 coded.pl.level = 20492
+D/CCodecConfig(17886):   c2::u32 coded.pl.profile = 20481
+D/CCodecConfig(17886):   c2::u32 coded.vui.color.matrix = 0
+D/CCodecConfig(17886):   c2::u32 coded.vui.color.primaries = 0
+D/CCodecConfig(17886):   c2::u32 coded.vui.color.range = 0
+D/CCodecConfig(17886):   c2::u32 coded.vui.color.transfer = 0
+D/CCodecConfig(17886):   c2::u32 coding.intra-refresh.mode = 0
+D/CCodecConfig(17886):   c2::float coding.intra-refresh.period = 0
+D/CCodecConfig(17886):   c2::u32 coding.request-sync-frame.value = 0
+D/CCodecConfig(17886):   c2::i64 coding.sync-frame-interval.value = 1000000
+D/CCodecConfig(17886):   c2::u32 input.delay.value = 0
+D/CCodecConfig(17886):   string input.media-type.value = "video/raw"
+D/CCodecConfig(17886):   string output.media-type.value = "video/avc"
+D/CCodecConfig(17886):   c2::u32 raw.color.matrix = 0
+D/CCodecConfig(17886):   c2::u32 raw.color.primaries = 0
+D/CCodecConfig(17886):   c2::u32 raw.color.range = 0
+D/CCodecConfig(17886):   c2::u32 raw.color.transfer = 0
+D/CCodecConfig(17886):   c2::u32 raw.size.height = 16
+D/CCodecConfig(17886):   c2::u32 raw.size.width = 16
+D/CCodecConfig(17886): }
+W/ColorUtils(17886): expected specified color aspects (0:0:0:0)
+I/EventLog(17886): c2.android.avc.encoder
+D/StreamerBuilder(17886): c2.android.avc.encoder
+I/EventLog(17886): {capture-rate=30.0, i-frame-interval=2, mime=video/avc, width=1920, bitrate=6000000, frame-rate=30.0, height=1080}
+D/StreamerBuilder(17886): {capture-rate=30.0, i-frame-interval=2, mime=video/avc, width=1920, bitrate=6000000, frame-rate=30.0, height=1080}
+D/Streamer(17886): startAudioCapture, source is: 5
+D/StreamerGL(17886): startVideoCapture
+D/Camera2Characteristics(17886): Load Camera2Characteristics copy
+W/libc    (17886): Access denied finding property "vendor.mesa.virtgpu.kumquat"
+I/MediaCodec(17886): media_quality service unavailable, skipping updatePictureProfile
+D/GLUtil  (17886): EGLContext created, client version 3
+I/MediaCodec(17886): MediaCodec will operate in async mode
+I/MediaCodec(17886): media_quality service unavailable, skipping updatePictureProfile
+D/CodecSeeding(17886): Seed: codec c2.android.aac.encoder, mediatype audio/mp4a-latm, overrideable 1
+D/CodecSeeding(17886): Seed: codec c2.android.avc.encoder, mediatype video/avc, overrideable 1
+D/CodecProperties(17886): setTuningValue(vq-target-bpp,0)
+D/CodecProperties(17886): setTuningValue(vq-target-bpp-1080p,1.90)
+D/CodecProperties(17886): setTuningValue(vq-target-bpp-720p,2.25)
+D/CodecProperties(17886): setTuningValue(vq-target-bpp-540p,2.65)
+D/CodecProperties(17886): setTuningValue(vq-target-bpp-480p,3.00)
+D/CodecProperties(17886): setTuningValue(vq-target-bpp-320x240,0)
+D/CodecProperties(17886): setTuningValue(vq-target-qpmax,-1)
+D/CodecProperties(17886): setTuningValue(vq-target-qpmax-1080p,45)
+D/CodecProperties(17886): setTuningValue(vq-target-qpmax-720p,43)
+D/CodecProperties(17886): setTuningValue(vq-target-qpmax-540p,42)
+D/CodecProperties(17886): setTuningValue(vq-target-qpmax-480p,38)
+D/CodecProperties(17886): setTuningValue(vq-bitrate-phaseout,1.75)
+D/CodecProperties(17886): setTuningValue(vq-boost-missing-qp,0.20)
+D/CodecProperties(17886): setFeatureValue(intra-refresh,0)
+D/CodecProperties(17886): setFeatureValue(qp-bounds,0)
+D/CodecProperties(17886): setFeatureValue(_vq_eligible.device,1)
+D/CodecProperties(17886): setFeatureValue(_quality.target,1)
+D/CodecSeeding(17886): Seed: codec c2.android.avc.encoder, mediatype video/avc, overrideable 0
+D/VQApply (17886): minquality by QP: inject video-qp-max=45
+D/MediaCodec(17886): shapeMediaFormat: deltas(5): AMessage(what = 0x00000000) = {
+D/MediaCodec(17886):     int32_t android._encoding-quality-level = 0
+D/MediaCodec(17886):     int32_t video-qp-max = 45
+D/MediaCodec(17886):     int32_t video-qp-i-max = 45
+D/MediaCodec(17886):     int32_t video-qp-p-max = 48
+D/MediaCodec(17886):     int32_t video-qp-b-max = 51
+D/MediaCodec(17886):   }
+D/CCodec  (17886): [c2.android.avc.encoder] buffers are bound to CCodec for this session
+D/CodecProperties(17886): setFeatureValue(multiple-frames,0)
+D/CodecProperties(17886): setFeatureValue(_vq_eligible.device,1)
+D/CodecProperties(17886): setFeatureValue(_quality.target,1)
+D/CodecSeeding(17886): Seed: codec c2.android.aac.encoder, mediatype audio/mp4a-latm, overrideable 0
+D/MediaCodec(17886): shapeMediaFormat: deltas(0): AMessage(what = 0x00000000) = {
+D/MediaCodec(17886):   }
+D/CCodec  (17886): [c2.android.aac.encoder] buffers are bound to CCodec for this session
+D/CCodecConfig(17886): no c2 equivalents for flags
+D/CCodecConfig(17886): no c2 equivalents for encoder
+D/CCodecConfig(17886): no c2 equivalents for capture-rate
+D/CCodecConfig(17886): no c2 equivalents for color-format
+D/CCodecConfig(17886): no c2 equivalents for video-qp-max
+D/CCodecConfig(17886): no c2 equivalents for video-qp-i-max
+D/CCodecConfig(17886): no c2 equivalents for video-qp-p-max
+D/CCodecConfig(17886): no c2 equivalents for video-qp-b-max
+D/CCodecConfig(17886): no c2 equivalents for flags
+D/CCodecConfig(17886): no c2 equivalents for encoder
+D/CCodecConfig(17886): c2 config diff is   c2::u32 coded.bitrate.value = 96000
+D/CCodecConfig(17886):   c2::u32 input.buffers.max-size.value = 4096
+D/CCodecConfig(17886):   c2::u32 raw.channel-count.value = 2
+D/CCodecConfig(17886): c2 config diff is   c2::u32 coded.bitrate.value = 6000000
+D/CCodecConfig(17886):   c2::float coded.frame-rate.value = 30
+D/CCodecConfig(17886):   c2::i64 coding.sync-frame-interval.value = 2000000
+D/CCodecConfig(17886):   c2::u32 raw.size.height = 1080
+D/CCodecConfig(17886):   c2::u32 raw.size.width = 1920
+W/ColorUtils(17886): expected specified color aspects (0:0:0:0)
+D/CCodec  (17886): encoding statistics level = 0
+D/CCodec  (17886): setup formats input: AMessage(what = 0x00000000) = {
+D/CCodec  (17886):   int32_t sample-rate = 44100
+D/CCodec  (17886):   int32_t channel-count = 2
+D/CCodec  (17886):   int32_t max-input-size = 5632
+D/CCodec  (17886):   string mime = "audio/raw"
+D/CCodec  (17886):   int32_t android._config-pcm-encoding = 2
+D/CCodec  (17886): }
+D/CCodec  (17886): setup formats output: AMessage(what = 0x00000000) = {
+D/CCodec  (17886):   int32_t sample-rate = 44100
+D/CCodec  (17886):   int32_t bitrate = 96000
+D/CCodec  (17886):   int32_t buffer-batch-max-output-size = 0
+D/CCodec  (17886):   int32_t buffer-batch-threshold-output-size = 0
+D/CCodec  (17886):   int32_t channel-count = 2
+D/CCodec  (17886):   int32_t level = 0
+D/CCodec  (17886):   int32_t max-bitrate = 96000
+D/CCodec  (17886):   string mime = "audio/mp4a-latm"
+D/CCodec  (17886):   int32_t profile = 2
+D/CCodec  (17886): }
+I/CCodecConfig(17886): query failed after returning 10 values (BAD_INDEX)
+E/.irlpro.android(17886): Failed to query component interface for required system resources: 6
+D/CCodec  (17886): encoding statistics level = 0
+D/C2Store (17886): Using DMABUF Heaps
+D/CCodec  (17886): setup formats input: AMessage(what = 0x00000000) = {
+D/CCodec  (17886):   Rect crop(0, 0, 1919, 1079)
+D/CCodec  (17886):   int32_t color-standard = 0
+D/CCodec  (17886):   int32_t color-range = 0
+D/CCodec  (17886):   int32_t color-transfer = 0
+D/CCodec  (17886):   int32_t frame-rate = 30
+D/CCodec  (17886):   int32_t height = 1080
+D/CCodec  (17886):   int32_t intra-refresh-period = 0
+D/CCodec  (17886):   string mime = "video/raw"
+D/CCodec  (17886):   int32_t video-qp-average = 0
+D/CCodec  (17886):   int32_t width = 1920
+D/CCodec  (17886):   int32_t android._dataspace = 0
+D/CCodec  (17886):   int32_t using-sw-read-often = 1
+D/CCodec  (17886):   int64_t android._C2MemoryUsage = 1
+D/CCodec  (17886):   int32_t color-format = 2130708361
+D/CCodec  (17886):   int32_t android._color-format = 2130708361
+D/CCodec  (17886): }
+D/CCodec  (17886): setup formats output: AMessage(what = 0x00000000) = {
+D/CCodec  (17886):   int32_t bitrate = 6000000
+D/CCodec  (17886):   int32_t bitrate-mode = 1
+D/CCodec  (17886):   Rect crop(0, 0, 1919, 1079)
+D/CCodec  (17886):   int32_t color-standard = 0
+D/CCodec  (17886):   int32_t color-range = 0
+D/CCodec  (17886):   int32_t color-transfer = 0
+D/CCodec  (17886):   int32_t frame-rate = 30
+D/CCodec  (17886):   int32_t height = 1080
+D/CCodec  (17886):   int32_t intra-refresh-period = 0
+D/CCodec  (17886):   int32_t level = 4096
+D/CCodec  (17886):   int32_t max-bitrate = 6000000
+D/CCodec  (17886):   string mime = "video/avc"
+D/CCodec  (17886):   int32_t profile = 65536
+D/CCodec  (17886):   int32_t temporal-layer-id = 0
+D/CCodec  (17886):   int32_t video-qp-average = 0
+D/CCodec  (17886):   int32_t width = 1920
+D/CCodec  (17886): }
+D/CCodecBufferChannel(17886): [c2.android.aac.encoder#31] Created input block pool with allocatorID 16 => poolID 17 - OK (0)
+I/CCodecBufferChannel(17886): [c2.android.aac.encoder#31] Created output block pool with allocatorID 16 => poolID 56 - OK
+D/CCodecBufferChannel(17886): [c2.android.aac.encoder#31] Configured output block pool ids 56 => OK
+I/CCodecConfig(17886): query failed after returning 14 values (BAD_INDEX)
+E/.irlpro.android(17886): Failed to query component interface for required system resources: 6
+D/CCodec  (17886): aidl based PersistentSurface created
+D/CCodec  (17886): input format changed to AMessage(what = 0x00000000) = {
+D/CCodec  (17886):   Rect crop(0, 0, 1919, 1079)
+D/CCodec  (17886):   int32_t color-standard = 1
+D/CCodec  (17886):   int32_t color-range = 2
+D/CCodec  (17886):   int32_t color-transfer = 3
+D/CCodec  (17886):   int32_t frame-rate = 30
+D/CCodec  (17886):   int32_t height = 1080
+D/CCodec  (17886):   int32_t intra-refresh-period = 0
+D/CCodec  (17886):   string mime = "video/raw"
+D/CCodec  (17886):   int32_t video-qp-average = 0
+D/CCodec  (17886):   int32_t width = 1920
+D/CCodec  (17886):   int32_t android._dataspace = 260
+D/CCodec  (17886):   int32_t using-sw-read-often = 1
+D/CCodec  (17886):   int64_t android._C2MemoryUsage = 1
+D/CCodec  (17886):   int32_t color-format = 2130708361
+D/CCodec  (17886):   int32_t android._color-format = 2130708361
+D/CCodec  (17886): }
+D/GraphicBufferSource(17886): setting dataspace: 0x10c10000, acquired=0
+D/CCodec  (17886): ISConfig timeLapse 30fps as 30fps
+I/Surface (17886): Creating surface for consumer GraphicBufferSource with slotExpansion=0 for 64 slots
+D/MediaCodec(17886): keep callback message for reclaim
+D/CCodecBufferChannel(17886): [c2.android.avc.encoder#861] Using basic input block pool with poolID 1 => got 1 - OK (0)
+I/CCodecBufferChannel(17886): [c2.android.avc.encoder#861] Created output block pool with allocatorID 16 => poolID 57 - OK
+D/CCodecBufferChannel(17886): [c2.android.avc.encoder#861] Configured output block pool ids 57 => OK
+I/Surface (17886): Creating surface for consumer unnamed-17886-3 with slotExpansion=1 for 64 slots
+E/GFXSTREAM(17886): [egl.cpp(2130)] eglQueryContext 32c0  EGL_BAD_ATTRIBUTE
+E/GFXSTREAM(17886): [egl.cpp(2131)] tid 17886: error 0x3004 (EGL_BAD_ATTRIBUTE)
+I/Surface (17886): Creating surface for consumer SurfaceTexture-1-17886-0 with slotExpansion=0 for 64 slots
+I/EventLog(17886): open camera#1[null]
+D/VideoListener(17886): open camera#1[null]
+D/Camera2Characteristics(17886): readCharacteristics context com.wmspanel.streamer.StreamerService@b520de7
+D/Camera2Characteristics(17886): [com.wmspanel.libstream.com5.readCharacteristics(SourceFile:26), com.wmspanel.libstream.j.i(SourceFile:122), com.wmspanel.libstream.j.start(SourceFile:47), com.wmspanel.libstream.com6.startVideoCapture(SourceFile:154), com.wmspanel.streamer.StreamerService.T(SourceFile:723), com.wmspanel.streamer.StreamerService.L(SourceFile:28), com.wmspanel.streamer.StreamerServiceActivity$com1.onServiceConnected(SourceFile:75), android.content.ServiceConnection.onServiceConnected(ServiceConnection.java:75), android.app.LoadedApk$ServiceDispatcher.doConnected(LoadedApk.java:2453), android.app.LoadedApk$ServiceDispatcher$RunConnection.run(LoadedApk.java:2489), android.os.Handler.handleCallback(Handler.java:1095), android.os.Handler.dispatchMessageImpl(Handler.java:135), android.os.Handler.dispatchMessage(Handler.java:125), android.os.Looper.loopOnce(Looper.java:296), android.os.Looper.loop(Looper.java:397), android.app.ActivityThread.main(ActivityThread.java:9523), java.lang.reflect.Method.invoke(Native Method), com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:575), com.android.internal.os.ZygoteInit.main(ZygoteInit.java:939)]
+D/Camera2Characteristics(17886): Load camera 1 - fov 65.59413 model sdk_gphone64_arm64 modes [0]
+D/Camera2Characteristics(17886): After patch camera 1 - fov 65.59413 model sdk_gphone64_arm64 modes [0]
+I/StreamerService(17886): T: Adjusting web views
+I/Choreographer(17886): Skipped 40 frames!  The application may be doing too much work on its main thread.
+I/HWUI    (17886): Davey! duration=738ms; Flags=0, FrameTimelineVsyncId=251334, IntendedVsync=14250313159791, Vsync=14250979826431, InputEventId=0, HandleInputStart=14250983121621, AnimationStart=14250983123330, PerformTraversalsStart=14250983126746, DrawStart=14251017649455, FrameDeadline=14250329826457, FrameStartTime=14250983072871, FrameInterval=16666666, WorkloadTarget=16666666, AnimationTime=14250979826431, SyncQueued=14251017856913, SyncStart=14251033854830, IssueDrawCommandsStart=14251034130288, SwapBuffers=14251042778538, FrameCompleted=14251067338955, DequeueBufferDuration=2500, QueueBufferDuration=24216083, GpuCompleted=14251067298371, SwapBuffersCompleted=14251067338955, DisplayPresentTime=31589484469392, CommandSubmissionCompleted=14251042778538, 
+I/OverlayManager(17886): Creating bitmap
+I/EventLog(17886): onOpened#1[null]
+D/VideoListener(17886): onOpened#1[null]
+I/EventLog(17886): onConfigured
+D/VideoListener(17886): onConfigured
+I/EventLog(17886): onReady
+D/VideoListener(17886): onReady
+D/GraphicBufferSource(17886): got buffer with new dataSpace 0x10c10000
+D/C2NodeImpl(17886): dataspace changed to 0x10c10000 pixel format: 0x1
+E/mapper.ranchu(17886): getStandardMetadataImpl:974 failure: UNSUPPORTED: id=643: unexpected standardMetadataType=21
+E/BLASTBufferQueue(17886): [c11c757 SurfaceView[app.irlpro.android/com.wmspanel.streamer.StreamerServiceActivity]#2](f:0,a:0) rejecting buffer:active_size=1808x1017, requested_size=1808x1017 buffer{size=2400x1017 transform=0}
+W/.irlpro.android(17886): AIBinder_linkToDeath is being called with a non-null cookie and no onUnlink callback set. Use AIBinder_DeathRecipient_setOnUnlinked to manage the lifetime of the cookie. This will become an abort.
+D/CCodecConfig(17886): c2 config diff is   Buffer coded.init-data.value = {
+D/CCodecConfig(17886):     00000000:  00 00 00 01 67 42 c0 29  8d 68 07 80 22 7e 59 08  ....gB.).h.."~Y.
+D/CCodecConfig(17886):     00000010:  08 08 08 3c 22 11 a8 00  00 00 01 68 ce 01 a8 35  ...<"......h...5
+D/CCodecConfig(17886):     00000020:  c8                                                .
+D/CCodecConfig(17886):   }
+I/EventLog(17886): {max-bitrate=6000000, crop-right=1919, level=4096, mime=video/avc, profile=65536, bitrate=6000000, temporal-layer-id=0, intra-refresh-period=0, color-standard=1, csd-1=java.nio.HeapByteBuffer[pos=0 lim=10 cap=10], color-transfer=3, crop-bottom=1079, video-qp-average=0, crop-left=0, width=1920, bitrate-mode=1, color-range=2, crop-top=0, frame-rate=30, height=1080, csd-0=java.nio.HeapByteBuffer[pos=0 lim=23 cap=23]}
+D/VideoListener(17886): {max-bitrate=6000000, crop-right=1919, level=4096, mime=video/avc, profile=65536, bitrate=6000000, temporal-layer-id=0, intra-refresh-period=0, color-standard=1, csd-1=java.nio.HeapByteBuffer[pos=0 lim=10 cap=10], color-transfer=3, crop-bottom=1079, video-qp-average=0, crop-left=0, width=1920, bitrate-mode=1, color-range=2, crop-top=0, frame-rate=30, height=1080, csd-0=java.nio.HeapByteBuffer[pos=0 lim=23 cap=23]}
+W/.irlpro.android(17886): AIBinder_linkToDeath is being called with a non-null cookie and no onUnlink callback set. Use AIBinder_DeathRecipient_setOnUnlinked to manage the lifetime of the cookie. This will become an abort.
+I/StreamerService(17886): onVideoCaptureStateChanged, state=STARTED
+D/StreamBuffer(17886): aac objectType=2 sampleRate=44100 frequencyIndex=4 channelCount=2
+D/StreamBuffer(17886): aac objectType=2 sampleRate=44100 frequencyIndex=4 channelCount=2
+W/.irlpro.android(17886): AIBinder_linkToDeath is being called with a non-null cookie and no onUnlink callback set. Use AIBinder_DeathRecipient_setOnUnlinked to manage the lifetime of the cookie. This will become an abort.
+I/StreamerService(17886): onAudioCaptureStateChanged, state=STARTED
+E/cr_AwSupervisedUserDel(17886): Unable to determine if restricted content blocking is required. Exception: java.util.concurrent.TimeoutException
+D/AidlBufferPool(17886): bufferpool2 0x7069a395d8 : 5(28160 size) total buffers - 4(22528 size) used buffers - 119/124 (recycle/alloc) - 5/246 (fetch/transfer)
+W/InteractionJankMonitor(17886): Initializing without READ_DEVICE_CONFIG permission. enabled=false, interval=1, missedFrameThreshold=3, frameTimeThreshold=64, package=app.irlpro.android
+W/.irlpro.android(17886): Cleared Reference was only reachable from finalizer (only reported once)
+I/.irlpro.android(17886): Background concurrent mark compact GC freed 7697KB AllocSpace bytes, 35(1404KB) LOS objects, 49% free, 6232KB/12MB, paused 16.654ms,741us total 2.451s
+D/AidlBufferPool(17886): bufferpool2 0x7069a395d8 : 5(28160 size) total buffers - 4(22528 size) used buffers - 331/336 (recycle/alloc) - 6/663 (fetch/transfer)
+D/AidlBufferPool(17886): bufferpool2 0x7069a395d8 : 5(28160 size) total buffers - 4(22528 size) used buffers - 554/559 (recycle/alloc) - 7/1109 (fetch/transfer)
+D/AidlBufferPool(17886): bufferpool2 0x7069a395d8 : 5(28160 size) total buffers - 4(22528 size) used buffers - 774/779 (recycle/alloc) - 8/1549 (fetch/transfer)
+D/AidlBufferPool(17886): bufferpool2 0x7069a395d8 : 5(28160 size) total buffers - 4(22528 size) used buffers - 994/999 (recycle/alloc) - 8/1989 (fetch/transfer)
+D/AidlBufferPool(17886): bufferpool2 0x7069a395d8 : 5(28160 size) total buffers - 4(22528 size) used buffers - 1214/1219 (recycle/alloc) - 9/2429 (fetch/transfer)
+E/com.newrelic.android(17886): TransactionStateUtil: Attempting to convert network exception java.net.UnknownHostException to error code.
+E/BF/Bugfender-SDK(17886): Network error, will retry later
+D/AidlBufferPool(17886): bufferpool2 0x7069a395d8 : 5(28160 size) total buffers - 4(22528 size) used buffers - 1436/1441 (recycle/alloc) - 10/2874 (fetch/transfer)
+D/WindowOnBackDispatcher(17886): setTopOnBackInvokedCallback (unwrapped): null
+D/HWUI    (17886): endAllActiveAnimators on 0x7089a65850 (RippleDrawable) with handle 0x7209aafbf0
+D/InsetsController(17886): hide(ime())
+I/ImeTracker(17886): app.irlpro.android:a275de03: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+D/AidlBufferPool(17886): bufferpool2 0x7069a395d8 : 5(28160 size) total buffers - 4(22528 size) used buffers - 1653/1658 (recycle/alloc) - 12/3307 (fetch/transfer)
+D/AidlBufferPool(17886): bufferpool2 0x7069a395d8 : 5(28160 size) total buffers - 4(22528 size) used buffers - 1882/1887 (recycle/alloc) - 12/3765 (fetch/transfer)
+I/.irlpro.android(17886): Background young concurrent mark compact GC freed 5892KB AllocSpace bytes, 5(164KB) LOS objects, 52% free, 5884KB/12MB, paused 192us,558us total 810.541ms
+D/AidlBufferPool(17886): bufferpool2 0x7069a395d8 : 5(28160 size) total buffers - 4(22528 size) used buffers - 2099/2104 (recycle/alloc) - 12/4201 (fetch/transfer)
+D/StreamerService(17886): FLOW - setup mode: true
+D/StreamerServiceActivity(17886): FLOW - Activity On pause
+D/VRI[SettingsActivity](17886): WindowInsets changed: 1080x2400 navigationBars:[0,0,0,63] mandatorySystemGestures:[0,63,0,84] 
+D/WindowOnBackDispatcher(17886): setTopOnBackInvokedCallback (unwrapped): android.view.ViewRootImpl$$ExternalSyntheticLambda14@edb188c
+I/Surface (17886): Creating surface for consumer unnamed-17886-4 with slotExpansion=1 for 64 slots
+I/Surface (17886): Creating surface for consumer VRI[SettingsActivity]#3(BLAST Consumer)3 with slotExpansion=1 for 64 slots
+D/VRI[SettingsActivity](17886): WindowInsets changed: statusBars:[0,63,0,0] 
+D/InsetsController(17886): hide(ime())
+I/ImeTracker(17886): app.irlpro.android:8e0426c3: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+D/VRI[StreamerServiceActivity](17886): visibilityChanged oldVisibility=true newVisibility=false
+E/Surface (17886): [c11c757 SurfaceView[app.irlpro.android/com.wmspanel.streamer.StreamerServiceActivity]#2(BLAST Consumer)2](id:45de00000002) clearBuffersForDisconnectLocked: 1 buffers were freed while being dequeued!
+E/Surface (17886): [c11c757 SurfaceView[app.irlpro.android/com.wmspanel.streamer.StreamerServiceActivity]#2(BLAST Consumer)2-DISCONNECTED](id:0) clearBuffersForDisconnectLocked: 1 buffers were freed while being dequeued!
+E/Surface (17886): [c11c757 SurfaceView[app.irlpro.android/com.wmspanel.streamer.StreamerServiceActivity]#2(BLAST Consumer)2-DISCONNECTED-DISCONNECTED](id:0) Surface::cancelBuffer given a leaked buffer! Deleting extra held reference.
+D/StreamerServiceActivity(17886): FLOW - Activity On stop
+D/AidlBufferPool(17886): bufferpool2 0x7069a395d8 : 5(28160 size) total buffers - 4(22528 size) used buffers - 2321/2326 (recycle/alloc) - 13/4643 (fetch/transfer)
+I/com.newrelic.android(17886): Connecting, saved state is not available: DataToken{accountId=0, agentId=0}
+E/com.newrelic.android(17886): Failed to retrieve collector response: Unable to resolve host "mobile-collector.newrelic.com": No address associated with hostname
+E/com.newrelic.android(17886): HarvestConnection: Attempting to convert network exception java.net.UnknownHostException to error code.
+E/com.newrelic.android(17886): An unknown error occurred when connecting to the Collector.
+D/AidlBufferPool(17886): bufferpool2 0x7069a395d8 : 5(28160 size) total buffers - 4(22528 size) used buffers - 2541/2546 (recycle/alloc) - 13/5083 (fetch/transfer)
+D/AidlBufferPool(17886): bufferpool2 0x7069a395d8 : 5(28160 size) total buffers - 4(22528 size) used buffers - 2761/2766 (recycle/alloc) - 13/5523 (fetch/transfer)
+D/AidlBufferPool(17886): bufferpool2 0x7069a395d8 : 5(28160 size) total buffers - 4(22528 size) used buffers - 2981/2986 (recycle/alloc) - 13/5963 (fetch/transfer)
+W/PreferenceFragment(17886): onPreferenceStartFragment is not implemented in the parent activity - attempting to use a fallback implementation. You should implement this method so that you can configure the new fragment that will be displayed, and set a transition between the fragments.
+I/.irlpro.android(17886): Background concurrent mark compact GC freed 5561KB AllocSpace bytes, 36(848KB) LOS objects, 49% free, 5759KB/11MB, paused 105us,322us total 213.225ms
+W/PreferenceFragment(17886): onPreferenceStartFragment is not implemented in the parent activity - attempting to use a fallback implementation. You should implement this method so that you can configure the new fragment that will be displayed, and set a transition between the fragments.
+D/AidlBufferPool(17886): bufferpool2 0x7069a395d8 : 5(28160 size) total buffers - 4(22528 size) used buffers - 3200/3205 (recycle/alloc) - 13/6401 (fetch/transfer)
+W/PreferenceFragment(17886): onPreferenceStartFragment is not implemented in the parent activity - attempting to use a fallback implementation. You should implement this method so that you can configure the new fragment that will be displayed, and set a transition between the fragments.
+W/PreferenceFragment(17886): onPreferenceStartFragment is not implemented in the parent activity - attempting to use a fallback implementation. You should implement this method so that you can configure the new fragment that will be displayed, and set a transition between the fragments.
+D/AidlBufferPool(17886): bufferpool2 0x7069a395d8 : 5(28160 size) total buffers - 4(22528 size) used buffers - 3420/3425 (recycle/alloc) - 13/6842 (fetch/transfer)
+I/.irlpro.android(17886): Background young concurrent mark compact GC freed 5112KB AllocSpace bytes, 31(748KB) LOS objects, 44% free, 6380KB/11MB, paused 194us,390us total 197.840ms
+W/PreferenceFragment(17886): onPreferenceStartFragment is not implemented in the parent activity - attempting to use a fallback implementation. You should implement this method so that you can configure the new fragment that will be displayed, and set a transition between the fragments.
+D/AidlBufferPool(17886): bufferpool2 0x7069a395d8 : 5(28160 size) total buffers - 4(22528 size) used buffers - 3641/3646 (recycle/alloc) - 13/7283 (fetch/transfer)
+W/PreferenceFragment(17886): onPreferenceStartFragment is not implemented in the parent activity - attempting to use a fallback implementation. You should implement this method so that you can configure the new fragment that will be displayed, and set a transition between the fragments.
+W/PreferenceFragment(17886): onPreferenceStartFragment is not implemented in the parent activity - attempting to use a fallback implementation. You should implement this method so that you can configure the new fragment that will be displayed, and set a transition between the fragments.
+W/PreferenceFragment(17886): onPreferenceStartFragment is not implemented in the parent activity - attempting to use a fallback implementation. You should implement this method so that you can configure the new fragment that will be displayed, and set a transition between the fragments.
+D/AidlBufferPool(17886): bufferpool2 0x7069a395d8 : 5(28160 size) total buffers - 4(22528 size) used buffers - 3861/3866 (recycle/alloc) - 13/7723 (fetch/transfer)
+W/PreferenceFragment(17886): onPreferenceStartFragment is not implemented in the parent activity - attempting to use a fallback implementation. You should implement this method so that you can configure the new fragment that will be displayed, and set a transition between the fragments.
+W/PreferenceFragment(17886): onPreferenceStartFragment is not implemented in the parent activity - attempting to use a fallback implementation. You should implement this method so that you can configure the new fragment that will be displayed, and set a transition between the fragments.
+D/AidlBufferPool(17886): bufferpool2 0x7069a395d8 : 5(28160 size) total buffers - 4(22528 size) used buffers - 4081/4086 (recycle/alloc) - 13/8163 (fetch/transfer)
+I/.irlpro.android(17886): Background young concurrent mark compact GC freed 4279KB AllocSpace bytes, 31(748KB) LOS objects, 41% free, 6793KB/11MB, paused 302us,330us total 193.574ms
+D/AidlBufferPool(17886): bufferpool2 0x7069a395d8 : 5(28160 size) total buffers - 4(22528 size) used buffers - 4301/4306 (recycle/alloc) - 13/8603 (fetch/transfer)
+D/AidlBufferPool(17886): bufferpool2 0x7069a395d8 : 5(28160 size) total buffers - 4(22528 size) used buffers - 4521/4526 (recycle/alloc) - 13/9043 (fetch/transfer)
+D/AidlBufferPool(17886): bufferpool2 0x7069a395d8 : 5(28160 size) total buffers - 4(22528 size) used buffers - 4741/4746 (recycle/alloc) - 13/9483 (fetch/transfer)
+D/Streamer(17886): stopRecord
+D/Streamer(17886): stopRecord
+D/Streamer(17886): stopVideoCapture
+I/EventLog(17886): abortCaptureSession
+D/VideoListener(17886): abortCaptureSession
+I/EventLog(17886): Skip late video frame
+D/VideoListener(17886): Skip late video frame
+I/EventLog(17886): onReady
+D/VideoListener(17886): onReady
+I/EventLog(17886): abortCaptureSession done
+D/VideoListener(17886): abortCaptureSession done
+D/CCodecBufferChannel(17886): [c2.android.avc.encoder#861] MediaCodec discarded an unknown buffer
+W/libc    (17886): Access denied finding property "vendor.mesa.virtgpu.kumquat"
+D/CCodec  (17886): hold CodecLooper(1) until release
+E/Surface (17886): [GraphicBufferSource](id:45de00000003) clearBuffersForDisconnectLocked: 1 buffers were freed while being dequeued!
+E/Surface (17886): [GraphicBufferSource-DISCONNECTED](id:0) Surface::cancelBuffer given a leaked buffer! Deleting extra held reference.
+I/EventLog(17886): onReady: skip
+D/VideoListener(17886): onReady: skip
+D/Streamer(17886): stopAudioCapture
+D/CCodecBufferChannel(17886): [c2.android.aac.encoder#31] MediaCodec discarded an unknown buffer
+D/CCodecBufferChannel(17886): [c2.android.aac.encoder#31] MediaCodec discarded an unknown buffer
+D/CCodecBufferChannel(17886): [c2.android.aac.encoder#31] MediaCodec discarded an unknown buffer
+D/CCodecBufferChannel(17886): [c2.android.aac.encoder#31] MediaCodec discarded an unknown buffer
+D/CCodec  (17886): hold CodecLooper(1) until release
+I/EventLog(17886): Skipping drawFrame after shutdown
+D/VideoListener(17886): Skipping drawFrame after shutdown
+I/EventLog(17886): mCloseCameraRunnable done
+D/VideoListener(17886): mCloseCameraRunnable done
+I/EventLog(17886): onClosed#1
+D/VideoListener(17886): onClosed#1
+I/EventLog(17886): stopCameraThread
+D/VideoListener(17886): stopCameraThread
+I/com.newrelic.android(17886): Connecting, saved state is not available: DataToken{accountId=0, agentId=0}
+E/com.newrelic.android(17886): Failed to retrieve collector response: Unable to resolve host "mobile-collector.newrelic.com": No address associated with hostname
+E/com.newrelic.android(17886): HarvestConnection: Attempting to convert network exception java.net.UnknownHostException to error code.
+E/com.newrelic.android(17886): An unknown error occurred when connecting to the Collector.
+D/InsetsController(17886): Setting requestedVisibleTypes to 498 (was 503)
+D/WindowOnBackDispatcher(17886): setTopOnBackInvokedCallback (unwrapped): android.view.ViewRootImpl$$ExternalSyntheticLambda14@7838426
+I/Surface (17886): Creating surface for consumer unnamed-17886-5 with slotExpansion=1 for 64 slots
+I/Surface (17886): Creating surface for consumer VRI[LaunchActivity]#4(BLAST Consumer)4 with slotExpansion=1 for 64 slots
+D/VRI[LaunchActivity](17886): WindowInsets changed: 1080x2400 statusBars:[0,63,0,0] navigationBars:[0,0,0,63] mandatorySystemGestures:[0,63,0,84] 
+D/WindowOnBackDispatcher(17886): setTopOnBackInvokedCallback (unwrapped): android.view.ViewRootImpl$$ExternalSyntheticLambda14@eea23ac
+I/Surface (17886): Creating surface for consumer unnamed-17886-6 with slotExpansion=1 for 64 slots
+I/Surface (17886): Creating surface for consumer VRI[LaunchActivity]#5(BLAST Consumer)5 with slotExpansion=1 for 64 slots
+D/VRI[LaunchActivity](17886): WindowInsets changed: statusBars:null 
+D/VRI[SettingsActivity](17886): visibilityChanged oldVisibility=true newVisibility=false
+D/AidlBufferPool(17886): bufferpool2 0x7069a395d8 : 0(0 size) total buffers - 0(0 size) used buffers - 4764/4769 (recycle/alloc) - 13/9528 (fetch/transfer)
+D/AidlBufferPoolAcc(17886): evictor expired: 1, evicted: 1
+D/WindowOnBackDispatcher(17886): setTopOnBackInvokedCallback (unwrapped): null
+D/HWUI    (17886): endAllActiveAnimators on 0x7089a7ba60 (RippleDrawable) with handle 0x7209ab9d90
+D/WindowOnBackDispatcher(17886): setTopOnBackInvokedCallback (unwrapped): null
+D/ViewRootImpl(17886): Skipping stats log for color mode
+D/StreamerServiceActivity(17886): FLOW - Activity On restart
+D/StreamerServiceActivity(17886): FLOW - Activity On start, intent null? false
+D/StreamerServiceActivity(17886): FLOW - Activity On settings activit
+I/ActivityCommons(17886): Setting up controls
+I/ActivityCommons(17886): twitch is , kick is 
+I/ActivityCommons(17886): chatScale is 220
+D/ActivityCommons(17886): Removing all alert activities 0
+D/StreamerService(17886): FLOW - setup mode: false
+D/StreamerServiceActivity(17886): FLOW - Activity On resume
+D/StreamerServiceActivity(17886): ROT RESUME 0
+D/VRI[StreamerServiceActivity](17886): visibilityChanged oldVisibility=false newVisibility=true
+I/Surface (17886): Creating surface for consumer unnamed-17886-7 with slotExpansion=1 for 64 slots
+I/Surface (17886): Creating surface for consumer VRI[StreamerServiceActivity]#6(BLAST Consumer)6 with slotExpansion=1 for 64 slots
+I/Surface (17886): Creating surface for consumer unnamed-17886-8 with slotExpansion=1 for 64 slots
+I/Surface (17886): Creating surface for consumer c11c757 SurfaceView[app.irlpro.android/com.wmspanel.streamer.StreamerServiceActivity]#7(BLAST Consumer)7 with slotExpansion=1 for 64 slots
+D/StreamerServiceActivity(17886): Got battery info, temp 25.0 volts 5.0
+D/StreamerService(17886): FLOW attach Surface(name=null mNativeObject=483345723920)/@0x401bdfb
+D/StreamerService(17886): FLOW - createStreamer(), null? true
+I/EventLog(17886): {type=MIC, audioSource=5, channelCount=2, sampleRate=44100, bitRate=96000, aec=false, agc=false, ns=false}
+D/StreamerBuilder(17886): {type=MIC, audioSource=5, channelCount=2, sampleRate=44100, bitRate=96000, aec=false, agc=false, ns=false}
+D/StreamerService(17886): Hevc forced? false
+I/EventLog(17886): {mime=video/avc, bitRate=6000000, fps=30.0, keyFrameInterval=2, videoSize=1920x1080, bitRateMode=-1, keyFrameInterval=2}
+D/StreamerBuilder(17886): {mime=video/avc, bitRate=6000000, fps=30.0, keyFrameInterval=2, videoSize=1920x1080, bitRateMode=-1, keyFrameInterval=2}
+I/EventLog(17886): {cameraId=1, physicalCameraId=null, fpsRange=null, videoSize=1920x1080}
+D/StreamerBuilder(17886): {cameraId=1, physicalCameraId=null, fpsRange=null, videoSize=1920x1080}
+D/CameraListHelper(17886): Def Camera #1 resolution: 1920x1080
+I/EventLog(17886): {cameraId=10, physicalCameraId=null, fpsRange=null, videoSize=1280x720}
+D/StreamerBuilder(17886): {cameraId=10, physicalCameraId=null, fpsRange=null, videoSize=1280x720}
+D/CameraListHelper(17886): Def Camera #10 resolution: 1280x720 facingBACK fov 104 uni 1-104.0
+D/PopupCameraOptions(17886): addCameraFlipSection v[1, 10]
+D/PopupCameraOptions(17886): addCameraFlipSection e[id:1 [65° FoV, front], id:10 [104° FoV, rear]]
+E/EventLog(17886): Imported 1 new connections, 0 new web overlays.
+E/EventLog(17886): 
+E/EventLog(17886): H.264, 1920x1080
+D/MediaCodecList(17886): codecHandlesFormat: no format, so no extra checks
+D/MediaCodecList(17886): codecHandlesFormat: no format, so no extra checks
+I/MediaCodec(17886): Retry enabled for HDCP failure
+W/.irlpro.android(17886): Failed to query component store for system resources: 6
+D/CCodec  (17886): allocate(c2.android.aac.encoder)
+I/CCodec  (17886): setting up 'default' as default (vendor) store
+D/AidlBufferPool(17886): bufferpool2 0x7069a395d8 : 0(0 size) total buffers - 0(0 size) used buffers - 4764/4769 (recycle/alloc) - 13/9528 (fetch/transfer)
+D/AidlBufferPool(17886): Destruction - bufferpool2 0x7069a395d8 cached: 0/0M, 0/0% in use; allocs: 4769, 100% recycled; transfers: 9528, 100% unfetched
+W/.irlpro.android(17886): AIBinder_linkToDeath is being called with a non-null cookie and no onUnlink callback set. Use AIBinder_DeathRecipient_setOnUnlinked to manage the lifetime of the cookie. This will become an abort.
+I/CCodec  (17886): Created component [c2.android.aac.encoder] for [c2.android.aac.encoder]
+D/CCodecConfig(17886): read media type: audio/mp4a-latm
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: algo.buffers.max-count.values
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: output.subscribed-indices.values
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: input.buffers.allocator-ids.values
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: output.buffers.allocator-ids.values
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: algo.buffers.allocator-ids.values
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: output.buffers.pool-ids.values
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: algo.buffers.pool-ids.values
+I/CCodecConfig(17886): query failed after returning 10 values (BAD_INDEX)
+D/CCodecConfig(17886): c2 config diff is Dict {
+D/CCodecConfig(17886):   c2::u32 coded.bitrate.value = 64000
+D/CCodecConfig(17886):   c2::u32 coded.pl.level = 0
+D/CCodecConfig(17886):   c2::u32 coded.pl.profile = 8192
+D/CCodecConfig(17886):   c2::u32 coding.aac-sbr-mode.value = 3
+D/CCodecConfig(17886):   c2::u32 input.buffers.max-size.value = 2048
+D/CCodecConfig(17886):   c2::u32 input.delay.value = 0
+D/CCodecConfig(17886):   string input.media-type.value = "audio/raw"
+D/CCodecConfig(17886):   c2::u32 output.large-frame.max-size = 0
+D/CCodecConfig(17886):   c2::u32 output.large-frame.threshold-size = 0
+D/CCodecConfig(17886):   string output.media-type.value = "audio/mp4a-latm"
+D/CCodecConfig(17886):   c2::u32 raw.channel-count.value = 1
+D/CCodecConfig(17886):   c2::u32 raw.sample-rate.value = 44100
+D/CCodecConfig(17886): }
+I/EventLog(17886): c2.android.aac.encoder
+D/StreamerBuilder(17886): c2.android.aac.encoder
+I/EventLog(17886): {sample-rate=44100, mime=audio/mp4a-latm, channel-count=2, aac-profile=2, bitrate=96000}
+D/StreamerBuilder(17886): {sample-rate=44100, mime=audio/mp4a-latm, channel-count=2, aac-profile=2, bitrate=96000}
+D/MediaCodecList(17886): codecHandlesFormat: no format, so no extra checks
+I/MediaCodec(17886): Retry enabled for HDCP failure
+W/.irlpro.android(17886): Failed to query component store for system resources: 6
+D/CCodec  (17886): allocate(c2.android.avc.encoder)
+I/CCodec  (17886): setting up 'default' as default (vendor) store
+W/.irlpro.android(17886): AIBinder_linkToDeath is being called with a non-null cookie and no onUnlink callback set. Use AIBinder_DeathRecipient_setOnUnlinked to manage the lifetime of the cookie. This will become an abort.
+I/CCodec  (17886): Created component [c2.android.avc.encoder] for [c2.android.avc.encoder]
+D/CCodecConfig(17886): read media type: video/avc
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: algo.buffers.max-count.values
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: output.subscribed-indices.values
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: input.buffers.allocator-ids.values
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: output.buffers.allocator-ids.values
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: algo.buffers.allocator-ids.values
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: output.buffers.pool-ids.values
+D/ReflectedParamUpdater(17886): extent() != 1 for single value type: algo.buffers.pool-ids.values
+D/ReflectedParamUpdater(17886): ignored struct field coding.gop.values
+D/ReflectedParamUpdater(17886): ignored struct field coding.qp.values
+D/CCodecConfig(17886): ignoring local param raw.color (0xc2001809) as it is already supported
+I/CCodecConfig(17886): query failed after returning 13 values (BAD_INDEX)
+D/CCodecConfig(17886): c2 config diff is Dict {
+D/CCodecConfig(17886):   c2::u32 algo.bitrate-mode.value = 3
+D/CCodecConfig(17886):   c2::i32 coded.average-qp.value = 0
+D/CCodecConfig(17886):   c2::u32 coded.bitrate.value = 64000
+D/CCodecConfig(17886):   c2::float coded.frame-rate.value = 1
+D/CCodecConfig(17886):   c2::u32 coded.layer-index.value = 0
+D/CCodecConfig(17886):   c2::u32 coded.picture-type.value = 0
+D/CCodecConfig(17886):   c2::u32 coded.pl.level = 20492
+D/CCodecConfig(17886):   c2::u32 coded.pl.profile = 20481
+D/CCodecConfig(17886):   c2::u32 coded.vui.color.matrix = 0
+D/CCodecConfig(17886):   c2::u32 coded.vui.color.primaries = 0
+D/CCodecConfig(17886):   c2::u32 coded.vui.color.range = 0
+D/CCodecConfig(17886):   c2::u32 coded.vui.color.transfer = 0
+D/CCodecConfig(17886):   c2::u32 coding.intra-refresh.mode = 0
+D/CCodecConfig(17886):   c2::float coding.intra-refresh.period = 0
+D/CCodecConfig(17886):   c2::u32 coding.request-sync-frame.value = 0
+D/CCodecConfig(17886):   c2::i64 coding.sync-frame-interval.value = 1000000
+D/CCodecConfig(17886):   c2::u32 input.delay.value = 0
+D/CCodecConfig(17886):   string input.media-type.value = "video/raw"
+D/CCodecConfig(17886):   string output.media-type.value = "video/avc"
+D/CCodecConfig(17886):   c2::u32 raw.color.matrix = 0
+D/CCodecConfig(17886):   c2::u32 raw.color.primaries = 0
+D/CCodecConfig(17886):   c2::u32 raw.color.range = 0
+D/CCodecConfig(17886):   c2::u32 raw.color.transfer = 0
+D/CCodecConfig(17886):   c2::u32 raw.size.height = 16
+D/CCodecConfig(17886):   c2::u32 raw.size.width = 16
+D/CCodecConfig(17886): }
+W/ColorUtils(17886): expected specified color aspects (0:0:0:0)
+I/EventLog(17886): c2.android.avc.encoder
+D/StreamerBuilder(17886): c2.android.avc.encoder
+I/EventLog(17886): {capture-rate=30.0, i-frame-interval=2, mime=video/avc, width=1920, bitrate=6000000, frame-rate=30.0, height=1080}
+D/StreamerBuilder(17886): {capture-rate=30.0, i-frame-interval=2, mime=video/avc, width=1920, bitrate=6000000, frame-rate=30.0, height=1080}
+D/Streamer(17886): startAudioCapture, source is: 5
+D/StreamerGL(17886): startVideoCapture
+D/Camera2Characteristics(17886): Load Camera2Characteristics copy
+W/libc    (17886): Access denied finding property "vendor.mesa.virtgpu.kumquat"
+I/MediaCodec(17886): media_quality service unavailable, skipping updatePictureProfile
+D/MediaCodec(17886): shapeMediaFormat: deltas(0): AMessage(what = 0x00000000) = {
+D/MediaCodec(17886):   }
+D/CCodec  (17886): [c2.android.aac.encoder] buffers are bound to CCodec for this session
+D/CCodecConfig(17886): no c2 equivalents for flags
+D/CCodecConfig(17886): no c2 equivalents for encoder
+D/GLUtil  (17886): EGLContext created, client version 3
+I/MediaCodec(17886): MediaCodec will operate in async mode
+I/MediaCodec(17886): media_quality service unavailable, skipping updatePictureProfile
+D/VQApply (17886): minquality by QP: inject video-qp-max=45
+D/CCodecConfig(17886): c2 config diff is   c2::u32 coded.bitrate.value = 96000
+D/CCodecConfig(17886):   c2::u32 input.buffers.max-size.value = 4096
+D/CCodecConfig(17886):   c2::u32 raw.channel-count.value = 2
+D/MediaCodec(17886): shapeMediaFormat: deltas(5): AMessage(what = 0x00000000) = {
+D/MediaCodec(17886):     int32_t android._encoding-quality-level = 0
+D/MediaCodec(17886):     int32_t video-qp-max = 45
+D/MediaCodec(17886):     int32_t video-qp-i-max = 45
+D/MediaCodec(17886):     int32_t video-qp-p-max = 48
+D/MediaCodec(17886):     int32_t video-qp-b-max = 51
+D/MediaCodec(17886):   }
+D/CCodec  (17886): [c2.android.avc.encoder] buffers are bound to CCodec for this session
+D/CCodec  (17886): encoding statistics level = 0
+D/CCodec  (17886): setup formats input: AMessage(what = 0x00000000) = {
+D/CCodec  (17886):   int32_t sample-rate = 44100
+D/CCodec  (17886):   int32_t channel-count = 2
+D/CCodec  (17886):   int32_t max-input-size = 5632
+D/CCodec  (17886):   string mime = "audio/raw"
+D/CCodec  (17886):   int32_t android._config-pcm-encoding = 2
+D/CCodec  (17886): }
+D/CCodec  (17886): setup formats output: AMessage(what = 0x00000000) = {
+D/CCodec  (17886):   int32_t sample-rate = 44100
+D/CCodec  (17886):   int32_t bitrate = 96000
+D/CCodec  (17886):   int32_t buffer-batch-max-output-size = 0
+D/CCodec  (17886):   int32_t buffer-batch-threshold-output-size = 0
+D/CCodec  (17886):   int32_t channel-count = 2
+D/CCodec  (17886):   int32_t level = 0
+D/CCodec  (17886):   int32_t max-bitrate = 96000
+D/CCodec  (17886):   string mime = "audio/mp4a-latm"
+D/CCodec  (17886):   int32_t profile = 2
+D/CCodec  (17886): }
+D/CCodecConfig(17886): no c2 equivalents for capture-rate
+D/CCodecConfig(17886): no c2 equivalents for color-format
+D/CCodecConfig(17886): no c2 equivalents for video-qp-max
+D/CCodecConfig(17886): no c2 equivalents for video-qp-i-max
+D/CCodecConfig(17886): no c2 equivalents for video-qp-p-max
+D/CCodecConfig(17886): no c2 equivalents for video-qp-b-max
+D/CCodecConfig(17886): no c2 equivalents for flags
+D/CCodecConfig(17886): no c2 equivalents for encoder
+I/CCodecConfig(17886): query failed after returning 10 values (BAD_INDEX)
+E/.irlpro.android(17886): Failed to query component interface for required system resources: 6
+D/CCodecConfig(17886): c2 config diff is   c2::u32 coded.bitrate.value = 6000000
+D/CCodecConfig(17886):   c2::float coded.frame-rate.value = 30
+D/CCodecConfig(17886):   c2::i64 coding.sync-frame-interval.value = 2000000
+D/CCodecConfig(17886):   c2::u32 raw.size.height = 1080
+D/CCodecConfig(17886):   c2::u32 raw.size.width = 1920
+W/ColorUtils(17886): expected specified color aspects (0:0:0:0)
+D/CCodec  (17886): encoding statistics level = 0
+D/CCodec  (17886): setup formats input: AMessage(what = 0x00000000) = {
+D/CCodec  (17886):   Rect crop(0, 0, 1919, 1079)
+D/CCodec  (17886):   int32_t color-standard = 0
+D/CCodec  (17886):   int32_t color-range = 0
+D/CCodec  (17886):   int32_t color-transfer = 0
+D/CCodec  (17886):   int32_t frame-rate = 30
+D/CCodec  (17886):   int32_t height = 1080
+D/CCodec  (17886):   int32_t intra-refresh-period = 0
+D/CCodec  (17886):   string mime = "video/raw"
+D/CCodec  (17886):   int32_t video-qp-average = 0
+D/CCodec  (17886):   int32_t width = 1920
+D/CCodec  (17886):   int32_t android._dataspace = 0
+D/CCodec  (17886):   int32_t using-sw-read-often = 1
+D/CCodec  (17886):   int64_t android._C2MemoryUsage = 1
+D/CCodec  (17886):   int32_t color-format = 2130708361
+D/CCodec  (17886):   int32_t android._color-format = 2130708361
+D/CCodec  (17886): }
+D/CCodec  (17886): setup formats output: AMessage(what = 0x00000000) = {
+D/CCodec  (17886):   int32_t bitrate = 6000000
+D/CCodec  (17886):   int32_t bitrate-mode = 1
+D/CCodec  (17886):   Rect crop(0, 0, 1919, 1079)
+D/CCodec  (17886):   int32_t color-standard = 0
+D/CCodec  (17886):   int32_t color-range = 0
+D/CCodec  (17886):   int32_t color-transfer = 0
+D/CCodec  (17886):   int32_t frame-rate = 30
+D/CCodec  (17886):   int32_t height = 1080
+D/CCodec  (17886):   int32_t intra-refresh-period = 0
+D/CCodec  (17886):   int32_t level = 4096
+D/CCodec  (17886):   int32_t max-bitrate = 6000000
+D/CCodec  (17886):   string mime = "video/avc"
+D/CCodec  (17886):   int32_t profile = 65536
+D/CCodec  (17886):   int32_t temporal-layer-id = 0
+D/CCodec  (17886):   int32_t video-qp-average = 0
+D/CCodec  (17886):   int32_t width = 1920
+D/CCodec  (17886): }
+I/CCodecConfig(17886): query failed after returning 14 values (BAD_INDEX)
+E/.irlpro.android(17886): Failed to query component interface for required system resources: 6
+D/CCodec  (17886): aidl based PersistentSurface created
+D/CCodec  (17886): input format changed to AMessage(what = 0x00000000) = {
+D/CCodec  (17886):   Rect crop(0, 0, 1919, 1079)
+D/CCodec  (17886):   int32_t color-standard = 1
+D/CCodec  (17886):   int32_t color-range = 2
+D/CCodec  (17886):   int32_t color-transfer = 3
+D/CCodec  (17886):   int32_t frame-rate = 30
+D/CCodec  (17886):   int32_t height = 1080
+D/CCodec  (17886):   int32_t intra-refresh-period = 0
+D/CCodec  (17886):   string mime = "video/raw"
+D/CCodec  (17886):   int32_t video-qp-average = 0
+D/CCodec  (17886):   int32_t width = 1920
+D/CCodec  (17886):   int32_t android._dataspace = 260
+D/CCodec  (17886):   int32_t using-sw-read-often = 1
+D/CCodec  (17886):   int64_t android._C2MemoryUsage = 1
+D/CCodec  (17886):   int32_t color-format = 2130708361
+D/CCodec  (17886):   int32_t android._color-format = 2130708361
+D/CCodec  (17886): }
+D/GraphicBufferSource(17886): setting dataspace: 0x10c10000, acquired=0
+D/CCodec  (17886): ISConfig timeLapse 30fps as 30fps
+I/Surface (17886): Creating surface for consumer GraphicBufferSource with slotExpansion=0 for 64 slots
+D/MediaCodec(17886): keep callback message for reclaim
+D/CCodecBufferChannel(17886): [c2.android.avc.encoder#774] Using basic input block pool with poolID 1 => got 1 - OK (0)
+I/libbinder.BpBinder(17886): onLastStrongRef automatically unlinking death recipients for binder (0x7079a7d880) with descriptor: 'android.hardware.media.bufferpool2.IAccessor'
+I/libbinder.BpBinder(17886): onLastStrongRef automatically unlinking death recipients for binder (0x7079a80ab0) with descriptor: 'android.hardware.media.bufferpool2.IAccessor'
+D/CCodecBufferChannel(17886): [c2.android.aac.encoder#897] Created input block pool with allocatorID 16 => poolID 18 - OK (0)
+I/CCodecBufferChannel(17886): [c2.android.aac.encoder#897] Created output block pool with allocatorID 16 => poolID 59 - OK
+D/CCodecBufferChannel(17886): [c2.android.aac.encoder#897] Configured output block pool ids 59 => OK
+I/CCodecBufferChannel(17886): [c2.android.avc.encoder#774] Created output block pool with allocatorID 16 => poolID 60 - OK
+D/CCodecBufferChannel(17886): [c2.android.avc.encoder#774] Configured output block pool ids 60 => OK
+I/Surface (17886): Creating surface for consumer unnamed-17886-9 with slotExpansion=1 for 64 slots
+E/GFXSTREAM(17886): [egl.cpp(2130)] eglQueryContext 32c0  EGL_BAD_ATTRIBUTE
+E/GFXSTREAM(17886): [egl.cpp(2131)] tid 17886: error 0x3004 (EGL_BAD_ATTRIBUTE)
+I/Surface (17886): Creating surface for consumer SurfaceTexture-1-17886-1 with slotExpansion=0 for 64 slots
+I/EventLog(17886): open camera#1[null]
+D/VideoListener(17886): open camera#1[null]
+D/Camera2Characteristics(17886): readCharacteristics context com.wmspanel.streamer.StreamerService@b520de7
+D/Camera2Characteristics(17886): [com.wmspanel.libstream.com5.readCharacteristics(SourceFile:26), com.wmspanel.libstream.j.i(SourceFile:122), com.wmspanel.libstream.j.start(SourceFile:47), com.wmspanel.libstream.com6.startVideoCapture(SourceFile:154), com.wmspanel.streamer.StreamerService.T(SourceFile:723), com.wmspanel.streamer.StreamerService.L(SourceFile:28), com.wmspanel.streamer.StreamerServiceActivity$com1.onServiceConnected(SourceFile:75), android.content.ServiceConnection.onServiceConnected(ServiceConnection.java:75), android.app.LoadedApk$ServiceDispatcher.doConnected(LoadedApk.java:2453), android.app.LoadedApk$ServiceDispatcher$RunConnection.run(LoadedApk.java:2489), android.os.Handler.handleCallback(Handler.java:1095), android.os.Handler.dispatchMessageImpl(Handler.java:135), android.os.Handler.dispatchMessage(Handler.java:125), android.os.Looper.loopOnce(Looper.java:296), android.os.Looper.loop(Looper.java:397), android.app.ActivityThread.main(ActivityThread.java:9523), java.lang.reflect.Method.invoke(Native Method), com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:575), com.android.internal.os.ZygoteInit.main(ZygoteInit.java:939)]
+D/Camera2Characteristics(17886): Load camera 1 - fov 65.59413 model sdk_gphone64_arm64 modes [0]
+D/Camera2Characteristics(17886): After patch camera 1 - fov 65.59413 model sdk_gphone64_arm64 modes [0]
+I/StreamerService(17886): T: Adjusting web views
+D/InsetsController(17886): hide(ime())
+I/ImeTracker(17886): app.irlpro.android:74be2830: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+I/OverlayManager(17886): Creating bitmap
+I/EventLog(17886): onOpened#1[null]
+D/VideoListener(17886): onOpened#1[null]
+W/.irlpro.android(17886): AIBinder_linkToDeath is being called with a non-null cookie and no onUnlink callback set. Use AIBinder_DeathRecipient_setOnUnlinked to manage the lifetime of the cookie. This will become an abort.
+D/StreamBuffer(17886): aac objectType=2 sampleRate=44100 frequencyIndex=4 channelCount=2
+D/StreamBuffer(17886): aac objectType=2 sampleRate=44100 frequencyIndex=4 channelCount=2
+W/.irlpro.android(17886): AIBinder_linkToDeath is being called with a non-null cookie and no onUnlink callback set. Use AIBinder_DeathRecipient_setOnUnlinked to manage the lifetime of the cookie. This will become an abort.
+I/StreamerService(17886): onAudioCaptureStateChanged, state=STARTED
+I/EventLog(17886): onConfigured
+D/VideoListener(17886): onConfigured
+I/EventLog(17886): onReady
+D/VideoListener(17886): onReady
+D/VRI[LaunchActivity](17886): visibilityChanged oldVisibility=true newVisibility=false
+D/GraphicBufferSource(17886): got buffer with new dataSpace 0x10c10000
+D/C2NodeImpl(17886): dataspace changed to 0x10c10000 pixel format: 0x1
+W/.irlpro.android(17886): AIBinder_linkToDeath is being called with a non-null cookie and no onUnlink callback set. Use AIBinder_DeathRecipient_setOnUnlinked to manage the lifetime of the cookie. This will become an abort.
+D/CCodecConfig(17886): c2 config diff is   Buffer coded.init-data.value = {
+D/CCodecConfig(17886):     00000000:  00 00 00 01 67 42 c0 29  8d 68 07 80 22 7e 59 08  ....gB.).h.."~Y.
+D/CCodecConfig(17886):     00000010:  08 08 08 3c 22 11 a8 00  00 00 01 68 ce 01 a8 35  ...<"......h...5
+D/CCodecConfig(17886):     00000020:  c8                                                .
+D/CCodecConfig(17886):   }
+I/EventLog(17886): {max-bitrate=6000000, crop-right=1919, level=4096, mime=video/avc, profile=65536, bitrate=6000000, temporal-layer-id=0, intra-refresh-period=0, color-standard=1, csd-1=java.nio.HeapByteBuffer[pos=0 lim=10 cap=10], color-transfer=3, crop-bottom=1079, video-qp-average=0, crop-left=0, width=1920, bitrate-mode=1, color-range=2, crop-top=0, frame-rate=30, height=1080, csd-0=java.nio.HeapByteBuffer[pos=0 lim=23 cap=23]}
+D/VideoListener(17886): {max-bitrate=6000000, crop-right=1919, level=4096, mime=video/avc, profile=65536, bitrate=6000000, temporal-layer-id=0, intra-refresh-period=0, color-standard=1, csd-1=java.nio.HeapByteBuffer[pos=0 lim=10 cap=10], color-transfer=3, crop-bottom=1079, video-qp-average=0, crop-left=0, width=1920, bitrate-mode=1, color-range=2, crop-top=0, frame-rate=30, height=1080, csd-0=java.nio.HeapByteBuffer[pos=0 lim=23 cap=23]}
+D/WindowOnBackDispatcher(17886): setTopOnBackInvokedCallback (unwrapped): null
+D/ViewRootImpl(17886): Skipping stats log for color mode
+I/StreamerService(17886): onVideoCaptureStateChanged, state=STARTED
+D/AidlBufferPoolAcc(17886): evictor expired: 1, evicted: 0
+D/AidlBufferPool(17886): bufferpool2 0x7069a47878 : 5(28160 size) total buffers - 4(22528 size) used buffers - 214/219 (recycle/alloc) - 5/430 (fetch/transfer)
+D/AidlBufferPool(17886): bufferpool2 0x7069a47878 : 5(28160 size) total buffers - 4(22528 size) used buffers - 437/442 (recycle/alloc) - 5/875 (fetch/transfer)
+D/WindowOnBackDispatcher(17886): setTopOnBackInvokedCallback (unwrapped): android.view.ViewRootImpl$$ExternalSyntheticLambda14@eca276f
+I/Surface (17886): Creating surface for consumer unnamed-17886-10 with slotExpansion=1 for 64 slots
+I/Surface (17886): Creating surface for consumer VRI[StreamerServiceActivity]#8(BLAST Consumer)8 with slotExpansion=1 for 64 slots
+I/.irlpro.android(17886): Background concurrent mark compact GC freed 4973KB AllocSpace bytes, 6(120KB) LOS objects, 49% free, 6756KB/13MB, paused 186us,486us total 635.294ms
+W/MediaPlayer-JNI(17886): MediaPlayer finalized without being released
+D/AidlBufferPool(17886): bufferpool2 0x7069a47878 : 5(28160 size) total buffers - 4(22528 size) used buffers - 660/665 (recycle/alloc) - 5/1321 (fetch/transfer)
+I/StreamerService(17886): startBroadcast called
+D/AidlBufferPool(17886): bufferpool2 0x7069a47878 : 5(28160 size) total buffers - 4(22528 size) used buffers - 878/883 (recycle/alloc) - 7/1758 (fetch/transfer)
+D/AidlBufferPool(17886): bufferpool2 0x7069a47878 : 5(28160 size) total buffers - 4(22528 size) used buffers - 1100/1105 (recycle/alloc) - 9/2202 (fetch/transfer)
+D/AidlBufferPool(17886): bufferpool2 0x7069a47878 : 5(28160 size) total buffers - 4(22528 size) used buffers - 1320/1325 (recycle/alloc) - 10/2641 (fetch/transfer)

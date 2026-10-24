@@ -1,8 +1,22 @@
 # Mobs
 
-Native Android IRL streaming app. The project currently shows a rear-camera preview at a fixed 1920x1080 30 fps landscape profile, with camera and microphone permissions, mute, and front/rear switching. A YouTube stream URL and stream key entered in the app (stored Keystore-encrypted) let it go live over RTMPS, with connection state, elapsed time, bitrate, dropped frames, backoff reconnects, and a confirmed stop. One text overlay (wrapping, six anchor positions) and one image logo (picked from the photo picker, six anchor positions) are drawn into the encoded video and the preview, and can be changed while live; they last for the service session and are not yet persisted. The capture session runs inside a foreground service behind a `StreamEngine` interface. Overlays, scene editing, YouTube sign-in, chat, goals, and DJI support are planned work.
+Native Android IRL streaming app with an OBS-style scene creator. Create and save multiple scenes, add rear/front cameras, text, owned images, color layers, and HTTPS web overlays, drag and resize sources, reorder layers, change opacity/visibility, and lock placement. Save keeps a draft; Apply changes output, and the camera screen has direct scene-switch buttons. Supported phones can capture front and rear simultaneously into the same 1920x1080 stream. Concurrent-camera capability and exact session configurations are checked at runtime; phone capture, orientation, power, and endurance acceptance remain unverified.
 
-The product scope and device acceptance gates are in [the Android streaming plan](docs/android-streaming-plan.md). The first media milestone is rear-camera streaming at 1080p30 with text, a goal bar, and a BRB cut that preserves the encoder session.
+Camera/microphone capture and RTMPS run in a foreground service behind `StreamEngine`. Stream setup uses a Keystore-encrypted destination, with mute, connection state, bitrate adaptation, reconnects, preview-off mode, thermal protection, and confirmed stop. The scene compositor sends surface textures to the existing hardware encoder and keeps the audio/transport session across scene cuts. The draft editor uses labeled camera tiles; Apply and the main camera preview show the actual composed output. YouTube sign-in, native chat, goal sources, DJI, crop controls, and scene audio policies remain future work.
+
+The product scope and device acceptance gates are in [the Android streaming plan](docs/android-streaming-plan.md). The current milestone is general scene composition and device-validated dual capture at 1080p30. A goal source and full-feature phone acceptance remain open.
+
+## Studio controls
+
+The landscape studio uses a full-screen preview with floating scene chips, icon controls with long-press labels, microphone control, and a separate Go live button. System bars stay hidden until swiped in. The frame icon switches between filling the display and fitting the entire encoded output; filling crops only the preview on wider displays. The refresh icon beside connection status reloads all saved scenes and restarts the active scene's cameras, web widgets, and overlay textures. It keeps the stream and microphone state, and leaves unapplied drafts off the output. Open the camera control to switch front/rear, choose a lens/zoom level, or mirror a camera. Mirroring defaults off and changes preview and broadcast together. Each camera source saves its own mirror and zoom settings. Camera rotation preserves the sensor orientation already supplied in Camera2's SurfaceTexture matrix and adds only current display compensation. Supported cameras disable Android's additional automatic rotate/crop. Single-camera lens changes cross through 1× when switching between ultrawide and telephoto and reset the previous crop. In dual mode, crossing the ultrawide boundary reopens both cameras, waits for asynchronous close callbacks, and retries an unconfirmed ultrawide request once with fresh sessions. Android only guarantees 1× through maximum digital zoom during concurrent operation; the app reports a refusal if the phone still cannot confirm ultrawide. The live lens highlight follows capture-result zoom rather than the requested scene setting, with pending and failed states when the camera has not confirmed the request. Lens presets come from the selected camera's reported zoom range. Android selects optical lenses where supported; some presets use digital crop, and Android 10 supports crop zoom only.
+
+In the scene editor, choose **Add source → Chat / web link** and paste an HTTPS widget URL from Streamlabs, StreamElements, or another provider. Resize and position it like any other source, then **Apply to output**. Web pages render with transparency at up to 10 fps and are included in encoded output. The draft canvas shows a placeholder; the output preview shows the live page. Browser audio, video, and WebGL widgets are not supported by this bitmap overlay path. Widget links are stored locally with scenes and can contain private tokens. Scene storage v3 reads existing v1/v2 scenes without removing sources. Camera controls include a saved 0°/90°/180°/270° rotation correction for each source, applied to preview and output.
+
+## IRL Pro research handoff
+
+The IRL Pro 3.5.22 investigation was transferred into this project on October 21, 2026. Start with [findings applied to Mobs](docs/irlpro-handoff.md), which connects the recovered media, adaptation, protocol, bonding, UI/storage, TLS, and runtime behavior to the existing app. The [research bundle](docs/research/irlpro-3.5.22/README.md) preserves all six original reports, complete evidence, original analysis helpers, and a compressed snapshot of decompiled resources/source, smali, and native libraries with SHA-256 verification. It does not require keeping the original research workspace to read the findings or inspect archived artifacts.
+
+Mobs remains the implementation project. The October 24 implementation adds scene composition and simultaneous front/back capture, following the user's request to make dual capture an essential scene-editor feature. This is separate from the documentation transfer. Device capability, output quality, and power acceptance remain open. Existing scene, goal, chat, and YouTube work remains required; optional SRT/SRTLA and recording work is described in the handoff.
 
 ## Local development
 
@@ -35,7 +49,7 @@ For Android Studio, open this directory, select JDK 17 as the Gradle JDK, and us
 Start with packages in the existing `app` module. Introduce each package's implementation when its milestone begins:
 
 - `editor`: Compose screens and controls. Contains the permission gate, the camera screen with stream setup and Go live / Stop, its ViewModel, and the service binding.
-- `scene`: durable source definitions, normalized placements, and scene validation.
+- `scene`: bounded source/scene models, normalized placements, versioned atomic storage, and owned image imports.
 - `render`: GPU composition and cached overlay textures. Currently the text overlay rasterizer and placement math; see [its README](app/src/main/java/dev/mobs/render/README.md).
 - `stream`: media-engine adapter, service ownership, and connection state. See [its README](app/src/main/java/dev/mobs/stream/README.md).
 - `youtube`: authorization, broadcasts, and chat.
@@ -49,6 +63,12 @@ Keep camera frames out of Compose state. `StreamService` owns the media session 
 The service retains an active stream through connection retries even when the editor unbinds, and stops once neither an editor nor an active stream needs it. Video preparation forces hardware encoding; unsupported devices cannot fall back to a software video encoder. The permission gate offers Settings recovery after permanent denial and refreshes access on resume.
 
 The activity is locked to a single landscape orientation while the output profile is fixed, so the encoder keeps one 1920x1080 geometry. Reverse landscape and portrait arrive with the portrait/landscape stream profiles; RootEncoder's sensor-driven orientation handling stays off until then, because it would change the output aspect ratio mid-session.
+
+## Scene editor and regression suite
+
+Open **Scenes** to edit a draft, add sources, and drag or resize them using the selection corner. Sources at the top of the list draw above others. Save a draft, then use **Apply to output** or a scene button on the camera screen to switch. Dual capture requires Android 11+ and a reported front/rear concurrent pair with supported capture sizes. Unsupported pairs are explained in the app. Current dual capture requests 1080p rear and 720p front into fixed 1080p30 output; secondary capture size is explicit and is not evidence of native 1080p from both lenses. Camera-free scenes release both cameras while keeping static output paced.
+
+The [performance and stability guide](docs/performance-and-stability.md) lists automated coverage, startup benchmarks, streaming budgets, phone-run commands, and remaining device gates. The suite includes scene persistence and geometry stress tests, a virtual three-hour session, EGL pixel checks, and Compose editor tests. CI runs correctness tests; measured performance gates use physical phones and reviewed baselines. No physical-device baseline or new dual-camera acceptance result exists yet.
 
 ## Validation
 

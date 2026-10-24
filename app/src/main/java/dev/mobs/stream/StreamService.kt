@@ -67,6 +67,8 @@ class StreamService : Service() {
             elapsedMs = SystemClock::elapsedRealtime,
             nowMs = System::currentTimeMillis,
             logCapture = LogcatCapture(engine::streamKeyForRedaction),
+            memory = ::processMemorySample,
+            onFailure = engine::recordingFailed,
         )
     }
 

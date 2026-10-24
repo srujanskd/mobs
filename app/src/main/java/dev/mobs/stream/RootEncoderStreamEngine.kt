@@ -1,5 +1,13 @@
 package dev.mobs.stream
 
+import dev.mobs.scene.Scene
+import dev.mobs.render.SceneRenderer
+import dev.mobs.render.sceneDualCameraSupport
+import com.pedro.encoder.input.sources.video.VideoSource
+import com.pedro.encoder.input.sources.OrientationConfig
+import com.pedro.encoder.input.sources.OrientationForced
+import android.graphics.SurfaceTexture
+import java.io.File
 import android.content.Context
 import android.os.SystemClock
 import android.util.Log
@@ -38,6 +46,7 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
     private val microphone = MicrophoneSource()
     private val stream = RtmpStream(appContext, this, camera, microphone)
     private val reconnect = ReconnectPolicy()
+    private var sceneSource: SceneVideoSource? = null
 
     /**
      * Lowers the encoder bitrate when RootEncoder's send queue backs up, then probes back toward
@@ -72,7 +81,7 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
     /** Filters draw in the order they were added, so after a GL restart text stays above the logo. */
     private val overlaySlots = listOf(logoSlot, textSlot)
 
-    private val _state = MutableStateFlow(StreamEngineState())
+    private val _state = MutableStateFlow(StreamEngineState(dualCameraSupport = sceneDualCameraSupport(appContext)))
     override val state: StateFlow<StreamEngineState> = _state.asStateFlow()
 
     init {
@@ -160,6 +169,10 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
         }
     }
 
+    override fun setPreviewFill(fill: Boolean) {
+        stream.getGlInterface().setAspectRatioMode(if (fill) com.pedro.encoder.utils.gl.AspectRatioMode.Fill else com.pedro.encoder.utils.gl.AspectRatioMode.Adjust)
+    }
+
     override fun setPreviewSize(width: Int, height: Int) {
         if (!stream.isOnPreview) return
         stream.getGlInterface().setPreviewResolution(width, height)
@@ -177,7 +190,61 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
         }
     }
 
+    override fun setScene(scene: Scene) = applyScene(scene, refresh = false)
+
+    override fun refreshScene(scene: Scene) = applyScene(scene, refresh = true)
+
+    private fun applyScene(scene: Scene, refresh: Boolean) {
+        if (!_state.value.prepared) return
+        if (scene.cameras.size == 2 && !_state.value.dualCameraSupport.available) {
+            _state.update { it.copy(sceneError = it.dualCameraSupport.reason) }
+            return
+        }
+        try {
+            val current = sceneSource
+            if (current == null) {
+                val source = SceneVideoSource(scene)
+                stream.changeVideoSource(source)
+                sceneSource = source
+                setTextOverlay(null)
+                setLogoOverlay(null)
+            } else current.update(scene, refresh)
+            _state.update { it.copy(scene = scene, sceneError = null, cameraZoom = it.cameraZoom.filterKeys { id -> scene.sources.any { source -> source.id == id } }) }
+        } catch (_: RuntimeException) {
+            _state.update { it.copy(sceneError = "Unable to apply scene. The current stream was retained.") }
+        }
+    }
+
+    private inner class SceneVideoSource(private var selected: Scene) : VideoSource() {
+        private var renderer: SceneRenderer? = null
+        override fun create(width: Int, height: Int, fps: Int, rotation: Int) = true
+        override fun start(surfaceTexture: SurfaceTexture) {
+            if (renderer != null) return
+            this.surfaceTexture = surfaceTexture
+            renderer = SceneRenderer(appContext, File(appContext.filesDir, "scene-media"), width, height, fps,
+                error = { reason -> _state.update { it.copy(sceneError = reason, camera = CameraStatus.Error(reason)) } },
+                sourceError = { reason -> _state.update { it.copy(sceneError = reason) } },
+                cameraZoom = { id, zoom -> _state.update { state ->
+                    if (state.scene?.sources?.any { it.id == id } == true) state.copy(cameraZoom = state.cameraZoom + (id to zoom)) else state
+                } },
+                captureStats = { rear, front -> _state.update {
+                    it.copy(camera = if (it.sceneError != null) it.camera else if (rear > 0 || front > 0) CameraStatus.Open else CameraStatus.Closed,
+                        stats = it.stats.copy(rearCaptureFps = rear, frontCaptureFps = front))
+                } },
+            ).also { it.start(surfaceTexture, selected) }
+        }
+        fun update(scene: Scene, refresh: Boolean = false) {
+            selected = scene
+            if (refresh) renderer?.refresh(scene) else renderer?.update(scene)
+        }
+        override fun stop() { val old = renderer; renderer = null; old?.stop() }
+        override fun release() = stop()
+        override fun isRunning() = renderer != null
+        override fun getOrientationConfig() = OrientationConfig(0, false, OrientationForced.LANDSCAPE)
+    }
+
     override fun switchCamera() {
+        if (sceneSource != null) return
         camera.switchCamera()
         _state.update { it.copy(cameraFacing = camera.getCameraFacing().toCameraFacing()) }
     }
@@ -196,7 +263,6 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
         // Each session starts at the full profile bitrate and adapts down from there.
         val profileBitrate = _state.value.video.bitrateBps
         bitrateAdapter?.reset()
-        stream.setVideoBitrateOnFly(profileBitrate)
         _state.update {
             it.copy(
                 streamActive = true,
@@ -206,6 +272,8 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
         }
         try {
             stream.startStream(destination.endpoint)
+            // On-the-fly bitrate changes only reach a running encoder, so reset after start.
+            stream.setVideoBitrateOnFly(profileBitrate)
             syncOverlayFilter()
         } catch (e: RuntimeException) {
             // The message may quote the endpoint, which contains the key; log the type only.
@@ -325,6 +393,8 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
     }
 
     override fun onAuthSuccess() = Unit
+
+    internal fun recordingFailed(reason: String) { _state.update { it.copy(recordingError = reason) } }
 
     /** The most recent stream key, for [LogcatCapture] redaction only. */
     internal fun streamKeyForRedaction(): String? = lastStreamKey

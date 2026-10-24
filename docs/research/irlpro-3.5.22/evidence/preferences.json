@@ -1,0 +1,2112 @@
+[
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_audio.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "use_bluetooth",
+    "title": "Prefer Bluetooth Mic/Headset",
+    "default": "false",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/bluetooth_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/bluetooth_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/bluetooth_default",
+      "{http://schemas.android.com/apk/res/android}summaryOn": "@string/bluetooth_help",
+      "{http://schemas.android.com/apk/res/android}summaryOff": ""
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_audio.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "pref_audio_src_key",
+    "title": "Audio source",
+    "default": "audio_src_camcorder",
+    "summary": "Microphone to use for recording audio. Note that the exact behaviour of the options depends on how the option is implemented on your device.",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/audio_src_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/audio_src_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/audio_src_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/audio_src_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/audio_src_camcorder",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/audio_src_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_audio.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "bluetooth_src_key",
+    "title": "Bluetooth audio source",
+    "default": "audio_src_voice_communication",
+    "summary": "Microphone to use for recording audio. Note that the exact behaviour of the options depends on how the option is implemented on your device.",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/audio_src_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/bluetooth_src_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/bluetooth_src_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/audio_src_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/audio_src_voice_communication",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/audio_src_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_audio.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "channel_count_list",
+    "title": "Audio channels",
+    "default": "2",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/channel_count_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/channel_count_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/channel_count_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/channel_count_default",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/channel_count_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_audio.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "audio_bitrate",
+    "title": "Bitrate",
+    "default": "0",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/audio_bitrate_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/audio_bitrate_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/audio_bitrate_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/audio_bitrate_value_auto",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/audio_bitrate_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_audio.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "sample_rate_list",
+    "title": "Sample rate",
+    "default": "44100",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/sample_rate_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/sample_rate_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/sample_rate_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/sample_rate_default",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/sample_rate_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_audio.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "speaker_sound",
+    "title": "Keep Speakers Awake",
+    "default": "false",
+    "summary": "Periodically play a silent sound to keep bluetooth speaker awake",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/speaker_sound_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/speaker_sound_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/speaker_sound_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/speaker_sound_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_audio.xml",
+    "kind": "androidx.preference.SeekBarPreference",
+    "key": "input_gain_slider",
+    "title": "Input gain",
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}max": "500",
+      "{http://schemas.android.com/apk/res/android}title": "@string/input_gain_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/input_gain_slider_key"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_audio.xml",
+    "kind": "androidx.preference.Preference",
+    "key": "input_gain_reset",
+    "title": null,
+    "default": null,
+    "summary": "Tap to reset to 0dB",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}key": "@string/input_gain_reset_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/input_gain_reset_hint_pref_screen"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_audio.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "audio_fx_aec",
+    "title": "Acoustic Echo Canceler (AEC)",
+    "default": "false",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/audio_fx_aec_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/audio_fx_aec_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "false",
+      "{http://schemas.android.com/apk/res-auto}isPreferenceVisible": "false"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_audio.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "audio_fx_agc",
+    "title": "Automatic Gain Control (AGC)",
+    "default": "false",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/audio_fx_agc_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/audio_fx_agc_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "false",
+      "{http://schemas.android.com/apk/res-auto}isPreferenceVisible": "false"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_audio.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "audio_fx_ns",
+    "title": "Noise Suppressor (NS)",
+    "default": "false",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/audio_fx_ns_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/audio_fx_ns_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "false",
+      "{http://schemas.android.com/apk/res-auto}isPreferenceVisible": "false"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_bonding.xml",
+    "kind": "com.wmspanel.streamer.ui.RadioButtonPreference",
+    "key": "bonding_service_mode_bond",
+    "title": "Bonding Only",
+    "default": "false",
+    "summary": "Only bond the connections, video is sent straight to the destination",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/bonding_service_mode_bond_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/bonding_service_mode_bond_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/bonding_service_mode_bond_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "false"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_bonding.xml",
+    "kind": "com.wmspanel.streamer.ui.RadioButtonPreference",
+    "key": "bonding_service_mode_nodrop",
+    "title": "NoDrop - Free Beta",
+    "default": "false",
+    "summary": "Improve your stream experience for users, keep your stream up even if your connection drops, with BRB scene. Additionally allows more efficient network usage, using less bandwidth for the same quality.",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/bonding_service_mode_nodrop_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/bonding_service_mode_nodrop_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/bonding_service_mode_nodrop_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "false",
+      "{http://schemas.android.com/apk/res-auto}isPreferenceVisible": "false"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_bonding.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "nodrop_resolution",
+    "title": "NoDrop Output Resolution",
+    "default": "0",
+    "summary": "Select the output resolution from the NoDrop server",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/nodrop_resolution_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/nodrop_resolution_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/nodrop_resolution_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/nodrop_resolution_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/nodrop_resolution_default",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/nodrop_resolution_values",
+      "{http://schemas.android.com/apk/res-auto}isPreferenceVisible": "false"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_bonding.xml",
+    "kind": "com.wmspanel.streamer.ui.LongSummaryPreferenceCategory",
+    "key": "bonding_pref_cat",
+    "title": "Connections",
+    "default": null,
+    "summary": "Enable Bonding for the following connections:",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/bonding_connections_title",
+      "{http://schemas.android.com/apk/res/android}key": "bonding_pref_cat",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/bonding_connections_summary"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_bonding.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "conn_cellular_enable",
+    "title": "Enable Cellular",
+    "default": "true",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/bonding_conn_cellular_enable_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/bonding_conn_cellular_enable_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/bonding_conn_cellular_enable_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_bonding.xml",
+    "kind": "androidx.preference.SeekBarPreference",
+    "key": "conn_cellular_weight",
+    "title": "Cellular Weight",
+    "default": "100",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}max": "100",
+      "{http://schemas.android.com/apk/res/android}title": "@string/bonding_conn_cellular_weight_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/bonding_conn_cellular_weight_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/bonding_conn_cellular_weight_default",
+      "{http://schemas.android.com/apk/res-auto}min": "0",
+      "{http://schemas.android.com/apk/res-auto}showSeekBarValue": "true"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_bonding.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "conn_wifi_enable",
+    "title": "Enable WiFi",
+    "default": "true",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/bonding_conn_wifi_enable_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/bonding_conn_wifi_enable_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/bonding_conn_wifi_enable_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_bonding.xml",
+    "kind": "androidx.preference.SeekBarPreference",
+    "key": "conn_wifi_weight",
+    "title": "WiFi Weight",
+    "default": "100",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}max": "100",
+      "{http://schemas.android.com/apk/res/android}title": "@string/bonding_conn_wifi_weight_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/bonding_conn_wifi_weight_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/bonding_conn_wifi_weight_default",
+      "{http://schemas.android.com/apk/res-auto}min": "0",
+      "{http://schemas.android.com/apk/res-auto}showSeekBarValue": "true"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_bonding.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "conn_ethernet_enable",
+    "title": "Enable Ethernet/USB Connection",
+    "default": "true",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/bonding_conn_ethernet_enable_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/bonding_conn_ethernet_enable_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/bonding_conn_ethernet_enable_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_bonding.xml",
+    "kind": "androidx.preference.SeekBarPreference",
+    "key": "conn_ethernet_weight",
+    "title": "Ethernet Weight",
+    "default": "100",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}max": "100",
+      "{http://schemas.android.com/apk/res/android}title": "@string/bonding_conn_ethernet_weight_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/bonding_conn_ethernet_weight_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/bonding_conn_ethernet_weight_default",
+      "{http://schemas.android.com/apk/res-auto}min": "0",
+      "{http://schemas.android.com/apk/res-auto}showSeekBarValue": "true"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "pref_show_status_bar",
+    "title": "Show status bar on broadcast page",
+    "default": "false",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/show_status_bar_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/show_status_bar_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/show_status_bar_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "pref_show_srtla_debug",
+    "title": "Show SRTLA Debug",
+    "default": "false",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/show_srtla_debug_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/show_srtla_debug_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/show_srtla_debug_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "pref_allow_rtmp_hvec",
+    "title": "Allow RTMP HEVC",
+    "default": "false",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/allow_rtmp_hvec_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/allow_rtmp_hvec_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/allow_rtmp_hvec_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "pref_srtla_experimental",
+    "title": "Experimental SRTLA Tweaks",
+    "default": "false",
+    "summary": "Enables any tweaks I\\'m testing that aren\\'t ready yet",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/srtla_experimental_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/srtla_experimental_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/srtla_experimental_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/srtla_experimental_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "pref_foreground_service",
+    "title": "Keep streaming when not in focus.",
+    "default": "true",
+    "summary": "This is always enabled now.",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}enabled": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/foreground_service_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/foreground_service_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/foreground_service_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/foreground_service_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "idle_timeout",
+    "title": "Quit if inactive in background",
+    "default": "60",
+    "summary": "If IRL Pro sits in background and has no active connections, it will quit after a timeout.",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/idle_timeout_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/idle_timeout_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/idle_timeout_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/idle_timeout_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/idle_timeout_default",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/idle_timeout_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "camera_api",
+    "title": "Preferred camera API",
+    "default": "0",
+    "summary": "Disable Camera2 API only if you have some issues with camera like some resolutions or framerates are not available.",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}enabled": "false",
+      "{http://schemas.android.com/apk/res/android}entries": "@array/camera_api_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/camera_api_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/camera_api_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/camera_api_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/camera_api_value_auto",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/camera_api_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "pictures_as_previewed",
+    "title": "Mirror front camera",
+    "default": "false",
+    "summary": "Stream and record front camera as appears in preview (mirrored).",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/pictures_as_previewed_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/pictures_as_previewed_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/pictures_as_previewed_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/pictures_as_previewed_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "pref_horizon_key",
+    "title": "Horizon stream demo",
+    "default": "false",
+    "summary": "Say no to vertical videos.",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}enabled": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/horizon_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/horizon_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/horizon_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/horizon_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "volume_keys_action",
+    "title": "Volume keys",
+    "default": "0",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/volume_keys_action_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/volume_keys_action_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/volume_keys_action_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/volume_keys_action_do_nothing",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/volume_keys_action_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "bypass_connectivity_manager",
+    "title": "Don\\'t check network connection",
+    "default": "false",
+    "summary": "Enable this only if you have serious issues with connectivity, e.g. USB tethering not working.",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/bypass_connectivity_manager_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/bypass_connectivity_manager_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/bypass_connectivity_manager_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/bypass_connectivity_manager_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "sailfish_encoding_workaround",
+    "title": "Convert between android camera timestamp and system time",
+    "default": "false",
+    "summary": "Enable this to workaround Google Nexus 6P (angler) and Google Pixel (sailfish) camera flip issue.",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/sailfish_encoding_workaround_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/sailfish_encoding_workaround_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/sailfish_encoding_workaround_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/sailfish_encoding_workaround_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "use_custom_buffer_duration",
+    "title": "Enable custom encoder buffer size",
+    "default": "false",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/use_custom_buffer_duration_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/use_custom_buffer_duration_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/use_custom_buffer_duration_default",
+      "{http://schemas.android.com/apk/res/android}summaryOn": "@string/use_custom_buffer_duration_on",
+      "{http://schemas.android.com/apk/res/android}summaryOff": "@string/use_custom_buffer_duration_off"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "kind": "androidx.preference.EditTextPreference",
+    "key": "circular_buffer_duration",
+    "title": "Encoder buffer size (ms)",
+    "default": "2000",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/circular_buffer_duration_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/circular_buffer_duration_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/circular_buffer_duration_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "usb_camera",
+    "title": "USB Camera",
+    "default": "false",
+    "summary": "Take picture from USB UVC camera.",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}enabled": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/usb_camera_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/usb_camera_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/usb_camera_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/usb_camera_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "kind": "androidx.preference.Preference",
+    "key": "usb_camera_warning",
+    "title": null,
+    "default": null,
+    "summary": "USB OTG works unstable unfortunately and it\\'s dependent on hardware capabilities. So if you enable this feature and it doesn\\'t work, this means IRL Pro can\\'t handle it.\\n\\nTap on this message to read more details on our website.",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}key": "@string/usb_camera_warning_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/usb_camera_warning"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "kind": "androidx.preference.EditTextPreference",
+    "key": "usb_camera_frame_height",
+    "title": "Frame height",
+    "default": "480",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/usb_camera_frame_height_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/usb_camera_frame_height_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/usb_camera_frame_height_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "kind": "androidx.preference.EditTextPreference",
+    "key": "usb_camera_frame_width",
+    "title": "Frame width",
+    "default": "640",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/usb_camera_frame_width_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/usb_camera_frame_width_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/usb_camera_frame_width_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "usb_camera_format",
+    "title": "Preview format",
+    "default": "1",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/usb_camera_format_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/usb_camera_format_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/usb_camera_format_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/usb_camera_format_default",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/usb_camera_format_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "web_contents_debugging_enabled",
+    "title": "Web contents debugging",
+    "default": "false",
+    "summary": "Debug WebViews using Chrome Developer Tools",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/web_contents_debugging_enabled_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/web_contents_debugging_enabled_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/web_contents_debugging_enabled_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/web_contents_debugging_enabled_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "web_geo_enabled",
+    "title": "Web overlay geo enabled",
+    "default": "false",
+    "summary": "Allow web overlays to access location",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/web_geo_enabled_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/web_geo_enabled_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/web_geo_enabled_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/web_geo_enabled_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "kind": "androidx.preference.Preference",
+    "key": "web_clear_cookies",
+    "title": "Clear all cookies from web overlays",
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/web_clear_cookies_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/web_clear_cookies_key"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_developer.xml",
+    "kind": "androidx.preference.Preference",
+    "key": "send_diagnostics",
+    "title": "Send cameras debug details to developers",
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/send_diagnostics_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/send_diagnostics_key"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_display.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "audio_meter",
+    "title": "Show audio level meter",
+    "default": "true",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/audio_meter_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/audio_meter_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/audio_meter_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_display.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "show_grid",
+    "title": "Grid 3x3",
+    "default": "false",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/show_grid_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/show_grid_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/show_grid_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_display.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "show_safe_margins",
+    "title": "Show safe margins",
+    "default": "show_safe_margins",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/show_safe_margins_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/show_safe_margins_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/show_safe_margins_key"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_display.xml",
+    "kind": "androidx.preference.MultiSelectListPreference",
+    "key": "safe_margins_ratios",
+    "title": "Safe margins ratios",
+    "default": "@array/safe_margins_ratios_default",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/safe_margins_ratios_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/safe_margins_ratios_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/safe_margins_ratios_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@array/safe_margins_ratios_default",
+      "{http://schemas.android.com/apk/res/android}dialogTitle": "@string/safe_margins_ratios_title",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/safe_margins_ratios_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_display.xml",
+    "kind": "androidx.preference.SeekBarPreference",
+    "key": "safe_margin_indent",
+    "title": "Safe margin indent %",
+    "default": "@integer/safe_margin_indent_default",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}max": "@integer/safe_margin_indent_max",
+      "{http://schemas.android.com/apk/res/android}title": "@string/safe_margin_indent_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/safe_margin_indent_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@integer/safe_margin_indent_default",
+      "{http://schemas.android.com/apk/res-auto}min": "@integer/safe_margin_indent_min",
+      "{http://schemas.android.com/apk/res-auto}seekBarIncrement": "@integer/safe_margin_indent_increment",
+      "{http://schemas.android.com/apk/res-auto}showSeekBarValue": "true"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "kind": "androidx.preference.EditTextPreference",
+    "key": "name",
+    "title": "Name",
+    "default": "",
+    "summary": "",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/layer_name_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/layer_name_key",
+      "{http://schemas.android.com/apk/res/android}summary": "",
+      "{http://schemas.android.com/apk/res/android}defaultValue": ""
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "layer_type",
+    "title": "Type",
+    "default": "0",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}entries": "@array/layer_type_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/layer_type_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/layer_type_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "0",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/layer_type_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "kind": "androidx.preference.EditTextPreference",
+    "key": "layer_html",
+    "title": "HTML code",
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/layer_html_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/layer_html_key"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "kind": "androidx.preference.EditTextPreference",
+    "key": "url",
+    "title": "URL",
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/layer_url_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/layer_url_key",
+      "{http://schemas.android.com/apk/res/android}inputType": "textUri"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "kind": "androidx.preference.EditTextPreference",
+    "key": "weblayer_custom_css",
+    "title": "Custom CSS",
+    "default": "body { background-color: rgba(0, 0, 0, 0); margin: 0px auto; overflow: hidden; }",
+    "summary": "body { background-color: rgba(0, 0, 0, 0); margin: 0px auto; overflow: hidden; }",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/weblayer_custom_css_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/weblayer_custom_css_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/weblayer_custom_css_default",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/weblayer_custom_css_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "weblayer_draw",
+    "title": "View mode",
+    "default": "0",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}entries": "@array/weblayer_draw_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/weblayer_draw_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/weblayer_draw_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/weblayer_draw_on_preview_and_stream_value",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/weblayer_draw_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "kind": "androidx.preference.Preference",
+    "key": "select_file",
+    "title": "Select file",
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/layer_select_file_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/layer_select_file_key"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "kind": "androidx.preference.Preference",
+    "key": "image_layer_hint",
+    "title": null,
+    "default": null,
+    "summary": "You may either specify remote file url or select local file",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}key": "@string/layer_hint_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/layer_url_description"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "periodic_refresh",
+    "title": "Periodic refresh",
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/layer_periodic_refresh_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/layer_periodic_refresh_key"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "kind": "androidx.preference.EditTextPreference",
+    "key": "periodic_refresh_interval",
+    "title": "Refresh interval (sec)",
+    "default": null,
+    "summary": "",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/layer_periodic_refresh_interval_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/layer_periodic_refresh_interval_key",
+      "{http://schemas.android.com/apk/res/android}summary": ""
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "active",
+    "title": "Active",
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/layer_active_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/layer_active_key"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "kind": "androidx.preference.SeekBarPreference",
+    "key": "scale",
+    "title": "Scale",
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}max": "100",
+      "{http://schemas.android.com/apk/res/android}title": "@string/layer_scale_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/layer_scale_key",
+      "{http://schemas.android.com/apk/res-auto}min": "0",
+      "{http://schemas.android.com/apk/res-auto}seekBarIncrement": "1"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "kind": "androidx.preference.Preference",
+    "key": "image_layer_scale_hint",
+    "title": null,
+    "default": null,
+    "summary": "Scale is relative to video resolution, on 100% it fills entire screen. When set to \\\"Off\\\", original size is used.",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}key": "@string/layer_scale_hint_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/layer_scale_description"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "kind": "androidx.preference.DropDownPreference",
+    "key": "pos",
+    "title": "Position",
+    "default": "0.5:0.5",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}entries": "@array/layer_positions",
+      "{http://schemas.android.com/apk/res/android}title": "@string/layer_position_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/layer_position_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "0.5:0.5",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/layer_position_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "kind": "androidx.preference.SeekBarPreference",
+    "key": "pos_x",
+    "title": "H Position",
+    "default": "0",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}max": "100",
+      "{http://schemas.android.com/apk/res/android}title": "@string/layer_position_x_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/layer_position_x_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "0",
+      "{http://schemas.android.com/apk/res-auto}min": "-100",
+      "{http://schemas.android.com/apk/res-auto}seekBarIncrement": "1"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "kind": "androidx.preference.SeekBarPreference",
+    "key": "pos_y",
+    "title": "V Position",
+    "default": "0",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}max": "100",
+      "{http://schemas.android.com/apk/res/android}title": "@string/layer_position_y_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/layer_position_y_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "0",
+      "{http://schemas.android.com/apk/res-auto}min": "-100",
+      "{http://schemas.android.com/apk/res-auto}seekBarIncrement": "1"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "kind": "androidx.preference.EditTextPreference",
+    "key": "z_order",
+    "title": "Z Order",
+    "default": null,
+    "summary": "",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/layer_zorder_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/layer_zorder_key",
+      "{http://schemas.android.com/apk/res/android}summary": ""
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "kind": "androidx.preference.Preference",
+    "key": "image_layer_zorder_hint",
+    "title": null,
+    "default": null,
+    "summary": "Layers with greater Z Order will appear at front.",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}key": "@string/layer_zorder_hint_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/layer_zorder_description"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "kind": "androidx.preference.PreferenceCategory",
+    "key": "weblayer_viewport_category",
+    "title": "WebView options",
+    "default": null,
+    "summary": "Width/Height scaled to 1080p canvas",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/weblayer_viewport_category_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/weblayer_viewport_category_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/weblayer_viewport_category_summary"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "kind": "androidx.preference.EditTextPreference",
+    "key": "weblayer_width",
+    "title": "Width",
+    "default": "1280",
+    "summary": "1280",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/weblayer_width_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/weblayer_width_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/weblayer_width_default",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/weblayer_width_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "kind": "androidx.preference.EditTextPreference",
+    "key": "weblayer_height",
+    "title": "Height",
+    "default": "720",
+    "summary": "720",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/weblayer_height_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/weblayer_height_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/weblayer_height_default",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/weblayer_height_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "kind": "androidx.preference.EditTextPreference",
+    "key": "scale_in_percents",
+    "title": "Scale in percents",
+    "default": "100",
+    "summary": "100",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/weblayer_scale_in_percents_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/weblayer_scale_in_percents_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/weblayer_scale_in_percents_default",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/weblayer_scale_in_percents_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "kind": "androidx.preference.PreferenceCategory",
+    "key": "new_panel",
+    "title": null,
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}layout": "@layout/pref_image_layer_buttons",
+      "{http://schemas.android.com/apk/res/android}key": "@string/layer_new_panel_key"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layer_edit.xml",
+    "kind": "androidx.preference.PreferenceCategory",
+    "key": "edit_panel",
+    "title": null,
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}layout": "@layout/pref_image_layer_edit_buttons",
+      "{http://schemas.android.com/apk/res/android}key": "@string/layer_edit_panel_key"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layers.xml",
+    "kind": "androidx.preference.PreferenceCategory",
+    "key": "layers_pause",
+    "title": null,
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}key": "@string/layers_pause_category_key"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layers.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "layers_show_on_preview",
+    "title": "Show layers on preview",
+    "default": "true",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/layers_show_preview_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/layers_show_preview_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/layers_show_preview_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layers.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "layers_standby_on",
+    "title": "Enable standby mode",
+    "default": "true",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/layers_standby_enabled_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/layers_standby_enabled_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/layers_standby_enabled_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layers.xml",
+    "kind": "androidx.preference.MultiSelectListPreference",
+    "key": "layers_standby_list",
+    "title": "Standby overlays",
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/layers_standby_list_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/layers_standby_list_key",
+      "{http://schemas.android.com/apk/res/android}dialogTitle": "@string/layers_standby_list_title"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layers.xml",
+    "kind": "androidx.preference.MultiSelectListPreference",
+    "key": "layers_pause_list",
+    "title": "Pause overlays",
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/layers_pause_list_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/layers_pause_list_key",
+      "{http://schemas.android.com/apk/res/android}dialogTitle": "@string/layers_pause_list_title"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layers.xml",
+    "kind": "androidx.preference.PreferenceCategory",
+    "key": "layers_list",
+    "title": "Layers",
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/layers_list_category_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/layers_list_category_key"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layers.xml",
+    "kind": "androidx.preference.PreferenceCategory",
+    "key": "layers_utils",
+    "title": null,
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}key": "@string/layers_utils_category_key"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layers.xml",
+    "kind": "Preference",
+    "key": "layers_check",
+    "title": "Check layers images availability",
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/layers_check_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/layers_check_key"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layers_root.xml",
+    "kind": "androidx.preference.Preference",
+    "key": "web_widgets_root",
+    "title": null,
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}key": "@string/pref_fragment_header_web_key",
+      "{http://schemas.android.com/apk/res-auto}fragment": "com.wmspanel.streamer.preference.PreferenceFragmentImageLayerWeb",
+      "{http://schemas.android.com/apk/res-auto}title": "@string/pref_fragment_header_web"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_image_layers_web.xml",
+    "kind": "androidx.preference.PreferenceCategory",
+    "key": "weblayers_list",
+    "title": "Web overlays",
+    "default": null,
+    "summary": "For perf, no more than 3\u20134 web overlays are recommended",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/weblayers_list_category_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/weblayers_list_category_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/weblayers_list_category_summary"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_record.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "pref_mp4rec_key",
+    "title": "Record stream",
+    "default": "false",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/mp4rec_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/mp4rec_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/mp4rec_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_record.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "split_record",
+    "title": "Split video into sections",
+    "default": "true",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/split_record_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/split_record_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/split_record_default",
+      "{http://schemas.android.com/apk/res/android}summaryOn": "@string/split_record_summary"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_record.xml",
+    "kind": "androidx.preference.EditTextPreference",
+    "key": "record_duration",
+    "title": "Sections duration (minutes)",
+    "default": "30",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/record_duration_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/record_duration_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/record_duration_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_record.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "pref_snapshot_format_key",
+    "title": "Snapshot format",
+    "default": "snapshot_jpeg",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/snapshot_format_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/pref_snapshot_format_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/pref_snapshot_format_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/snapshot_jpeg",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/snapshot_format_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_record.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "pref_snapshot_quality_key",
+    "title": "Snapshot quality",
+    "default": "90",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/snapshot_quality_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/snapshot_quality_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/snapshot_quality_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/snapshot_quality_90",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/snapshot_quality_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_record.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "use_saf",
+    "title": "Use Storage Access Framework",
+    "default": "false",
+    "summary": "Whether to use Storage Access Framework for saving photos and videos. This should be enabled to allow saving to external SD cards.",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/use_saf_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/use_saf_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/use_saf_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "false"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_record.xml",
+    "kind": "androidx.preference.Preference",
+    "key": "custom_dir",
+    "title": "Save to",
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/custom_dir_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/custom_dir_key"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_record.xml",
+    "kind": "androidx.preference.PreferenceCategory",
+    "key": "log_category",
+    "title": "Log",
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/log_category_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/log_category_key"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_record.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "log_to_file",
+    "title": "Write log to file",
+    "default": "false",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/log_to_file_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/log_to_file_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/log_to_file_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_record.xml",
+    "kind": "androidx.preference.Preference",
+    "key": "log_dir",
+    "title": "Save to",
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/custom_dir_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/log_dir_key"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_root.xml",
+    "kind": "androidx.preference.PreferenceCategory",
+    "key": "version_header",
+    "title": null,
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}key": "@string/pref_fragment_version_key",
+      "{http://schemas.android.com/apk/res-auto}title": "@string/pref_fragment_header_version"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "kind": "androidx.preference.EditTextPreference",
+    "key": "twitch_username",
+    "title": "Twitch Username",
+    "default": "",
+    "summary": "This is for the chat overlay and view count/title, set to blank to disable",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/streamer_twitch_username_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/streamer_twitch_username_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/streamer_twitch_username_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": ""
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "kind": "androidx.preference.EditTextPreference",
+    "key": "kick_username",
+    "title": "Kick Username",
+    "default": "",
+    "summary": "(BETA) - Kick.com does not have an official API so this may break at any time",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/streamer_kick_username_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/streamer_kick_username_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/streamer_kick_username_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": ""
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "chat_show_platform_key",
+    "title": "Show platform icons",
+    "default": "false",
+    "summary": "Show the chat platform icon per chat message (Twitch, Kick, etc.)",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/streamer_chat_show_platform_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/streamer_chat_show_platform_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/streamer_chat_show_platform_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "false"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "chat_show_bots_key",
+    "title": "Show bots in chat",
+    "default": "false",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/streamer_chat_show_bots_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/streamer_chat_show_bots_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/streamer_chat_show_bots_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "chat_show_commands_key",
+    "title": "Show commands in chat",
+    "default": "false",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/streamer_chat_show_commands_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/streamer_chat_show_commands_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/streamer_chat_show_commands_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "kind": "androidx.preference.EditTextPreference",
+    "key": "chat_scale_key",
+    "title": "Chat font scale",
+    "default": "220",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/streamer_chat_scale_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/streamer_chat_scale_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/streamer_chat_scale_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "chat_small_key",
+    "title": "Smaller chat box",
+    "default": "false",
+    "summary": "Half the height of the chat box",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/streamer_chat_small_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/streamer_chat_small_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/streamer_chat_small_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "false"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "chat_margin_key",
+    "title": "Increase chat left margin",
+    "default": "false",
+    "summary": "Shift over chat from the left, useful for clip on lenses",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/streamer_chat_margin_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/streamer_chat_margin_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/streamer_chat_margin_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "false"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "chat_right_key",
+    "title": "Right chat box",
+    "default": "false",
+    "summary": "Move chat box to the right",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/streamer_chat_right_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/streamer_chat_right_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/streamer_chat_right_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "false"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "chat_show_user_count_key",
+    "title": "Show user count",
+    "default": "true",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/streamer_show_user_count_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/streamer_show_user_count_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/streamer_show_user_count_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "kind": "androidx.preference.EditTextPreference",
+    "key": "streamlabs_api_key",
+    "title": "Streamlabs API Key",
+    "default": "",
+    "summary": "This is for the local alert replay/view dashboard. You get it from API Settings, looks like AABF3L45J3L2LKJ74LK5",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/streamer_streamlabs_api_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/streamer_streamlabs_api_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/streamer_streamlabs_api_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": ""
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "streamelements_enable",
+    "title": "Enable Streamelements Dashboard",
+    "default": "false",
+    "summary": "Enables the activity/replay dashboard locally. You will have to login manually because SE doesn\\'t have a token",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/streamer_streamelements_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/streamer_streamelements_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/streamer_streamelements_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "false"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "kind": "androidx.preference.EditTextPreference",
+    "key": "toonation_api_key",
+    "title": "Toonation API Key",
+    "default": "",
+    "summary": "This is for the local alert replay/view dashboard. Looks like 9b6b77b411b345b87bdf6e6c5a811751. You get it from the remote control url widget/controller/xxxxxxxxxxxxxxxxxxxx",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/streamer_toonation_api_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/streamer_toonation_api_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/streamer_toonation_api_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": ""
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "kind": "androidx.preference.EditTextPreference",
+    "key": "custom_url_key",
+    "title": "Custom Page",
+    "default": "",
+    "summary": "Enter a url for a custom page in the popup",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/streamer_custom_url_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/streamer_custom_url_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/streamer_custom_url_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": ""
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_streamer.xml",
+    "kind": "androidx.preference.EditTextPreference",
+    "key": "alert_scale_key",
+    "title": "Alert dashboard scale",
+    "default": "280",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/streamer_alert_scale_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/streamer_alert_scale_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/streamer_alert_scale_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_support.xml",
+    "kind": "androidx.preference.Preference",
+    "key": "discord",
+    "title": "Discord",
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/pref_discord",
+      "{http://schemas.android.com/apk/res/android}key": "@string/discord_key"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_support.xml",
+    "kind": "androidx.preference.Preference",
+    "key": "send_diagnostics",
+    "title": "Send cameras debug details to developers",
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/send_diagnostics_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/send_diagnostics_key"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_support.xml",
+    "kind": "androidx.preference.Preference",
+    "key": "reset_app_settings",
+    "title": "Reset app settings",
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/reset_app_settings",
+      "{http://schemas.android.com/apk/res/android}key": "@string/reset_app_settings_key"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_support.xml",
+    "kind": "androidx.preference.Preference",
+    "key": "about_us",
+    "title": "About IRL Pro",
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}persistent": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/pref_about_us",
+      "{http://schemas.android.com/apk/res/android}key": "@string/about_us_key"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "concurrent_camera_mode",
+    "title": "Multi-camera capture",
+    "default": "0",
+    "summary": "Disabled for now",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}enabled": "false",
+      "{http://schemas.android.com/apk/res/android}entries": "@array/concurrent_camera_mode_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/concurrent_camera_mode_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/concurrent_camera_mode_key",
+      "{http://schemas.android.com/apk/res/android}summary": "Disabled for now",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/concurrent_camera_mode_off",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/concurrent_camera_mode_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.PreferenceCategory",
+    "key": "category_camera",
+    "title": "Camera",
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/pref_category_camera_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/pref_category_camera_key"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "cam_list",
+    "title": "Start app with",
+    "default": "0",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/cam_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/cam_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/cam_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "0",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/cam_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.Preference",
+    "key": "sub_camera_select",
+    "title": "Flip between physical sub-cameras",
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/sub_camera_select_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/sub_camera_select_fragment_key",
+      "{http://schemas.android.com/apk/res-auto}fragment": "com.wmspanel.streamer.preference.PreferenceFragmentCameraSelect",
+      "{http://schemas.android.com/apk/res-auto}isPreferenceVisible": "false"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "video_size_list",
+    "title": "Resolution",
+    "default": "0",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/video_size_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/video_size_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/video_size_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "0",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/video_size_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "fps_range",
+    "title": "FPS",
+    "default": "0",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/fps_range_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/fps_range_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/fps_range_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "0",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/fps_range_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "video_orientation",
+    "title": "Orientation",
+    "default": "0",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}enabled": "false",
+      "{http://schemas.android.com/apk/res/android}entries": "@array/video_orientation_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/video_orientation_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/video_orientation_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/video_orientation_value_landscape",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/video_orientation_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "adjust_stream_orientation",
+    "title": "Live rotation",
+    "default": "false",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}enabled": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/live_rotation_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/live_rotation_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/live_rotation_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "reverse_orientation",
+    "title": "Reverse Orientation",
+    "default": "false",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/reverse_orientation_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/reverse_orientation_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/reverse_orientation_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "double_tap_flip",
+    "title": "Double Tap to Flip Camera",
+    "default": "false",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/double_tap_flip_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/double_tap_flip_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/double_tap_flip_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "live_rotation_mode",
+    "title": "Live rotation mode",
+    "default": "0",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}enabled": "false",
+      "{http://schemas.android.com/apk/res/android}entries": "@array/live_rotation_mode_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/live_rotation_mode_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/live_rotation_mode_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/live_rotation_value_follow",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/live_rotation_mode_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "pref_foreground_service",
+    "title": "Keep streaming when not in focus.",
+    "default": "true",
+    "summary": "This is always enabled now.",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}enabled": "false",
+      "{http://schemas.android.com/apk/res/android}title": "@string/foreground_service_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/foreground_service_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/foreground_service_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/foreground_service_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "focus_mode",
+    "title": "Focus mode",
+    "default": "0",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/focus_mode_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/focus_mode_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/focus_mode_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/focus_mode_continuous_video",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/focus_mode_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "awb_mode",
+    "title": "White balance",
+    "default": "0",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/awb_mode_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/awb_mode_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/awb_mode_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/awb_mode_auto",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/awb_mode_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "antibanding_mode_2",
+    "title": "Anti-flicker",
+    "default": "3",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/antibanding_mode_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/antibanding_mode_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/antibanding_mode_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/antibanding_mode_auto",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/antibanding_mode_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "exposure_compensation",
+    "title": "Exposure compensation",
+    "default": "0",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/exposure_compensation_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/exposure_compensation_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/exposure_compensation_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "0",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/exposure_compensation_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.PreferenceCategory",
+    "key": "category_concurrent_camera",
+    "title": "Multi-camera",
+    "default": null,
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/pref_category_concurrent_camera_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/pref_category_concurrent_camera_key"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "concurrent_cam_set",
+    "title": "Set of camera devices",
+    "default": "-1",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/concurrent_cam_dummy_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/concurrent_cam_set_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/concurrent_cam_set_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/concurrent_cam_dummy",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/concurrent_cam_dummy_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "concurrent_cam_host",
+    "title": "Camera #1",
+    "default": "-1",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/concurrent_cam_dummy_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/concurrent_cam_host_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/concurrent_cam_host_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/concurrent_cam_dummy",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/concurrent_cam_dummy_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "concurrent_cam_guest",
+    "title": "Camera #2",
+    "default": "-1",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/concurrent_cam_dummy_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/concurrent_cam_guest_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/concurrent_cam_guest_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/concurrent_cam_dummy",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/concurrent_cam_dummy_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "concurrent_cam_video_size",
+    "title": "Resolution",
+    "default": "-1",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/video_size_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/concurrent_cam_video_size_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/concurrent_cam_dummy"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "concurrent_cam_fps",
+    "title": "FPS",
+    "default": "-1",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/fps_range_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/concurrent_cam_fps_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/concurrent_cam_dummy"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "concurrent_cam_video_orientation",
+    "title": "Orientation",
+    "default": "0",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/video_orientation_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/video_orientation_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/concurrent_cam_video_orientation_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/video_orientation_value_landscape",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/video_orientation_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "use_bitrate_table",
+    "title": "Bitrate matches resolution",
+    "default": "true",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/use_bitrate_table_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/use_bitrate_table_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/use_bitrate_table_default",
+      "{http://schemas.android.com/apk/res/android}summaryOn": "@string/use_bitrate_table_summary_on",
+      "{http://schemas.android.com/apk/res/android}summaryOff": "@string/use_bitrate_table_summary_off"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.EditTextPreference",
+    "key": "bitrate_edit",
+    "title": "Bitrate",
+    "default": "2000",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/bitrate_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/bitrate_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/bitrate_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "video_bitrate_mode",
+    "title": "Bitrate mode",
+    "default": "-1",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/video_bitrate_mode_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/video_bitrate_mode_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/video_bitrate_mode_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/option_value_none",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/video_bitrate_mode_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.EditTextPreference",
+    "key": "key_frame_interval_edit",
+    "title": "Keyframe frequency",
+    "default": "2",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/key_frame_interval_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/key_frame_interval_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/key_frame_interval_default"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "video_codec",
+    "title": "Format",
+    "default": "video/auto",
+    "summary": "Auto = H.264 for RTMP, HEVC for all others",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/video_codec_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/video_codec_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/video_codec_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/video_codec_summary",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/video_codec_auto",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/video_codec_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "adjust_bitrate_format",
+    "title": "Auto adjust bitrate based on format",
+    "default": "true",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}visibility": "invisible",
+      "{http://schemas.android.com/apk/res/android}title": "@string/adjust_bitrate_format_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/adjust_bitrate_format_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/adjust_bitrate_format_default",
+      "{http://schemas.android.com/apk/res/android}summaryOn": "@string/adjust_bitrate_format_summary_on",
+      "{http://schemas.android.com/apk/res/android}summaryOff": "@string/adjust_bitrate_format_summary_off"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "avc_codec_profile",
+    "title": "H.264 profile",
+    "default": "-1",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/video_codec_profile_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/avc_codec_profile_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/avc_codec_profile_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/option_value_none",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/video_codec_profile_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "hevc_codec_profile",
+    "title": "HEVC profile",
+    "default": "-1",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/video_codec_profile_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/hevc_codec_profile_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/hevc_codec_profile_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/option_value_none",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/video_codec_profile_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "video_stabilization_mode3",
+    "title": "Electronic image stabilization",
+    "default": "1",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/video_stabilization_mode_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/video_stabilization_mode_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/video_stabilization_mode_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/video_stabilization_mode_on",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/video_stabilization_mode_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "optical_stabilization_mode3",
+    "title": "Optical image stabilization",
+    "default": "1",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/video_stabilization_mode_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/optical_stabilization_mode_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/optical_stabilization_mode_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/video_stabilization_mode_on",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/video_stabilization_mode_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "noise_reduction_mode2",
+    "title": "Noise reduction",
+    "default": "1",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/noise_reduction_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/noise_reduction_mode_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/noise_reduction_mode_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/noise_reduction_mode_fast",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/noise_reduction_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.ListPreference",
+    "key": "adaptive_bitrate2",
+    "title": "Mode",
+    "default": "0",
+    "summary": null,
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}entries": "@array/adaptive_bitrate_entries",
+      "{http://schemas.android.com/apk/res/android}title": "@string/adaptive_bitrate_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/adaptive_bitrate_key",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "@string/adaptive_bitrate_value_auto",
+      "{http://schemas.android.com/apk/res/android}entryValues": "@array/adaptive_bitrate_values"
+    }
+  },
+  {
+    "resource": "artifacts/jadx/resources/res/xml/prefs_video.xml",
+    "kind": "androidx.preference.SwitchPreference",
+    "key": "adaptive_fps",
+    "title": "Adaptive frame rate",
+    "default": "false",
+    "summary": "Reduce frame rate related to bitrate drop in adaptive bitrate mode. However this can cause issues when it changes fps. YMMV",
+    "attributes": {
+      "{http://schemas.android.com/apk/res/android}title": "@string/adaptive_fps_title",
+      "{http://schemas.android.com/apk/res/android}key": "@string/adaptive_fps_key",
+      "{http://schemas.android.com/apk/res/android}summary": "@string/adaptive_fps_hint",
+      "{http://schemas.android.com/apk/res/android}defaultValue": "false"
+    }
+  }
+]

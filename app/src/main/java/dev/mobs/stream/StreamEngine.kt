@@ -1,5 +1,7 @@
 package dev.mobs.stream
 
+import dev.mobs.scene.Scene
+import dev.mobs.scene.DualCameraSupport
 import android.view.Surface
 import dev.mobs.render.LogoOverlay
 import dev.mobs.render.TextOverlay
@@ -25,7 +27,16 @@ interface StreamEngine {
 
     fun setPreviewSize(width: Int, height: Int)
 
+    /** Preview-only scale; encoded scene geometry remains unchanged. */
+    fun setPreviewFill(fill: Boolean)
+
     fun detachPreview()
+
+    /** Applies a saved scene without restarting audio, encoders, or transport. */
+    fun setScene(scene: Scene)
+
+    /** Reload active source resources without restarting audio, encoders, or transport. */
+    fun refreshScene(scene: Scene)
 
     fun switchCamera()
 
@@ -96,6 +107,11 @@ sealed interface PrepareResult {
 }
 
 data class StreamEngineState(
+    val scene: Scene? = null,
+    val cameraZoom: Map<String, dev.mobs.scene.CameraZoomState> = emptyMap(),
+    val sceneError: String? = null,
+    val recordingError: String? = null,
+    val dualCameraSupport: DualCameraSupport = DualCameraSupport(),
     val prepared: Boolean = false,
     /** Set when the device rejected the requested profile. Never a reason to stream something else. */
     val profileError: String? = null,
@@ -122,6 +138,8 @@ data class StreamStats(
     val targetBitrateBps: Long = 0,
     /** Video frames the encoder produced in the last second. */
     val outputFps: Int = 0,
+    val rearCaptureFps: Int = 0,
+    val frontCaptureFps: Int = 0,
     val droppedVideoFrames: Long = 0,
 )
 

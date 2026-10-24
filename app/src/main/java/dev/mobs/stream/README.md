@@ -49,3 +49,9 @@ send queue backs up and probes back toward the profile's 10 Mbps, with a floor o
   one device. Each session also saves its first 60 seconds of app log as `session-*.log`, with the
   stream key and RTMP URL paths redacted, and the editor's "Share logs" button sends the newest
   sessions through the Android share sheet for phones that cannot be attached to a computer.
+
+## IRL Pro behavioral reference
+
+The [research handoff](../../../../../../../docs/irlpro-handoff.md) records the recovered capture/GL/MediaCodec pipeline, bitrate conditioners, reconnect and MP4 paths, protocol/TLS behavior, and native SRTLA boundaries. The [original dossier](../../../../../../../docs/research/irlpro-3.5.22/reports/README.md) and archived evidence preserve the underlying claims and limits.
+
+The current adapter captures one camera; `switchCamera()` is sequential front/rear switching, not simultaneous capture. Dual camera needs supported concurrent-session checks and a two-input composition path behind `StreamEngine`. Keep transport, capture/composition, recording, and diagnostics responsibilities explicit. `SessionRecorder` records telemetry, not MP4 media. Recovered FPS adaptation and SRT-specific congestion rules are reference options, not changes to Mobs' fixed 1080p30 RTMPS baseline.

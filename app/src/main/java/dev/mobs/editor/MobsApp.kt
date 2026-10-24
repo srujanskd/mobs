@@ -13,18 +13,18 @@ import androidx.compose.ui.graphics.Color
 fun MobsApp() {
     MaterialTheme(
         colorScheme = darkColorScheme(
-            primary = Color(0xFF8FE3C3),
-            background = Color(0xFF101916),
-            surface = Color(0xFF101916),
+            primary = StudioAccent,
+            background = StudioBackground,
+            surface = StudioPanel,
+            secondary = Color(0xFF68DEC0),
+            onPrimary = Color(0xFF151D3B),
+            surfaceContainer = StudioPanel,
+            outline = Color(0xFF39445B),
         ),
     ) {
-        Scaffold { insets ->
+        androidx.compose.material3.Surface(modifier = Modifier.fillMaxSize(), color = StudioBackground) {
             CapturePermissionGate {
-                CameraScreen(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(insets),
-                )
+                CameraScreen(modifier = Modifier.fillMaxSize())
             }
         }
     }
