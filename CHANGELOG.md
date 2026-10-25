@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.2.0
+
+October 25, 2026.
+
+- Pinch the live preview to zoom continuously across the camera's supported range. Zoom applies to preview and broadcast, with the final value saved when the gesture ends.
+- Automatic exposure, white balance, continuous video autofocus where supported, and FAST noise reduction, edge processing, tone mapping, and color-fringe correction. Unsupported controls retain the camera template defaults.
+- New regressions for Android pinch events, cancellation, zoom limits, stale callbacks, 10,000 gesture updates without intermediate disk writes, and advertised camera processing modes.
+- New opt-in physical-phone diagnostics for rear, front, and concurrent-camera zoom cadence, output stalls, and camera-reported zoom.
+
+### Installation
+
+Download `mobs-v0.2.0.apk`, the optimized APK of approximately 4 MB. It uses the same local Android testing key as v0.1 for in-place upgrades. Android 10 or newer is required. This is a testing release.
+
+### Known limits
+
+- Pinch controls the first visible camera source. In dual-camera mode, pinch starts at 1× or above; choose ultrawide with the lens buttons, which may restart both cameras.
+- Optical lens changes and perceived smoothness depend on the phone. Some zoom levels use digital crop.
+- Physical zoom cadence, color quality, and streaming endurance remain unverified. Camera mode tests and emulator tests do not establish visual quality or hardware performance.
+
+### Validation
+
+- 72 JVM tests and 10 Python performance-checker tests passed.
+- All 17 emulator regressions passed on API 37, including pinch events and camera processing.
+- Debug, release, and optimized installable APKs built successfully; debug and release lint passed with no errors.
+- APK signature, alignment, application ID, minimum SDK, and version metadata verified.
+- Physical zoom-performance diagnostics are included but have not run on a phone.
+
 ## 0.1
 
 October 24, 2026.

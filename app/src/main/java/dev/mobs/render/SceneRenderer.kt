@@ -461,7 +461,7 @@ internal class SceneRenderer(
             setTag(command)
             addTarget(input.surface)
             set(CaptureRequest.CONTROL_AE_TARGET_FPS_RANGE, range)
-            set(CaptureRequest.CONTROL_AF_MODE, CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_VIDEO)
+            configureVideoProcessing(info)
             // The compositor owns rotation. Disable compatibility rotation when the camera allows it.
             if (Build.VERSION.SDK_INT >= 31 && info.get(CameraCharacteristics.SCALER_AVAILABLE_ROTATE_AND_CROP_MODES)
                     ?.contains(CaptureRequest.SCALER_ROTATE_AND_CROP_NONE) == true) {

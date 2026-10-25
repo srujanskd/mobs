@@ -54,6 +54,7 @@ import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -180,6 +181,17 @@ fun CameraScreen(
     }
     LaunchedEffect(fillPreview, session) { viewModel.setPreviewFill(fillPreview) }
 
+    val pinchCamera = state.scene?.sources?.firstOrNull { it.visible && it.opacity > 0f && it.kind in Scene.CAMERA_KINDS }
+    val context = LocalContext.current
+    val dual = state.scene?.cameras?.size == 2
+    val pinchRange = remember(pinchCamera?.kind, dual, context) {
+        pinchCamera?.let { dev.mobs.render.scenePinchZoomRange(context, it.kind, dual) } ?: (1f..1f)
+    }
+    val pinchSceneId = state.scene?.id
+    val onPinch: ((Float, Boolean) -> Unit)? = if (pinchCamera == null || pinchSceneId == null || dual && pinchCamera.zoom < 1f) null else { scale, finished ->
+        sceneModel.pinchZoom(pinchSceneId, pinchCamera.id, scale, pinchRange, finished)
+    }
+
     Box(modifier = modifier.fillMaxSize().background(Color.Black).testTag("studio-fullscreen")) {
         // Controls are siblings of the preview. None of their sizes constrain its surface.
         if (state.profileError != null) {
@@ -188,7 +200,7 @@ fun CameraScreen(
                 Text(state.profileError, style = MaterialTheme.typography.bodyMedium)
             }
         } else key(session?.engine) {
-            EnginePreview(viewModel, state.video.fps, Modifier.fillMaxSize().testTag("studio-preview"))
+            EnginePreview(viewModel, state.video.fps, Modifier.fillMaxSize().testTag("studio-preview"), onPinch)
         }
         Box(Modifier.fillMaxSize().background(Brush.verticalGradient(listOf(Color.Black.copy(alpha = .6f), Color.Transparent, Color.Transparent, Color.Black.copy(alpha = .7f)))))
         Box(Modifier.fillMaxSize().displayCutoutPadding().padding(16.dp)) {
@@ -684,11 +696,18 @@ private fun DestinationProblem.message() = when (this) {
  * released whenever the screen is gone, and per-frame work never travels through Compose state.
  */
 @Composable
-private fun EnginePreview(viewModel: CameraViewModel, fps: Int, modifier: Modifier = Modifier) {
+private fun EnginePreview(
+    viewModel: CameraViewModel,
+    fps: Int,
+    modifier: Modifier = Modifier,
+    onPinch: ((Float, Boolean) -> Unit)? = null,
+) {
+    val latestPinch by rememberUpdatedState(onPinch)
     AndroidView(
         modifier = modifier,
         factory = { context ->
             SurfaceView(context).apply {
+                setOnTouchListener(PreviewPinchZoom(context) { latestPinch })
                 holder.addCallback(
                     object : SurfaceHolder.Callback {
                         override fun surfaceCreated(holder: SurfaceHolder) {

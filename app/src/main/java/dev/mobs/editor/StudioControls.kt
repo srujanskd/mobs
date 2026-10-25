@@ -86,11 +86,12 @@ internal fun CameraSourceControls(source: dev.mobs.scene.SceneSource, dual: Bool
         }
     }
     Text("Use 180° if the camera is upside down. This changes preview and stream together.", style = MaterialTheme.typography.bodySmall, color = Color(0xFF93A1B8))
+    Text("Exposure and white balance adjust automatically. Color and detail depend on your phone and lighting.", style = MaterialTheme.typography.bodySmall, color = Color(0xFF93A1B8))
     Text("Lens / zoom", style = MaterialTheme.typography.labelMedium)
     androidx.compose.foundation.layout.FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
         options.forEach { ratio ->
             FilterChip(selected = kotlin.math.abs((if (live) feedback?.actual else source.zoom)?.minus(ratio) ?: Float.MAX_VALUE) < .03f, onClick = { onChange(source.copy(zoom = ratio)) }, label = { Text(lensLabel(ratio)) })
         }
     }
-    Text(if (dual) "Ultrawide is not guaranteed with both cameras active. Switching it may briefly restart both cameras." else "Available lenses depend on your phone. Some zoom levels use digital crop. Mirror changes both preview and stream.", style = MaterialTheme.typography.bodySmall, color = Color(0xFF93A1B8))
+    Text(if (dual) "Pinch the preview at 1× or above. Use lens buttons for ultrawide; switching it may briefly restart both cameras." else "Pinch the preview to zoom. Some zoom levels use digital crop. Mirror changes both preview and stream.", style = MaterialTheme.typography.bodySmall, color = Color(0xFF93A1B8))
 }

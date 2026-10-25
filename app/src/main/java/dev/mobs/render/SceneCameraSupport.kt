@@ -43,8 +43,23 @@ fun sceneLensOptions(context: Context, kind: SourceKind, dual: Boolean = false):
     val pair = if (dual) findCameraPair(manager) else null
     val id = if (pair == null) cameraId(manager, kind) else if (kind == SourceKind.REAR_CAMERA) pair.rear else pair.front
     val info = manager.getCameraCharacteristics(id)
-    val minimum = if (Build.VERSION.SDK_INT >= 30) info.get(CameraCharacteristics.CONTROL_ZOOM_RATIO_RANGE)?.lower ?: 1f else 1f
-    val maximum = if (Build.VERSION.SDK_INT >= 30) info.get(CameraCharacteristics.CONTROL_ZOOM_RATIO_RANGE)?.upper ?: 1f
-        else info.get(CameraCharacteristics.SCALER_AVAILABLE_MAX_DIGITAL_ZOOM) ?: 1f
-    (listOf(minimum) + listOf(1f, 2f, 3f, 5f).filter { it in minimum..maximum }).distinct().sorted()
+    val range = zoomRange(info)
+    (listOf(range.start) + listOf(1f, 2f, 3f, 5f).filter { it in range }).distinct().sorted()
 } catch (_: Exception) { listOf(1f) }
+
+/** Pinch uses the full advertised range, including values between the lens shortcuts. */
+fun scenePinchZoomRange(context: Context, kind: SourceKind, dual: Boolean): ClosedFloatingPointRange<Float> = try {
+    val manager = context.getSystemService(CameraManager::class.java)
+    val pair = if (dual) findCameraPair(manager) else null
+    val id = if (pair == null) cameraId(manager, kind) else if (kind == SourceKind.REAR_CAMERA) pair.rear else pair.front
+    val range = zoomRange(manager.getCameraCharacteristics(id))
+    // Crossing 1x in concurrent mode needs a camera restart. Keep it an explicit lens action.
+    (if (dual) range.start.coerceAtLeast(1f) else range.start)..range.endInclusive
+} catch (_: Exception) { 1f..1f }
+
+private fun zoomRange(info: CameraCharacteristics): ClosedFloatingPointRange<Float> {
+    val range = if (Build.VERSION.SDK_INT >= 30) info.get(CameraCharacteristics.CONTROL_ZOOM_RATIO_RANGE) else null
+    val minimum = (range?.lower ?: 1f).coerceIn(.1f, 100f)
+    val maximum = (range?.upper ?: info.get(CameraCharacteristics.SCALER_AVAILABLE_MAX_DIGITAL_ZOOM) ?: 1f).coerceIn(minimum, 100f)
+    return minimum..maximum
+}

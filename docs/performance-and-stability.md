@@ -79,3 +79,30 @@ These opt-in checks open a visible test activity, verify fresh rear-camera frame
 Passed 54 JVM tests, 10 Python gate tests, and four editor/compositor tests on the API 37 emulator. The two physical-camera checks are excluded on emulators. Debug, optimized benchmark, unsigned release, and the standalone Macrobenchmark APK built successfully. Debug and release lint each reported zero errors and eight warnings, covering the existing target SDK, newer build-tool versions, and transitive Bouncy Castle trust-manager warnings. The hosted workflows and physical-phone benchmarks have not run.
 
 Visual inspection confirmed that the landscape editor fits its scene controls, draft canvas, and source panel. The emulator correctly refuses hardware 1080p30 streaming and does not advertise the required dual-camera pair. These are capability checks, not physical capture or endurance results.
+
+## Pinch zoom and automatic video processing
+
+JVM regressions cover accumulating gesture samples against current engine state, both zoom limits, invalid input, saving only at gesture end, stale scene/source callbacks, hidden/transparent sources, and 10,000 samples without intermediate disk writes. The workload is a correctness stress test, not a hardware timing benchmark.
+
+`PreviewPinchZoomDeviceTest` sends Android multi-pointer events to the same touch listener installed on the preview. It checks zoom in/out, cancellation, subsequent gestures, single-finger input, absent cameras, and binding a gesture to its original camera callback. `CameraVideoProcessingDeviceTest` checks real Camera2 record-request builders against advertised automatic exposure/white-balance/focus and FAST processing modes, preserving defaults for unsupported modes. These can run on an emulator; they do not prove physical image quality.
+
+```sh
+source scripts/android-env.sh
+./gradlew :app:connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=dev.mobs.editor.PreviewPinchZoomDeviceTest
+./gradlew :app:connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=dev.mobs.render.CameraVideoProcessingDeviceTest
+```
+
+`CameraZoomPerformanceDeviceTest` is an opt-in physical-phone diagnostic. It separately exercises rear, front, and supported concurrent cameras at 1080p30. Cameras without zoom above 1× are skipped. After confirming 1× and warming up for 30 seconds, it requests a continuous 20-second zoom in/out ramp at approximately 30 updates per second, up to 2× or the advertised maximum. It requires at least 500 submitted updates, a camera-reported peak within 0.1× of the ramp maximum, and confirmation of the final 1× zoom. It checks errors, mean delivered output and active-camera cadence against the existing 29 fps budget, and a provisional 500 ms maximum output stall. Reports include actual update count, output frame rate, per-camera frame rate, and maximum output gap. This diagnostic uses the debug renderer with an ImageReader consumer; it does not measure end-to-end touch latency, encoded output, power, thermal endurance, memory growth, optical transition quality, or stock-camera color parity. Use the optimized session and endurance runs above for release performance acceptance.
+
+```sh
+./gradlew :app:connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=dev.mobs.render.CameraZoomPerformanceDeviceTest -Pandroid.testInstrumentationRunnerArguments.physicalCameras=true
+adb exec-out run-as dev.mobs cat files/zoom-performance-REAR_CAMERA-false.json > rear-zoom.json
+adb exec-out run-as dev.mobs cat files/zoom-performance-FRONT_CAMERA-false.json > front-zoom.json
+adb exec-out run-as dev.mobs cat files/zoom-performance-REAR_CAMERA-true.json > dual-zoom.json
+```
+
+No physical zoom performance results have been recorded yet. A skipped test is not acceptance. Run under stable lighting and temperature; retain separate reports for repeated runs. Dual-camera ultrawide transitions still use explicit lens buttons and may restart capture. The ramp diagnostic stays at 1× and above and does not test those transitions. Evaluate visible smoothness and color on recorded footage under daylight, indoor, mixed-light, and low-light conditions, including lens switches and exposure/white-balance changes. Automated mode checks cannot judge whether those colors look good.
+
+Local verification on October 25, 2026: all 72 JVM tests and 10 Python performance-checker tests passed. The four new pinch-event tests and the Camera2 processing-mode test passed in separate runs on the API 37 emulator. Debug and instrumentation APKs compiled successfully. These results do not establish physical zoom performance or visual image quality.
+
+For v0.2.0 release validation, all 17 emulator regressions subsequently passed in one full API 37 run. Physical-device-only tests were excluded. Debug/release lint passed with zero errors and 15 warnings each. The release and optimized benchmark APKs built successfully; the installable APK has version code 3 and retains the v0.1 signing certificate.

@@ -106,6 +106,18 @@ class SceneViewModel(private val store: SceneStore, private val io: CoroutineDis
         }
     }
 
+    /** Apply gesture samples without queuing a disk write for every touch event. */
+    fun pinchZoom(sceneId: String, sourceId: String, scale: Float, range: ClosedFloatingPointRange<Float>, finished: Boolean) {
+        val scene = engine?.state?.value?.scene?.takeIf { it.id == sceneId } ?: return
+        val source = scene.sources.firstOrNull { it.id == sourceId && it.visible && it.opacity > 0f && it.kind in Scene.CAMERA_KINDS } ?: return
+        if (finished) {
+            save(scene, apply = true)
+        } else if (scale.isFinite() && scale > 0f) {
+            val zoom = (source.zoom * scale).coerceIn(range.start, range.endInclusive)
+            if (zoom != source.zoom) engine?.setScene(scene.update(source.copy(zoom = zoom)))
+        }
+    }
+
     fun refresh() {
         if (mutableRefreshing.value || mutableCollection.value == null) return
         mutableRefreshing.value = true
