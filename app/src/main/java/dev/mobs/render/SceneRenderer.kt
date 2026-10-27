@@ -52,6 +52,8 @@ internal class SceneRenderer(
     private val error: (String) -> Unit,
     private val captureStats: (Int, Int) -> Unit = { _, _ -> },
     private val sourceError: (String) -> Unit = error,
+    private val browserFactory: (Context, String, Int, Int, () -> Unit, (Bitmap, () -> Unit) -> Unit) -> BrowserSource =
+        { ctx, url, w, h, failed, frame -> BrowserSource(ctx, url, w, h, failed, fps = fps, onFrame = frame) },
     private val cameraZoom: (String, dev.mobs.scene.CameraZoomState) -> Unit = { _, _ -> },
 ) {
     private val appContext = context.applicationContext
@@ -80,10 +82,17 @@ internal class SceneRenderer(
     private var programCamera = 0
     private var locations2d: Locations? = null
     private var locationsCamera: Locations? = null
-    private val mirroredMatrix = FloatArray(16)
+    private val cameraSourceMatrix = FloatArray(16)
     private val identity = FloatArray(16).also { Matrix.setIdentityM(it, 0) }
     private val textures = mutableMapOf<String, StaticTexture>()
-    private val browsers = mutableMapOf<String, Pair<List<Any>, BrowserSource>>()
+    private class BrowserEntry {
+        lateinit var source: BrowserSource
+        var texture: Int? = null
+        var textureWidth = 0
+        var textureHeight = 0
+    }
+    // Widget URLs identify live documents across scenes, including duplicated source IDs.
+    private val browsers = mutableMapOf<String, BrowserEntry>()
     private val cameras = linkedMapOf<SourceKind, CameraInput>()
     private val quad = ByteBuffer.allocateDirect(8 * 4).order(ByteOrder.nativeOrder()).asFloatBuffer().apply {
         put(floatArrayOf(-1f, -1f, 1f, -1f, -1f, 1f, 1f, 1f)); position(0)
@@ -150,7 +159,10 @@ internal class SceneRenderer(
 
     private fun releaseSources() {
         closeCameras()
-        browsers.values.forEach { it.second.close() }
+        browsers.values.forEach {
+            it.source.close()
+            it.texture?.let { id -> GLES20.glDeleteTextures(1, intArrayOf(id), 0) }
+        }
         browsers.clear()
         textures.values.forEach { GLES20.glDeleteTextures(1, intArrayOf(it.id), 0) }
         textures.clear()
@@ -235,34 +247,53 @@ internal class SceneRenderer(
         textures.keys.filter { it !in retained }.toList().forEach { id ->
             textures.remove(id)?.let { GLES20.glDeleteTextures(1, intArrayOf(it.id), 0) }
         }
-        val browserIds = visible.filter { it.kind == SourceKind.BROWSER && it.url.isNotEmpty() }.map { it.id }.toSet()
-        browsers.keys.filter { it !in browserIds }.toList().forEach { browsers.remove(it)?.second?.close() }
-        visible.filter { it.kind == SourceKind.BROWSER && it.url.isNotEmpty() }.forEach { source ->
-            val key = listOf(source.url, source.bounds.width, source.bounds.height)
-            if (browsers[source.id]?.first != key) {
-                browsers.remove(source.id)?.second?.close()
-                val w = (960 * source.bounds.width).toInt().coerceAtLeast(1)
-                val h = (540 * source.bounds.height).toInt().coerceAtLeast(1)
-                val browser = BrowserSource(appContext, source.url, w, h, renderScale = .5f, onError = { handler.post {
-                    browsers.remove(source.id)?.second?.close()
-                    textures.remove(source.id)?.let { GLES20.glDeleteTextures(1, intArrayOf(it.id), 0) }
-                    sourceError("Web overlay could not load. Check its widget link and internet connection, then apply the scene again.")
-                    requestDraw()
+        val visibleBrowsers = visible.filter { it.kind == SourceKind.BROWSER && it.url.isNotEmpty() }.groupBy { it.url }
+        browsers.filterKeys { it !in visibleBrowsers }.values.forEach {
+            it.source.setViewport(1, 1, false)
+            it.texture?.let { id -> GLES20.glDeleteTextures(1, intArrayOf(id), 0) }
+            it.texture = null
+            it.textureWidth = 0
+            it.textureHeight = 0
+        }
+        visibleBrowsers.forEach { (url, sources) ->
+            val w = (width * sources.maxOf { it.bounds.width }).toInt().coerceAtLeast(1)
+            val h = (height * sources.maxOf { it.bounds.height }).toInt().coerceAtLeast(1)
+            val existing = browsers[url]
+            if (existing != null) {
+                existing.source.setViewport(w, h, true)
+            } else {
+                val entry = BrowserEntry()
+                browsers[url] = entry
+                entry.source = browserFactory(appContext, url, w, h, { handler.post {
+                    // Ignore callbacks from a document replaced by an explicit refresh.
+                    if (browsers[url] === entry) {
+                        browsers.remove(url)
+                        entry.source.close()
+                        entry.texture?.let { GLES20.glDeleteTextures(1, intArrayOf(it), 0) }
+                        sourceError("Web overlay could not load. Check its widget link and internet connection, then apply the scene again.")
+                        requestDraw()
+                    }
                 } }) { bitmap, complete ->
                     if (released || !handler.post {
                         try {
-                            if (!released && browsers[source.id]?.first == key) {
-                                val texture = textures[source.id] ?: StaticTexture(texture(GLES20.GL_TEXTURE_2D), key).also { textures[source.id] = it }
-                                GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texture.id)
-                                GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0)
-                                // Camera frames or staticTick draw this texture at the output cadence.
+                            if (!released && browsers[url] === entry && scene?.sources?.any {
+                                    it.kind == SourceKind.BROWSER && it.url == url && it.visible && it.opacity > 0f
+                                } == true) {
+                                val id = entry.texture ?: texture(GLES20.GL_TEXTURE_2D).also { entry.texture = it }
+                                GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, id)
+                                if (entry.textureWidth != bitmap.width || entry.textureHeight != bitmap.height) {
+                                    GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0)
+                                    entry.textureWidth = bitmap.width
+                                    entry.textureHeight = bitmap.height
+                                } else {
+                                    GLUtils.texSubImage2D(GLES20.GL_TEXTURE_2D, 0, 0, 0, bitmap)
+                                }
                             }
                         } catch (_: RuntimeException) {
                             sourceError("Web overlay rendering failed. Remove the source or apply the scene again.")
-                        } finally { bitmap.recycle(); complete() }
-                    }) { bitmap.recycle(); complete() }
+                        } finally { complete() }
+                    }) { complete() }
                 }
-                browsers[source.id] = key to browser
             }
         }
         visible.filter { it.kind !in Scene.CAMERA_KINDS && it.kind != SourceKind.BROWSER }.forEach { source ->
@@ -350,7 +381,7 @@ internal class SceneRenderer(
                     .getDisplay(android.view.Display.DEFAULT_DISPLAY)?.rotation ?: Surface.ROTATION_0
                 when (rotation) { Surface.ROTATION_90 -> 90; Surface.ROTATION_180 -> 180; Surface.ROTATION_270 -> 270; else -> 0 }
             }
-            val input = CameraInput(id, tex, inputTexture, Surface(inputTexture), orientation)
+            val input = CameraInput(id, tex, inputTexture, Surface(inputTexture), orientation, size)
             cameras[kind] = input
             inputTexture.setOnFrameAvailableListener({
                 if (cameras[kind] === input && !released) {
@@ -546,7 +577,8 @@ internal class SceneRenderer(
             if (!source.visible || source.opacity <= 0f) return@forEach
             val camera = cameras[source.kind]
             if (source.kind in Scene.CAMERA_KINDS && camera?.ready != true) return@forEach
-            val id = camera?.id ?: textures[source.id]?.id ?: return@forEach
+            val id = camera?.id ?: (if (source.kind == SourceKind.BROWSER) browsers[source.url]?.texture
+                else textures[source.id]?.id) ?: return@forEach
             val program = if (camera != null) programCamera else program2d
             GLES20.glUseProgram(program)
             val locations = requireNotNull(if (camera != null) locationsCamera else locations2d)
@@ -557,16 +589,12 @@ internal class SceneRenderer(
             quad.position(0); uv.position(0)
             GLES20.glVertexAttribPointer(position, 2, GLES20.GL_FLOAT, false, 0, quad)
             GLES20.glVertexAttribPointer(texCoord, 2, GLES20.GL_FLOAT, false, 0, uv)
-            val matrix = if (camera != null && (source.mirrored || source.rotation != 0)) mirroredMatrix.also { System.arraycopy(camera.matrix, 0, it, 0, 16) } else camera?.matrix ?: identity
-            if (camera != null && source.rotation != 0) {
-                Matrix.translateM(matrix, 0, .5f, .5f, 0f)
-                Matrix.rotateM(matrix, 0, source.rotation.toFloat(), 0f, 0f, 1f)
-                Matrix.translateM(matrix, 0, -.5f, -.5f, 0f)
-            }
-            if (camera != null && source.mirrored) {
-                Matrix.translateM(matrix, 0, 1f, 0f, 0f)
-                Matrix.scaleM(matrix, 0, -1f, 1f, 1f)
-            }
+            val matrix = if (camera != null) cameraSourceMatrix.also {
+                System.arraycopy(camera.matrix, 0, it, 0, 16)
+                applyCameraSourceTransform(it, source.rotation, source.mirrored,
+                    camera.size.width, camera.size.height,
+                    width * source.bounds.width, height * source.bounds.height)
+            } else identity
             GLES20.glUniformMatrix4fv(locations.matrix, 1, false, matrix, 0)
             GLES20.glUniform1f(locations.opacity, source.opacity)
             GLES20.glActiveTexture(GLES20.GL_TEXTURE0)
@@ -626,7 +654,7 @@ internal class SceneRenderer(
         val texture = GLES20.glGetUniformLocation(program, "uTexture")
     }
     private data class StaticTexture(val id: Int, val key: List<Any>)
-    private class CameraInput(val cameraId: String, val id: Int, val texture: SurfaceTexture, val surface: Surface, val orientation: CameraOrientation) {
+    private class CameraInput(val cameraId: String, val id: Int, val texture: SurfaceTexture, val surface: Surface, val orientation: CameraOrientation, val size: Size) {
         val zoom = CameraZoomController()
         var lastZoomState: dev.mobs.scene.CameraZoomState? = null
         var device: CameraDevice? = null

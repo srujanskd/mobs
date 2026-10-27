@@ -42,6 +42,47 @@ class SceneRendererDeviceTest {
         } finally { renderer.stop(); reader.close() }
     }
 
+    @Test fun browserStateSurvivesSceneCutsAndDifferentSourceIds() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val errors = CopyOnWriteArrayList<String>()
+        val loads = java.util.concurrent.atomic.AtomicInteger()
+        val reader = ImageReader.newInstance(320, 180, PixelFormat.RGBA_8888, 3)
+        val renderer = SceneRenderer(context, context.cacheDir, 320, 180, 30, error = errors::add,
+            browserFactory = { ctx, _, w, h, failed, frame ->
+                assertTrue("Browser width must match full or half output bounds", w == 320 || w == 160)
+                assertEquals("Browser pixels must match the output height", 180, h)
+                val color = if (loads.incrementAndGet() == 1) "#00ff00" else "#ff0000"
+                val html = "<html><body style='margin:0'><div style='position:absolute;left:0;top:0;width:4000px;height:4000px;background:$color'></div></body></html>"
+                BrowserSource(ctx, "data:text/html," + java.net.URLEncoder.encode(html, "UTF-8").replace("+", "%20"), w, h, failed, onFrame = frame)
+            })
+        val chat = SceneSource(name = "Chat", kind = SourceKind.BROWSER, url = "https://chat.example/widget")
+        val first = Scene(name = "Chat", sources = listOf(chat))
+        val away = Scene(name = "Away", sources = emptyList())
+        try {
+            renderer.start(reader.surface, first)
+            awaitPixel(reader, 160, 90, 0, 255, 0)
+            renderer.update(away)
+            awaitPixel(reader, 160, 90, 0, 0, 0)
+            renderer.update(first)
+            awaitPixel(reader, 160, 90, 0, 255, 0)
+            val duplicate = first.duplicate().let { scene -> scene.copy(sources = scene.sources.map {
+                it.copy(bounds = SourceBounds(0f, 0f, .5f, 1f))
+            }) }
+            renderer.update(duplicate)
+            awaitPixel(reader, 280, 90, 0, 0, 0)
+            awaitPixel(reader, 40, 90, 0, 255, 0)
+            renderer.update(first.update(chat.copy(visible = false)))
+            awaitPixel(reader, 40, 90, 0, 0, 0)
+            renderer.update(first)
+            awaitPixel(reader, 160, 90, 0, 255, 0)
+            assertEquals("Changing scenes must not reload the chat document", 1, loads.get())
+            renderer.refresh(first)
+            awaitPixel(reader, 160, 90, 255, 0, 0)
+            assertEquals("Explicit refresh must still reload the document", 2, loads.get())
+            assertTrue(errors.toString(), errors.isEmpty())
+        } finally { renderer.stop(); reader.close() }
+    }
+
     @Test fun refreshReloadsImageContentsEvenWhenTheSourceAndFileNameHaveNotChanged() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val directory = File(context.cacheDir, "refresh-test-media").apply { mkdirs() }

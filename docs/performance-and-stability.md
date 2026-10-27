@@ -106,3 +106,25 @@ No physical zoom performance results have been recorded yet. A skipped test is n
 Local verification on October 25, 2026: all 72 JVM tests and 10 Python performance-checker tests passed. The four new pinch-event tests and the Camera2 processing-mode test passed in separate runs on the API 37 emulator. Debug and instrumentation APKs compiled successfully. These results do not establish physical zoom performance or visual image quality.
 
 For v0.2.0 release validation, all 17 emulator regressions subsequently passed in one full API 37 run. Physical-device-only tests were excluded. Debug/release lint passed with zero errors and 15 warnings each. The release and optimized benchmark APKs built successfully; the installable APK has version code 3 and retains the v0.1 signing certificate.
+
+
+## Camera comparison feedback, October 27, 2026
+
+Camera quality and colors were reported as worse than IRL Pro, but the comparison is unconfirmed. No matched physical-phone footage is available in this checkout. Keep this open until both apps are recorded on the same phone, lens, zoom, resolution, frame rate, codec and bitrate, under the same lighting and framing. Compare daylight, indoor/mixed light, low light and motion after autofocus, exposure and white balance settle. Compare decoded recordings as well as previews to distinguish capture/color differences from compression or display differences.
+
+Mobs currently requests automatic exposure and white balance, continuous video focus where available, and supported FAST processing modes through the Camera2 record template. The default encoded output is 1920×1080 at 30 fps and 10 Mbps before adaptation. In concurrent-camera scenes the front input is 1280×720, so an enlarged front source can be softer than a single-camera view. These are configuration facts, not evidence of parity or a diagnosed cause. Retain the settings, phone/OS versions and paired clips before changing color processing or bitrate defaults.
+
+
+## Browser overlay capture, October 27, 2026
+
+The old 100 ms snapshot loop captured an animated fixture at 9.3 fps in a 1.5-second API 37 emulator sample. Browser capture now targets the stream frame rate through Choreographer and uses the overlay's output pixel dimensions instead of the fixed 960×540 base with 50% page scale. It reuses one bitmap and updates existing GPU texture storage between size changes.
+
+`BrowserSourceDeviceTest` exercises a changing JavaScript page at 1920×1080, requires at least 24 captures per second with fresh pixel changes, and checks one reused bitmap. A separate test holds an upload through resize and shutdown to verify bounded work and safe buffer lifetime. Transparency, off-scene updates and close behavior remain covered. The local 1.5-second sample captured 46 frames with 44 distinct colors and one bitmap. This is a short synthetic software-capture test, not sustained physical-device or encoded-stream performance.
+
+```sh
+source scripts/android-env.sh
+./gradlew connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=dev.mobs.render.BrowserSourceDeviceTest
+./gradlew connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=dev.mobs.render.SceneRendererDeviceTest
+```
+
+Validate the actual chat widget on a physical phone alongside the camera and encoder. Include animated message arrivals and scrolling, multiple visible URLs, resizing, scene cuts, and a sustained thermal run. Full-resolution software capture processes four times the pixels of the former half-resolution capture; higher cadence also increases work. Complex animated pages may still need a hardware-rendered browser composition path. A 30 fps capture target does not establish that a particular page animates at 30 fps or that camera/encoder cadence stays within budget.

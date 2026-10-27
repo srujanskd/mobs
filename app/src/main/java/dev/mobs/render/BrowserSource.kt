@@ -7,6 +7,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.os.Handler
 import android.os.Looper
+import android.view.Choreographer
 import android.view.View
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
@@ -14,14 +15,17 @@ import android.webkit.WebViewClient
 import dev.mobs.scene.isBrowserUrl
 import java.util.concurrent.atomic.AtomicBoolean
 
-/** Main-thread WebView snapshots. One frame may be in flight, keeping GL backpressure bounded. */
+/** Main-thread, vsync-paced WebView snapshots. Only one borrowed bitmap may be in flight.
+ * Consumers must call complete after uploading/reading the bitmap and must not recycle it.
+ */
 internal class BrowserSource(
     context: Context,
     url: String,
-    private val width: Int,
-    private val height: Int,
+    private var width: Int,
+    private var height: Int,
     private val onError: () -> Unit = {},
     private val renderScale: Float = 1f,
+    fps: Int = 30,
     private val onFrame: (Bitmap, () -> Unit) -> Unit,
 ) {
     private val main = Handler(Looper.getMainLooper())
@@ -29,21 +33,54 @@ internal class BrowserSource(
     @Volatile private var closed = false
     private var web: WebView? = null
     private var failed = false
-    private val tick = object : Runnable {
-        override fun run() {
-            if (closed) return
+    private var active = true
+    private val choreographer by lazy { Choreographer.getInstance() }
+    private val intervalNs = 1_000_000_000L / fps.also { require(it in 1..60) }
+    private var nextFrameNs = 0L
+    private var buffer: Bitmap? = null
+    private val tick = object : Choreographer.FrameCallback {
+        override fun doFrame(frameTimeNanos: Long) {
+            if (closed || !active) return
+            choreographer.postFrameCallback(this)
+            if (frameTimeNanos < nextFrameNs) return
+            // Keep a fixed phase rather than adding capture/upload time to every interval.
+            nextFrameNs = if (nextFrameNs == 0L || frameTimeNanos - nextFrameNs >= intervalNs)
+                frameTimeNanos + intervalNs else nextFrameNs + intervalNs
             val view = web ?: return
-            if (busy.compareAndSet(false, true)) {
-                val bitmap = androidx.core.graphics.createBitmap(width, height)
-                try {
-                    // A detached WebView has no parent to service requestLayout after DOM changes.
+            if (!busy.compareAndSet(false, true)) return
+            val bitmap = buffer?.takeIf { !it.isRecycled && it.width == width && it.height == height }
+                ?: androidx.core.graphics.createBitmap(width, height).also { replacement ->
+                    buffer?.takeUnless { it.isRecycled }?.recycle()
+                    buffer = replacement
+                }
+            val returned = AtomicBoolean(false)
+            val complete = {
+                if (returned.compareAndSet(false, true)) main.post {
+                    if (closed || !active || bitmap.width != width || bitmap.height != height) {
+                        if (buffer === bitmap) buffer = null
+                        bitmap.recycle()
+                    }
+                    busy.set(false)
+                }
+                Unit
+            }
+            try {
+                // A detached WebView has no parent to service requestLayout after DOM changes.
+                if (view.isLayoutRequested || view.width != width || view.height != height) {
                     view.measure(View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY))
                     view.layout(0, 0, width, height)
-                    if (!failed) view.draw(Canvas(bitmap))
-                    onFrame(bitmap) { busy.set(false) }
-                } catch (_: RuntimeException) { bitmap.recycle(); busy.set(false) }
-            }
-            main.postDelayed(this, 100)
+                }
+                bitmap.eraseColor(Color.TRANSPARENT)
+                if (!failed) view.draw(Canvas(bitmap))
+                onFrame(bitmap, complete)
+            } catch (_: RuntimeException) { complete() }
+        }
+    }
+
+    private fun discardIdleBuffer() {
+        if (!busy.get()) {
+            buffer?.recycle()
+            buffer = null
         }
     }
 
@@ -73,12 +110,32 @@ internal class BrowserSource(
             layout(0, 0, width, height)
             loadUrl(url)
         }
-        main.post(tick)
+        choreographer.postFrameCallback(tick)
     }
 
     init { main.post { try { create(context.applicationContext, url) } catch (_: RuntimeException) { onError(); close() } } }
+    /** Keep the document and its live connections; only stop bitmap work while off scene. */
+    fun setViewport(width: Int, height: Int, active: Boolean) {
+        main.post {
+            if (closed || (this.width == width && this.height == height && this.active == active)) return@post
+            this.width = width
+            this.height = height
+            this.active = active
+            choreographer.removeFrameCallback(tick)
+            nextFrameNs = 0L
+            if (!active || buffer?.let { it.width != width || it.height != height } == true) discardIdleBuffer()
+            if (active) choreographer.postFrameCallback(tick)
+        }
+    }
+
     fun close() {
         closed = true
-        main.post { main.removeCallbacks(tick); web?.stopLoading(); web?.destroy(); web = null }
+        main.post {
+            choreographer.removeFrameCallback(tick)
+            discardIdleBuffer()
+            web?.stopLoading()
+            web?.destroy()
+            web = null
+        }
     }
 }

@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.2.1
+
+October 27, 2026.
+
+- Preserve camera proportions with a centered crop when resizing scene sources or applying rotation and mirroring, fixing stretched camera insets.
+- Keep browser widget documents and chat history alive across scene cuts, duplicated sources, visibility changes, and resizing. Explicit refresh still reloads widgets.
+- Capture browser overlays at their output resolution and target the stream's 30 fps cadence. Reuse one bitmap and GPU texture storage; pause snapshots while a widget is off scene.
+- Add camera transform, browser buffer lifetime, capture cadence, and scene persistence regressions.
+
+### Installation
+
+Download `mobs-v0.2.1.apk`, the optimized installable APK. It uses the same local Android testing key as previous releases for in-place upgrades. Android 10 or newer is required. This is a testing release.
+
+### Known limits
+
+- Browser capture uses a software WebView on the main thread. Higher resolution and cadence increase work; complex widgets, multiple simultaneous pages, and sustained camera/encoder performance still need physical-phone validation.
+- Off-scene browser documents retain their live connections and JavaScript until an explicit refresh or preview shutdown.
+- Physical-device camera quality, zoom cadence, and streaming endurance remain unverified.
+
+### Validation
+
+- All 72 JVM tests, 28 API 37 emulator regressions, and 10 Python performance-checker tests passed.
+- Debug, release, optimized installable, and benchmark test APKs built successfully.
+- Debug and release lint passed with zero errors and 15 warnings each.
+- APK signature, alignment, application ID, minimum SDK, and version metadata verified. The signing certificate matches v0.2.0.
+- Physical-device quality and sustained performance have not been validated for this patch.
+
 ## 0.2.0
 
 October 25, 2026.
