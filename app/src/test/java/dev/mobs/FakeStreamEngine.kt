@@ -51,5 +51,6 @@ class FakeStreamEngine : StreamEngine {
     override fun setLogoOverlay(logo: LogoOverlay?) {
         state.update { it.copy(logoOverlay = logo) }
     }
+    override fun setHeatMode(mode: dev.mobs.stream.HeatMode) { state.update { it.copy(heatMode = mode) } }
     override fun release() { released++ }
 }

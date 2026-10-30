@@ -1,28 +1,48 @@
 package dev.mobs.stream
 
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 
-/**
- * Stops a live stream cleanly once the device reaches a critical thermal state, rather than
- * letting the system kill it or degrading the output. Lower levels never change the stream.
- */
-internal class ThermalGuard(engine: StreamEngine, thermal: StateFlow<ThermalState>, scope: CoroutineScope) {
+/** Owns heat limits even when the editor is unbound. A clock keeps severe/cooldown deadlines alive. */
+internal class ThermalGuard(
+    engine: StreamEngine,
+    thermal: StateFlow<ThermalState>,
+    scope: CoroutineScope,
+    nowMs: () -> Long = { System.nanoTime() / 1_000_000L },
+) {
     init {
+        val policy = HeatPolicy()
         scope.launch {
-            combine(thermal, engine.state) { t, s -> t.level.isCritical() && s.streamActive }
+            val ticks = flow { while (true) { emit(nowMs()); delay(1_000) } }
+            combine(thermal, engine.state, ticks) { t, s, tick -> Triple(t.level, s.streamActive, tick) }
                 .distinctUntilChanged()
-                .collect { overheated -> if (overheated) engine.stopStream(OVERHEAT_REASON) }
+                .collect { (level, _, _) ->
+                    val mode = policy.update(level, nowMs())
+                    try {
+                        if (engine.state.value.heatMode != mode) engine.setHeatMode(mode)
+                    } catch (_: RuntimeException) {
+                        // A driver rejecting a limit must not cancel the service's heat observer.
+                        policy.failClosed()
+                        if (engine.state.value.streamActive) engine.stopStream(HEAT_CONTROL_FAILURE)
+                        engine.detachPreview()
+                    }
+                    if (engine.state.value.streamActive && policy.mode == HeatMode.COOLDOWN) engine.stopStream(
+                        if (level.isCritical()) OVERHEAT_REASON else SUSTAINED_HEAT_REASON,
+                    )
+                }
         }
     }
 
     companion object {
+        const val HEAT_CONTROL_FAILURE = "Stream stopped because heat controls could not be applied"
         const val OVERHEAT_REASON = "Phone reached a critical temperature"
+        const val SUSTAINED_HEAT_REASON = "Stream stopped to cool the phone after sustained severe heat"
     }
 }
 
-/** At this level the plan requires a clean stop; the editor also refuses to go live. */
 fun ThermalLevel.isCritical() = this >= ThermalLevel.CRITICAL

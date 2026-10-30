@@ -10,6 +10,88 @@ import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicInteger
 
 class BrowserSourceDeviceTest {
+    @Test fun cssAnimationStartsAfterIdleAndKeepsFreshFrames() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val ready = CountDownLatch(1)
+        val colors = java.util.Collections.synchronizedSet(mutableSetOf<Int>())
+        val sampling = java.util.concurrent.atomic.AtomicBoolean(false)
+        val html = """<html><style>body{margin:0;background:rgb(0,255,0);animation:color 1s linear 2s infinite alternate}@keyframes color{from{background:rgb(0,255,0)}to{background:rgb(0,0,255)}}</style><body></body></html>"""
+        val source = BrowserSource(context, "data:text/html," + URLEncoder.encode(html, "UTF-8").replace("+", "%20"), 320, 180) { bitmap, complete ->
+            try {
+                if (Color.green(bitmap.getPixel(40, 40)) > 240) ready.countDown()
+                if (sampling.get()) colors.add(bitmap.getPixel(40, 40))
+            } finally { complete() }
+        }
+        try {
+            assertTrue("Initial page did not render", ready.await(10, TimeUnit.SECONDS))
+            Thread.sleep(2500)
+            sampling.set(true)
+            Thread.sleep(1500)
+            sampling.set(false)
+            assertTrue("CSS animation after idle must keep fresh frames, got ${colors.size} colors", colors.size >= 25)
+        } finally { source.close() }
+    }
+
+    @Test fun idleOverlaySkipsSnapshotsAndStillReceivesDelayedUpdates() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val green = CountDownLatch(1)
+        val blue = CountDownLatch(1)
+        val frames = AtomicInteger()
+        val html = """<html><body style="margin:0;background:#00ff00"><script>setTimeout(()=>{document.body.style.background='#0000ff'},5000)</script></body></html>"""
+        val source = BrowserSource(context, "data:text/html," + URLEncoder.encode(html, "UTF-8").replace("+", "%20"), 320, 180) { bitmap, complete ->
+            try {
+                frames.incrementAndGet()
+                val pixel = bitmap.getPixel(40, 40)
+                if (Color.green(pixel) > 240) green.countDown()
+                if (Color.blue(pixel) > 240) blue.countDown()
+            } finally { complete() }
+        }
+        try {
+            assertTrue("Initial page did not render", green.await(10, TimeUnit.SECONDS))
+            Thread.sleep(1000) // Let initial load invalidations settle.
+            val start = frames.get()
+            Thread.sleep(2000)
+            val idleFrames = frames.get() - start
+            android.util.Log.i("BrowserCaptureTest", "Idle overlay: $idleFrames snapshots in 2 seconds")
+            assertTrue("Unchanged pages should reuse their texture, got $idleFrames snapshots", idleFrames <= 4)
+            assertTrue("A page update after idle must reach output", blue.await(8, TimeUnit.SECONDS))
+        } finally { source.close() }
+    }
+
+    @Test fun thermalRateLimitCapsAnimatedSnapshotsAndRestoresWithoutReloading() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val ready = CountDownLatch(1)
+        val frames = AtomicInteger()
+        val colors = java.util.Collections.synchronizedSet(mutableSetOf<Int>())
+        val html = """<html><body style="margin:0;background:rgb(0,255,0)"><script>let n=0;setInterval(()=>document.body.style.background='rgb('+(++n%200)+',255,0)',33)</script></body></html>"""
+        val source = BrowserSource(context, "data:text/html," + URLEncoder.encode(html, "UTF-8").replace("+", "%20"), 320, 180) { bitmap, complete ->
+            try {
+                if (Color.green(bitmap.getPixel(40, 40)) > 240) {
+                    frames.incrementAndGet()
+                    colors.add(bitmap.getPixel(40, 40))
+                    ready.countDown()
+                }
+            } finally { complete() }
+        }
+        try {
+            assertTrue(ready.await(10, TimeUnit.SECONDS))
+            source.setFrameRate(5)
+            InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+            Thread.sleep(300)
+            val start = frames.get()
+            Thread.sleep(2000)
+            val limited = frames.get() - start
+            assertTrue("Hot overlays should stay live at <=5 fps, got $limited frames in 2s", limited in 5..11)
+            assertTrue("JavaScript must still change the rendered page", colors.size >= 5)
+            source.setFrameRate(30)
+            InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+            Thread.sleep(300)
+            val recovery = frames.get()
+            Thread.sleep(1500)
+            assertTrue("Cooling should restore animated capture", frames.get() - recovery >= 30)
+        } finally { source.close() }
+    }
+
     @Test fun animatedOverlayCapturesAtStreamCadenceAndReusesItsBitmap() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val ready = CountDownLatch(1)

@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.2.2
+
+October 30, 2026.
+
+- Add automatic heat management. Moderate heat reduces browser snapshots to 15 fps and caps encoder bitrate at 6 Mbps. Severe heat suspends and dims preview, limits video to 15 fps and browser snapshots to 5 fps, caps bitrate at 4 Mbps, and requests lower camera cadence where supported.
+- Stop cleanly at critical heat or after one continuous minute at severe heat. Require 30 continuous seconds at light heat or below before restoring normal operation. A stopped stream requires an explicit restart.
+- Reuse unchanged browser overlays instead of redrawing and uploading them at full cadence. Keep JavaScript updates, animation, scene persistence and borrowed-buffer lifetime covered by regressions.
+- Disable packet-by-packet RTMP logging. Export heat mode, runtime cadence limits, actual browser upload rate and payload size, and active browser document count in session CSVs.
+- Include private crash reports and Android process-exit history in shared diagnostics. Omit exception messages and raw native traces to protect stream keys and widget links; prepare exports off the main thread.
+
+### Installation
+
+Download `mobs-v0.2.2.apk`, the optimized installable APK. Android 10 or newer is required. Version code is 5. The signing certificate matches v0.2.1 and earlier testing releases, supporting in-place upgrades. This remains a testing release.
+
+### Known limits
+
+- Heat protection deliberately reduces smoothness and bitrate, and can stop a broadcast. Saved scenes, picture dimensions and audio settings are retained. The editor explains active limits and provides a Stop control while preview is suspended.
+- Sustained temperature improvement, physical-camera cadence and receiver audio/video sync through thermal transitions still require matched tests on the target phone. The policy thresholds are initial application limits, not measured device acceptance.
+- Browser capture uses a software WebView. Animated widgets can still be expensive; off-scene documents retain JavaScript and live connections.
+
+### Validation
+
+- 88 JVM tests, all 33 API 37 emulator regressions, and 10 Python performance-checker tests passed.
+- Debug, release, optimized installable, and benchmark test APKs built successfully.
+- Debug and release lint passed with zero errors and 17 warnings each.
+- APK signature, alignment, application ID, minimum SDK and version metadata verified. Signing certificate matches v0.2.1.
+- Physical-phone thermal and endurance acceptance has not been established for this patch.
+
 ## 0.2.1
 
 October 27, 2026.

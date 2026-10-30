@@ -50,8 +50,17 @@ send queue backs up and probes back toward the profile's 10 Mbps, with a floor o
   stream key and RTMP URL paths redacted, and the editor's "Share logs" button sends the newest
   sessions through the Android share sheet for phones that cannot be attached to a computer.
 
+## Crash evidence without a computer
+
+The application installs a best-effort uncaught-exception handler that saves up to ten private reports, each capped at 64 KiB. Reports include app/device versions, exception classes and bounded cause stacks. Exception messages are omitted because they can contain stream keys or private widget URLs. The existing Android crash handler still runs, including if report writing fails. This is diagnostic capture, not crash recovery.
+
+After Mobs closes unexpectedly, reopen it and use **Share logs** before creating several more sessions. Sharing adds saved crash reports and Android 11+ historical process-exit metadata to the newest three sessions. The metadata can distinguish Java/Kotlin crashes, native crashes, ANRs, memory kills and other termination reasons when Android retains and classifies the event. Android 10 cannot provide this history. Native/ANR traces and free-text OS descriptions are not exported because they may contain memory contents or private URLs. Native failures may still need further diagnostics to identify the exact code location. There is no background upload or continuous crash-log polling. Keep the optimized APK's matching R8 mapping file to decode obfuscated app stack frames.
+
 ## IRL Pro behavioral reference
 
 The [research handoff](../../../../../../../docs/irlpro-handoff.md) records the recovered capture/GL/MediaCodec pipeline, bitrate conditioners, reconnect and MP4 paths, protocol/TLS behavior, and native SRTLA boundaries. The [original dossier](../../../../../../../docs/research/irlpro-3.5.22/reports/README.md) and archived evidence preserve the underlying claims and limits.
 
 The current adapter captures one camera; `switchCamera()` is sequential front/rear switching, not simultaneous capture. Dual camera needs supported concurrent-session checks and a two-input composition path behind `StreamEngine`. Keep transport, capture/composition, recording, and diagnostics responsibilities explicit. `SessionRecorder` records telemetry, not MP4 media. Recovered FPS adaptation and SRT-specific congestion rules are reference options, not changes to Mobs' fixed 1080p30 RTMPS baseline.
+
+
+Heat protection uses `HeatPolicy` and `ThermalGuard` in the service. Moderate heat limits web capture and bitrate. Severe heat suspends preview and reduces composition/capture cadence and bitrate; critical heat or 60 continuous seconds of severe heat stops streaming. Restoration requires 30 continuous seconds at light or below. Runtime caps are reported independently of the saved profile. See the performance guide for values and physical-device acceptance. This supersedes the earlier critical-only policy description.

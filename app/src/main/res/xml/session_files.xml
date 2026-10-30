@@ -3,4 +3,5 @@
 <paths>
     <external-files-path name="sessions" path="sessions/" />
     <files-path name="sessions_internal" path="sessions/" />
+    <files-path name="diagnostics" path="diagnostics/" />
 </paths>

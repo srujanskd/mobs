@@ -67,7 +67,7 @@ class SessionRecorderTest {
         assertEquals(SessionRecorder.CSV_HEADER, lines[0])
         assertEquals(5, lines.size) // Header, samples at 0, 1 and 2 seconds, and terminal marker.
         assertEquals(
-            "2026-10-04T10:00:01Z,1.0,reconnecting,6400000,7000000,30,3,false,moderate,0.610,87,36.4,-812000,4120,false,1920,1080,30,1,true,false,false,,,,sample,0,0",
+            "2026-10-04T10:00:01Z,1.0,reconnecting,6400000,7000000,30,3,false,moderate,0.610,87,36.4,-812000,4120,false,1920,1080,30,1,true,false,false,,,,sample,0,0,normal,30,30,0,0,0",
             lines[2],
         )
         assertFalse("reason text must not reach the CSV", lines.any { "socket" in it })
@@ -82,7 +82,27 @@ class SessionRecorderTest {
             ThermalState(),
             BatterySample(null, null, null, null, plugged = true),
         )
-        assertEquals("2026-10-04T10:00:00Z,0.0,idle,0,0,0,0,false,none,,,,,,true,1920,1080,30,1,true,false,false,,,,sample,0,0", row)
+        assertEquals("2026-10-04T10:00:00Z,0.0,idle,0,0,0,0,false,none,,,,,,true,1920,1080,30,1,true,false,false,,,,sample,0,0,normal,30,30,0,0,0", row)
+    }
+
+    @Test
+    fun exportsHeatLimitsAndBrowserWorkWithoutWidgetUrls() {
+        val widget = dev.mobs.scene.SceneSource(name = "Chat", kind = dev.mobs.scene.SourceKind.BROWSER, url = "https://example.com/private-widget")
+        val state = StreamEngineState(
+            heatMode = HeatMode.HOT,
+            scene = dev.mobs.scene.Scene(name = "Live", sources = listOf(widget, widget.copy(id = "duplicate"), widget.copy(id = "hidden", visible = false))),
+            stats = StreamStats(outputFps = 15, browserUploadFps = 5, browserUploadBytesPerSecond = 4_608_000),
+        )
+        val row = SessionRecorder.csvRow(EPOCH_MS, 0, state, ThermalState(level = ThermalLevel.SEVERE), battery)
+        val values = SessionRecorder.CSV_HEADER.split(",").zip(row.split(",")).toMap()
+        assertEquals("hot", values["heat_mode"])
+        assertEquals("30", values["profile_fps"])
+        assertEquals("15", values["video_fps_limit"])
+        assertEquals("5", values["browser_fps_limit"])
+        assertEquals("5", values["browser_upload_fps"])
+        assertEquals("4608000", values["browser_upload_bytes_per_second"])
+        assertEquals("1", values["browser_documents"])
+        assertFalse(row.contains("private-widget"))
     }
 
     @Test

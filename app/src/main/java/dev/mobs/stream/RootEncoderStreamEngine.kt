@@ -50,10 +50,11 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
 
     /**
      * Lowers the encoder bitrate when RootEncoder's send queue backs up, then probes back toward
-     * the profile bitrate. Resolution and frame rate stay fixed; only bitrate adapts, as the plan
-     * allows. Without it a slow uplink lets the queue overflow and YouTube receives too little.
+     * the profile bitrate, bounded by the heat policy. Congestion changes bitrate only; severe
+     * heat also limits video cadence. A slow uplink must not overflow the send queue.
      */
     private var bitrateAdapter: QueueAwareBitrateAdapter? = null
+    @Volatile private var networkBitrate = VideoProfile.LANDSCAPE_1080P30.bitrateBps
 
     /** The current destination's server, for state that must not contain the key. */
     @Volatile private var server = ""
@@ -93,6 +94,7 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
             // ReconnectPolicy owns the budget. RootEncoder's own counter only resets on stop, so
             // a finite value here would end a long session after enough separate short drops.
             setReTries(Int.MAX_VALUE)
+            setLogs(false)
             // Off by default in RootEncoder 2.8.1. Without it any CA-signed certificate is
             // accepted for any host, and the stream key travels inside this connection.
             setTlsHostVerification(true)
@@ -149,15 +151,15 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
             return unsupported(video, e.message ?: "Engine busy")
         }
         bitrateAdapter = QueueAwareBitrateAdapter(video.bitrateBps) { bitrate ->
-            stream.setVideoBitrateOnFly(bitrate)
-            _state.update { it.copy(stats = it.stats.copy(targetBitrateBps = bitrate.toLong())) }
+            networkBitrate = bitrate
+            applyBitrateLimit()
         }
         _state.update { it.copy(prepared = true, profileError = null, video = video) }
         return PrepareResult.Success
     }
 
     override fun attachPreview(surface: Surface, width: Int, height: Int) {
-        if (!_state.value.prepared || stream.isOnPreview) return
+        if (!_state.value.prepared || stream.isOnPreview || _state.value.heatMode.suspendPreview) return
         try {
             stream.startPreview(surface, width, height)
             _state.update { it.copy(previewing = true) }
@@ -227,12 +229,16 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
                 cameraZoom = { id, zoom -> _state.update { state ->
                     if (state.scene?.sources?.any { it.id == id } == true) state.copy(cameraZoom = state.cameraZoom + (id to zoom)) else state
                 } },
+                browserStats = { uploads, bytes -> _state.update {
+                    it.copy(stats = it.stats.copy(browserUploadFps = uploads, browserUploadBytesPerSecond = bytes))
+                } },
                 captureStats = { rear, front -> _state.update {
                     it.copy(camera = if (it.sceneError != null) it.camera else if (rear > 0 || front > 0) CameraStatus.Open else CameraStatus.Closed,
                         stats = it.stats.copy(rearCaptureFps = rear, frontCaptureFps = front))
                 } },
-            ).also { it.start(surfaceTexture, selected) }
+            ).also { it.setHeatMode(_state.value.heatMode); it.start(surfaceTexture, selected) }
         }
+        fun setHeatMode(mode: HeatMode) { renderer?.setHeatMode(mode) }
         fun update(scene: Scene, refresh: Boolean = false) {
             selected = scene
             if (refresh) renderer?.refresh(scene) else renderer?.update(scene)
@@ -255,25 +261,27 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
     }
 
     override fun startStream(destination: StreamDestination) {
-        if (!_state.value.prepared || stream.isStreaming) return
+        if (!_state.value.prepared || stream.isStreaming || _state.value.heatMode == HeatMode.COOLDOWN) return
         server = destination.server
         lastStreamKey = destination.streamKey
         reconnect.reset()
         stream.getStreamClient().resetDroppedVideoFrames()
-        // Each session starts at the full profile bitrate and adapts down from there.
+        // Reset the network estimate, then apply the current heat cap before sending.
         val profileBitrate = _state.value.video.bitrateBps
+        networkBitrate = profileBitrate
         bitrateAdapter?.reset()
         _state.update {
             it.copy(
                 streamActive = true,
                 connection = ConnectionState.Connecting(destination.server),
-                stats = StreamStats(targetBitrateBps = profileBitrate.toLong()),
+                stats = StreamStats(targetBitrateBps = minOf(profileBitrate, it.heatMode.bitrateCap).toLong()),
             )
         }
         try {
             stream.startStream(destination.endpoint)
             // On-the-fly bitrate changes only reach a running encoder, so reset after start.
-            stream.setVideoBitrateOnFly(profileBitrate)
+            applyBitrateLimit()
+            stream.getGlInterface().forceFpsLimit(minOf(_state.value.video.fps, _state.value.heatMode.videoFps))
             syncOverlayFilter()
         } catch (e: RuntimeException) {
             // The message may quote the endpoint, which contains the key; log the type only.
@@ -312,6 +320,22 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
         }
         _state.update { it.copy(logoOverlay = logo) }
         syncOverlayFilter()
+    }
+
+    @Synchronized
+    private fun applyBitrateLimit() {
+        val bitrate = minOf(networkBitrate, _state.value.heatMode.bitrateCap)
+        if (stream.isStreaming) stream.setVideoBitrateOnFly(bitrate)
+        _state.update { it.copy(stats = it.stats.copy(targetBitrateBps = if (it.streamActive) bitrate.toLong() else 0)) }
+    }
+
+    override fun setHeatMode(mode: HeatMode) {
+        if (_state.value.heatMode == mode) return
+        _state.update { it.copy(heatMode = mode) }
+        if (mode.suspendPreview) detachPreview()
+        stream.getGlInterface().forceFpsLimit(minOf(_state.value.video.fps, mode.videoFps))
+        sceneSource?.setHeatMode(mode)
+        applyBitrateLimit()
     }
 
     override fun release() {

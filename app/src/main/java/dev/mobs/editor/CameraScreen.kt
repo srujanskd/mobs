@@ -54,6 +54,7 @@ import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -78,6 +79,7 @@ import androidx.core.content.FileProvider
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.mobs.R
+import dev.mobs.diagnostics.CrashDiagnostics
 import dev.mobs.render.OverlayAnchor
 import dev.mobs.render.TextOverlay
 import dev.mobs.stream.CameraFacing
@@ -93,6 +95,9 @@ import dev.mobs.stream.ThermalLevel
 import dev.mobs.stream.ThermalState
 import dev.mobs.stream.isCritical
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * Proof-of-concept live screen: the composed camera output, mute and camera switch, stream-key
@@ -167,8 +172,8 @@ fun CameraScreen(
     LaunchedEffect(state.streamActive) {
         if (!state.streamActive) previewOff = false
     }
-    if (previewOff) {
-        PreviewOffScreen(state, thermal, onWake = { previewOff = false }, modifier)
+    if (previewOff || state.heatMode.suspendPreview) {
+        PreviewOffScreen(state, thermal, onWake = { previewOff = false }, onStop = viewModel::stopStream, modifier = modifier)
         return
     }
 
@@ -268,13 +273,23 @@ fun CameraScreen(
                         if (state.streamActive) StudioAction(StudioIcon.EYE, stringResource(R.string.action_preview_off), onClick = { previewOff = true })
                         else {
                             val context = LocalContext.current
-                            StudioAction(StudioIcon.SHARE, "Share session logs", onClick = { shareSessionLogs(context) })
+                            val shareScope = rememberCoroutineScope()
+                            var sharing by remember { mutableStateOf(false) }
+                            StudioAction(StudioIcon.SHARE, "Share session logs", enabled = !sharing, onClick = {
+                                shareScope.launch {
+                                    sharing = true
+                                    try { shareSessionLogs(context) } finally { sharing = false }
+                                }
+                            })
                         }
                     }
-                    Column(Modifier.weight(1f).background(Color(0x990C1018), RoundedCornerShape(12.dp)).padding(8.dp)) { ThermalStatus(thermal) }
+                    Column(Modifier.weight(1f).background(Color(0x990C1018), RoundedCornerShape(12.dp)).padding(8.dp)) {
+                        ThermalStatus(thermal)
+                        if (state.heatMode == dev.mobs.stream.HeatMode.WARM) Text(stringResource(R.string.heat_warm), color = Color.White)
+                    }
                     when {
                         state.streamActive -> Button(onClick = { confirmStop = true }, colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE95573)), shape = RoundedCornerShape(16.dp), contentPadding = PaddingValues(horizontal = 24.dp, vertical = 16.dp)) { Text(stringResource(R.string.action_stop_stream)) }
-                        destination is SavedDestination.Ready -> Button(onClick = viewModel::goLive, enabled = state.profileError == null && !thermal.level.isCritical(), shape = RoundedCornerShape(16.dp), contentPadding = PaddingValues(horizontal = 24.dp, vertical = 16.dp)) { Text(stringResource(R.string.action_go_live)) }
+                        destination is SavedDestination.Ready -> Button(onClick = viewModel::goLive, enabled = state.profileError == null && !thermal.level.isCritical() && state.heatMode != dev.mobs.stream.HeatMode.COOLDOWN, shape = RoundedCornerShape(16.dp), contentPadding = PaddingValues(horizontal = 24.dp, vertical = 16.dp)) { Text(stringResource(R.string.action_go_live)) }
                         else -> Button(onClick = { showSetup = true }, enabled = destination == SavedDestination.Missing, shape = RoundedCornerShape(16.dp), contentPadding = PaddingValues(horizontal = 24.dp, vertical = 16.dp)) { Text(stringResource(R.string.action_set_up_stream)) }
                     }
                 }
@@ -424,6 +439,7 @@ private fun PreviewOffScreen(
     state: StreamEngineState,
     thermal: ThermalState,
     onWake: () -> Unit,
+    onStop: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val activity = LocalActivity.current
@@ -446,12 +462,20 @@ private fun PreviewOffScreen(
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             ConnectionStatus(connection = state.connection, stats = state.stats)
             ThermalStatus(thermal)
-            Text(
+            if (state.heatMode.suspendPreview) Text(
+                stringResource(if (state.heatMode == dev.mobs.stream.HeatMode.COOLDOWN)
+                    R.string.heat_cooldown else R.string.heat_hot), color = Color.White,
+                modifier = Modifier.padding(16.dp),
+            )
+            if (!state.heatMode.suspendPreview) Text(
                 stringResource(R.string.preview_off_hint),
                 color = Color.Gray,
                 style = MaterialTheme.typography.labelMedium,
                 modifier = Modifier.padding(top = 12.dp),
             )
+            if (state.streamActive) TextButton(onClick = onStop) {
+                Text(stringResource(R.string.action_stop_stream), color = Color.White)
+            }
         }
     }
 }
@@ -460,8 +484,11 @@ private fun PreviewOffScreen(
  * Sends the newest sessions' CSVs and logs through the share sheet, for phones that cannot be
  * attached to a computer. Logs are redacted when written; read access is granted per file.
  */
-private fun shareSessionLogs(context: Context) {
-    val files = SessionRecorder.newestSessionFiles(StreamService.sessionsDirectory(context), SHARED_SESSIONS)
+private suspend fun shareSessionLogs(context: Context) {
+    val files = withContext(Dispatchers.IO) {
+        SessionRecorder.newestSessionFiles(StreamService.sessionsDirectory(context), SHARED_SESSIONS) +
+            CrashDiagnostics.collect(context)
+    }
     if (files.isEmpty()) {
         Toast.makeText(context, R.string.share_logs_none, Toast.LENGTH_SHORT).show()
         return

@@ -2,6 +2,12 @@
 
 The suite catches measured regressions. A passing JVM simulation or emulator test does not establish camera cadence, dual-camera support, power use, audio sync, or phone endurance. Physical-device baseline results have not been recorded yet. The budgets are provisional engineering limits and must be reviewed against repeated phone measurements.
 
+## Idle web overlay work
+
+Browser capture now follows WebView invalidations, retains a 250 ms animation grace period, and uses a one-second idle safety refresh. A static 320×180 page produced 61 snapshots in a two-second emulator baseline and 2 after the change. The full-resolution animated JavaScript test still captured 30 fps with 43 distinct colors in 1.5 seconds and one reused bitmap. Tests also cover CSS animation starting after idle, a delayed JavaScript update, inactive-page reactivation, scene persistence, and a held upload during resizing and close. These are software-capture work counts, not measurements of battery savings or phone temperature.
+
+Compare the same phone, scene/widget URLs, brightness, network, ambient temperature and APK build type for at least 30 minutes using the session-run commands below. Include a quiet chat period and active scrolling/animations. Compare battery drain, thermal status, camera/output cadence and received playback. Keep the broadcast at 1080p30 and do not infer whole-app power savings from the snapshot reduction. The independent app-closure report remains unresolved until crash/process-exit evidence is available.
+
 ## Checks on every change
 
 ```sh
@@ -128,3 +134,22 @@ source scripts/android-env.sh
 ```
 
 Validate the actual chat widget on a physical phone alongside the camera and encoder. Include animated message arrivals and scrolling, multiple visible URLs, resizing, scene cuts, and a sustained thermal run. Full-resolution software capture processes four times the pixels of the former half-resolution capture; higher cadence also increases work. Complex animated pages may still need a hardware-rendered browser composition path. A 30 fps capture target does not establish that a particular page animates at 30 fps or that camera/encoder cadence stays within budget.
+
+
+## Heat protection, October 30, 2026
+
+Runtime heat policy now acts before critical temperature. Moderate Android thermal status caps browser snapshots at 15 fps and encoder bitrate at 6 Mbps. Severe status suspends and dims preview, caps browser snapshots at 5 fps, caps composition/GL output at 15 fps and bitrate at 4 Mbps, and requests a supported lower camera capture range in place. The camera request falls back to the supported profile range when no lower range is advertised. Capture counters remain actual fresh frames, not the requested cap. Saved scenes, picture size, microphone/audio and transport session are retained; camera sources are not removed.
+
+Critical status stops streaming immediately. Sixty continuous seconds at severe or higher also stops streaming, even if critical is never reported. Cooldown prevents preview attachment and stream start. Runtime limits restore only after 30 continuous seconds at light status or below, checked at one-second intervals. A stopped stream never restarts automatically. The editor explains the limits and provides Stop while preview is suspended. The service owns the policy when the editor is unbound.
+
+The 60-second severe timeout, 30-second recovery delay and bitrate/frame-rate caps are initial application policy, not vendor temperature thresholds or a measured guarantee of safe case temperature. No new battery-temperature threshold is inferred from the OnePlus sample, and the discrepant headroom forecast does not override Android thermal status. Match physical runs to tune these limits. This runtime policy supersedes earlier statements that all lower thermal levels leave the stream unchanged.
+
+RTMP packet-level logging is disabled. The existing browser idle-capture optimization remains enabled. New session columns append heat mode, video/browser fps limits, actual aggregate browser texture uploads per second, estimated upload payload bytes per second, and the number of distinct active browser documents. URLs are not exported. Upload bytes are RGBA bitmap payload, not measured hardware memory bandwidth. Requested output profile stays 1080p30 in the CSV, with separate runtime limits and measured output counters.
+
+The full-quality release gate is unchanged: a run with severe status or sustained reduced cadence still fails. Passing a heat-policy unit test does not satisfy that gate. Compare v0.2.1 and the candidate on the same OnePlus, starting cool with matched brightness, ambient temperature, network and scene. Include rear-only, dual-camera, real widget on/off and preview on/off as separate matched cases, and repeat runs. Check receiver audio/video sync and delivered cadence through thermal transitions, including reconnects. Confirm sustained severe heat ends cleanly, source resources close, cooling recovery restores preview/cadence, and the user must explicitly restart after a thermal stop. Retain CSVs, complete text logs, thermal-service sensor readings and receiver recordings. No physical-phone thermal acceptance has been established by the local changes.
+
+
+Local verification for this policy: 88 JVM tests and 10 Python performance-checker tests passed. All six `BrowserSourceDeviceTest` tests and all five `SceneRendererDeviceTest` tests passed on the API 37 emulator in separate class runs. The browser rate-limit test kept JavaScript updates alive at the 5 fps cap and restored normal cadence; the compositor test reduced output to 15 fps and restored normal cadence without replacing its output surface. An idle page produced two snapshots in two seconds; the animated 1920x1080 fixture produced 30 fps with one reused bitmap in its 1.5-second sample. Debug lint reported zero errors and 17 warnings. The optimized, non-debuggable benchmark APK built successfully. These short emulator checks establish behavior and bounded capture work, not phone power consumption, thermal safety, sustained physical-camera cadence or receiver audio/video sync.
+
+
+For v0.2.2 release validation, all 33 default API 37 emulator regressions passed in one full run, including crash diagnostic sharing and editor controls. The 88 JVM tests and 10 Python performance-checker tests passed. Debug/release lint each reported zero errors and 17 warnings. Debug, unsigned release, optimized installable and standalone benchmark test APKs built successfully. The installable APK has version code 5 and the same signing certificate as v0.2.1. These checks do not establish physical-phone thermal acceptance.

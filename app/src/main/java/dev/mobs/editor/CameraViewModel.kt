@@ -121,7 +121,7 @@ class CameraViewModel(
         val engine = engine ?: return
         val destination = (mutableDestination.value as? SavedDestination.Ready)?.destination ?: return
         val current = engine.state.value
-        if (current.streamActive || current.profileError != null) return
+        if (current.streamActive || current.profileError != null || current.heatMode == dev.mobs.stream.HeatMode.COOLDOWN) return
         // The service would stop it again immediately; the screen shows why.
         if (thermalSource?.value?.level?.isCritical() == true) return
         engine.startStream(destination)

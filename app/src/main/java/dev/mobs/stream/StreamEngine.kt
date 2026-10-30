@@ -56,12 +56,16 @@ interface StreamEngine {
     /** Ends the session. A non-null [failure] reports it as [ConnectionState.Failed] instead of idle. */
     fun stopStream(failure: String? = null)
 
+    /** Apply service-owned runtime heat limits without restarting transport. */
+    fun setHeatMode(mode: HeatMode)
+
     fun release()
 }
 
 /**
  * Mandatory output profile from the plan: native 1920x1080 at 30 fps, landscape, one camera.
- * [bitrateBps] starts at YouTube's documented 1080p30 H.264 recommendation.
+ * [bitrateBps] starts at YouTube's documented 1080p30 H.264 recommendation. Runtime heat
+ * protection may reduce bitrate and cadence without rewriting this requested profile.
  */
 data class VideoProfile(
     val width: Int,
@@ -107,6 +111,7 @@ sealed interface PrepareResult {
 }
 
 data class StreamEngineState(
+    val heatMode: HeatMode = HeatMode.NORMAL,
     val scene: Scene? = null,
     val cameraZoom: Map<String, dev.mobs.scene.CameraZoomState> = emptyMap(),
     val sceneError: String? = null,
@@ -138,6 +143,9 @@ data class StreamStats(
     val targetBitrateBps: Long = 0,
     /** Video frames the encoder produced in the last second. */
     val outputFps: Int = 0,
+    /** Successful browser texture uploads per second, across active documents. */
+    val browserUploadFps: Int = 0,
+    val browserUploadBytesPerSecond: Long = 0,
     val rearCaptureFps: Int = 0,
     val frontCaptureFps: Int = 0,
     val droppedVideoFrames: Long = 0,

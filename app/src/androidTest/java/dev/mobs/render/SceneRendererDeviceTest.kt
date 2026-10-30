@@ -17,6 +17,39 @@ import java.util.concurrent.CopyOnWriteArrayList
 /** Real EGL composition and pixel tests. These run on an emulator too, without a camera. */
 @RunWith(AndroidJUnit4::class)
 class SceneRendererDeviceTest {
+    @Test fun thermalPacingReducesCompositionAndRecoversOnTheSameSurface() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val errors = CopyOnWriteArrayList<String>()
+        val frames = java.util.concurrent.atomic.AtomicInteger()
+        val ready = java.util.concurrent.CountDownLatch(1)
+        val consumer = android.os.HandlerThread("ThermalTestConsumer").apply { start() }
+        val reader = ImageReader.newInstance(320, 180, PixelFormat.RGBA_8888, 3)
+        reader.setOnImageAvailableListener({ r -> r.acquireLatestImage()?.use {
+            frames.incrementAndGet()
+            ready.countDown()
+        } }, android.os.Handler(consumer.looper))
+        val renderer = SceneRenderer(context, context.cacheDir, 320, 180, 30, error = errors::add)
+        try {
+            renderer.setHeatMode(dev.mobs.stream.HeatMode.HOT)
+            renderer.start(reader.surface, Scene(name = "Thermal", sources = listOf(
+                SceneSource(name = "Color", kind = SourceKind.COLOR, color = 0xFF00FF00.toInt()),
+            )))
+            assertTrue(ready.await(8, java.util.concurrent.TimeUnit.SECONDS))
+            Thread.sleep(300)
+            val hotStart = frames.get()
+            Thread.sleep(2000)
+            val hotFrames = frames.get() - hotStart
+            assertTrue("Hot composition should stay live at <=15 fps: $hotFrames frames", hotFrames in 20..32)
+            renderer.setHeatMode(dev.mobs.stream.HeatMode.NORMAL)
+            Thread.sleep(300)
+            val coolStart = frames.get()
+            Thread.sleep(2000)
+            val coolFrames = frames.get() - coolStart
+            assertTrue("Cooling must restore normal cadence: $coolFrames frames", coolFrames >= 50)
+            assertTrue(errors.toString(), errors.isEmpty())
+        } finally { renderer.stop(); reader.close(); consumer.quitSafely(); consumer.join(2000) }
+    }
+
     @Test fun sourcePlacementOrderOpacityAndSceneCutsReachTheOutputSurface() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val errors = CopyOnWriteArrayList<String>()

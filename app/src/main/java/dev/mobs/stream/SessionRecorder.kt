@@ -124,7 +124,7 @@ internal class SessionRecorder(
 
         const val CSV_HEADER = "time,elapsed_s,connection,sent_bps,target_bps,output_fps,dropped_frames," +
             "previewing,thermal,headroom,battery_pct,battery_temp_c,current_now,voltage_mv,plugged," +
-            "width,height,profile_fps,source_count,rear_camera,front_camera,scene_error,java_heap_bytes,native_heap_bytes,rss_kb,sample_kind,rear_capture_fps,front_capture_fps"
+            "width,height,profile_fps,source_count,rear_camera,front_camera,scene_error,java_heap_bytes,native_heap_bytes,rss_kb,sample_kind,rear_capture_fps,front_capture_fps,heat_mode,video_fps_limit,browser_fps_limit,browser_upload_fps,browser_upload_bytes_per_second,browser_documents"
 
         /** Files of the newest [sessions] sessions, newest first; each has a CSV and maybe a log. */
         fun newestSessionFiles(directory: File, sessions: Int): List<File> {
@@ -156,6 +156,9 @@ internal class SessionRecorder(
                 state.scene?.cameras?.contains(dev.mobs.scene.SourceKind.FRONT_CAMERA) ?: (state.cameraFacing == CameraFacing.FRONT),
                 state.sceneError != null, memory.javaHeapBytes, memory.nativeHeapBytes, memory.rssKb,
                 sampleKind, state.stats.rearCaptureFps, state.stats.frontCaptureFps,
+                state.heatMode.name.lowercase(Locale.ROOT), minOf(state.video.fps, state.heatMode.videoFps), minOf(state.video.fps, state.heatMode.browserFps),
+                state.stats.browserUploadFps, state.stats.browserUploadBytesPerSecond,
+                state.scene?.sources?.filter { it.kind == dev.mobs.scene.SourceKind.BROWSER && it.visible && it.opacity > 0f && it.url.isNotEmpty() }?.distinctBy { it.url }?.size ?: 0,
             ).joinToString(",") { it?.toString().orEmpty() }
 
         /** A fixed word per state: reasons are free text and may contain commas. */

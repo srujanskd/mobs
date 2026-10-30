@@ -8,7 +8,11 @@ The product scope and device acceptance gates are in [the Android streaming plan
 
 ## Download
 
-The latest testing release is [Mobs v0.2.1](https://github.com/srujanskd/mobs/releases/tag/v0.2.1). Download `mobs-v0.2.1.apk` for the optimized installable APK of approximately 4 MB. It supports Android 10 and newer and upgrades v0.1 using the same local testing key. See the [changelog](CHANGELOG.md) for changes and device-validation limits.
+The latest testing release is [Mobs v0.2.2](https://github.com/srujanskd/mobs/releases/tag/v0.2.2). Download `mobs-v0.2.2.apk` for the optimized installable APK of approximately 4 MB. It supports Android 10 and newer and upgrades v0.1 using the same local testing key. See the [changelog](CHANGELOG.md) for changes and device-validation limits.
+
+## Heat management
+
+The saved output profile is 1080p30. At moderate Android thermal status, the app reduces browser snapshots and caps upload bitrate. At severe status, preview is suspended and dimmed, video is limited to 15 fps, browser snapshots to 5 fps, and bitrate to 4 Mbps. Camera requests use a supported lower frame rate when available. Critical heat or one continuous minute of severe heat stops the stream. Normal operation returns after 30 continuous seconds at light heat or below; a stopped stream requires an explicit restart. These controls do not establish sustained thermal performance on a particular phone. See the [performance guide](docs/performance-and-stability.md) for limits and validation.
 
 ## Studio controls
 

@@ -54,6 +54,7 @@ internal class SceneRenderer(
     private val sourceError: (String) -> Unit = error,
     private val browserFactory: (Context, String, Int, Int, () -> Unit, (Bitmap, () -> Unit) -> Unit) -> BrowserSource =
         { ctx, url, w, h, failed, frame -> BrowserSource(ctx, url, w, h, failed, fps = fps, onFrame = frame) },
+    private val browserStats: (Int, Long) -> Unit = { _, _ -> },
     private val cameraZoom: (String, dev.mobs.scene.CameraZoomState) -> Unit = { _, _ -> },
 ) {
     private val appContext = context.applicationContext
@@ -72,11 +73,15 @@ internal class SceneRenderer(
     private var scene: Scene? = null
     @Volatile private var generation = 0
     @Volatile private var released = false
+    private var browserUploads = 0
+    private var browserUploadBytes = 0L
     private var lastStatsNs = System.nanoTime()
     private var nextTickNs = System.nanoTime()
     private val pendingScene = java.util.concurrent.atomic.AtomicReference<Scene?>(null)
     private val refreshRequested = java.util.concurrent.atomic.AtomicBoolean(false)
     private val updateQueued = java.util.concurrent.atomic.AtomicBoolean(false)
+    private var heatMode = dev.mobs.stream.HeatMode.NORMAL
+    private var nextDrawNs = 0L
     private var drawing = false
     private var program2d = 0
     private var programCamera = 0
@@ -103,7 +108,10 @@ internal class SceneRenderer(
     }
     private val drawTask = Runnable {
         drawing = false
-        if (!renderFailed) try { draw() } catch (_: RuntimeException) {
+        if (!renderFailed) try {
+            nextDrawNs = System.nanoTime() + 1_000_000_000L / minOf(fps, heatMode.videoFps)
+            draw()
+        } catch (_: RuntimeException) {
             renderFailed = true
             closeCameras()
             error("Scene rendering stopped because the output surface was lost")
@@ -119,10 +127,13 @@ internal class SceneRenderer(
             if (elapsed >= 1) {
                 captureStats(kotlin.math.round((cameras[SourceKind.REAR_CAMERA]?.frames ?: 0) / elapsed).toInt(),
                     kotlin.math.round((cameras[SourceKind.FRONT_CAMERA]?.frames ?: 0) / elapsed).toInt())
+                browserStats(kotlin.math.round(browserUploads / elapsed).toInt(), (browserUploadBytes / elapsed).toLong())
+                browserUploads = 0
+                browserUploadBytes = 0L
                 cameras.values.forEach { it.frames = 0 }
                 lastStatsNs = now
             }
-            nextTickNs = maxOf(nextTickNs + 1_000_000_000L / fps, now)
+            nextTickNs = maxOf(nextTickNs + 1_000_000_000L / minOf(fps, heatMode.videoFps), now)
             handler.postDelayed(this, ((nextTickNs - System.nanoTime() + 999_999) / 1_000_000).coerceAtLeast(1))
         }
     }
@@ -141,6 +152,23 @@ internal class SceneRenderer(
                 updateOnGl(initial)
             }
             handler.post(staticTick)
+        }
+    }
+
+    /** Changes requests in place; no camera close/open or transport restart on a thermal event. */
+    fun setHeatMode(mode: dev.mobs.stream.HeatMode) {
+        handler.post {
+            if (released || heatMode == mode) return@post
+            heatMode = mode
+            browsers.values.forEach { it.source.setFrameRate(minOf(fps, mode.browserFps)) }
+            cameras.forEach { (kind, input) ->
+                input.session?.let { session ->
+                    try { setRepeating(input, session, kind) } catch (_: Exception) {
+                        // Keep the previous working repeating request if the driver rejects a hint.
+                        sourceError("Camera could not apply the heat limit. Cooling protection remains active.")
+                    }
+                }
+            }
         }
     }
 
@@ -288,12 +316,15 @@ internal class SceneRenderer(
                                 } else {
                                     GLUtils.texSubImage2D(GLES20.GL_TEXTURE_2D, 0, 0, 0, bitmap)
                                 }
+                                browserUploads++
+                                browserUploadBytes += bitmap.width.toLong() * bitmap.height * 4
                             }
                         } catch (_: RuntimeException) {
                             sourceError("Web overlay rendering failed. Remove the source or apply the scene again.")
                         } finally { complete() }
                     }) { complete() }
                 }
+                entry.source.setFrameRate(minOf(fps, heatMode.browserFps))
             }
         }
         visible.filter { it.kind !in Scene.CAMERA_KINDS && it.kind != SourceKind.BROWSER }.forEach { source ->
@@ -480,9 +511,8 @@ internal class SceneRenderer(
     private fun setRepeating(input: CameraInput, session: CameraCaptureSession, kind: SourceKind, next: ZoomCommand? = null) {
         val info = manager.getCameraCharacteristics(input.cameraId)
         val ranges = info.get(CameraCharacteristics.CONTROL_AE_AVAILABLE_TARGET_FPS_RANGES).orEmpty()
-        val range = ranges.firstOrNull { it.lower == fps && it.upper == fps }
-            ?: ranges.filter { it.contains(fps) }.minByOrNull { it.upper - it.lower }
-            ?: kotlin.error("Camera cannot capture at requested frame rate")
+        val chosen = captureFrameRate(ranges.map { it.lower..it.upper }, minOf(fps, heatMode.videoFps), fps)
+        val range = android.util.Range(chosen.first, chosen.last)
         val zoom = scene?.sources?.firstOrNull { it.kind == kind }?.zoom ?: 1f
         val zoomRange = if (Build.VERSION.SDK_INT >= 30) info.get(CameraCharacteristics.CONTROL_ZOOM_RATIO_RANGE) else null
         val effective = zoom.coerceIn(zoomRange?.lower ?: 1f, zoomRange?.upper ?: info.get(CameraCharacteristics.SCALER_AVAILABLE_MAX_DIGITAL_ZOOM) ?: 1f)
@@ -563,7 +593,11 @@ internal class SceneRenderer(
     }
 
     private fun requestDraw() {
-        if (!drawing && !released) { drawing = true; handler.post(drawTask) }
+        if (!drawing && !released) {
+            drawing = true
+            val waitMs = ((nextDrawNs - System.nanoTime() + 999_999) / 1_000_000).coerceAtLeast(0)
+            handler.postDelayed(drawTask, waitMs)
+        }
     }
 
     private fun draw() {
