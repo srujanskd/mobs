@@ -24,7 +24,7 @@ import java.util.concurrent.atomic.AtomicInteger
 
 /** Exercises actual Camera2 open/close callbacks on an emulator or phone. Not optical acceptance. */
 class CameraRestartDeviceTest {
-    @Test fun repeatedRefreshWaitsForCameraClosureAndProducesFreshFramesAgain() {
+    @Test fun refreshAndSceneCutsReleaseUnusedCamerasAndResumeFreshFrames() {
         val instrumentation = InstrumentationRegistry.getInstrumentation()
         val context = instrumentation.targetContext
         instrumentation.uiAutomation.grantRuntimePermission(context.packageName, Manifest.permission.CAMERA)
@@ -42,8 +42,18 @@ class CameraRestartDeviceTest {
             reader.setOnImageAvailableListener({ it.acquireLatestImage()?.close() }, Handler(consumer.looper))
             val errors = CopyOnWriteArrayList<String>()
             val samples = AtomicInteger()
+            val rearAvailable = java.util.concurrent.atomic.AtomicBoolean(false)
+            val idleSamples = AtomicInteger()
+            val availability = object : CameraManager.AvailabilityCallback() {
+                override fun onCameraAvailable(cameraId: String) { if (cameraId == rear) rearAvailable.set(true) }
+                override fun onCameraUnavailable(cameraId: String) { if (cameraId == rear) rearAvailable.set(false) }
+            }
+            manager.registerAvailabilityCallback(availability, Handler(consumer.looper))
             val renderer = SceneRenderer(context, File(context.filesDir, "scene-media"), size.width, size.height, 30,
-                error = errors::add, captureStats = { rearFps, _ -> if (rearFps > 0) samples.incrementAndGet() })
+                error = errors::add, captureStats = { rearFps, frontFps ->
+                    if (rearFps > 0) samples.incrementAndGet()
+                    if (rearFps == 0 && frontFps == 0) idleSamples.incrementAndGet() else idleSamples.set(0)
+                })
             val scene = Scene(name = "Restart regression", sources = listOf(SceneSource(name = "Rear", kind = SourceKind.REAR_CAMERA)))
             try {
                 renderer.start(reader.surface, scene)
@@ -53,8 +63,23 @@ class CameraRestartDeviceTest {
                     renderer.refresh(scene)
                     awaitFreshSample(samples, before, errors)
                 }
+                assertFalse("Active capture must own the rear camera", rearAvailable.get())
+                renderer.update(Scene(name = "Logo only", sources = listOf(
+                    SceneSource(name = "Background", kind = SourceKind.COLOR),
+                )))
+                val deadline = System.nanoTime() + 6_000_000_000L
+                while ((!rearAvailable.get() || idleSamples.get() < 2) && System.nanoTime() < deadline) Thread.sleep(50)
+                assertTrue("Leaving the camera scene must close the device", rearAvailable.get())
+                assertTrue("Inactive cameras must stop producing frames", idleSamples.get() >= 2)
+                val before = samples.get()
+                renderer.update(scene)
+                awaitFreshSample(samples, before, errors)
                 assertTrue(errors.toString(), errors.isEmpty())
-            } finally { renderer.stop(); reader.close(); consumer.quitSafely(); consumer.join(1_000) }
+            } finally {
+                renderer.stop()
+                manager.unregisterAvailabilityCallback(availability)
+                reader.close(); consumer.quitSafely(); consumer.join(1_000)
+            }
         }
     }
 

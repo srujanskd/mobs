@@ -45,46 +45,54 @@ internal class BrowserSource(
     private val tick = object : Choreographer.FrameCallback {
         override fun doFrame(frameTimeNanos: Long) {
             if (closed || !active) return
-            choreographer.postFrameCallback(this)
-            if (frameTimeNanos < nextFrameNs) return
-            // Keep a fixed phase rather than adding capture/upload time to every interval.
-            nextFrameNs = if (nextFrameNs == 0L || frameTimeNanos - nextFrameNs >= intervalNs)
-                frameTimeNanos + intervalNs else nextFrameNs + intervalNs
-            val view = web ?: return
-            if (dirty) lastChangeNs = frameTimeNanos
-            // Reuse idle content, with a safety refresh for missed WebView invalidations.
-            // A short grace period avoids gaps between asynchronous animation updates.
-            if (!dirty && frameTimeNanos - lastChangeNs > ANIMATION_GRACE_NS &&
-                frameTimeNanos - lastCaptureNs < IDLE_REFRESH_NS) return
-            if (!busy.compareAndSet(false, true)) return
-            val bitmap = buffer?.takeIf { !it.isRecycled && it.width == width && it.height == height }
-                ?: androidx.core.graphics.createBitmap(width, height).also { replacement ->
-                    buffer?.takeUnless { it.isRecycled }?.recycle()
-                    buffer = replacement
-                }
-            val returned = AtomicBoolean(false)
-            val complete = {
-                if (returned.compareAndSet(false, true)) main.post {
-                    if (closed || !active || bitmap.width != width || bitmap.height != height) {
-                        if (buffer === bitmap) buffer = null
-                        bitmap.recycle()
-                    }
-                    busy.set(false)
-                }
-                Unit
-            }
             try {
-                dirty = false // Invalidations during layout/draw must survive for the next frame.
-                lastCaptureNs = frameTimeNanos
-                // A detached WebView has no parent to service requestLayout after DOM changes.
-                if (view.isLayoutRequested || view.width != width || view.height != height) {
-                    view.measure(View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY))
-                    view.layout(0, 0, width, height)
+                if (frameTimeNanos < nextFrameNs) return
+                // Keep a fixed phase rather than adding capture/upload time to every interval.
+                nextFrameNs = if (nextFrameNs == 0L || frameTimeNanos - nextFrameNs >= intervalNs)
+                    frameTimeNanos + intervalNs else nextFrameNs + intervalNs
+                val view = web ?: return
+                if (dirty) lastChangeNs = frameTimeNanos
+                // Reuse idle content, with a safety refresh for missed WebView invalidations.
+                // A short grace period avoids gaps between asynchronous animation updates.
+                if (!dirty && frameTimeNanos - lastChangeNs > ANIMATION_GRACE_NS &&
+                    frameTimeNanos - lastCaptureNs < IDLE_REFRESH_NS) return
+                if (!busy.compareAndSet(false, true)) return
+                val bitmap = buffer?.takeIf { !it.isRecycled && it.width == width && it.height == height }
+                    ?: androidx.core.graphics.createBitmap(width, height).also { replacement ->
+                        buffer?.takeUnless { it.isRecycled }?.recycle()
+                        buffer = replacement
+                    }
+                val returned = AtomicBoolean(false)
+                val complete = {
+                    if (returned.compareAndSet(false, true)) main.post {
+                        if (closed || !active || bitmap.width != width || bitmap.height != height) {
+                            if (buffer === bitmap) buffer = null
+                            bitmap.recycle()
+                        }
+                        busy.set(false)
+                    }
+                    Unit
                 }
-                bitmap.eraseColor(Color.TRANSPARENT)
-                if (!failed) view.draw(Canvas(bitmap))
-                onFrame(bitmap, complete)
-            } catch (_: RuntimeException) { dirty = true; complete() }
+                try {
+                    dirty = false // Invalidations during layout/draw must survive for the next frame.
+                    lastCaptureNs = frameTimeNanos
+                    // A detached WebView has no parent to service requestLayout after DOM changes.
+                    if (view.isLayoutRequested || view.width != width || view.height != height) {
+                        view.measure(View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY))
+                        view.layout(0, 0, width, height)
+                    }
+                    bitmap.eraseColor(Color.TRANSPARENT)
+                    if (!failed) view.draw(Canvas(bitmap))
+                    onFrame(bitmap, complete)
+                } catch (_: RuntimeException) { dirty = true; complete() }
+            } finally {
+                if (!closed && active) {
+                    // Do not wake on every display refresh on 120/165 Hz phones.
+                    // Wake just before the next capture deadline and align to vsync.
+                    val delayMs = ((nextFrameNs - System.nanoTime()) / 1_000_000L - 2).coerceAtLeast(0)
+                    choreographer.postFrameCallbackDelayed(this, delayMs)
+                }
+            }
         }
     }
 
@@ -114,6 +122,14 @@ internal class BrowserSource(
             settings.allowContentAccess = false
             settings.mediaPlaybackRequiresUserGesture = true
             webViewClient = object : WebViewClient() {
+                override fun onRenderProcessGone(view: WebView, detail: android.webkit.RenderProcessGoneDetail): Boolean {
+                    // Android otherwise terminates the host app along with a failed
+                    // widget renderer. Retire this source; an explicit refresh can retry.
+                    val report = !closed
+                    close()
+                    if (report) onError()
+                    return true
+                }
                 override fun onPageFinished(view: WebView, url: String) { dirty = true }
                 override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean =
                     !isBrowserUrl(request.url.toString())
@@ -154,6 +170,8 @@ internal class BrowserSource(
             if (!closed) {
                 intervalNs = 1_000_000_000L / fps
                 nextFrameNs = 0L
+                choreographer.removeFrameCallback(tick)
+                if (active) choreographer.postFrameCallback(tick)
             }
         }
     }

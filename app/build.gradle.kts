@@ -11,8 +11,8 @@ android {
         applicationId = "dev.mobs"
         minSdk = 29
         targetSdk = 36
-        versionCode = 5
-        versionName = "0.2.2"
+        versionCode = 7
+        versionName = "0.2.3-dev2"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 

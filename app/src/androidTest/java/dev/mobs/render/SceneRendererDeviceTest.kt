@@ -17,6 +17,116 @@ import java.util.concurrent.CopyOnWriteArrayList
 /** Real EGL composition and pixel tests. These run on an emulator too, without a camera. */
 @RunWith(AndroidJUnit4::class)
 class SceneRendererDeviceTest {
+    @Test fun missingInitialImageKeepsTheOutputClockRunningAndCanRecover() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val errors = CopyOnWriteArrayList<String>()
+        val frames = java.util.concurrent.atomic.AtomicInteger()
+        val consumer = android.os.HandlerThread("SourceFailureConsumer").apply { start() }
+        val reader = ImageReader.newInstance(320, 180, PixelFormat.RGBA_8888, 3)
+        reader.setOnImageAvailableListener({ it.acquireLatestImage()?.use { frames.incrementAndGet() } }, android.os.Handler(consumer.looper))
+        val renderer = SceneRenderer(context, context.cacheDir, 320, 180, 30, error = errors::add)
+        try {
+            renderer.start(reader.surface, Scene(name = "Missing image", sources = listOf(
+                SceneSource(name = "Missing", kind = SourceKind.IMAGE, media = "missing-${java.util.UUID.randomUUID()}.png"),
+            )))
+            Thread.sleep(1500)
+            assertTrue("The source failure must be reported", errors.isNotEmpty())
+            assertTrue("A failed source must not leave output frozen", frames.get() >= 25)
+            renderer.update(Scene(name = "Recovered", sources = emptyList()))
+            Thread.sleep(200)
+            val before = frames.get()
+            Thread.sleep(1000)
+            assertTrue("Applying a valid scene must retain output cadence", frames.get() - before >= 24)
+        } finally { renderer.stop(); reader.close(); consumer.quitSafely(); consumer.join(2000) }
+    }
+
+    @Test fun hiddenBrowserKeepsItsDocumentWithoutSnapshotsAcrossLongAndWarmSceneCuts() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val errors = CopyOnWriteArrayList<String>()
+        val loads = java.util.concurrent.atomic.AtomicInteger()
+        val reader = ImageReader.newInstance(320, 180, PixelFormat.RGBA_8888, 3)
+        val snapshots = java.util.concurrent.atomic.AtomicInteger()
+        val consumer = android.os.HandlerThread("BrowserRetentionConsumer").apply { start() }
+        reader.setOnImageAvailableListener({ it.acquireLatestImage()?.close() }, android.os.Handler(consumer.looper))
+        val renderer = SceneRenderer(context, context.cacheDir, 320, 180, 30, error = errors::add,
+            browserFactory = { ctx, _, w, h, failed, frame ->
+                loads.incrementAndGet()
+                BrowserSource(ctx, "data:text/html,<html></html>", w, h, failed) { bitmap, complete ->
+                    snapshots.incrementAndGet()
+                    frame(bitmap, complete)
+                }
+            })
+        val scene = Scene(name = "Chat", sources = listOf(
+            SceneSource(name = "Chat", kind = SourceKind.BROWSER, url = "https://chat.example/widget"),
+        ))
+        fun awaitLoads(count: Int) {
+            val deadline = System.nanoTime() + 3_000_000_000L
+            while (loads.get() < count && System.nanoTime() < deadline) Thread.sleep(30)
+            assertEquals("Expected document creation count", count, loads.get())
+        }
+        try {
+            renderer.start(reader.surface, scene)
+            awaitLoads(1)
+            renderer.update(scene.duplicate())
+            Thread.sleep(6000)
+            assertEquals("A visible URL shared across scenes must stay loaded", 1, loads.get())
+            val hidden = scene.update(scene.sources.single().copy(visible = false))
+            renderer.update(hidden)
+            Thread.sleep(300)
+            val hiddenSnapshots = snapshots.get()
+            repeat(7) { Thread.sleep(1000); renderer.update(hidden) }
+            assertEquals("Hidden widgets must not capture frames", hiddenSnapshots, snapshots.get())
+            renderer.update(scene)
+            Thread.sleep(300)
+            awaitLoads(1)
+            renderer.setHeatMode(dev.mobs.stream.HeatMode.WARM)
+            renderer.update(hidden)
+            Thread.sleep(300)
+            renderer.update(scene)
+            Thread.sleep(300)
+            awaitLoads(1)
+            renderer.refresh(scene)
+            awaitLoads(2)
+            assertTrue(errors.toString(), errors.isEmpty())
+        } finally { renderer.stop(); reader.close(); consumer.quitSafely(); consumer.join(2000) }
+    }
+
+    @Test fun normalSceneLimitsAnimatedBrowserUploadsWithoutSlowingOutput() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val errors = CopyOnWriteArrayList<String>()
+        val uploads = java.util.concurrent.atomic.AtomicInteger()
+        val frames = java.util.concurrent.atomic.AtomicInteger()
+        val ready = java.util.concurrent.CountDownLatch(1)
+        val consumer = android.os.HandlerThread("BrowserBudgetConsumer").apply { start() }
+        val reader = ImageReader.newInstance(320, 180, PixelFormat.RGBA_8888, 3)
+        reader.setOnImageAvailableListener({ it.acquireLatestImage()?.use { frames.incrementAndGet() } }, android.os.Handler(consumer.looper))
+        val renderer = SceneRenderer(context, context.cacheDir, 320, 180, 30, error = errors::add,
+            browserFactory = { ctx, _, w, h, failed, frame ->
+                val html = """<html><body style="margin:0;background:#00ff00"><script>let n=0;setInterval(()=>document.body.style.background='rgb('+(++n%200)+',255,0)',16)</script></body></html>"""
+                BrowserSource(ctx, "data:text/html," + java.net.URLEncoder.encode(html, "UTF-8").replace("+", "%20"), w, h, failed) { bitmap, complete ->
+                    uploads.incrementAndGet()
+                    if (android.graphics.Color.green(bitmap.getPixel(40, 40)) > 240) ready.countDown()
+                    frame(bitmap, complete)
+                }
+            })
+        try {
+            renderer.start(reader.surface, Scene(name = "Animated chat", sources = listOf(
+                SceneSource(name = "Chat", kind = SourceKind.BROWSER, url = "https://chat.example/widget"),
+            )))
+            assertTrue(ready.await(8, java.util.concurrent.TimeUnit.SECONDS))
+            Thread.sleep(300)
+            val uploadsBefore = uploads.get()
+            val framesBefore = frames.get()
+            Thread.sleep(2000)
+            val captured = uploads.get() - uploadsBefore
+            val output = frames.get() - framesBefore
+            android.util.Log.i("BrowserBudgetTest", "Normal scene: $captured uploads, $output output frames in 2s")
+            assertTrue("Chat must update at up to 15 fps: $captured uploads", captured in 20..32)
+            assertTrue("Output must keep its 30 fps cadence: $output frames", output >= 50)
+            assertTrue(errors.toString(), errors.isEmpty())
+        } finally { renderer.stop(); reader.close(); consumer.quitSafely(); consumer.join(2000) }
+    }
+
     @Test fun thermalPacingReducesCompositionAndRecoversOnTheSameSurface() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val errors = CopyOnWriteArrayList<String>()

@@ -372,15 +372,16 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
     override fun onConnectionFailed(reason: String) {
         // A late callback after the user stopped must not restart or report anything.
         if (!_state.value.streamActive) return
+        val safeReason = redactLogLine(reason, lastStreamKey)
         // Reconnect keeps the encoder session alive; the UI shows the attempt rather than a stop.
         val delay = reconnect.nextDelayMs()
         if (delay != null && stream.getStreamClient().reTry(delay, reason)) {
-            _state.update { it.copy(connection = ConnectionState.Reconnecting(reconnect.attempt, reason)) }
+            _state.update { it.copy(connection = ConnectionState.Reconnecting(reconnect.attempt, safeReason)) }
         } else {
             stream.stopStream()
             syncOverlayFilter()
             _state.update {
-                it.copy(streamActive = false, connection = ConnectionState.Failed(reason), stats = StreamStats())
+                it.copy(streamActive = false, connection = ConnectionState.Failed(safeReason), stats = StreamStats())
             }
         }
     }

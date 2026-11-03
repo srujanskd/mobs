@@ -67,7 +67,7 @@ class SessionRecorderTest {
         assertEquals(SessionRecorder.CSV_HEADER, lines[0])
         assertEquals(5, lines.size) // Header, samples at 0, 1 and 2 seconds, and terminal marker.
         assertEquals(
-            "2026-10-04T10:00:01Z,1.0,reconnecting,6400000,7000000,30,3,false,moderate,0.610,87,36.4,-812000,4120,false,1920,1080,30,1,true,false,false,,,,sample,0,0,normal,30,30,0,0,0",
+            "2026-10-04T10:00:01Z,1.0,reconnecting,6400000,7000000,30,3,false,moderate,0.610,87,36.4,-812000,4120,false,1920,1080,30,1,true,false,false,,,,sample,0,0,normal,30,15,0,0,0",
             lines[2],
         )
         assertFalse("reason text must not reach the CSV", lines.any { "socket" in it })
@@ -82,7 +82,7 @@ class SessionRecorderTest {
             ThermalState(),
             BatterySample(null, null, null, null, plugged = true),
         )
-        assertEquals("2026-10-04T10:00:00Z,0.0,idle,0,0,0,0,false,none,,,,,,true,1920,1080,30,1,true,false,false,,,,sample,0,0,normal,30,30,0,0,0", row)
+        assertEquals("2026-10-04T10:00:00Z,0.0,idle,0,0,0,0,false,none,,,,,,true,1920,1080,30,1,true,false,false,,,,sample,0,0,normal,30,15,0,0,0", row)
     }
 
     @Test

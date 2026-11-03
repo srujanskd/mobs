@@ -153,3 +153,35 @@ Local verification for this policy: 88 JVM tests and 10 Python performance-check
 
 
 For v0.2.2 release validation, all 33 default API 37 emulator regressions passed in one full run, including crash diagnostic sharing and editor controls. The 88 JVM tests and 10 Python performance-checker tests passed. Debug/release lint each reported zero errors and 17 warnings. Debug, unsigned release, optimized installable and standalone benchmark test APKs built successfully. The installable APK has version code 5 and the same signing certificate as v0.2.1. These checks do not establish physical-phone thermal acceptance.
+
+
+## OnePlus streaming workload fixes, first candidate, November 3, 2026
+
+The reported setup alternates between dual cameras with chat, rear camera with logo/chat, and front camera with logo/chat. The local October 29 CSV still fails the thermal gate with a severe fraction of 0.2999. It describes an older build and cannot establish this candidate's temperature or power use.
+
+The current candidate limits browser capture to 15 fps normally and 10 fps at moderate heat. Severe/cooldown limits remain 5/1 fps. This changes animation smoothness in web widgets; normal camera and encoded output still request 1080p30. Quiet widgets retain the one-second refresh. Browser callbacks are delayed until near their capture deadline instead of firing on every display refresh. The camera watchdog and statistics clock run once per second while cameras supply output frames; camera-free scenes retain the video output clock.
+
+Visible sources using the exact same widget URL share one document across scene cuts. An off-scene document now expires after five seconds, checked once per second, and is destroyed immediately when thermal limits are active. Its JavaScript and connections no longer remain alive for the entire session. Returning to an expired document reloads the widget and may reset its transient chat history. A quick normal-temperature scene cut still retains the document. Repeated edits to another scene cannot extend the expiry deadline.
+
+Camera thermal requests now prefer a genuinely capped supported range at or below the desired cadence before a variable range such as 15..30. For example, a phone advertising 10..10 and 15..30 now selects 10..10 under the 15 fps thermal target. A phone advertising only 30..30 still needs the existing compositor limits and thermal stop; the app cannot invent a sensor rate. This is not a claim about the OnePlus 15's advertised ranges.
+
+A forced WebView renderer crash previously terminated the host app. The regression uses Android's documented chrome://crash fixture; the handler now retires the failed widget, reports an error and allows a replacement document to render. Scene URL validation continues to accept only HTTPS. This follows the [WebView renderer-exit contract](https://developer.android.com/reference/android/webkit/WebViewClient#onRenderProcessGone(android.webkit.WebView,%20android.webkit.RenderProcessGoneDetail)). Connection-failure UI state also uses the existing stream-key redactor.
+
+Targeted checks reproduced the inactive-document retention and camera-range bugs before their fixes. On the API 37 emulator, the updated scene test produced 30 browser uploads and 58 output frames over two seconds. The separate full-resolution browser fixture configured explicitly at 30 fps still produced 30 fps, 45 distinct colors and one reused bitmap over 1.5 seconds. The idle fixture produced two captures in two seconds. The intentional renderer-crash test failed before the handler and passed afterward. These are bounded-work and correctness measurements, not physical battery or temperature measurements.
+
+For phone validation, install the optimized 0.2.3-dev candidate and compare matched 30-minute runs against v0.2.2 using the commands above. Reuse her actual three scenes and exact widget URLs, and record which scene is active. Start each run cool with the same brightness, network and ambient conditions. Include a quiet-chat period, active animations, repeated scene cuts and preview off/on. Export diagnostics and inspect receiver audio/video sync. Do not treat emulator results as proof that overheating is fixed on the OnePlus 15.
+
+Final candidate correctness checks: 90 JVM tests, all 37 default API 37 emulator tests, and 10 Python performance-checker tests passed. Physical-camera opt-in acceptance and streaming endurance were not run.
+
+Debug, unsigned release, optimized installable and benchmark test APK builds passed. Debug/release lint each reported zero errors and the existing 17 warnings. The optimized candidate passed signature and alignment verification and installed/launched on the API 37 emulator. Application ID is dev.mobs, version code 6, version name 0.2.3-dev, minimum API 29. The installable artifact is build/mobs-v0.2.3-dev.apk.
+
+
+## Scene continuity follow-up, November 3, 2026
+
+The 0.2.3-dev2 candidate replaces the first candidate's browser expiry. The user explicitly requested that web overlays continue across scene changes. Documents now stay loaded by exact widget URL for the compositor session, including hidden intervals and thermal mode changes. Hidden widgets stop Choreographer callbacks, bitmap drawing and GL uploads, and release capture buffers and GPU textures. Their JavaScript and network connections continue so chat can keep receiving messages. This is an intentional background-work exception; it can use more memory and CPU than destroying hidden pages. No per-scene copies are created for the same URL.
+
+Camera inputs absent from the new scene close through Camera2; old image/text/color textures are deleted. Shared cameras still needed by the new scene remain active. Scene activation uses update, not the explicit source-refresh path. Explicit refresh, renderer failure recovery and capture-session shutdown can still reload a web page.
+
+The regression first failed against the previous candidate: a long hidden interval caused a second document load. It now checks that hidden intervals beyond five seconds, repeated scene updates and moderate heat preserve a single document with no hidden snapshots; explicit refresh must still create a replacement. The Camera2 regression also checks device availability and two zero-capture samples after switching to a camera-free scene, then verifies fresh frames when returning. Emulator Camera2 checks do not establish OnePlus dual-camera thermal performance.
+
+Follow-up validation passed: 90 JVM tests, all 37 default API 37 emulator tests, debug/release/benchmark builds and debug/release lint. Lint retains zero errors and 17 existing warnings per variant. The signed, aligned optimized APK installed and launched successfully on the emulator. The replacement artifact is build/mobs-v0.2.3-dev2.apk, version code 7.

@@ -2,8 +2,8 @@ package dev.mobs.stream
 
 /** Runtime limits. The saved scene and requested profile are never rewritten. */
 enum class HeatMode(val browserFps: Int, val videoFps: Int, val bitrateCap: Int) {
-    NORMAL(30, 30, Int.MAX_VALUE),
-    WARM(15, 30, 6_000_000),
+    NORMAL(15, 30, Int.MAX_VALUE),
+    WARM(10, 30, 6_000_000),
     HOT(5, 15, 4_000_000),
     COOLDOWN(1, 15, 4_000_000);
 

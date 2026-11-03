@@ -96,7 +96,8 @@ internal class SceneRenderer(
         var textureWidth = 0
         var textureHeight = 0
     }
-    // Widget URLs identify live documents across scenes, including duplicated source IDs.
+    // Keep one live document per exact widget URL across scene cuts, including hidden
+    // sources. Hidden documents retain chat state but do no bitmap capture or GL uploads.
     private val browsers = mutableMapOf<String, BrowserEntry>()
     private val cameras = linkedMapOf<SourceKind, CameraInput>()
     private val quad = ByteBuffer.allocateDirect(8 * 4).order(ByteOrder.nativeOrder()).asFloatBuffer().apply {
@@ -133,7 +134,10 @@ internal class SceneRenderer(
                 cameras.values.forEach { it.frames = 0 }
                 lastStatsNs = now
             }
-            nextTickNs = maxOf(nextTickNs + 1_000_000_000L / minOf(fps, heatMode.videoFps), now)
+            // Cameras already schedule output from their frame callbacks. Only the
+            // watchdog/statistics need a timer then; camera-free output still needs pacing.
+            val intervalNs = if (cameras.isEmpty()) 1_000_000_000L / minOf(fps, heatMode.videoFps) else 1_000_000_000L
+            nextTickNs = maxOf(nextTickNs + intervalNs, now)
             handler.postDelayed(this, ((nextTickNs - System.nanoTime() + 999_999) / 1_000_000).coerceAtLeast(1))
         }
     }
@@ -151,6 +155,9 @@ internal class SceneRenderer(
                 initGl(requireNotNull(target))
                 updateOnGl(initial)
             }
+            // Keep static output and cleanup deadlines alive even if a source failed
+            // during initial setup. updateOnGl may already have scheduled this clock.
+            handler.removeCallbacks(staticTick)
             handler.post(staticTick)
         }
     }
@@ -348,6 +355,11 @@ internal class SceneRenderer(
             cameras.forEach { (kind, input) -> input.session?.let { setRepeating(input, it, kind) } }
         }
         requestDraw()
+        // A switch from camera capture to static output must not wait for the
+        // one-second camera watchdog before resuming the output clock.
+        handler.removeCallbacks(staticTick)
+        nextTickNs = System.nanoTime()
+        handler.post(staticTick)
     }
 
     private fun rasterize(source: SceneSource): Bitmap {

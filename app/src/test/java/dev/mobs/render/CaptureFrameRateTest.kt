@@ -15,6 +15,15 @@ class CaptureFrameRateTest {
     @Test fun retainsSupportedProfileWhenThermalRateIsUnavailable() {
         assertEquals(30..30, captureFrameRate(listOf(30..30), 15, 30))
     }
+    @Test fun thermalLimitPrefersASupportedLowerRateOverAnUncappedRange() {
+        assertEquals(10..10, captureFrameRate(listOf(15..30, 10..10, 30..30), 15, 30))
+        assertEquals(5..10, captureFrameRate(listOf(30..30, 5..10), 15, 30))
+    }
+    @Test fun thermalLimitUsesTheClosestSupportedCeilingWithoutSlowingNormalCapture() {
+        val ranges = listOf(5..5, 10..10, 12..12, 15..30, 30..30)
+        assertEquals(12..12, captureFrameRate(ranges, 15, 30))
+        assertEquals(30..30, captureFrameRate(ranges, 30, 30))
+    }
     @Test(expected = IllegalStateException::class) fun rejectsUnsupportedProfile() {
         captureFrameRate(listOf(60..60), 15, 30)
     }

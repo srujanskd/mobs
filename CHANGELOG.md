@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.2.3-dev2
+
+November 3, 2026. Local testing candidate, version code 7.
+
+- Cap normal browser snapshots at 15 fps and moderate-heat snapshots at 10 fps. Camera and output cadence remain 30 fps until severe heat.
+- Keep web overlay documents and live chat across all scene cuts, including hidden intervals and thermal mode changes. Hidden widgets stop bitmap capture and GPU uploads. Cameras and static textures absent from the active scene are released. This replaces the first candidate's five-second browser expiry at the user's request.
+- Schedule browser callbacks near capture deadlines and run camera watchdog/statistics timers once per second instead of at video cadence.
+- Prefer a supported camera range capped at or below the thermal target before using a variable range that permits 30 fps.
+- Handle browser renderer failure as an overlay error so the app can survive and recreate the widget on refresh.
+- Redact stream keys from transport failure text before exposing it in UI state.
+
+Physical OnePlus 15 temperature, dual-camera endurance, and receiver playback still need matched phone runs. Reduced browser work is not a measured whole-phone power saving.
+
 ## 0.2.2
 
 October 30, 2026.
