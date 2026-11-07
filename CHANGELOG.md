@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased
+## 0.2.3
+
+November 7, 2026. Version code 11. Includes the 0.2.3-dev2 through dev5 changes below.
 
 - In two-camera scenes the smaller (inset) camera now captures at 15 fps with lighter processing: edge sharpening and stabilization are off. The main camera keeps 30 fps and drives output cadence, so the stream stays at 30 fps, including scenes where the rear camera is the inset.
 - Moderate heat no longer freezes the inset immediately. The inset first drops to 10 fps with noise reduction off, and is paused if moderate heat lasts a full minute. Severe heat still pauses it at once.
