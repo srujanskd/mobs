@@ -67,6 +67,20 @@ class CameraVideoProcessingDeviceTest {
                     verify(CaptureRequest.EDGE_MODE, info.get(CameraCharacteristics.EDGE_AVAILABLE_EDGE_MODES), CaptureRequest.EDGE_MODE_FAST)
                     verify(CaptureRequest.TONEMAP_MODE, info.get(CameraCharacteristics.TONEMAP_AVAILABLE_TONE_MAP_MODES), CaptureRequest.TONEMAP_MODE_FAST)
                     verify(CaptureRequest.COLOR_CORRECTION_ABERRATION_MODE, info.get(CameraCharacteristics.COLOR_CORRECTION_AVAILABLE_ABERRATION_MODES), CaptureRequest.COLOR_CORRECTION_ABERRATION_MODE_FAST)
+                    // Inset levels: the first advertised choice wins, otherwise the template default stays.
+                    fun verifyLevel(level: VideoProcessing, key: CaptureRequest.Key<Int>, modes: IntArray?, vararg choices: Int) {
+                        val inset = camera.createCaptureRequest(CameraDevice.TEMPLATE_RECORD).apply { configureVideoProcessing(info, level) }.build()
+                        assertEquals("Camera $id, $level, ${key.name}",
+                            choices.firstOrNull { modes?.contains(it) == true } ?: defaults.get(key), inset.get(key))
+                    }
+                    val noise = info.get(CameraCharacteristics.NOISE_REDUCTION_AVAILABLE_NOISE_REDUCTION_MODES)
+                    val edge = info.get(CameraCharacteristics.EDGE_AVAILABLE_EDGE_MODES)
+                    val stabilization = info.get(CameraCharacteristics.CONTROL_AVAILABLE_VIDEO_STABILIZATION_MODES)
+                    verifyLevel(VideoProcessing.LIGHT, CaptureRequest.NOISE_REDUCTION_MODE, noise, CaptureRequest.NOISE_REDUCTION_MODE_FAST)
+                    verifyLevel(VideoProcessing.LIGHT, CaptureRequest.EDGE_MODE, edge, CaptureRequest.EDGE_MODE_OFF, CaptureRequest.EDGE_MODE_FAST)
+                    verifyLevel(VideoProcessing.LIGHT, CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE, stabilization, CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE_OFF)
+                    verifyLevel(VideoProcessing.MINIMAL, CaptureRequest.NOISE_REDUCTION_MODE, noise, CaptureRequest.NOISE_REDUCTION_MODE_OFF, CaptureRequest.NOISE_REDUCTION_MODE_FAST)
+                    verifyLevel(VideoProcessing.MINIMAL, CaptureRequest.EDGE_MODE, edge, CaptureRequest.EDGE_MODE_OFF, CaptureRequest.EDGE_MODE_FAST)
                 } finally {
                     camera.close()
                     assertTrue("Camera $id failed to close", closed.await(5, TimeUnit.SECONDS))

@@ -92,6 +92,8 @@ internal class SceneRenderer(
     private val insetPause = InsetCameraPause()
     /** The inset camera closed to shed concurrent-capture heat; its layers show a frozen frame. */
     private var pausedCamera: SourceKind? = null
+    /** The smaller of two running cameras. It captures at a reduced rate and processing level. */
+    private var liveInset: SourceKind? = null
     private val frozenFrames = mutableMapOf<String, Int>()
     private var nextDrawNs = 0L
     private var drawing = false
@@ -431,8 +433,11 @@ internal class SceneRenderer(
         val crossesUltrawide = active.size == 2 && value.sources.any { source ->
             source.kind in Scene.CAMERA_KINDS && previous?.sources?.firstOrNull { it.id == source.id }?.let { (it.zoom < 1f) != (source.zoom < 1f) } == true
         }
+        val inset = if (active.size == 2) insetCamera(value) else null
+        val insetChanged = inset != liveInset
+        liveInset = inset
         if (cameras.keys != active || crossesUltrawide || needsLargerCapture(value)) openCameras(active)
-        else if (cameras.values.any { it.zoom.state.failed } || previous?.sources?.filter { it.kind in Scene.CAMERA_KINDS }?.map { it.zoom } != value.sources.filter { it.kind in Scene.CAMERA_KINDS }.map { it.zoom }) {
+        else if (insetChanged || cameras.values.any { it.zoom.state.failed } || previous?.sources?.filter { it.kind in Scene.CAMERA_KINDS }?.map { it.zoom } != value.sources.filter { it.kind in Scene.CAMERA_KINDS }.map { it.zoom }) {
             cameras.forEach { (kind, input) -> input.session?.let { setRepeating(input, it, kind) } }
         }
         requestDraw()
@@ -554,8 +559,9 @@ internal class SceneRenderer(
                     input.lastArrivalNs = System.nanoTime()
                     input.ready = true
                     input.frames++
-                    // The rear camera drives dual-camera cadence. No extra output per front frame.
-                    if (kind == SourceKind.REAR_CAMERA || SourceKind.REAR_CAMERA !in cameras) requestDraw()
+                    // The main (non-inset) camera drives dual-camera cadence, since the inset runs at a
+                    // reduced rate. Without a known inset the rear camera drives it.
+                    if (cameras.size < 2 || kind != (liveInset ?: SourceKind.FRONT_CAMERA)) requestDraw()
                 }
             }, handler)
         }
@@ -650,7 +656,8 @@ internal class SceneRenderer(
     private fun setRepeating(input: CameraInput, session: CameraCaptureSession, kind: SourceKind, next: ZoomCommand? = null) {
         val info = input.characteristics
         val ranges = info.get(CameraCharacteristics.CONTROL_AE_AVAILABLE_TARGET_FPS_RANGES).orEmpty()
-        val chosen = captureFrameRate(ranges.map { it.lower..it.upper }, minOf(fps, heatMode.videoFps), fps)
+        val profile = cameraCaptureProfile(inset = cameras.size == 2 && kind == liveInset, heatMode, fps)
+        val chosen = captureFrameRate(ranges.map { it.lower..it.upper }, profile.fps, fps)
         val range = android.util.Range(chosen.first, chosen.last)
         val zoom = scene?.sources?.firstOrNull { it.kind == kind }?.zoom ?: 1f
         val zoomRange = if (Build.VERSION.SDK_INT >= 30) info.get(CameraCharacteristics.CONTROL_ZOOM_RATIO_RANGE) else null
@@ -661,7 +668,7 @@ internal class SceneRenderer(
             setTag(command)
             addTarget(input.surface)
             set(CaptureRequest.CONTROL_AE_TARGET_FPS_RANGE, range)
-            configureVideoProcessing(info)
+            configureVideoProcessing(info, profile.processing)
             // The compositor owns rotation. Disable compatibility rotation when the camera allows it.
             if (Build.VERSION.SDK_INT >= 31 && info.get(CameraCharacteristics.SCALER_AVAILABLE_ROTATE_AND_CROP_MODES)
                     ?.contains(CaptureRequest.SCALER_ROTATE_AND_CROP_NONE) == true) {

@@ -32,16 +32,38 @@ class InsetCameraPauseTest {
             camera(SourceKind.REAR_CAMERA, full), camera(SourceKind.FRONT_CAMERA, inset, visible = false)))))
     }
 
-    @Test fun pausesImmediatelyAtModerateHeatAndAtEveryHotterMode() {
-        for (mode in HeatMode.entries.filter { it > HeatMode.NORMAL }) {
+    @Test fun pausesImmediatelyAtSevereHeatAndAboveButNotAtNormal() {
+        for (mode in HeatMode.entries.filter { it > HeatMode.WARM }) {
             assertTrue(mode.name, InsetCameraPause().update(mode, 0))
         }
         assertFalse(InsetCameraPause().update(HeatMode.NORMAL, 0))
     }
 
+    @Test fun moderateHeatPausesOnlyAfterTheGracePeriod() {
+        val pause = InsetCameraPause(warmGraceMs = 60_000)
+        assertFalse(pause.update(HeatMode.WARM, 0))
+        assertFalse(pause.update(HeatMode.WARM, 59_999))
+        assertTrue(pause.update(HeatMode.WARM, 60_000))
+    }
+
+    @Test fun coolingDuringTheGracePeriodRestartsIt() {
+        val pause = InsetCameraPause(warmGraceMs = 60_000)
+        pause.update(HeatMode.WARM, 0)
+        assertFalse(pause.update(HeatMode.NORMAL, 50_000))
+        assertFalse(pause.update(HeatMode.WARM, 70_000))
+        assertFalse(pause.update(HeatMode.WARM, 129_999))
+        assertTrue(pause.update(HeatMode.WARM, 130_000))
+    }
+
+    @Test fun severeHeatDuringTheGracePeriodPausesImmediately() {
+        val pause = InsetCameraPause(warmGraceMs = 60_000)
+        assertFalse(pause.update(HeatMode.WARM, 0))
+        assertTrue(pause.update(HeatMode.HOT, 1_000))
+    }
+
     @Test fun resumesOnlyAfterTheFullHoldOfContinuousNormalHeat() {
         val pause = InsetCameraPause(holdMs = 300_000)
-        assertTrue(pause.update(HeatMode.WARM, 0))
+        assertTrue(pause.update(HeatMode.HOT, 0))
         assertTrue(pause.update(HeatMode.NORMAL, 10_000))
         assertTrue(pause.update(HeatMode.NORMAL, 309_999))
         assertFalse(pause.update(HeatMode.NORMAL, 310_000))
@@ -49,7 +71,7 @@ class InsetCameraPauseTest {
 
     @Test fun reheatingDuringTheHoldRestartsIt() {
         val pause = InsetCameraPause(holdMs = 300_000)
-        pause.update(HeatMode.WARM, 0)
+        pause.update(HeatMode.HOT, 0)
         pause.update(HeatMode.NORMAL, 1_000)
         pause.update(HeatMode.WARM, 200_000)
         pause.update(HeatMode.NORMAL, 250_000)

@@ -107,7 +107,9 @@ class CameraZoomPerformanceDeviceTest {
                 assertTrue("Insufficient cadence samples: $details", samples.size >= 15)
                 assertTrue("Output below existing 29 fps mean budget: $details", outputFps >= 29)
                 if (kind == SourceKind.REAR_CAMERA) assertTrue(details, rearMean >= 29)
-                if (dual || kind == SourceKind.FRONT_CAMERA) assertTrue(details, frontMean >= 29)
+                if (kind == SourceKind.FRONT_CAMERA) assertTrue(details, frontMean >= 29)
+                // In dual mode the front camera is the inset and deliberately captures at INSET_FPS.
+                if (dual) assertTrue(details, frontMean >= INSET_FPS - 1)
                 // A separate provisional zoom-stall budget; retain the measured gap for review.
                 assertTrue("Output stalled for more than 500 ms: $details", maxGapMs <= 500)
             } finally {
