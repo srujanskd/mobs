@@ -149,6 +149,7 @@ data class StreamStats(
     val rearCaptureFps: Int = 0,
     val frontCaptureFps: Int = 0,
     val droppedVideoFrames: Long = 0,
+    val render: dev.mobs.render.RenderStats = dev.mobs.render.RenderStats(),
 )
 
 enum class CameraFacing { REAR, FRONT }

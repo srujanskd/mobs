@@ -113,4 +113,30 @@ class ScenePinchZoomTest {
         }
     }
 
+    @Test fun liveCameraControlsKeepASavedButUnappliedDraft() = runTest {
+        val store = SceneStore(temporary.newFile())
+        store.save(dev.mobs.scene.SceneCollection.initial())
+        val model = SceneViewModel(store, StandardTestDispatcher(testScheduler))
+        val engine = FakeStreamEngine()
+        model.bind(engine)
+        runCurrent()
+        val live = engine.state.value.scene!!
+        val camera = live.sources.single()
+        // The streamer saves (but does not apply) an edit to the on-air scene.
+        val overlay = dev.mobs.scene.SceneSource(name = "Title", kind = dev.mobs.scene.SourceKind.TEXT, text = "hi")
+        assertTrue(model.save(live.copy(name = "Edited", sources = live.sources + overlay), apply = false))
+        model.pinchZoom(live.id, camera.id, 2f, .5f..5f, false)
+        model.pinchZoom(live.id, camera.id, 1f, .5f..5f, true)
+        assertTrue(model.changeLiveCamera(engine.state.value.scene!!.sources.single().copy(mirrored = true)))
+        runCurrent()
+        val saved = store.load().active
+        assertEquals("Edited", saved.name)
+        assertEquals(listOf(camera.id, overlay.id), saved.sources.map { it.id })
+        assertEquals(2f, saved.sources.first().zoom)
+        assertTrue(saved.sources.first().mirrored)
+        // The output keeps showing the applied scene, with only the camera change.
+        assertEquals(1, engine.state.value.scene!!.sources.size)
+        assertTrue(engine.state.value.scene!!.sources.single().mirrored)
+    }
+
 }

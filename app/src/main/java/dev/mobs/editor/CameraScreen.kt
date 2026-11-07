@@ -71,6 +71,8 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
@@ -173,7 +175,12 @@ fun CameraScreen(
         if (!state.streamActive) previewOff = false
     }
     if (previewOff || state.heatMode.suspendPreview) {
-        PreviewOffScreen(state, thermal, onWake = { previewOff = false }, onStop = viewModel::stopStream, modifier = modifier)
+        // A stray tap on a pocketed, near-black screen must not end the broadcast.
+        PreviewOffScreen(state, thermal, onWake = { previewOff = false }, onStop = { confirmStop = true }, modifier = modifier)
+        StopStreamDialog(confirmStop && state.streamActive, onDismiss = { confirmStop = false }, onConfirm = {
+            confirmStop = false
+            viewModel.stopStream()
+        })
         return
     }
 
@@ -247,7 +254,7 @@ fun CameraScreen(
                             }
                             Row(Modifier.horizontalScroll(rememberScrollState()).background(Color(0xB30C1018), RoundedCornerShape(30.dp)).padding(horizontal = 6.dp), horizontalArrangement = Arrangement.spacedBy(2.dp)) {
                                 lenses.forEach { ratio ->
-                                    TextButton(onClick = { state.scene?.let { sceneModel.save(it.update(camera.copy(zoom = ratio)), true) } }, contentPadding = PaddingValues(horizontal = 8.dp)) {
+                                    TextButton(onClick = { sceneModel.changeLiveCamera(camera.copy(zoom = ratio)) }, contentPadding = PaddingValues(horizontal = 8.dp)) {
                                         Text(lensLabel(ratio), color = if (feedback?.actual?.let { kotlin.math.abs(it - ratio) < .03f } == true) StudioAccent else Color.White)
                                     }
                                 }
@@ -265,7 +272,7 @@ fun CameraScreen(
                             if (scene != null && cameras.size == 1) {
                                 val camera = cameras.single()
                                 val kind = if (camera.kind == SourceKind.REAR_CAMERA) SourceKind.FRONT_CAMERA else SourceKind.REAR_CAMERA
-                                sceneModel.save(scene.update(camera.copy(kind = kind, name = if (kind == SourceKind.FRONT_CAMERA) "Front camera" else "Rear camera", zoom = 1f)), true)
+                                sceneModel.changeLiveCamera(camera.copy(kind = kind, name = if (kind == SourceKind.FRONT_CAMERA) "Front camera" else "Rear camera", zoom = 1f))
                             } else showCameraSettings = true
                         })
                         StudioAction(StudioIcon.LAYERS, "Scene editor", enabled = collection != null, onClick = { showScenes = true })
@@ -285,7 +292,8 @@ fun CameraScreen(
                     }
                     Column(Modifier.weight(1f).background(Color(0x990C1018), RoundedCornerShape(12.dp)).padding(8.dp)) {
                         ThermalStatus(thermal)
-                        if (state.heatMode == dev.mobs.stream.HeatMode.WARM) Text(stringResource(R.string.heat_warm), color = Color.White)
+                        if (state.heatMode == dev.mobs.stream.HeatMode.WARM) Text(stringResource(R.string.heat_warm), color = Color.White,
+                            style = MaterialTheme.typography.labelSmall, maxLines = 2, overflow = TextOverflow.Ellipsis)
                     }
                     when {
                         state.streamActive -> Button(onClick = { confirmStop = true }, colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE95573)), shape = RoundedCornerShape(16.dp), contentPadding = PaddingValues(horizontal = 24.dp, vertical = 16.dp)) { Text(stringResource(R.string.action_stop_stream)) }
@@ -309,10 +317,10 @@ fun CameraScreen(
                 val cameras = scene?.sources?.filter { it.kind in Scene.CAMERA_KINDS }.orEmpty()
                 if (cameras.isEmpty()) Text("Add a camera in the scene editor.")
                 cameras.forEach { source ->
-                    CameraSourceControls(source, scene!!.cameras.size == 2, feedback = state.cameraZoom[source.id], live = true, onChange = { sceneModel.save(scene.update(it), true) })
+                    CameraSourceControls(source, scene!!.cameras.size == 2, feedback = state.cameraZoom[source.id], live = true, onChange = { sceneModel.changeLiveCamera(it) })
                     if (cameras.size == 1) OutlinedButton(onClick = {
                         val kind = if (source.kind == SourceKind.REAR_CAMERA) SourceKind.FRONT_CAMERA else SourceKind.REAR_CAMERA
-                        sceneModel.save(scene.update(source.copy(kind = kind, name = if (kind == SourceKind.FRONT_CAMERA) "Front camera" else "Rear camera", zoom = 1f)), true)
+                        sceneModel.changeLiveCamera(source.copy(kind = kind, name = if (kind == SourceKind.FRONT_CAMERA) "Front camera" else "Rear camera", zoom = 1f))
                     }) { Text(if (source.kind == SourceKind.REAR_CAMERA) "Switch to front camera" else "Switch to rear camera") }
                 }
             }
@@ -366,22 +374,22 @@ fun CameraScreen(
             onDismiss = { showText = false },
         )
     }
-    if (confirmStop && state.streamActive) {
-        AlertDialog(
-            onDismissRequest = { confirmStop = false },
-            title = { Text(stringResource(R.string.stop_title)) },
-            text = { Text(stringResource(R.string.stop_body)) },
-            confirmButton = {
-                TextButton(onClick = {
-                    confirmStop = false
-                    viewModel.stopStream()
-                }) { Text(stringResource(R.string.stop_confirm)) }
-            },
-            dismissButton = {
-                TextButton(onClick = { confirmStop = false }) { Text(stringResource(R.string.stop_cancel)) }
-            },
-        )
-    }
+    StopStreamDialog(confirmStop && state.streamActive, onDismiss = { confirmStop = false }, onConfirm = {
+        confirmStop = false
+        viewModel.stopStream()
+    })
+}
+
+@Composable
+private fun StopStreamDialog(visible: Boolean, onDismiss: () -> Unit, onConfirm: () -> Unit) {
+    if (!visible) return
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.stop_title)) },
+        text = { Text(stringResource(R.string.stop_body)) },
+        confirmButton = { TextButton(onClick = onConfirm) { Text(stringResource(R.string.stop_confirm)) } },
+        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.stop_cancel)) } },
+    )
 }
 
 /**
@@ -411,6 +419,10 @@ private fun ConnectionStatus(connection: ConnectionState, stats: StreamStats, mo
             },
             color = color,
             style = MaterialTheme.typography.labelLarge,
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis,
+            textAlign = TextAlign.End,
+            modifier = Modifier.widthIn(max = 280.dp),
         )
         if (connection is ConnectionState.Connected || connection is ConnectionState.Reconnecting) {
             Text(
@@ -469,7 +481,8 @@ private fun PreviewOffScreen(
             )
             if (!state.heatMode.suspendPreview) Text(
                 stringResource(R.string.preview_off_hint),
-                color = Color.Gray,
+                // Readable at the forced 2% brightness.
+                color = Color(0xFFBBC5D8),
                 style = MaterialTheme.typography.labelMedium,
                 modifier = Modifier.padding(top = 12.dp),
             )
@@ -735,6 +748,14 @@ private fun EnginePreview(
         factory = { context ->
             SurfaceView(context).apply {
                 setOnTouchListener(PreviewPinchZoom(context) { latestPinch })
+                // A phone-sized buffer can exceed the broadcast resolution. SurfaceFlinger
+                // scales this smaller preview; touch coordinates still use the full view.
+                addOnLayoutChangeListener { _, left, top, right, bottom, _, _, _, _ ->
+                    if (right > left && bottom > top) {
+                        val size = dev.mobs.render.previewBufferSize(right - left, bottom - top)
+                        holder.setFixedSize(size.width, size.height)
+                    }
+                }
                 holder.addCallback(
                     object : SurfaceHolder.Callback {
                         override fun surfaceCreated(holder: SurfaceHolder) {

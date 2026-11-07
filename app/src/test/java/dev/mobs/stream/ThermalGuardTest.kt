@@ -12,6 +12,36 @@ import org.junit.Test
 @OptIn(ExperimentalCoroutinesApi::class)
 class ThermalGuardTest {
     @Test
+    fun novemberFourthTraceEntersWarmModeBeforeSevereHeat() = runTest {
+        val engine = FakeStreamEngine()
+        engine.state.value = StreamEngineState(streamActive = true)
+        val thermal = MutableStateFlow(ThermalState())
+        ThermalGuard(engine, thermal, backgroundScope) { testScheduler.currentTime }
+        runCurrent()
+        advanceTimeBy(106_600)
+        thermal.value = ThermalState(level = ThermalLevel.LIGHT)
+        runCurrent()
+        assertEquals(30, engine.state.value.heatMode.videoFps)
+        advanceTimeBy(324_400)
+        thermal.value = ThermalState(level = ThermalLevel.MODERATE)
+        runCurrent()
+        // The captured session stayed moderate from 431s to 1476.2s while both cameras ran.
+        // The November 5 dev4 run halved cadence at moderate heat and heated at the same
+        // 4.2 C per 15 minutes, so warm mode pauses the inset camera instead of cutting fps.
+        assertEquals(HeatMode.WARM, engine.state.value.heatMode)
+        assertEquals("Moderate heat keeps full cadence", 30, engine.state.value.heatMode.videoFps)
+        advanceTimeBy(1_045_200)
+        runCurrent()
+        assertEquals(HeatMode.WARM, engine.state.value.heatMode)
+        assertEquals("Moderate heat alone must not stop the broadcast", 0, engine.stopped)
+        thermal.value = ThermalState(level = ThermalLevel.SEVERE)
+        runCurrent()
+        advanceTimeBy(61_000)
+        runCurrent()
+        assertEquals(1, engine.stopped)
+    }
+
+    @Test
     fun sustainedSevereHeatStopsBeforeWaitingForCritical() = runTest {
         val engine = FakeStreamEngine()
         val thermal = MutableStateFlow(ThermalState(level = ThermalLevel.SEVERE))

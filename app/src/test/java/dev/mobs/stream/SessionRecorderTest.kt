@@ -67,7 +67,7 @@ class SessionRecorderTest {
         assertEquals(SessionRecorder.CSV_HEADER, lines[0])
         assertEquals(5, lines.size) // Header, samples at 0, 1 and 2 seconds, and terminal marker.
         assertEquals(
-            "2026-10-04T10:00:01Z,1.0,reconnecting,6400000,7000000,30,3,false,moderate,0.610,87,36.4,-812000,4120,false,1920,1080,30,1,true,false,false,,,,sample,0,0,normal,30,15,0,0,0",
+            "2026-10-04T10:00:01Z,1.0,reconnecting,6400000,7000000,30,3,false,moderate,0.610,87,36.4,-812000,4120,false,1920,1080,30,1,true,false,false,,,,sample,0,0,normal,30,15,0,0,0,0,0.000,0.000,0,0,0,0,0,0,0,0,0,,${dev.mobs.BuildConfig.VERSION_NAME}",
             lines[2],
         )
         assertFalse("reason text must not reach the CSV", lines.any { "socket" in it })
@@ -82,7 +82,7 @@ class SessionRecorderTest {
             ThermalState(),
             BatterySample(null, null, null, null, plugged = true),
         )
-        assertEquals("2026-10-04T10:00:00Z,0.0,idle,0,0,0,0,false,none,,,,,,true,1920,1080,30,1,true,false,false,,,,sample,0,0,normal,30,15,0,0,0", row)
+        assertEquals("2026-10-04T10:00:00Z,0.0,idle,0,0,0,0,false,none,,,,,,true,1920,1080,30,1,true,false,false,,,,sample,0,0,normal,30,15,0,0,0,0,0.000,0.000,0,0,0,0,0,0,0,0,0,,${dev.mobs.BuildConfig.VERSION_NAME}", row)
     }
 
     @Test
@@ -106,6 +106,29 @@ class SessionRecorderTest {
     }
 
     @Test
+    fun exportsActualCaptureConfigurationAndCpuCounterWithMatchingColumns() {
+        val render = dev.mobs.render.RenderStats(compositionFps = 15, meanFrameMs = 2.5, maxFrameMs = 12.0,
+            rearWidth = 1920, rearHeight = 1080, frontWidth = 640, frontHeight = 360,
+            rearRequestedFpsMin = 15, rearRequestedFpsMax = 15, frontRequestedFpsMin = 15, frontRequestedFpsMax = 30,
+            retainedBrowserDocuments = 3)
+        val row = SessionRecorder.csvRow(EPOCH_MS, 0, StreamEngineState(stats = StreamStats(render = render)),
+            ThermalState(), battery, MemorySample(processCpuMs = 12345))
+        val columns = SessionRecorder.CSV_HEADER.split(",")
+        assertEquals(columns.size, row.split(",").size)
+        val values = columns.zip(row.split(",")).toMap()
+        assertEquals("15", values["composition_fps"])
+        assertEquals("2.500", values["composition_mean_ms"])
+        assertEquals("12.000", values["composition_max_ms"])
+        assertEquals("1920", values["rear_input_width"])
+        assertEquals("640", values["front_input_width"])
+        assertEquals("360", values["front_input_height"])
+        assertEquals("30", values["front_requested_fps_max"])
+        assertEquals("3", values["browser_retained_documents"])
+        assertEquals("12345", values["process_cpu_ms"])
+        assertEquals(dev.mobs.BuildConfig.VERSION_NAME, values["app_version"])
+    }
+
+    @Test
     fun eachSessionGetsItsOwnFileAndOnlyTheNewestAreKept() = runTest {
         val engine = FakeStreamEngine()
         recorder(engine, MutableStateFlow(ThermalState()), keep = 2)
@@ -123,7 +146,7 @@ class SessionRecorderTest {
     }
 
     @Test
-    fun logIsCapturedFromJustBeforeTheSessionAndClosedAfterTheWindow() = runTest {
+    fun logRemainsOpenPastTheOverheatingPointAndClosesWithTheSession() = runTest {
         val engine = FakeStreamEngine()
         val opened = mutableListOf<Pair<String, Long>>()
         var closed = 0
@@ -140,16 +163,68 @@ class SessionRecorderTest {
                 opened += file.name to since
                 AutoCloseable { closed++ }
             },
-            logWindowMs = 5_000,
         )
         engine.state.value = StreamEngineState(streamActive = true)
         runCurrent()
         assertEquals(listOf("session-20261004-100000-000.log" to EPOCH_MS - 2_000), opened)
-        advanceTimeBy(5_001)
-        assertEquals(1, closed)
+        advanceTimeBy(26 * 60_000)
+        assertEquals("Runtime logs must survive the 25-minute overheating point", 0, closed)
         engine.state.value = StreamEngineState(streamActive = false)
         runCurrent()
-        assertTrue("closing again after the window is harmless", closed >= 1)
+        assertEquals(1, closed)
+    }
+
+    @Test
+    fun eachSessionGetsFreshContextAndExportsItWithRotatedLogs() = runTest {
+        val engine = FakeStreamEngine()
+        var starts = 0
+        SessionRecorder(folder.root, engine, MutableStateFlow(ThermalState()), { battery }, backgroundScope,
+            StandardTestDispatcher(testScheduler), { testScheduler.currentTime }, { EPOCH_MS + testScheduler.currentTime },
+            diagnostics = {
+                starts++
+                var first = true
+                val sample: (StreamEngineState, ThermalState) -> String? = { state, _ ->
+                    if (first) { first = false; "start-context" } else if (!state.streamActive) "stop-context" else null
+                }
+                sample
+            })
+        repeat(2) {
+            engine.state.value = StreamEngineState(streamActive = true)
+            runCurrent()
+            advanceTimeBy(1_500)
+            engine.stopStream()
+            runCurrent()
+        }
+        assertEquals(2, starts)
+        val contextFiles = sessions().filter { it.extension == "context" }
+        assertEquals(2, contextFiles.size)
+        assertTrue(contextFiles.all { it.readLines() == listOf("start-context", "stop-context") })
+        val latest = contextFiles.maxBy { it.name }
+        File(folder.root, latest.nameWithoutExtension + ".log1").writeText("tail")
+        File(folder.root, latest.nameWithoutExtension + ".context2").writeText("prior context")
+        val shared = SessionRecorder.newestSessionFiles(folder.root, 1)
+        assertEquals(setOf("csv", "context", "context2", "log1"), shared.map { it.extension }.toSet())
+    }
+
+    @Test
+    fun contextLogFailureKeepsTheCsvAndItsEndMarker() = runTest {
+        // A directory where the context file belongs makes opening it fail.
+        File(folder.root, "session-20261004-100000-000.context").mkdirs()
+        val engine = FakeStreamEngine()
+        val failures = mutableListOf<String>()
+        SessionRecorder(folder.root, engine, MutableStateFlow(ThermalState()), { battery }, backgroundScope,
+            StandardTestDispatcher(testScheduler), { testScheduler.currentTime }, { EPOCH_MS + testScheduler.currentTime },
+            onFailure = failures::add,
+            diagnostics = { { _: StreamEngineState, _: ThermalState -> "context" } })
+        engine.state.value = StreamEngineState(streamActive = true)
+        runCurrent()
+        advanceTimeBy(2_500)
+        engine.stopStream()
+        runCurrent()
+        assertEquals(1, failures.size)
+        val rows = File(folder.root, "session-20261004-100000-000.csv").readLines()
+        assertTrue(rows.size >= 4)
+        assertEquals("end", rows.last().split(",")[25])
     }
 
     @Test

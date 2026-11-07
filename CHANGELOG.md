@@ -1,5 +1,36 @@
 # Changelog
 
+## 0.2.3-dev5
+
+November 5, 2026. Overheating fix candidate, version code 10.
+
+- At moderate heat, two-camera scenes pause the smaller (inset) camera. Its layer shows a frozen last frame labelled "Camera paused to cool the phone", and only the main camera keeps running. The inset returns after five continuous minutes of normal heat mode.
+- Moderate heat no longer drops camera/output cadence to 15 fps. Severe heat still limits video to 15 fps, suspends preview and stops the stream after one minute.
+- Evidence: the dev4 run halved cadence at moderate heat and still heated 4.2 C in 15 minutes, the same as the dev2 run at 30 fps. The October 27 run used mostly one camera at the same 1080p30/10 Mbps with chat and held 37.7–38.6 C at light heat for 33 minutes. Every two-camera run kept climbing past 43 C.
+
+## 0.2.3-dev4
+
+November 4, 2026. Diagnostics follow-up, version code 9. Supersedes dev3 for the next phone run.
+
+- Keep filtered app text logging active until streaming stops. Preserve the initial segment and two rolling recent segments, with a 1.5 MiB cap per session log and explicit flood-suppression counts.
+- Add a similarly bounded context file with device/build and camera capabilities, thread CPU counters every ten seconds, network type, system brightness setting, display mode, GPU identity, and scene/thermal/connection changes. Each session gets fresh metadata.
+- Export all context and rotated log segments through the existing diagnostics action. Redact HTTP widget URLs and stream keys; omit source names and contents, SSIDs, IPs and location.
+- Surface text-logging failures in recording status. Retain dev3 camera/preview workload changes and its 15 fps moderate-heat limit.
+
+App logging cannot measure GPU/ISP power, separate WebView-process CPU, private thermal sensors or receiver audio/video sync. Further investigation may still need targeted evidence; one run is not guaranteed to prove the cause.
+
+## 0.2.3-dev3
+
+November 4, 2026. Local testing candidate, version code 8.
+
+- Apply the 15 fps camera/compositor/encoder limit at moderate heat. The November 4 run spent over 17 minutes at moderate heat with both cameras near 30 fps before reaching severe heat at 24m36s. This deliberately reduces motion smoothness earlier.
+- Size camera capture for its visible, center-cropped scene bounds using advertised sizes, retaining the previous aspect ratio and maximum size. Reconfigure when an enlarged source needs more pixels. Check concurrent combinations and fall back to the original sizes when a smaller pair is rejected.
+- Cap preview buffers at 720p while preserving display aspect and full-size touch coordinates. Encoded output stays 1920×1080. Skip blending for fully opaque camera layers.
+- Export actual input sizes, requested camera FPS ranges, compositor cadence and submission times, retained browser-document count, cumulative app-process CPU time, and app version for the entire session. Existing diagnostic columns remain in place.
+- Retain chat documents across scene cuts and thermal changes. No scene or destination migration is required.
+
+This candidate is not verified to solve the OnePlus overheating. The user cannot connect the phone; sustained on-phone temperature and received audio/video still require a new diagnostic run. The full-quality 1080p30 thermal gate remains unchanged and still rejects runs with reduced cadence or severe heat.
+
 ## 0.2.3-dev2
 
 November 3, 2026. Local testing candidate, version code 7.

@@ -66,7 +66,14 @@ class StreamService : Service() {
             io = Dispatchers.IO,
             elapsedMs = SystemClock::elapsedRealtime,
             nowMs = System::currentTimeMillis,
-            logCapture = LogcatCapture(engine::streamKeyForRedaction),
+            logCapture = LogcatCapture(engine::streamKeyForRedaction, engine::recordingFailed),
+            diagnostics = {
+                val diagnostics = SessionDiagnostics(this)
+                val sample: (StreamEngineState, ThermalState) -> String? = { state, thermal ->
+                    diagnostics.sample(state, thermal)?.let { redactLogLine(it, engine.streamKeyForRedaction()) }
+                }
+                sample
+            },
             memory = ::processMemorySample,
             onFailure = engine::recordingFailed,
         )

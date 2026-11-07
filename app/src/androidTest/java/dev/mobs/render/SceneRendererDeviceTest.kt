@@ -149,7 +149,7 @@ class SceneRendererDeviceTest {
             val hotStart = frames.get()
             Thread.sleep(2000)
             val hotFrames = frames.get() - hotStart
-            assertTrue("Hot composition should stay live at <=15 fps: $hotFrames frames", hotFrames in 20..32)
+            assertTrue("Severe heat must limit composition to <=15 fps: $hotFrames frames", hotFrames in 20..32)
             renderer.setHeatMode(dev.mobs.stream.HeatMode.NORMAL)
             Thread.sleep(300)
             val coolStart = frames.get()

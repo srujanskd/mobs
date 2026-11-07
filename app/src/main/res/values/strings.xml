@@ -88,7 +88,8 @@
     <string name="stream_notification_channel">Streaming session</string>
     <string name="stream_notification_title">Mobs session active</string>
     <string name="stream_notification_text">Camera and microphone are in use.</string>
-    <string name="heat_warm">Cooling: reduced web animation and upload bitrate</string>
+    <string name="heat_warm">Cooling: in two-camera scenes the smaller camera is paused on its last frame. Web animation and upload bitrate are reduced.</string>
+    <string name="inset_camera_paused">Camera paused to cool the phone</string>
     <string name="heat_hot">Phone is hot. Preview is paused, video is limited to 15 fps and web overlays to 5 fps. Streaming stops if severe heat persists for one minute.</string>
     <string name="heat_cooldown">Cooling required. Streaming and preview will be available after the phone stays at light heat or below for 30 seconds.</string>
 </resources>

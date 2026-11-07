@@ -39,8 +39,8 @@ data class BatterySample(
  * power and thermal runs. Rows carry no server or stream key. Files are flushed every row so a
  * crash or thermal shutdown keeps the data, and only the newest [keepFiles] sessions are kept.
  *
- * With a [logCapture], the session's first [logWindowMs] of app log is saved beside the CSV, for
- * diagnosing startup problems on phones that cannot be attached to a debugger.
+ * With a [logCapture], bounded app logs for the complete session are saved beside the CSV, for
+ * diagnosing runtime problems on phones that cannot be attached to a debugger.
  */
 internal class SessionRecorder(
     private val directory: File,
@@ -53,9 +53,9 @@ internal class SessionRecorder(
     private val nowMs: () -> Long,
     private val keepFiles: Int = 20,
     private val logCapture: LogCapture? = null,
-    private val logWindowMs: Long = 60_000,
     private val memory: () -> MemorySample = { MemorySample() },
     private val onFailure: (String) -> Unit = {},
+    private val diagnostics: (() -> ((StreamEngineState, ThermalState) -> String?))? = null,
 ) {
     init {
         scope.launch {
@@ -77,22 +77,42 @@ internal class SessionRecorder(
         prune()
         // Starts a little before this coroutine ran, so lines from going live are included.
         val log = logCapture?.start(File(directory, "$name.log"), nowMs() - LOG_LEAD_MS)
-        val logTimer = log?.let { launch { delay(logWindowMs); it.close() } }
+        var details: BoundedSessionLog? = null
         try {
-            writeCsv(File(directory, "$name.csv"), start)
+            // The context file is supplementary: failing to open, write or rotate it stops that
+            // file only, never the CSV and its end marker.
+            val contextFailed = { onFailure("Session context logging failed. Check available storage.") }
+            val sampleDetails = diagnostics?.invoke()
+            details = sampleDetails?.let {
+                try { BoundedSessionLog(File(directory, "$name.context")) }
+                catch (_: java.io.IOException) { contextFailed(); null }
+            }
+            var detailsFailed = details == null
+            val writeDetails: (StreamEngineState, ThermalState) -> Unit = { state, heat ->
+                if (!detailsFailed) try {
+                    sampleDetails?.invoke(state, heat)?.let { details?.write(it) }
+                } catch (_: java.io.IOException) {
+                    detailsFailed = true
+                    contextFailed()
+                }
+            }
+            writeCsv(File(directory, "$name.csv"), start, writeDetails)
         } finally {
-            logTimer?.cancel()
+            runCatching { details?.close() }
             log?.close()
         }
     }
 
-    private suspend fun writeCsv(file: File, start: Long) {
+    private suspend fun writeCsv(file: File, start: Long, writeDetails: (StreamEngineState, ThermalState) -> Unit) {
         file.bufferedWriter().use { out ->
             out.write(CSV_HEADER)
             out.newLine()
             try {
                 while (true) {
-                    out.write(csvRow(nowMs(), elapsedMs() - start, engine.state.value, thermal.value, battery(), memory()))
+                    val state = engine.state.value
+                    val heat = thermal.value
+                    writeDetails(state, heat)
+                    out.write(csvRow(nowMs(), elapsedMs() - start, state, heat, battery(), memory()))
                     out.newLine()
                     out.flush()
                     delay(SAMPLE_INTERVAL_MS)
@@ -100,6 +120,7 @@ internal class SessionRecorder(
             } finally {
                 // Missing this marker means a crash, truncated export, or failed recorder.
                 val state = engine.state.value
+                writeDetails(state, thermal.value)
                 out.write(csvRow(nowMs(), elapsedMs() - start, state, thermal.value, battery(), memory(),
                     if (state.streamActive) "aborted" else "end"))
                 out.newLine()
@@ -124,7 +145,8 @@ internal class SessionRecorder(
 
         const val CSV_HEADER = "time,elapsed_s,connection,sent_bps,target_bps,output_fps,dropped_frames," +
             "previewing,thermal,headroom,battery_pct,battery_temp_c,current_now,voltage_mv,plugged," +
-            "width,height,profile_fps,source_count,rear_camera,front_camera,scene_error,java_heap_bytes,native_heap_bytes,rss_kb,sample_kind,rear_capture_fps,front_capture_fps,heat_mode,video_fps_limit,browser_fps_limit,browser_upload_fps,browser_upload_bytes_per_second,browser_documents"
+            "width,height,profile_fps,source_count,rear_camera,front_camera,scene_error,java_heap_bytes,native_heap_bytes,rss_kb,sample_kind,rear_capture_fps,front_capture_fps,heat_mode,video_fps_limit,browser_fps_limit,browser_upload_fps,browser_upload_bytes_per_second,browser_documents," +
+            "composition_fps,composition_mean_ms,composition_max_ms,rear_input_width,rear_input_height,front_input_width,front_input_height,rear_requested_fps_min,rear_requested_fps_max,front_requested_fps_min,front_requested_fps_max,browser_retained_documents,process_cpu_ms,app_version"
 
         /** Files of the newest [sessions] sessions, newest first; each has a CSV and maybe a log. */
         fun newestSessionFiles(directory: File, sessions: Int): List<File> {
@@ -159,6 +181,14 @@ internal class SessionRecorder(
                 state.heatMode.name.lowercase(Locale.ROOT), minOf(state.video.fps, state.heatMode.videoFps), minOf(state.video.fps, state.heatMode.browserFps),
                 state.stats.browserUploadFps, state.stats.browserUploadBytesPerSecond,
                 state.scene?.sources?.filter { it.kind == dev.mobs.scene.SourceKind.BROWSER && it.visible && it.opacity > 0f && it.url.isNotEmpty() }?.distinctBy { it.url }?.size ?: 0,
+                state.stats.render.compositionFps,
+                String.format(Locale.ROOT, "%.3f", state.stats.render.meanFrameMs),
+                String.format(Locale.ROOT, "%.3f", state.stats.render.maxFrameMs),
+                state.stats.render.rearWidth, state.stats.render.rearHeight,
+                state.stats.render.frontWidth, state.stats.render.frontHeight,
+                state.stats.render.rearRequestedFpsMin, state.stats.render.rearRequestedFpsMax,
+                state.stats.render.frontRequestedFpsMin, state.stats.render.frontRequestedFpsMax,
+                state.stats.render.retainedBrowserDocuments, memory.processCpuMs, dev.mobs.BuildConfig.VERSION_NAME,
             ).joinToString(",") { it?.toString().orEmpty() }
 
         /** A fixed word per state: reasons are free text and may contain commas. */
@@ -192,7 +222,7 @@ internal class BatteryReader(private val context: Context) {
 }
 
 /** Sampled once a second, outside the media path. RSS includes native and mapped buffers. */
-data class MemorySample(val javaHeapBytes: Long? = null, val nativeHeapBytes: Long? = null, val rssKb: Long? = null)
+data class MemorySample(val javaHeapBytes: Long? = null, val nativeHeapBytes: Long? = null, val rssKb: Long? = null, val processCpuMs: Long? = null)
 
 internal fun processMemorySample(): MemorySample {
     val runtime = Runtime.getRuntime()
@@ -201,5 +231,5 @@ internal fun processMemorySample(): MemorySample {
             lines.firstOrNull { it.startsWith("VmRSS:") }?.split(Regex("\\s+"))?.getOrNull(1)?.toLongOrNull()
         }
     }.getOrNull()
-    return MemorySample(runtime.totalMemory() - runtime.freeMemory(), android.os.Debug.getNativeHeapAllocatedSize(), rss)
+    return MemorySample(runtime.totalMemory() - runtime.freeMemory(), android.os.Debug.getNativeHeapAllocatedSize(), rss, android.os.Process.getElapsedCpuTime())
 }

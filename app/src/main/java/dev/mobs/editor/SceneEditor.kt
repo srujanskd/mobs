@@ -12,6 +12,7 @@ import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
@@ -27,6 +28,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -57,6 +61,9 @@ fun SceneEditor(
     var dirty by remember { mutableStateOf(false) }
     var pendingSelection by remember { mutableStateOf<Scene?>(null) }
     var confirmClose by remember { mutableStateOf(false) }
+    var confirmDelete by remember { mutableStateOf(false) }
+    // Names may be blank while typing; the scene keeps its last valid name until a new one is entered.
+    var sceneName by remember(draft.id) { mutableStateOf(draft.name) }
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     fun edit(value: Scene) { draft = value; dirty = true }
@@ -124,9 +131,20 @@ fun SceneEditor(
                             }
                         }
                         Row(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
-                            OutlinedTextField(value = draft.name, onValueChange = { if (it.isNotBlank()) edit(draft.copy(name = it.take(80))) }, label = { Text("Scene name") }, singleLine = true, modifier = Modifier.weight(1f))
-                            StudioAction(StudioIcon.COPY, "Duplicate scene", onClick = { select(draft.duplicate()) })
-                            StudioAction(StudioIcon.DELETE, "Delete scene", enabled = draft.id != collection.activeId, onClick = { onDelete(draft.id); draft = collection.active; selectedId = null; dirty = false })
+                            OutlinedTextField(value = sceneName, onValueChange = { value ->
+                                sceneName = value.take(80)
+                                if (sceneName.isNotBlank()) edit(draft.copy(name = sceneName))
+                            }, label = { Text("Scene name") }, singleLine = true, isError = sceneName.isBlank(), modifier = Modifier.weight(1f))
+                            StudioAction(StudioIcon.COPY, "Duplicate scene", onClick = {
+                                if (collection.scenes.size >= SceneCollection.MAX_SCENES) message = "Scene limit reached"
+                                else select(draft.duplicate())
+                            })
+                            val live = draft.id == collection.activeId
+                            StudioAction(StudioIcon.DELETE, if (live) "Switch to another scene to delete this one" else "Delete scene", enabled = !live, onClick = {
+                                // A new scene that was never saved is simply discarded.
+                                if (collection.scenes.none { it.id == draft.id }) { draft = collection.active; selectedId = null; dirty = false }
+                                else confirmDelete = true
+                            })
                         }
                         Text("1920 × 1080 · Changes reach your stream when you apply", style = MaterialTheme.typography.labelSmall, color = Color(0xFF93A1B8))
                     }
@@ -162,10 +180,14 @@ fun SceneEditor(
                             Text("SOURCE SETTINGS", style = MaterialTheme.typography.labelSmall, color = StudioAccent)
                             if (selected.kind in Scene.CAMERA_KINDS) CameraSourceControls(selected, draft.cameras.size == 2, onChange = { edit(draft.update(it)) })
                             if (selected.kind == SourceKind.BROWSER) {
-                                Text("Live web overlay · 10 fps", style = MaterialTheme.typography.labelSmall)
+                                Text("Live web overlay · up to 15 fps", style = MaterialTheme.typography.labelSmall)
                                 OutlinedButton(onClick = { browserEditing = selected; browserDialog = true }) { StudioGlyph(StudioIcon.LINK, null); Spacer(Modifier.width(8.dp)); Text("Edit link") }
                             }
-                            OutlinedTextField(value = selected.name, onValueChange = { if (it.isNotBlank()) edit(draft.update(selected.copy(name = it.take(80)))) }, label = { Text("Source name") }, singleLine = true)
+                            var sourceName by remember(selected.id) { mutableStateOf(selected.name) }
+                            OutlinedTextField(value = sourceName, onValueChange = { value ->
+                                sourceName = value.take(80)
+                                if (sourceName.isNotBlank()) edit(draft.update(selected.copy(name = sourceName)))
+                            }, label = { Text("Source name") }, singleLine = true, isError = sourceName.isBlank())
                             if (selected.kind == SourceKind.TEXT) OutlinedTextField(value = selected.text, onValueChange = { edit(draft.update(selected.copy(text = it.take(500)))) }, label = { Text("Text") }, maxLines = 3)
                             Text("Opacity ${(selected.opacity * 100).roundToInt()}%", fontSize = 12.sp)
                             Slider(value = selected.opacity, onValueChange = { edit(draft.update(selected.copy(opacity = it))) })
@@ -175,8 +197,12 @@ fun SceneEditor(
                             }
                             if (selected.kind == SourceKind.COLOR || selected.kind == SourceKind.TEXT) {
                                 Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                                    listOf(0xFF17231F, 0xFF000000, 0xFF3047A0, 0xFF7B2938).forEach { color ->
-                                        Box(Modifier.size(28.dp).background(Color(color)).border(1.dp, Color.White).clickable { edit(draft.update(selected.copy(color = color.toInt()))) })
+                                    listOf(0xFF17231F to "Dark green", 0xFF000000 to "Black", 0xFF3047A0 to "Blue", 0xFF7B2938 to "Red").forEach { (color, label) ->
+                                        val chosen = selected.color == color.toInt()
+                                        Box(Modifier.size(48.dp).selectable(selected = chosen, role = Role.RadioButton) { edit(draft.update(selected.copy(color = color.toInt()))) }
+                                            .semantics { contentDescription = label }, contentAlignment = Alignment.Center) {
+                                            Box(Modifier.size(28.dp).background(Color(color)).border(if (chosen) 3.dp else 1.dp, if (chosen) StudioAccent else Color.White))
+                                        }
                                     }
                                 }
                             }
@@ -203,6 +229,16 @@ fun SceneEditor(
         browserDialog = false
     })
     if (message != null) AlertDialog(onDismissRequest = { message = null }, text = { Text(message.orEmpty()) }, confirmButton = { TextButton(onClick = { message = null }) { Text("OK") } })
+    if (confirmDelete) AlertDialog(
+        onDismissRequest = { confirmDelete = false },
+        title = { Text("Delete \"${collection.scenes.firstOrNull { it.id == draft.id }?.name ?: draft.name}\"?") },
+        text = { Text("The scene and its sources are removed. This can't be undone.") },
+        confirmButton = { TextButton(onClick = {
+            confirmDelete = false
+            onDelete(draft.id); draft = collection.active; selectedId = null; dirty = false
+        }) { Text("Delete", color = MaterialTheme.colorScheme.error) } },
+        dismissButton = { TextButton(onClick = { confirmDelete = false }) { Text("Cancel") } },
+    )
     if (pendingSelection != null || confirmClose) AlertDialog(
         onDismissRequest = { pendingSelection = null; confirmClose = false },
         title = { Text("Discard unsaved changes?") },

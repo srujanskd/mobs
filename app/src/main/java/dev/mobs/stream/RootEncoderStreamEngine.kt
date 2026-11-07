@@ -50,8 +50,8 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
 
     /**
      * Lowers the encoder bitrate when RootEncoder's send queue backs up, then probes back toward
-     * the profile bitrate, bounded by the heat policy. Congestion changes bitrate only; severe
-     * heat also limits video cadence. A slow uplink must not overflow the send queue.
+     * the profile bitrate, bounded by the heat policy. Congestion changes bitrate only; moderate and severe
+     * heat also limit camera and video cadence. A slow uplink must not overflow the send queue.
      */
     private var bitrateAdapter: QueueAwareBitrateAdapter? = null
     @Volatile private var networkBitrate = VideoProfile.LANDSCAPE_1080P30.bitrateBps
@@ -232,6 +232,7 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
                 browserStats = { uploads, bytes -> _state.update {
                     it.copy(stats = it.stats.copy(browserUploadFps = uploads, browserUploadBytesPerSecond = bytes))
                 } },
+                renderStats = { render -> _state.update { it.copy(stats = it.stats.copy(render = render)) } },
                 captureStats = { rear, front -> _state.update {
                     it.copy(camera = if (it.sceneError != null) it.camera else if (rear > 0 || front > 0) CameraStatus.Open else CameraStatus.Closed,
                         stats = it.stats.copy(rearCaptureFps = rear, frontCaptureFps = front))
@@ -347,20 +348,22 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
     }
 
     // RootEncoder's url argument includes the stream key, so state carries [server] instead.
+    // Callbacks run on transport threads while Stop runs on main. Each one re-checks streamActive
+    // inside its atomic update, so a stop that lands between check and write is never overwritten.
     override fun onConnectionStarted(url: String) {
         if (!_state.value.streamActive) return
         // Every retry connects afresh and lands here; keep showing the attempt, not "Connecting".
         _state.update {
-            if (it.connection is ConnectionState.Reconnecting) it
-            else it.copy(connection = ConnectionState.Connecting(server))
+            if (!it.streamActive || it.connection is ConnectionState.Reconnecting) it
+            else it.copy(connection = ConnectionState.Connecting(displayServer(server)))
         }
     }
 
     override fun onConnectionSuccess() {
         if (!_state.value.streamActive) return
-        reconnect.reset()
+        reconnect.connected(SystemClock.elapsedRealtime())
         _state.update {
-            it.copy(
+            if (!it.streamActive) it else it.copy(
                 connection = ConnectionState.Connected,
                 stats = it.stats.copy(
                     connectedSinceElapsedMs = it.stats.connectedSinceElapsedMs ?: SystemClock.elapsedRealtime(),
@@ -374,14 +377,15 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
         if (!_state.value.streamActive) return
         val safeReason = redactLogLine(reason, lastStreamKey)
         // Reconnect keeps the encoder session alive; the UI shows the attempt rather than a stop.
-        val delay = reconnect.nextDelayMs()
+        val delay = reconnect.nextDelayMs(SystemClock.elapsedRealtime())
         if (delay != null && stream.getStreamClient().reTry(delay, reason)) {
-            _state.update { it.copy(connection = ConnectionState.Reconnecting(reconnect.attempt, safeReason)) }
+            _state.update { if (!it.streamActive) it else it.copy(connection = ConnectionState.Reconnecting(reconnect.attempt, safeReason)) }
         } else {
             stream.stopStream()
             syncOverlayFilter()
             _state.update {
-                it.copy(streamActive = false, connection = ConnectionState.Failed(safeReason), stats = StreamStats())
+                if (!it.streamActive) it
+                else it.copy(streamActive = false, connection = ConnectionState.Failed(safeReason), stats = StreamStats())
             }
         }
     }
@@ -389,7 +393,7 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
     override fun onDisconnect() {
         // Fires after a user stop too; only an unexpected disconnect is worth showing.
         if (!_state.value.streamActive) return
-        _state.update { it.copy(connection = ConnectionState.Disconnected) }
+        _state.update { if (!it.streamActive) it else it.copy(connection = ConnectionState.Disconnected) }
     }
 
     override fun onAuthError() {
@@ -397,7 +401,7 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
         stream.stopStream()
         syncOverlayFilter()
         _state.update {
-            it.copy(
+            if (!it.streamActive) it else it.copy(
                 streamActive = false,
                 connection = ConnectionState.Failed("Stream key rejected"),
                 stats = StreamStats(),
@@ -409,7 +413,7 @@ class RootEncoderStreamEngine(context: Context) : StreamEngine, ConnectChecker {
     override fun onNewBitrate(bitrate: Long) {
         if (!_state.value.streamActive) return
         val dropped = stream.getStreamClient().getDroppedVideoFrames()
-        _state.update { it.copy(stats = it.stats.copy(bitrateBps = bitrate, droppedVideoFrames = dropped)) }
+        _state.update { if (!it.streamActive) it else it.copy(stats = it.stats.copy(bitrateBps = bitrate, droppedVideoFrames = dropped)) }
     }
 
     override fun onStreamingStats(report: StreamingStatsReport) {

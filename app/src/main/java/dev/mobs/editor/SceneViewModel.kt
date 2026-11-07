@@ -7,6 +7,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import dev.mobs.scene.Scene
 import dev.mobs.scene.SceneCollection
+import dev.mobs.scene.SceneSource
 import dev.mobs.scene.SceneStore
 import dev.mobs.stream.StreamEngine
 import kotlinx.coroutines.CancellationException
@@ -106,12 +107,49 @@ class SceneViewModel(private val store: SceneStore, private val io: CoroutineDis
         }
     }
 
+    /**
+     * Applies a studio camera control (lens, pinch, mirror, rotation, front/rear switch) to the
+     * on-air scene. Only that camera's settings carry into the saved copy, so a saved draft of the
+     * active scene that has not been applied keeps its other edits.
+     */
+    fun changeLiveCamera(source: SceneSource): Boolean {
+        val current = mutableCollection.value ?: return false
+        val engine = engine
+        val live = engine?.state?.value?.scene
+        if (engine == null || live == null) {
+            mutableError.value = "Camera engine is not ready"
+            return false
+        }
+        if (live.sources.none { it.id == source.id }) return false
+        try {
+            val next = live.update(source)
+            engine.setScene(next)
+            if (engine.state.value.scene?.id != next.id || engine.state.value.sceneError != null) {
+                mutableError.value = engine.state.value.sceneError ?: "Camera engine is not ready"
+                return false
+            }
+            val stored = current.scenes.firstOrNull { it.id == live.id }
+            val merged = stored?.sources?.firstOrNull { it.id == source.id }?.let { old ->
+                // The draft may already hold the other camera; keep it unchanged rather than fail.
+                runCatching {
+                    stored.update(old.copy(kind = source.kind, zoom = source.zoom, mirrored = source.mirrored,
+                        rotation = source.rotation, name = if (old.kind != source.kind) source.name else old.name))
+                }.getOrNull()
+            }
+            persist(current.save(merged ?: stored ?: next).copy(activeId = live.id))
+            return true
+        } catch (_: IllegalArgumentException) {
+            mutableError.value = "Scene limit reached or scene data is invalid"
+            return false
+        }
+    }
+
     /** Apply gesture samples without queuing a disk write for every touch event. */
     fun pinchZoom(sceneId: String, sourceId: String, scale: Float, range: ClosedFloatingPointRange<Float>, finished: Boolean) {
         val scene = engine?.state?.value?.scene?.takeIf { it.id == sceneId } ?: return
         val source = scene.sources.firstOrNull { it.id == sourceId && it.visible && it.opacity > 0f && it.kind in Scene.CAMERA_KINDS } ?: return
         if (finished) {
-            save(scene, apply = true)
+            changeLiveCamera(source)
         } else if (scale.isFinite() && scale > 0f) {
             val zoom = (source.zoom * scale).coerceIn(range.start, range.endInclusive)
             if (zoom != source.zoom) engine?.setScene(scene.update(source.copy(zoom = zoom)))

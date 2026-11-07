@@ -76,6 +76,8 @@ class SceneStore(private val file: File) {
                 output.flush()
                 stream.fd.sync()
             }
+            // Never replace a readable collection with one that load() would refuse.
+            require(temporary.length() <= MAX_BYTES) { "Scene collection is too large" }
             Files.move(temporary.toPath(), file.toPath(), StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING)
         } finally { temporary.delete() }
     }
