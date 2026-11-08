@@ -84,11 +84,12 @@ class CameraRestartDeviceTest {
     }
 
     /**
-     * Warm mode keeps the inset of a two-camera scene as a frozen frame and opens only the main
-     * camera. The emulator cannot run a concurrent pair, so the inset is frozen from a live
+     * Severe heat immediately keeps the inset of a two-camera scene as a frozen frame and opens
+     * only the main camera. Moderate heat first allows a grace period (see InsetCameraPauseTest).
+     * The emulator cannot run a concurrent pair, so the inset is frozen from a live
      * single-camera frame: that exercises the same capture path used when a pair is paused.
      */
-    @Test fun warmModeFreezesTheInsetAndOpensOnlyTheMainCamera() {
+    @Test fun severeHeatFreezesTheInsetAndOpensOnlyTheMainCamera() {
         val instrumentation = InstrumentationRegistry.getInstrumentation()
         val context = instrumentation.targetContext
         instrumentation.uiAutomation.grantRuntimePermission(context.packageName, Manifest.permission.CAMERA)
@@ -136,12 +137,12 @@ class CameraRestartDeviceTest {
             try {
                 renderer.start(reader.surface, rearScene)
                 awaitFreshSample(rearSamples, 0, errors)
-                renderer.setHeatMode(dev.mobs.stream.HeatMode.WARM)
+                renderer.setHeatMode(dev.mobs.stream.HeatMode.HOT)
                 renderer.update(dual)
                 val deadline = System.nanoTime() + 10_000_000_000L
                 while ((frontOnlySamples.get() < 2 || !rearAvailable.get()) && errors.isEmpty() && System.nanoTime() < deadline) Thread.sleep(50)
                 assertTrue(errors.toString(), errors.isEmpty())
-                assertTrue("Only the main camera may deliver frames in warm mode", frontOnlySamples.get() >= 2)
+                assertTrue("Only the main camera may deliver frames under severe heat", frontOnlySamples.get() >= 2)
                 assertTrue("The paused inset camera must be closed", rearAvailable.get())
                 Thread.sleep(300)
                 assertTrue("The frozen inset must keep the last rear image: ${insetPixels.get().toList()}",
@@ -210,9 +211,10 @@ class CameraRestartDeviceTest {
                 assertTrue("Severe heat must reach the actual Camera2 request", work.any {
                     it.rearRequestedFpsMin == expected.first && it.rearRequestedFpsMax == expected.last
                 })
+                // Shrinking keeps the current buffers: only an enlarged source reopens the camera.
                 renderer.update(scene)
                 work.clear()
-                awaitSize(small)
+                awaitSize(full)
                 assertTrue(errors.toString(), errors.isEmpty())
             } finally { renderer.stop(); reader.close(); consumer.quitSafely(); consumer.join(1000) }
         }
