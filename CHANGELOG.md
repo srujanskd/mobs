@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.4
+
+November 15, 2026. Version code 12. Web overlay scaling fix candidate.
+
+- Web overlays (Streamlabs and other chat widgets) now render at one CSS pixel per output pixel on a private 160 dpi display context, as OBS-style browser sources and IRL Pro do. Previously the WebView reported the phone's density (for example `devicePixelRatio` 2.625) and relied on an initial-zoom override of about 0.38 to compensate. If Chromium dropped that override, a widget laid out at roughly a third of its source width and drew about 2.6× too large, or drew small in the top-left corner.
+- The initial zoom is now density-corrected, so a page starts at exactly 100%.
+- The user-reported oversized Streamlabs chat on stream after updating to 0.2.3 has not been reproduced on an emulator, and this fix has not been verified on the reporting phone.
+
 ## 0.2.3
 
 November 7, 2026. Version code 11. Includes the 0.2.3-dev2 through dev5 changes below.
