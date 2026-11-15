@@ -6,6 +6,8 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Rect
+import android.hardware.display.DisplayManager
+import android.hardware.display.VirtualDisplay
 import android.os.Handler
 import android.os.Looper
 import android.view.Choreographer
@@ -33,6 +35,7 @@ internal class BrowserSource(
     private val busy = AtomicBoolean(false)
     @Volatile private var closed = false
     private var web: WebView? = null
+    private var display: VirtualDisplay? = null
     private var failed = false
     private var active = true
     private val choreographer by lazy { Choreographer.getInstance() }
@@ -103,10 +106,24 @@ internal class BrowserSource(
         }
     }
 
+    /** Chromium sizes CSS pixels from its context's display. A detached WebView built from the
+     * app context inherits the phone density (often ~3x), so a widget lays out in a viewport a
+     * third of the overlay's width and its text looks enormous. A private 160 dpi display gives
+     * one CSS pixel per output pixel, matching OBS-style browser sources.
+     */
+    private fun outputDensityContext(context: Context): Context = try {
+        context.getSystemService(DisplayManager::class.java)
+            .createVirtualDisplay("Mobs web overlay", width.coerceAtLeast(1), height.coerceAtLeast(1),
+                OUTPUT_DENSITY_DPI, null, DisplayManager.VIRTUAL_DISPLAY_FLAG_OWN_CONTENT_ONLY)
+            ?.also { display = it }
+            ?.let { context.createDisplayContext(it.display) } ?: context
+    } catch (_: RuntimeException) { context }
+
     @SuppressLint("SetJavaScriptEnabled")
     private fun create(context: Context, url: String) {
         if (closed) return
-        web = object : WebView(context) {
+        val webContext = outputDensityContext(context)
+        web = object : WebView(webContext) {
             override fun invalidate() { dirty = true; super.invalidate() }
             @Suppress("DEPRECATION", "OVERRIDE_DEPRECATION")
             override fun invalidate(dirtyRect: Rect?) { dirty = true; super.invalidate(dirtyRect) }
@@ -114,7 +131,9 @@ internal class BrowserSource(
             override fun invalidate(l: Int, t: Int, r: Int, b: Int) { dirty = true; super.invalidate(l, t, r, b) }
         }.apply {
             setBackgroundColor(Color.TRANSPARENT)
-            setInitialScale((renderScale * 100).toInt())
+            // WebView applies this percentage in physical pixels: 100 at 3x density shrinks the
+            // page into the top-left third. Scale by the context density so 1 is always 100%.
+            setInitialScale((renderScale * webContext.resources.displayMetrics.density * 100).toInt())
             setLayerType(View.LAYER_TYPE_SOFTWARE, null)
             settings.javaScriptEnabled = true
             settings.domStorageEnabled = true
@@ -155,6 +174,7 @@ internal class BrowserSource(
             this.width = width
             this.height = height
             this.active = active
+            if (active) try { display?.resize(width, height, OUTPUT_DENSITY_DPI) } catch (_: RuntimeException) {}
             dirty = true
             choreographer.removeFrameCallback(tick)
             nextFrameNs = 0L
@@ -184,11 +204,14 @@ internal class BrowserSource(
             web?.stopLoading()
             web?.destroy()
             web = null
+            display?.release()
+            display = null
         }
     }
 
     private companion object {
         const val IDLE_REFRESH_NS = 1_000_000_000L
         const val ANIMATION_GRACE_NS = 250_000_000L
+        const val OUTPUT_DENSITY_DPI = android.util.DisplayMetrics.DENSITY_MEDIUM
     }
 }

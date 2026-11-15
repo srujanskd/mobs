@@ -185,4 +185,21 @@ class BrowserSourceDeviceTest {
         Thread.sleep(250)
         assertEquals(stopped, frames.get())
     }
+
+    @Test fun pageLaysOutAtOneCssPixelPerOutputPixel() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val rendered = CountDownLatch(1)
+        // A density-scaled viewport would make the full-width bar cover only part of the
+        // bitmap, and the 100px block would be wider or narrower than 100 output pixels.
+        val html = """<html><body style="margin:0;background:transparent"><div style="width:100%;height:50px;background:#00ff00"></div><div style="margin-top:50px;width:100px;height:50px;background:#0000ff"></div></body></html>"""
+        val source = BrowserSource(context, "data:text/html," + URLEncoder.encode(html, "UTF-8").replace("+", "%20"), 200, 200) { bitmap, complete ->
+            try {
+                if (Color.green(bitmap.getPixel(195, 25)) > 240 && Color.blue(bitmap.getPixel(95, 125)) > 240 &&
+                    Color.alpha(bitmap.getPixel(105, 125)) == 0) rendered.countDown()
+            } finally { complete() }
+        }
+        try {
+            assertTrue("Web overlay must lay out in output pixels, not phone density", rendered.await(10, TimeUnit.SECONDS))
+        } finally { source.close() }
+    }
 }
