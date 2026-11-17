@@ -52,9 +52,11 @@ jobs:
           sudo udevadm trigger --name-match=kvm
       - uses: reactivecircus/android-emulator-runner@v2.38.0
         with:
-          api-level: 35
+          # The API 35 default image ships WebView 124 (May 2024), which paints detached
+          # WebViews only partly. Phones update WebView through Play, so test a current one.
+          api-level: '37.0'
           arch: x86_64
-          target: default
+          target: google_apis
           profile: pixel_7
           disable-animations: true
           script: ./gradlew :app:connectedDebugAndroidTest --console=plain
