@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.0
+
+November 17, 2026. Version code 13. Vivid camera color.
+
+- Camera layers now use a vivid color grade, closer to iPhone video: a light contrast S-curve, vibrance that boosts muted colors more than saturated ones, a smaller boost for skin tones, and a slight warm shift. The grade runs in the camera shader, so preview and stream match. Text, images, color layers and web overlays keep their exact colors.
+- The grade has not been reviewed on a physical phone camera. Emulator tests confirm the shader compiles and the compositor output is unchanged for non-camera sources.
+
 ## 0.2.4
 
 November 15, 2026. Version code 12. Web overlay scaling fix candidate.

@@ -8,7 +8,7 @@ The product scope and device acceptance gates are in [the Android streaming plan
 
 ## Download
 
-The latest testing release is [Mobs v0.2.4](https://github.com/srujanskd/mobs/releases/tag/v0.2.4). Download `mobs-v0.2.4.apk` for the optimized installable APK of approximately 4 MB. It supports Android 10 and newer and upgrades v0.1 using the same local testing key. See the [changelog](CHANGELOG.md) for changes and device-validation limits.
+The latest testing release is [Mobs v0.3.0](https://github.com/srujanskd/mobs/releases/tag/v0.3.0). Download `mobs-v0.3.0.apk` for the optimized installable APK of approximately 4 MB. It supports Android 10 and newer and upgrades v0.1 using the same local testing key. See the [changelog](CHANGELOG.md) for changes and device-validation limits.
 
 ## Heat management
 
