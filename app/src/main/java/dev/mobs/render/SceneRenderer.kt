@@ -886,8 +886,14 @@ internal class SceneRenderer(
             return id
         }
         val vertex = shader(GLES20.GL_VERTEX_SHADER, "attribute vec4 aPosition; attribute vec2 aTexCoord; uniform mat4 uMatrix; varying vec2 vTexCoord; void main() { gl_Position = aPosition; vTexCoord = (uMatrix * vec4(aTexCoord,0.0,1.0)).xy; }")
-        val fragment = shader(GLES20.GL_FRAGMENT_SHADER, (if (external) "#extension GL_OES_EGL_image_external : require\n" else "") +
-            "precision mediump float; varying vec2 vTexCoord; uniform ${if (external) "samplerExternalOES" else "sampler2D"} uTexture; uniform float uOpacity; void main() { gl_FragColor = texture2D(uTexture, vTexCoord) * uOpacity; }")
+        // Camera layers get the vivid grade; text, images and web overlays keep their exact colors.
+        val fragment = shader(GLES20.GL_FRAGMENT_SHADER, if (external)
+            "#extension GL_OES_EGL_image_external : require\n" +
+                "precision mediump float; varying vec2 vTexCoord; uniform samplerExternalOES uTexture; uniform float uOpacity;\n" +
+                CAMERA_COLOR_GRADE_GLSL +
+                "void main() { vec4 t = texture2D(uTexture, vTexCoord); gl_FragColor = vec4(grade(t.rgb), t.a) * uOpacity; }"
+        else
+            "precision mediump float; varying vec2 vTexCoord; uniform sampler2D uTexture; uniform float uOpacity; void main() { gl_FragColor = texture2D(uTexture, vTexCoord) * uOpacity; }")
         val program = GLES20.glCreateProgram()
         GLES20.glAttachShader(program, vertex); GLES20.glAttachShader(program, fragment)
         GLES20.glLinkProgram(program)
