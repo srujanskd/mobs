@@ -178,7 +178,7 @@ fun SceneEditor(
                         if (selected != null) {
                             HorizontalDivider(Modifier.padding(vertical = 10.dp), color = Color(0xFF303B50))
                             Text("SOURCE SETTINGS", style = MaterialTheme.typography.labelSmall, color = StudioAccent)
-                            if (selected.kind in Scene.CAMERA_KINDS) CameraSourceControls(selected, draft.cameras.size == 2, onChange = { edit(draft.update(it)) })
+                            if (selected.kind in Scene.CAMERA_KINDS) CameraSourceControls(selected, draft, onChange = { edit(draft.update(it)) })
                             if (selected.kind == SourceKind.BROWSER) {
                                 Text("Live web overlay · up to 15 fps", style = MaterialTheme.typography.labelSmall)
                                 OutlinedButton(onClick = { browserEditing = selected; browserDialog = true }) { StudioGlyph(StudioIcon.LINK, null); Spacer(Modifier.width(8.dp)); Text("Edit link") }

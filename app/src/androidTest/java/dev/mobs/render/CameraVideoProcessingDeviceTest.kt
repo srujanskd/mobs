@@ -6,6 +6,7 @@ import android.hardware.camera2.CameraCharacteristics
 import android.hardware.camera2.CameraDevice
 import android.hardware.camera2.CameraManager
 import android.hardware.camera2.CaptureRequest
+import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import androidx.activity.ComponentActivity
@@ -52,9 +53,9 @@ class CameraVideoProcessingDeviceTest {
                     val defaults = request.build()
                     request.configureVideoProcessing(info)
                     val actual = request.build()
-                    fun verify(key: CaptureRequest.Key<Int>, modes: IntArray?, expected: Int) {
+                    fun verify(key: CaptureRequest.Key<Int>, modes: IntArray?, expected: Int, result: CaptureRequest = actual) {
                         assertEquals("Camera $id, ${key.name}",
-                            if (modes?.contains(expected) == true) expected else defaults.get(key), actual.get(key))
+                            if (modes?.contains(expected) == true) expected else defaults.get(key), result.get(key))
                     }
                     verify(CaptureRequest.CONTROL_MODE, info.get(CameraCharacteristics.CONTROL_AVAILABLE_MODES), CaptureRequest.CONTROL_MODE_AUTO)
                     verify(CaptureRequest.CONTROL_AE_MODE, info.get(CameraCharacteristics.CONTROL_AE_AVAILABLE_MODES), CaptureRequest.CONTROL_AE_MODE_ON)
@@ -76,9 +77,24 @@ class CameraVideoProcessingDeviceTest {
                     val noise = info.get(CameraCharacteristics.NOISE_REDUCTION_AVAILABLE_NOISE_REDUCTION_MODES)
                     val edge = info.get(CameraCharacteristics.EDGE_AVAILABLE_EDGE_MODES)
                     val stabilization = info.get(CameraCharacteristics.CONTROL_AVAILABLE_VIDEO_STABILIZATION_MODES)
+                    val optical = info.get(CameraCharacteristics.LENS_INFO_AVAILABLE_OPTICAL_STABILIZATION)
+                    val hasZoomRatio = Build.VERSION.SDK_INT >= 30 && info.get(CameraCharacteristics.CONTROL_ZOOM_RATIO_RANGE) != null
+                    val mainMode = videoStabilizationMode(hasZoomRatio, stabilization)
+                    verify(CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE, stabilization, mainMode)
+                    verify(CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE, optical,
+                        if (mainMode == CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE_OFF) CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE_ON
+                        else CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE_OFF)
+                    val disabled = camera.createCaptureRequest(CameraDevice.TEMPLATE_RECORD).apply {
+                        configureVideoProcessing(info, stabilizationEnabled = false)
+                    }.build()
+                    verify(CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE, stabilization, CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE_OFF, disabled)
+                    verify(CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE, optical, CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE_OFF, disabled)
+                    for (level in listOf(VideoProcessing.LIGHT, VideoProcessing.MINIMAL)) {
+                        verifyLevel(level, CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE, stabilization, CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE_OFF)
+                        verifyLevel(level, CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE, optical, CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE_OFF)
+                    }
                     verifyLevel(VideoProcessing.LIGHT, CaptureRequest.NOISE_REDUCTION_MODE, noise, CaptureRequest.NOISE_REDUCTION_MODE_FAST)
                     verifyLevel(VideoProcessing.LIGHT, CaptureRequest.EDGE_MODE, edge, CaptureRequest.EDGE_MODE_OFF, CaptureRequest.EDGE_MODE_FAST)
-                    verifyLevel(VideoProcessing.LIGHT, CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE, stabilization, CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE_OFF)
                     verifyLevel(VideoProcessing.MINIMAL, CaptureRequest.NOISE_REDUCTION_MODE, noise, CaptureRequest.NOISE_REDUCTION_MODE_OFF, CaptureRequest.NOISE_REDUCTION_MODE_FAST)
                     verifyLevel(VideoProcessing.MINIMAL, CaptureRequest.EDGE_MODE, edge, CaptureRequest.EDGE_MODE_OFF, CaptureRequest.EDGE_MODE_FAST)
                 } finally {

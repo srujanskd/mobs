@@ -437,8 +437,13 @@ internal class SceneRenderer(
         val insetChanged = inset != liveInset
         liveInset = inset
         if (cameras.keys != active || crossesUltrawide || needsLargerCapture(value)) openCameras(active)
-        else if (insetChanged || cameras.values.any { it.zoom.state.failed } || previous?.sources?.filter { it.kind in Scene.CAMERA_KINDS }?.map { it.zoom } != value.sources.filter { it.kind in Scene.CAMERA_KINDS }.map { it.zoom }) {
-            cameras.forEach { (kind, input) -> input.session?.let { setRepeating(input, it, kind) } }
+        else cameras.forEach { (kind, input) ->
+            val old = previous?.sources?.firstOrNull { it.kind == kind }
+            val source = value.sources.first { it.kind == kind }
+            if (insetChanged || input.zoom.state.failed || old?.zoom != source.zoom ||
+                old.stabilizationEnabled != source.stabilizationEnabled) {
+                input.session?.let { setRepeating(input, it, kind) }
+            }
         }
         requestDraw()
         // A switch from camera capture to static output must not wait for the
@@ -659,7 +664,8 @@ internal class SceneRenderer(
         val profile = cameraCaptureProfile(inset = cameras.size == 2 && kind == liveInset, heatMode, fps)
         val chosen = captureFrameRate(ranges.map { it.lower..it.upper }, profile.fps, fps)
         val range = android.util.Range(chosen.first, chosen.last)
-        val zoom = scene?.sources?.firstOrNull { it.kind == kind }?.zoom ?: 1f
+        val source = scene?.sources?.firstOrNull { it.kind == kind } ?: return
+        val zoom = source.zoom
         val zoomRange = if (Build.VERSION.SDK_INT >= 30) info.get(CameraCharacteristics.CONTROL_ZOOM_RATIO_RANGE) else null
         val effective = zoom.coerceIn(zoomRange?.lower ?: 1f, zoomRange?.upper ?: info.get(CameraCharacteristics.SCALER_AVAILABLE_MAX_DIGITAL_ZOOM) ?: 1f)
         val command = next ?: input.zoom.request(effective)
@@ -668,7 +674,7 @@ internal class SceneRenderer(
             setTag(command)
             addTarget(input.surface)
             set(CaptureRequest.CONTROL_AE_TARGET_FPS_RANGE, range)
-            configureVideoProcessing(info, profile.processing)
+            configureVideoProcessing(info, profile.processing, source.stabilizationEnabled)
             // The compositor owns rotation. Disable compatibility rotation when the camera allows it.
             if (Build.VERSION.SDK_INT >= 31 && info.get(CameraCharacteristics.SCALER_AVAILABLE_ROTATE_AND_CROP_MODES)
                     ?.contains(CaptureRequest.SCALER_ROTATE_AND_CROP_NONE) == true) {

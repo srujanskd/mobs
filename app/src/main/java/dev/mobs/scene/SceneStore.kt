@@ -32,6 +32,7 @@ class SceneStore(private val file: File) {
                         zoom = if (version >= 2) input.readFloat() else 1f,
                         url = if (version >= 2) input.readUTF() else "",
                         rotation = if (version >= 3) input.readInt() else 0,
+                        stabilizationEnabled = if (version >= 4) input.readBoolean() else true,
                     )
                 }
                 Scene(id, name, sources)
@@ -71,6 +72,7 @@ class SceneStore(private val file: File) {
                         output.writeFloat(source.zoom)
                         output.writeUTF(source.url)
                         output.writeInt(source.rotation)
+                        output.writeBoolean(source.stabilizationEnabled)
                     }
                 }
                 output.flush()
@@ -84,7 +86,7 @@ class SceneStore(private val file: File) {
 
     companion object {
         private const val MAGIC = 0x4D4F4253
-        private const val VERSION = 3
+        private const val VERSION = 4
         private const val MAX_BYTES = 2_000_000L
     }
 }

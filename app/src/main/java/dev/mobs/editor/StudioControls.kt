@@ -1,5 +1,7 @@
 package dev.mobs.editor
 
+import androidx.compose.foundation.selection.toggleable
+import androidx.compose.ui.semantics.Role
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -70,14 +72,28 @@ internal fun StudioAction(icon: StudioIcon, label: String, active: Boolean = fal
 internal fun lensLabel(ratio: Float): String = "${java.text.DecimalFormat("0.#").format(ratio)}×"
 
 @Composable
-internal fun CameraSourceControls(source: dev.mobs.scene.SceneSource, dual: Boolean, feedback: dev.mobs.scene.CameraZoomState? = null, live: Boolean = false, onChange: (dev.mobs.scene.SceneSource) -> Unit) {
+internal fun CameraSourceControls(source: dev.mobs.scene.SceneSource, scene: dev.mobs.scene.Scene, feedback: dev.mobs.scene.CameraZoomState? = null, live: Boolean = false, onChange: (dev.mobs.scene.SceneSource) -> Unit) {
     val context = androidx.compose.ui.platform.LocalContext.current
+    val dual = scene.cameras.size == 2
+    val inset = dev.mobs.render.insetCamera(scene) == source.kind
     val options = androidx.compose.runtime.remember(source.kind, dual) { dev.mobs.render.sceneLensOptions(context, source.kind, dual) }
     Text(source.name, style = MaterialTheme.typography.titleSmall)
     Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
         StudioGlyph(StudioIcon.MIRROR, null, StudioAccent)
         Text("Mirror camera", Modifier.weight(1f).padding(start = 10.dp))
         Switch(source.mirrored, onCheckedChange = { onChange(source.copy(mirrored = it)) })
+    }
+    val stabilizationOn = source.stabilizationEnabled && !inset
+    Row(
+        Modifier.fillMaxWidth().toggleable(value = stabilizationOn, enabled = !inset, role = Role.Switch,
+            onValueChange = { onChange(source.copy(stabilizationEnabled = it)) }),
+        verticalAlignment = androidx.compose.ui.Alignment.CenterVertically,
+    ) {
+        Column(Modifier.weight(1f)) {
+            Text("Video stabilization")
+            if (inset) Text("Off for the inset camera to limit heat.", style = MaterialTheme.typography.bodySmall)
+        }
+        Switch(checked = stabilizationOn, onCheckedChange = null, enabled = !inset)
     }
     Text("Rotation correction", style = MaterialTheme.typography.labelMedium)
     FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {

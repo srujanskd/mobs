@@ -34,6 +34,7 @@ data class SceneSource(
     val url: String = "",
     val color: Int = 0xFF17231F.toInt(),
     val rotation: Int = 0,
+    val stabilizationEnabled: Boolean = true,
 ) {
     init {
         require(id.isNotBlank() && id.length <= 64)

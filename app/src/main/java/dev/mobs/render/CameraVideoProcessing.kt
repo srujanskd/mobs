@@ -1,7 +1,9 @@
 package dev.mobs.render
 
+import android.annotation.SuppressLint
 import android.hardware.camera2.CameraCharacteristics
 import android.hardware.camera2.CaptureRequest
+import android.os.Build
 import dev.mobs.stream.HeatMode
 
 /**
@@ -28,7 +30,11 @@ internal fun cameraCaptureProfile(inset: Boolean, mode: HeatMode, fps: Int): Cam
 }
 
 /** Use the phone's automatic color/exposure pipeline without slower still-photo processing. */
-internal fun CaptureRequest.Builder.configureVideoProcessing(info: CameraCharacteristics, level: VideoProcessing = VideoProcessing.FULL) {
+internal fun CaptureRequest.Builder.configureVideoProcessing(
+    info: CameraCharacteristics,
+    level: VideoProcessing = VideoProcessing.FULL,
+    stabilizationEnabled: Boolean = true,
+) {
     /** Sets the first advertised mode; leaves the template default when none is advertised. */
     fun prefer(key: CaptureRequest.Key<Int>, modes: IntArray?, vararg choices: Int) {
         choices.firstOrNull { modes?.contains(it) == true }?.let { set(key, it) }
@@ -53,10 +59,25 @@ internal fun CaptureRequest.Builder.configureVideoProcessing(info: CameraCharact
     if (minimal) prefer(CaptureRequest.COLOR_CORRECTION_ABERRATION_MODE, aberration,
         CaptureRequest.COLOR_CORRECTION_ABERRATION_MODE_OFF, CaptureRequest.COLOR_CORRECTION_ABERRATION_MODE_FAST)
     else prefer(CaptureRequest.COLOR_CORRECTION_ABERRATION_MODE, aberration, CaptureRequest.COLOR_CORRECTION_ABERRATION_MODE_FAST)
-    if (reduced) {
-        prefer(CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE,
-            info.get(CameraCharacteristics.CONTROL_AVAILABLE_VIDEO_STABILIZATION_MODES), CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE_OFF)
-        prefer(CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE,
-            info.get(CameraCharacteristics.LENS_INFO_AVAILABLE_OPTICAL_STABILIZATION), CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE_OFF)
-    }
+    // Crop-only cameras report zoom through SCALER_CROP_REGION, which electronic stabilization
+    // can also change. Use optical stabilization there to preserve zoom confirmation.
+    val hasZoomRatio = Build.VERSION.SDK_INT >= 30 && info.get(CameraCharacteristics.CONTROL_ZOOM_RATIO_RANGE) != null
+    val videoModes = info.get(CameraCharacteristics.CONTROL_AVAILABLE_VIDEO_STABILIZATION_MODES)
+    val stabilize = stabilizationEnabled && !reduced
+    val videoMode = videoStabilizationMode(stabilize && hasZoomRatio, videoModes)
+    prefer(CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE, videoModes, videoMode)
+    val opticalMode = if (stabilize && videoMode == CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE_OFF)
+        CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE_ON else CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE_OFF
+    prefer(CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE,
+        info.get(CameraCharacteristics.LENS_INFO_AVAILABLE_OPTICAL_STABILIZATION), opticalMode)
+}
+
+/** Prefer stabilization that covers the SurfaceTexture used by the scene compositor. */
+@SuppressLint("InlinedApi") // Use the API 33 mode only if the camera advertises its value.
+internal fun videoStabilizationMode(enabled: Boolean, modes: IntArray?): Int = when {
+    !enabled -> CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE_OFF
+    modes?.contains(CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE_PREVIEW_STABILIZATION) == true ->
+        CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE_PREVIEW_STABILIZATION
+    modes?.contains(CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE_ON) == true -> CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE_ON
+    else -> CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE_OFF
 }

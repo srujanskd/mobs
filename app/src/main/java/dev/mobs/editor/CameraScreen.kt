@@ -317,7 +317,7 @@ fun CameraScreen(
                 val cameras = scene?.sources?.filter { it.kind in Scene.CAMERA_KINDS }.orEmpty()
                 if (cameras.isEmpty()) Text("Add a camera in the scene editor.")
                 cameras.forEach { source ->
-                    CameraSourceControls(source, scene!!.cameras.size == 2, feedback = state.cameraZoom[source.id], live = true, onChange = { sceneModel.changeLiveCamera(it) })
+                    CameraSourceControls(source, scene!!, feedback = state.cameraZoom[source.id], live = true, onChange = { sceneModel.changeLiveCamera(it) })
                     if (cameras.size == 1) OutlinedButton(onClick = {
                         val kind = if (source.kind == SourceKind.REAR_CAMERA) SourceKind.FRONT_CAMERA else SourceKind.REAR_CAMERA
                         sceneModel.changeLiveCamera(source.copy(kind = kind, name = if (kind == SourceKind.FRONT_CAMERA) "Front camera" else "Rear camera", zoom = 1f))

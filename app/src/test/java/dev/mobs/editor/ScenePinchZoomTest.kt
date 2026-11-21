@@ -134,6 +134,13 @@ class ScenePinchZoomTest {
         assertEquals(listOf(camera.id, overlay.id), saved.sources.map { it.id })
         assertEquals(2f, saved.sources.first().zoom)
         assertTrue(saved.sources.first().mirrored)
+        model.save(saved.update(saved.sources.first().copy(rotation = 180)), apply = false)
+        assertTrue(model.changeLiveCamera(engine.state.value.scene!!.sources.single().copy(stabilizationEnabled = false)))
+        runCurrent()
+        assertFalse(engine.state.value.scene!!.sources.single().stabilizationEnabled)
+        assertEquals(0, engine.state.value.scene!!.sources.single().rotation)
+        assertFalse(store.load().active.sources.first().stabilizationEnabled)
+        assertEquals(180, store.load().active.sources.first().rotation)
         // The output keeps showing the applied scene, with only the camera change.
         assertEquals(1, engine.state.value.scene!!.sources.size)
         assertTrue(engine.state.value.scene!!.sources.single().mirrored)

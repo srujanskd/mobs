@@ -57,7 +57,7 @@ class SceneEditorDeviceTest {
         }
     }
 
-    @Test fun cameraRotationCorrectionCanBeSelectedAndSaved() {
+    @Test fun cameraRotationAndStabilizationCanBeSelectedAndSaved() {
         val collection = SceneCollection.initial()
         val source = collection.active.sources.single()
         val saved = mutableListOf<Scene>()
@@ -65,9 +65,14 @@ class SceneEditorDeviceTest {
             SceneEditor(collection, DualCameraSupport(), onSave = { scene, _ -> saved += scene; true }, onDelete = {}, onClose = {})
         } }
         compose.onNodeWithTag("scene-source-${source.id}").performClick()
+        compose.onNodeWithText("Video stabilization").performScrollTo().assertIsOn().performClick().assertIsOff()
         compose.onNodeWithText("180°").performScrollTo().performClick()
         compose.onNodeWithText("Save", useUnmergedTree = true).performClick()
-        compose.runOnIdle { assertEquals(180, saved.single().sources.single().rotation) }
+        compose.runOnIdle {
+            val camera = saved.single().sources.single()
+            assertEquals(180, camera.rotation)
+            assertFalse(camera.stabilizationEnabled)
+        }
     }
 
     @Test fun draggingUpdatesNormalizedSourceBoundsWithoutChangingTheBroadcast() {

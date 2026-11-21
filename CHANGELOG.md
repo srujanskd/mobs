@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.0
+
+November 21, 2026. Version code 14.
+
+- Use **Camera controls → Video stabilization** to turn stabilization on or off during a broadcast. Each camera source saves its own setting. The scene editor also offers the toggle.
+- Stabilization defaults on for the main camera, including in existing scenes. Preview and broadcast share the same camera feed. The inset camera keeps stabilization off to limit heat.
+- Available stabilization modes depend on the phone. Physical shake reduction has yet to be measured on a handheld device.
+
 ## 0.3.0
 
 November 17, 2026. Version code 13. Vivid camera color.

@@ -13,7 +13,7 @@ class SceneStoreTest {
     @Test fun allSourcePropertiesAndSceneOrderSurviveReload() {
         val scene = Scene(name = "ನಗರ 🎥", sources = SourceKind.entries.map { kind -> SceneSource(
             name = kind.name, kind = kind, bounds = SourceBounds(0.1f, 0.2f, 0.3f, 0.4f),
-            rotation = 180, mirrored = true, zoom = 2f, url = "https://example.com/widget?token=private",
+            rotation = 180, mirrored = true, stabilizationEnabled = false, zoom = 2f, url = "https://example.com/widget?token=private",
             visible = false, locked = true, opacity = 0.6f, text = "Hello\nನಮಸ್ಕಾರ 👋", media = "owned-image.png", color = 0xFF445566.toInt(),
         ) })
         val collection = SceneCollection.initial().save(scene).copy(activeId = scene.id)
@@ -34,6 +34,7 @@ class SceneStoreTest {
         val collection = store().load()
         val source = collection.active.sources.single()
         assertFalse(source.mirrored)
+        assertTrue(source.stabilizationEnabled)
         assertEquals(1f, source.zoom)
         assertEquals(SourceKind.FRONT_CAMERA, source.kind)
         store().save(collection)

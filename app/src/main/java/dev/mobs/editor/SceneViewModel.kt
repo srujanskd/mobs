@@ -120,7 +120,7 @@ class SceneViewModel(private val store: SceneStore, private val io: CoroutineDis
             mutableError.value = "Camera engine is not ready"
             return false
         }
-        if (live.sources.none { it.id == source.id }) return false
+        val before = live.sources.firstOrNull { it.id == source.id } ?: return false
         try {
             val next = live.update(source)
             engine.setScene(next)
@@ -132,8 +132,17 @@ class SceneViewModel(private val store: SceneStore, private val io: CoroutineDis
             val merged = stored?.sources?.firstOrNull { it.id == source.id }?.let { old ->
                 // The draft may already hold the other camera; keep it unchanged rather than fail.
                 runCatching {
-                    stored.update(old.copy(kind = source.kind, zoom = source.zoom, mirrored = source.mirrored,
-                        rotation = source.rotation, name = if (old.kind != source.kind) source.name else old.name))
+                    val switchedCamera = before.kind != source.kind
+                    stored.update(old.copy(
+                        kind = if (switchedCamera) source.kind else old.kind,
+                        name = if (switchedCamera) source.name else old.name,
+                        // Pinch samples already changed the on-air zoom before the final save.
+                        zoom = if (switchedCamera || before.zoom != source.zoom || before == source) source.zoom else old.zoom,
+                        mirrored = if (before.mirrored != source.mirrored) source.mirrored else old.mirrored,
+                        rotation = if (before.rotation != source.rotation) source.rotation else old.rotation,
+                        stabilizationEnabled = if (before.stabilizationEnabled != source.stabilizationEnabled)
+                            source.stabilizationEnabled else old.stabilizationEnabled,
+                    ))
                 }.getOrNull()
             }
             persist(current.save(merged ?: stored ?: next).copy(activeId = live.id))
